@@ -3,6 +3,8 @@ package com.cinemaonline.model;
 import java.sql.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -17,6 +19,7 @@ public class VipRecord {
 	private String comment;//备注[失败原因]
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public long getRecordId() {
 		return recordId;
 	}

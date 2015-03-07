@@ -19,18 +19,33 @@
 			<value>classpath:hibernate.cfg.xml</value>
 		</property>
 	</bean>
-	
-	<bean id="TestDao" class="com.cinemaonline.dao.impl.TestDaoImpl">
+	<!-- test  --> 
+	<bean id="TestDao" class="com.cinemaonline.dao.impl.TestDaoImpl"></bean>
+	<!-- test  -->
+	<bean id="AccountDao" class="com.cinemaonline.dao.impl.AccountDaoImpl"></bean>
+	<bean id="ActivityDao" class="com.cinemaonline.dao.impl.ActivityDaoImpl"></bean>
+	<bean id="BankDao" class="com.cinemaonline.dao.impl.BankDaoImpl"></bean>
+	<bean id="FilmDao" class="com.cinemaonline.dao.impl.FilmDaoImpl"></bean>
+	<bean id="TicketDao" class="com.cinemaonline.dao.impl.TicketDaoImpl"></bean>
+	<bean id="VipDao" class="com.cinemaonline.dao.impl.VipDaoImpl"></bean>
 
-	</bean>
+	<!-- test  -->
 	<bean id="TestService" class="com.cinemaonline.service.impl.TestServiceImpl">
 		<property name="testDao">
 			<ref bean="TestDao"/>
 		</property>
-	</bean>		
+	</bean>
+	<!-- test  -->
+	
+	
+	
+	
+	
+	<!-- test  -->
 		<bean id="TestAction" class="com.cinemaonline.action.TestAction">
 		<property name="testService">
 			<ref bean="TestService"/>
 		</property>
 	</bean>
+	<!-- test  -->
 </beans>

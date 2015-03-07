@@ -1,9 +1,14 @@
 package com.cinemaonline.model;
 
 import java.sql.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -16,8 +21,11 @@ public class Film {
 	private Date releaseTime;//上映时间
 	private Date shelvesTime;//下架时间
 	private int status;//电影状态
+	private Set<FilmPlan> filmPlans;//计划
+	
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public long getFilmId() {
 		return filmId;
 	}
@@ -59,6 +67,13 @@ public class Film {
 	}
 	public void setStatus(int status) {
 		this.status = status;
+	}
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="film")
+	public Set<FilmPlan> getFilmPlans() {
+		return filmPlans;
+	}
+	public void setFilmPlans(Set<FilmPlan> filmPlans) {
+		this.filmPlans = filmPlans;
 	}
 
 }

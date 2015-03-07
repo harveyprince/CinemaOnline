@@ -1,8 +1,11 @@
 package com.cinemaonline.dao;
 
+import com.cinemaonline.model.client.AccountLogin;
+import com.cinemaonline.model.client.AccountSignUp;
+
 public interface AccountDao {
-	public int login(String accountName,String password);
+	public int login(AccountLogin login);
 	
-	public long signup(String accountName,String password);
+	public long signup(AccountSignUp signup);
 
 }

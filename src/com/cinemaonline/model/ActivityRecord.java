@@ -1,41 +1,43 @@
 package com.cinemaonline.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="ActivityRecord")
 public class ActivityRecord {
 	private long recordId;//记录流水号
-	private long activityId;//活动流水号
 	private long vipId;//会员编号
-	private int answerId;//活动选项ID
+//	private long activityAnswerId;//活动答案流水号
+	private ActivityAnswer activityAnswer;//活动答案
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public long getRecordId() {
 		return recordId;
 	}
 	public void setRecordId(long recordId) {
 		this.recordId = recordId;
 	}
-	public long getActivityId() {
-		return activityId;
-	}
-	public void setActivityId(long activityId) {
-		this.activityId = activityId;
-	}
+	
 	public long getVipId() {
 		return vipId;
 	}
 	public void setVipId(long vipId) {
 		this.vipId = vipId;
 	}
-	public int getAnswerId() {
-		return answerId;
+	@JoinColumn(name="activityAnswerId")
+	@ManyToOne(targetEntity=ActivityAnswer.class)
+	public ActivityAnswer getActivityAnswer() {
+		return activityAnswer;
 	}
-	public void setAnswerId(int answerId) {
-		this.answerId = answerId;
+	public void setActivityAnswer(ActivityAnswer activityAnswer) {
+		this.activityAnswer = activityAnswer;
 	}
 
 }

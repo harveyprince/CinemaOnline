@@ -1,5 +1,10 @@
 package com.cinemaonline.action;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import com.cinemaonline.model.Activity;
+import com.cinemaonline.model.ActivityAnswer;
 import com.cinemaonline.model.Test;
 import com.cinemaonline.service.TestService;
 
@@ -23,14 +28,11 @@ public class TestAction extends BaseAction {
 	}
 	
 	public String execute() throws Exception{
-		String key="";
-		try{
-			key = this.request().getParameter("key").toString();
-		} catch (Exception e){
-			e.printStackTrace();
-		}
-		String name = testService.getName(key);
-		this.request().getSession().setAttribute("name", name);
+		this.request().getSession().setAttribute("name", "name");
+		Activity act = new Activity();
+		act.setContent("what");
+		act.setTitle("yes");
+		testService.setAct(act);
 		System.out.println("test action worked!");
 		System.out.println(SUCCESS);
 		return SUCCESS;
