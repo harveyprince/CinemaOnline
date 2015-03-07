@@ -1,0 +1,56 @@
+@charset "utf-8";
+/* CSS Document */
+
+button{
+	border-radius: 5px;
+	outline: none;
+}
+input{
+	outline: none;
+}
+.harveyprince{
+	background: #322F2F;
+}
+.block-input-box{
+	display: block;
+}
+.block-input-box + .block-input-box {
+	margin-top: 15px;
+}
+.input-box-pack{
+	width: 100%;
+	height: 40px;
+	display: block;
+}
+.input-box-pack>span{
+	position: absolute;
+	left: 1pc;
+	z-index: 2;
+	display: block;
+	line-height: 40px;
+	text-align: center;
+}
+.input-box-pack>span+input{
+	padding-left: 40px;
+}
+.form-box-input{
+	display: block;
+	border-radius:5px;
+	height: 100%;
+	font-size: 15px;
+	padding: 6px 10px;
+	width: 100%;
+	line-height: 17px;
+	box-shadow: inset 0 1px 2px rgba(108, 108, 108, 0.25),0 1px 0 rgba(255,255,255,.15);
+	border-color: #FFFFFF;
+	border: 1px solid #ADADAD;
+	background: #F2F3F4;
+	
+}
+.form-box-input:focus{
+	box-shadow: 0 0 8px rgba(225,225,225, 1);
+	background: #FFFFFF;
+}
+.alarm-box{
+	display: none;
+}

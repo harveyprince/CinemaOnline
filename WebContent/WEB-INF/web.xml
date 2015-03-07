@@ -51,6 +51,6 @@
  </context-param>
 
 	<welcome-file-list>
-		<welcome-file>/testjsp.jsp</welcome-file>
+		<welcome-file>/welcome/WelcomePage.jsp</welcome-file>
 	</welcome-file-list>
 </web-app>

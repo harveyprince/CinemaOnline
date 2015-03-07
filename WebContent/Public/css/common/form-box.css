@@ -1,0 +1,58 @@
+.input-group{
+	width: 100%;
+	display: none;
+}
+.input-group.active{
+	display: block;
+}
+.box-button{
+	width: 100%;
+	height: 40px;
+	border: 1px solid #F4F4F4;
+	text-align: center;
+	background: -webkit-gradient(linear,left top,left bottom,from(#F4F4F4),to(#EAEAEA));
+	box-shadow: inset 0 1px 0 rgba(255,255,255,.3),0 1px 1px rgba(50,50,50,.05);
+	text-shadow: 0 1px 1px rgba(0,0,0,.2);
+}
+.box-button:hover{
+
+}
+.box-button:active{
+	border: 1px solid #494949;
+	background: rgb(169, 166, 166);
+	box-shadow: none;
+	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25),0 1px 0 rgba(255,255,255,.15);
+}
+.input-box-pack.alarm-pack{
+	height: auto;
+}
+.form-box-input.name-input{
+	width: 40%;
+	display: inline;
+}
+.form-box-input.name-input{
+	width: 47.5%;
+	display: inline;
+}
+.form-box-input.name-input+.name-input{
+	float: right;
+}
+.group-switch-nav{
+	color: #ddd;
+	font-size: 15px;
+	padding-bottom: 10px;
+}
+.group-switch-nav .switch-button{
+	float: right;
+}
+.group-switch-nav .nav-tip{
+	padding-left: 2px;
+	padding-right: 4px;
+}
+.switch-button{
+	padding-right: 5px;
+	cursor: pointer;
+}
+.switch-button:hover{
+	padding-right: 0px;
+}
