@@ -1,0 +1,61 @@
+html,body {
+	height: 100%;
+	font-size: 14px;
+}
+.contain {
+	height: 100%;
+	display: block;
+}
+.contain .left-sidebar {
+	background: #444 url("../../image/debut_dark.png") repeat;
+	padding-left: 30px;
+	padding-top: 30px;
+	width: 20%;
+	height: 100%;
+	display: block;
+	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5),0 1px 0 rgba(255,255,255,.15);
+
+}
+.left-sidebar .nav .active a {
+	color: #fff;
+	background: rgba(0,0,0,.3);
+}
+.left-sidebar .nav>.nav-header {
+	color: #aaa;
+	padding-top: 6px;
+	padding-bottom: 6px;
+}
+.left-sidebar .nav>li>a {
+	text-shadow: 0 -1px rgba(0,0,0,.5);
+	border-bottom: 1px solid rgba(0,0,0,.2);
+	border-top: 1px solid rgba(255,255,255,.1);
+	color: #aaa;
+	font-weight: 700;
+	margin-right: 5px;
+}
+.left-sidebar .nav>li>a>i {
+	padding-right: 10px;
+}
+.left-sidebar .nav>li>a:hover,.nav>li>a:focus {
+	background: rgba(255,255,255,.1);
+}
+.contain .row {
+	width: 95%;
+	
+}
+.contain .row .nav>li>a {
+	border-radius: 4px;
+}
+.nav-tabs {
+	margin-bottom: 10px;
+}
+.tab-page {
+	padding-bottom: 150px;
+}
+.table-button {
+	padding: 1px 5px;
+	margin: 0 3px;
+}
+.table-button+.dropdown-menu {
+	min-width: 0;
+}

@@ -1,0 +1,13 @@
+.regist-pane {
+	margin-left: 20%;
+	margin-right:20%;
+	text-align: center;
+	margin-top: 30px;
+}
+.nav-tabs>li {
+	width: 30%;
+	margin-left: 2%;
+}
+.nav-tabs {
+	margin-bottom: 10px;
+}

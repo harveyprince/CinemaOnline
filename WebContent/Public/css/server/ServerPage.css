@@ -1,0 +1,19 @@
+.bar-match-content {
+	  padding: 3em 4em;
+  position: fixed;
+  overflow: hidden;
+  overflow-y: scroll;
+  border-top-left-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,.6);
+  top: .8em;
+  right: 0;
+  bottom: 0;
+  margin-left: 20%;
+  left: 0px;
+}
+.active>a {
+  text-decoration: none;
+}
+.add-plan {
+  float: left;
+}
