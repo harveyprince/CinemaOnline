@@ -59,3 +59,35 @@ html,body {
 .table-button+.dropdown-menu {
 	min-width: 0;
 }
+.modal.in .modal-dialog {
+	background-color: #FFF;
+	border-radius: 4px;
+}
+.mbl {
+  margin-bottom: 0;
+}
+.modal-body .row-line {
+	height: 41px;
+	padding: 0 20%;
+	margin-bottom: 5px;
+}
+.modal-body .row-line>.row-label {
+	font-size: 20px;
+  text-align: center;
+color: #000;
+float: left;
+}
+.modal-body .row-line>.row-content {
+	float: right;
+	width: 240px;
+}
+.modal-body .row-line>.row-content.form-group {
+	margin-bottom: 0;
+}
+.modal-body .row-line>div {
+	display: inline;
+}
+.modal-body .row-line>.row-content>.form-control {
+	height: 41px;
+	width: 240px;
+}

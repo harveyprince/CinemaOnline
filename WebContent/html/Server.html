@@ -31,6 +31,7 @@
 
 
 		<!-- changable place -->
+
 		<div class="bar-match-content">
 			<div class="table-box">
 				<ul class="nav nav-tabs" data-trigger="tab">
@@ -39,7 +40,7 @@
 				</ul>
 				<div class="pane-wrapper slide clearfix">
 					<div class="tab-page">
-						<button class="btn btn-primary add-plan">
+						<button class="btn btn-primary add-plan" data-toggle="modal" data-target="#modalAdd">
 							Add Plan
 						</button>
 						<table class="table">
@@ -57,6 +58,7 @@
     status <span class="caret"></span>
   </button>
   <ul class="dropdown-menu dropdown-menu-inverse" role="menu">
+    <li><a href="#">status</a></li>
     <li><a href="#">unsubmited</a></li>
     <li><a href="#">waiting for check</a></li>
     <li><a href="#">checked pass</a></li>
@@ -93,7 +95,7 @@
 									<th>time:time</th>
 									<th>35</th>
 									<th>
-										<button class="btn btn-inverse table-button">
+										<button class="btn btn-inverse table-button" data-toggle="modal" data-target="#modalEdit">
   <i class="fa fa-pencil-square-o"></i>
 </button>
 									</th>
@@ -107,6 +109,11 @@
 							</tbody>
 						</table>
 					</div>
+
+
+
+
+					<!-- /////////////////////////////////////////////////////// -->
 					<div class="tab-page">
 						<table class="table">
 							<thead>
@@ -134,13 +141,140 @@
 
 		</div>
 		<!-- changable place -->
+<!-- Modal -->
+<div id="modalEdit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalEditLabel" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h5 id="myModalLabel">Film Plan Edit</h5>
+  </div>
+  <div class="modal-body">
+  	<div class="row-line">
+  		<div class="row-label">film:</div>
+    <div class="span3 row-content">
+          <select class="form-control select select-primary select-block mbl">
+    <option value="0">what a wonderful life</option>
+    <option value="1">happy tree friend</option>
+    <option value="2">Messages</option>
+    <option value="3">My Settings</option>
+    <option value="4">Logout</option>
+</select>
+  </div>
+</div>
+<div class="row-line">
+  		<div class="row-label">hallNo:</div>
+    <div class="span3 row-content">
+          <select class="form-control select select-primary select-block mbl">
+    <option value="0">1</option>
+    <option value="1">2</option>
+    <option value="2">3</option>
+    <option value="3">4</option>
+    <option value="4">5</option>
+</select>
+  </div>
+</div> 
+<div class="row-line">
+  		<div class="row-label">seatSum:</div>
+    <div class="form-group has-success row-content">
+    	<input class="form-control" type="number" placeholder="Sum" />
+  </div>
+</div>
+ <div class="row-line">
+  		<div class="row-label">price:</div>
+    <div class="form-group has-success row-content">
+    	<input class="form-control" type="number" placeholder="price" />
+  </div>
+</div> 
+<div class="row-line">
+  		<div class="row-label">beginTime:</div>
+    <div class="form-group has-success row-content">
+    	<input class="form-control" type="datetime-local" placeholder="beginTime" />
+  </div>
+</div> 
+<div class="row-line">
+  		<div class="row-label">endTime:</div>
+    <div class="form-group has-success row-content">
+    	<input class="form-control" type="datetime-local" placeholder="endTime" />
+  </div>
+</div> 
+</div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+    <button class="btn btn-primary">Save changes</button>
+  </div>
+</div>
+</div>
 
+<!-- Modal -->
+<div id="modalAdd" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalAddLabel" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h5 id="myModalLabel">Film Plan Add</h5>
+  </div>
+  <div class="modal-body">
+  	<div class="row-line">
+  		<div class="row-label">film:</div>
+    <div class="span3 row-content">
+          <select class="form-control select select-primary select-block mbl">
+    <option value="0">what a wonderful life</option>
+    <option value="1">happy tree friend</option>
+    <option value="2">Messages</option>
+    <option value="3">My Settings</option>
+    <option value="4">Logout</option>
+</select>
+  </div>
+</div>
+<div class="row-line">
+  		<div class="row-label">hallNo:</div>
+    <div class="span3 row-content">
+          <select class="form-control select select-primary select-block mbl">
+    <option value="0">1</option>
+    <option value="1">2</option>
+    <option value="2">3</option>
+    <option value="3">4</option>
+    <option value="4">5</option>
+</select>
+  </div>
+</div> 
+<div class="row-line">
+  		<div class="row-label">seatSum:</div>
+    <div class="form-group has-success row-content">
+    	<input class="form-control" type="number" placeholder="Sum" />
+  </div>
+</div>
+ <div class="row-line">
+  		<div class="row-label">price:</div>
+    <div class="form-group has-success row-content">
+    	<input class="form-control" type="number" placeholder="price" />
+  </div>
+</div> 
+<div class="row-line">
+  		<div class="row-label">beginTime:</div>
+    <div class="form-group has-success row-content">
+    	<input class="form-control" type="datetime-local" placeholder="beginTime" />
+  </div>
+</div> 
+<div class="row-line">
+  		<div class="row-label">endTime:</div>
+    <div class="form-group has-success row-content">
+    	<input class="form-control" type="datetime-local" placeholder="endTime" />
+  </div>
+</div> 
+</div>
+<div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+    <button class="btn btn-primary">Save changes</button>
+  </div>
+</div>
 	</div>
 </body>
 <script src="../Public/jquery/jquery.min.js"></script>
 <script src="../Public/dist/js/bootstrap.min.js"></script>
 <script src="../Public/sco/js/sco.panes.js"></script>
 <script src="../Public/sco/js/sco.tab.js"></script>
+<script src="../Public/Flat-UI-master/dist/js/flat-ui.js"></script>
 <script type="text/javascript">
+$("select").select2();
 </script>
 </html>
