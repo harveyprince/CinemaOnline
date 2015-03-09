@@ -1,0 +1,15 @@
+.select2-search-choice{
+	color: #32992F;
+	background-color: rgb(222, 249, 222);
+}
+.select2-search-choice:hover{
+	background-color: rgb(80,158,80);
+}
+.add-answer-button {
+	cursor: pointer;
+	pointer-events:all;
+}
+.answers-panel {
+	text-align: center;
+	word-break:break-all;
+}

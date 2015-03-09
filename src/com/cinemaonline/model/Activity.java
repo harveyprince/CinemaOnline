@@ -19,6 +19,7 @@ public class Activity {
 	private long activityId;//活动流水号
 	private String title;//题目
 	private String content;//内容
+	private int status;//状态
 	private Set<ActivityAnswer> answerlist;//答案
 	private Set<FilmPlan> plans;//计划
 	
@@ -42,6 +43,7 @@ public class Activity {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	
 	@OneToMany(cascade=CascadeType.ALL,mappedBy="activity")
 	public Set<ActivityAnswer> getAnswerlist() {
 		return answerlist;
@@ -62,6 +64,12 @@ public class Activity {
 	}
 	public void setPlans(Set<FilmPlan> plans) {
 		this.plans = plans;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
 	}
 	
 
