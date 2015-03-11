@@ -1,0 +1,26 @@
+.vip-search {
+	text-align: center;
+	display: block;
+}
+.vip-search .input-group-hg {
+	width: 450px;
+	margin-left: 26%;
+}
+.input-group-hg>.form-control, .input-group-hg>.input-group-addon, .input-group-hg>.input-group-btn>.btn, .input-group-hg>.select2-search input[type=text] {
+  height: 43px;
+}
+.info-box{
+	margin: 5px 7px;
+}
+.info-line{
+	text-align: center;
+	font-size: 20px;
+}
+a .info-line {
+	background-color: #ECECEC;
+	border-radius: 5px;
+	margin-bottom: 5px;
+}
+.info-line div{
+	display: inline-block;
+}
