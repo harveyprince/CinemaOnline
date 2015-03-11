@@ -13,3 +13,19 @@
 	text-align: center;
 	word-break:break-all;
 }
+.answers-panel .answer-row {
+	border-radius: 4px;
+	background-color: #EFFFF3;
+	cursor: pointer;
+	margin-bottom: 5px;
+}
+.answers-panel .answer-row .answer-close{
+	display: none;
+}
+.answers-panel .answer-row:hover{
+	background-color: #AED8B8;
+}
+.answers-panel .answer-row:hover .answer-close{
+	color: #8B0202;
+	display: block;
+}
