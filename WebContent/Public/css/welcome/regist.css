@@ -1,13 +1,44 @@
 .regist-pane {
 	margin-left: 20%;
 	margin-right:20%;
-	text-align: center;
+	/*text-align: center;*/
 	margin-top: 30px;
 }
 .nav-tabs>li {
 	width: 30%;
 	margin-left: 2%;
+	text-align: center;
 }
 .nav-tabs {
 	margin-bottom: 10px;
+}
+.tab-page {
+	margin-top: 50px;
+}
+.tab-page .page-row {
+	padding: 0 25%;
+	height: 41px;
+	margin-bottom: 10px;
+}
+.tab-page .page-row>div {
+	display: inline;
+}
+.tab-page .page-row div.row-label {
+	float: left;
+	text-align: center;
+}
+.tab-page .page-row div.row-content{
+	width: 240px;
+	float: right;
+	margin-bottom: 0;
+}
+.tab-page .page-row div.row-content .form-control{
+	width: 240px;
+}
+.tab-page .page-row .regist-result-label {
+	text-align: center;
+	display: block;
+}
+.page-row .row-content .sex-input {
+	margin-bottom: 0;
 }

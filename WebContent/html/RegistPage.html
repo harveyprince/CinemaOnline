@@ -8,19 +8,79 @@
 	<link rel="stylesheet" type="text/css" href="../Public/css/welcome/regist.css">
 	<link rel="stylesheet" type="text/css" href="../Public/sco/css/scojs.css">
 	<link rel="stylesheet" type="text/css" href="../Public/sco/css/sco.message.css">
-
+	<link rel="stylesheet" type="text/css" href="../Public/Flat-UI-master/dist/css/flat-ui.min.css">
 </head>
 <body>
 	<div class="regist-pane">
 		<ul class="nav nav-tabs" data-trigger="tab">
-			<li><a href="#tab1">first step</a></li>
-			<li><a href="#tab2">second step</a></li>
-			<li><a href="#tab3">third step</a></li>
+			<li><a href="#info-tab" class="info-tab">info page</a></li>
+			<li><a href="#password-tab" class="password-tab">second step</a></li>
+			<li><a href="#result-tab" class="result-tab">third step</a></li>
 		</ul>
 		<div class="pane-wrapper slide">
-			<div>the first step to regist</div>
-			<div>the second step to regist</div>
-			<div>the third step to regist</div>
+			<div class="tab-page">
+				<div class="page-row">
+					<div class="row-label">name:</div>
+					<div class="form-group row-content">
+						<input class="form-control name-input" type="text" placeholder="name" />
+					</div>
+				</div>
+				<div class="page-row">
+					<div class="row-label">sex:</div>
+					<div class="span3 row-content">
+									<select class="form-control select select-primary select-block mbl sex-input">
+										<option value="0">girl</option>
+										<option value="1">boy</option>
+									</select>
+								</div>
+				</div>
+				<div class="page-row">
+					<div class="row-label">birthday:</div>
+					<div class="form-group row-content">
+						<input class="form-control birthday-input" type="date" placeholder="birthday" />
+					</div>
+				</div>
+				<div class="page-row">
+					<div class="row-label">location:</div>
+					<div class="form-group row-content">
+						<input class="form-control location-input" type="text" placeholder="location" />
+					</div>
+				</div>
+				<div class="page-row">
+					<div class="form-group row-content">
+						<button class="btn btn-primary info-regist-button">next step</button>
+					</div>
+				</div>
+			</div>
+			<div class="tab-page">
+				<div class="page-row">
+					<div class="row-label">password:</div>
+					<div class="form-group row-content">
+						<input class="form-control password-input" type="password" placeholder="password" />
+					</div>
+				</div>
+				<div class="page-row">
+					<div class="row-label">repeat:</div>
+					<div class="form-group row-content">
+						<input class="form-control password-confirm-input" type="password" placeholder="repeat" />
+					</div>
+				</div>
+				<div class="page-row">
+					<div class="form-group row-content">
+						<button class="btn btn-primary password-regist-button">next step</button>
+					</div>
+				</div>
+			</div>
+			<div class="tab-page">
+				<div class="page-row">
+					<div class="regist-result-label">success</div>
+				</div>
+				<div class="page-row">
+					<div class="form-group row-content">
+						<button class="btn btn-primary result-regist-button">go ahead</button>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>
@@ -28,6 +88,8 @@
 <script src="../Public/dist/js/bootstrap.min.js"></script>
 <script src="../Public/sco/js/sco.panes.js"></script>
 <script src="../Public/sco/js/sco.tab.js"></script>
+<script src="../Public/Flat-UI-master/dist/js/flat-ui.js"></script>
 <script type="text/javascript">
 </script>
+<script src="../Public/js/welcome/regist.js"></script>
 </html>
