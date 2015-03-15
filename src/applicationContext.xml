@@ -36,7 +36,11 @@
 		</property>
 	</bean>
 	<!-- test  -->
-	
+	<bean id="AccountService" class="com.cinemaonline.service.impl.AccountServiceImpl">
+		<property name="accountDao">
+			<ref bean="AccountDao"/>
+		</property>
+	</bean>
 	
 	
 	
@@ -48,4 +52,10 @@
 		</property>
 	</bean>
 	<!-- test  -->
+	<bean id="AccountAction" class="com.cinemaonline.action.AccountAction">
+		<property name="accountService">
+			<ref bean="AccountService"/>
+		</property>
+	</bean>
+	
 </beans>

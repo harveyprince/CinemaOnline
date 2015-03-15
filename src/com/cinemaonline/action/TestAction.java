@@ -1,14 +1,15 @@
 package com.cinemaonline.action;
 
-import java.util.HashSet;
-import java.util.Set;
 
 import com.cinemaonline.model.Activity;
-import com.cinemaonline.model.ActivityAnswer;
 import com.cinemaonline.model.Test;
 import com.cinemaonline.service.TestService;
 
 public class TestAction extends BaseAction {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private TestService testService;
 	private Test test;
 	public TestService getTestService() {

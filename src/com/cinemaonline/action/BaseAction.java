@@ -10,6 +10,8 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 
+
+import com.cinemaonline.service.AccountService;
 import com.cinemaonline.service.TestService;
 //import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
@@ -26,6 +28,11 @@ public class BaseAction extends ActionSupport{
         WebApplicationContext webApplicationContext= WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext);
         return (TestService)webApplicationContext.getBean("TestService");    
     }
+	public AccountService accountService() {
+		ServletContext servletContext = ServletActionContext.getServletContext();
+        WebApplicationContext webApplicationContext= WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext);
+        return (AccountService)webApplicationContext.getBean("AccountService");
+	}
     public HttpServletRequest request(){
         return ServletActionContext.getRequest();
     }

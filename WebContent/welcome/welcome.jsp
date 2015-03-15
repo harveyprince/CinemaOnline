@@ -1,0 +1,59 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>welcome</title>
+	<link rel="stylesheet" type="text/css" href="./Public/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="./Public/font-awesome-4.2.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="./Public/css/common/page.css">
+	<link rel="stylesheet" type="text/css" href="./Public/css/common/alarm-box.css">
+	<link rel="stylesheet" type="text/css" href="./Public/css/common/form-box.css">
+	<link rel="stylesheet" type="text/css" href="./Public/css/welcome/welcome.css">
+
+</head>
+<body class="harveyprince">
+	<div class="page-content">
+		<div class="content-inner">
+			<div class="form-panel">
+				<div class="form-box">
+					<div class="login-group input-group active">
+						<div class="group-switch-nav">
+							<span class="nav-tip">login</span>
+							<span class="switch-button">
+								<span class="nav-tip">sign up</span>
+								<i class="fa fa-arrow-circle-right"></i>
+							</span>
+						</div>
+						<form action="" method="post" autocomplete="off" type="login">
+						<div class="input-box-pack block-input-box">
+						<span class="fa fa-user"></span>
+						<input class="form-box-input" placeholder="id" type="text" style="ime-mode:disabled;" name="accountid" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" required="required">
+						</div>
+						<div class="input-box-pack block-input-box">
+						<span class="fa fa-key"></span>
+						<input class="form-box-input" placeholder="password" type="password" name="password" required="required">
+						</div>
+						<div class="input-box-pack block-input-box alarm-pack">
+						<div class="alarm-box"></div>
+						</div>
+						<div class="input-box-pack block-input-box">
+						<button class="box-button" type="submit">login</button>
+						</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="./Public/jquery/jquery.min.js"></script>
+<script src="./Public/js/common/alarm-box.js"></script>
+<script src="./Public/js/welcome/welcome.js"></script>
+<script type="text/javascript">
+$(".switch-button").click(function(){
+	window.location.href = "<%=application.getContextPath()%>/signup";
+});
+</script>
+</html>
