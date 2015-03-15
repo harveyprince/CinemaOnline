@@ -7,7 +7,11 @@ $("form").submit(function(e){
 	var action = $(this).attr('action');
 	var data = new FormData();
 	$(this).find('input').each(function(){
-		data.append($(this).attr('name'),$(this).val());
+		if($(this).attr('name')=='password'){
+			data.append($(this).attr('name'),$.md5($(this).val()));
+		}else{
+			data.append($(this).attr('name'),$(this).val());
+		}
 	});
 	$.ajax({
 		data: data,
@@ -17,7 +21,11 @@ $("form").submit(function(e){
 		contentType: false,
 		processData: false,
 		success: function(data) {
-			//callback code
+			if(data=="usernotfound"){
+				$box.alarm("user not found!");
+			}else if(data=="pserror"){
+				$box.alarm("password error");
+			}
 		},
 		error:function(){
 			$box.alarm("error occured");

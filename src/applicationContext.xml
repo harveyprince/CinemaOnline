@@ -1,61 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<beans xmlns="http://www.springframework.org/schema/beans"
-	     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	     xmlns:aop="http://www.springframework.org/schema/aop"
-	     xmlns:tx="http://www.springframework.org/schema/tx"
-	     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
-           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
-           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:cache="http://www.springframework.org/schema/cache" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans         
+      http://www.springframework.org/schema/beans/spring-beans-4.0.xsd        
+      http://www.springframework.org/schema/aop         
+      http://www.springframework.org/schema/aop/spring-aop-4.0.xsd        
+      http://www.springframework.org/schema/context         
+      http://www.springframework.org/schema/context/spring-context-4.0.xsd        
+      http://www.springframework.org/schema/tx         
+      http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+      http://www.springframework.org/schema/cache 
+      http://www.springframework.org/schema/cache/spring-cache-4.0.xsd">
 
 
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/cinemaonline?autoReconnect=true" />
+		<property name="username" value="root" />
+		<property name="password" value="harveyprince" />
+	</bean>
 
+	<!-- 配置sessionFactory -->
 
-<!--  配置sessionFactory 
-  --> 
-<bean id="sessionFactory"
+	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-		<property name="configLocation">
-			<value>classpath:hibernate.cfg.xml</value>
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan" value="com.cinemaonline.model" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.connection.autocommit">true</prop>
+			</props>
 		</property>
-	</bean>
-	<!-- test  --> 
-	<bean id="TestDao" class="com.cinemaonline.dao.impl.TestDaoImpl"></bean>
-	<!-- test  -->
-	<bean id="AccountDao" class="com.cinemaonline.dao.impl.AccountDaoImpl"></bean>
-	<bean id="ActivityDao" class="com.cinemaonline.dao.impl.ActivityDaoImpl"></bean>
-	<bean id="BankDao" class="com.cinemaonline.dao.impl.BankDaoImpl"></bean>
-	<bean id="FilmDao" class="com.cinemaonline.dao.impl.FilmDaoImpl"></bean>
-	<bean id="TicketDao" class="com.cinemaonline.dao.impl.TicketDaoImpl"></bean>
-	<bean id="VipDao" class="com.cinemaonline.dao.impl.VipDaoImpl"></bean>
 
-	<!-- test  -->
-	<bean id="TestService" class="com.cinemaonline.service.impl.TestServiceImpl">
-		<property name="testDao">
-			<ref bean="TestDao"/>
-		</property>
 	</bean>
-	<!-- test  -->
-	<bean id="AccountService" class="com.cinemaonline.service.impl.AccountServiceImpl">
-		<property name="accountDao">
-			<ref bean="AccountDao"/>
-		</property>
+
+
+	
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
-	
-	
-	
-	<!-- test  -->
-		<bean id="TestAction" class="com.cinemaonline.action.TestAction">
-		<property name="testService">
-			<ref bean="TestService"/>
-		</property>
-	</bean>
-	<!-- test  -->
+
 	<bean id="AccountAction" class="com.cinemaonline.action.AccountAction">
-		<property name="accountService">
-			<ref bean="AccountService"/>
-		</property>
 	</bean>
+	
+	<!-- 定义 Autowired 自动注入 bean -->
+	<bean
+		class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
+
+	<!-- 扫描有注解的文件 base-package 包路径 -->
+	<context:component-scan base-package="com.cinemaonline"  />
+	<!-- 声明式容器事务管理 ,transaction-manager指定事务管理器为transactionManager -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="*User" propagation="REQUIRED" />
+			<tx:method name="*" propagation="NOT_SUPPORTED" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+	<!-- 定义切面，在edu.nju.onlinescorequery.service包及子包中所有以Service结尾的方法中,执行有关的hibernate session的事务操作 -->
+	<aop:config>
+		<!-- 只对业务逻辑层实施事务 -->
+		<aop:pointcut id="serviceOperation"
+			expression="execution( * com.cinemaonline.service..*Service.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceOperation" />
+	</aop:config>
+	
+	
+	
 	
 </beans>

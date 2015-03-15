@@ -21,6 +21,7 @@
 		</ul>
 		<div class="pane-wrapper slide">
 			<div class="tab-page">
+			<form action="" id="info-form" onSubmit="return false;">
 				<div class="page-row">
 					<div class="row-label">name:</div>
 					<div class="form-group row-content">
@@ -53,18 +54,26 @@
 						<button class="btn btn-primary info-regist-button">next step</button>
 					</div>
 				</div>
+				</form>
 			</div>
 			<div class="tab-page">
+			<form action="" id="pass-form" onSubmit="return false;">
+				<div class="page-row">
+					<div class="row-label">email:</div>
+					<div class="form-group row-content">
+						<input class="form-control email-input" type="email" placeholder="email" required/>
+					</div>
+				</div>
 				<div class="page-row">
 					<div class="row-label">password:</div>
 					<div class="form-group row-content">
-						<input class="form-control password-input" type="password" placeholder="password" />
+						<input class="form-control password-input" type="password" placeholder="password" required/>
 					</div>
 				</div>
 				<div class="page-row">
 					<div class="row-label">repeat:</div>
 					<div class="form-group row-content">
-						<input class="form-control password-confirm-input" type="password" placeholder="repeat" />
+						<input class="form-control password-confirm-input" type="password" placeholder="repeat" required/>
 					</div>
 				</div>
 				<div class="page-row">
@@ -72,6 +81,7 @@
 						<button class="btn btn-primary password-regist-button">next step</button>
 					</div>
 				</div>
+				</form>
 			</div>
 			<div class="tab-page">
 				<div class="page-row">

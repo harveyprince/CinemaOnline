@@ -1,13 +1,19 @@
 package com.cinemaonline.dao.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.cinemaonline.dao.BaseDao;
 import com.cinemaonline.dao.VipDao;
 import com.cinemaonline.model.client.ActivityJoin;
 import com.cinemaonline.model.client.OperaResult;
 import com.cinemaonline.model.client.VipClientInfo;
 import com.cinemaonline.model.client.VipOperaInfo;
 
+@Repository
 public class VipDaoImpl implements VipDao {
-	
+	@Autowired
+	private BaseDao baseDao;
 	public VipDaoImpl(){}
 
 	@Override
