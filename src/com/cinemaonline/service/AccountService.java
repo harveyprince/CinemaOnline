@@ -8,4 +8,6 @@ public interface AccountService {
 	public OperaResult loginJudge(AccountLogin info);
 	
 	public OperaResult signupJudge(AccountSignUp signup);
+	
+	public OperaResult signupCheckByEmail(String email);
 }

@@ -15,20 +15,21 @@ import javax.persistence.Table;
 public class VipInfo {
 //	private long accountId;//账户编号
 	private Account account;//账户
-	private long vipId;//会员编号
+	private String vipId;//会员编号
 	private Date birthday;//出生日期
 	private int sex;//性别[1代表男,0代表女]
 	private String location;//居住地
 	private String name;//姓名
+	private String email;//邮箱
 	private String vipStatus;//会员状态[正常/暂停/未激活/停止/取消]
 	private VipCard vipCard;//会员卡
 	private Set<VipRecord> vipRecords;//会员记录
 	
 	@Id
-	public long getVipId() {
+	public String getVipId() {
 		return vipId;
 	}
-	public void setVipId(long vipId) {
+	public void setVipId(String vipId) {
 		this.vipId = vipId;
 	}
 	public Date getBirthday() {
@@ -84,6 +85,12 @@ public class VipInfo {
 	}
 	public void setVipRecords(Set<VipRecord> vipRecords) {
 		this.vipRecords = vipRecords;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }

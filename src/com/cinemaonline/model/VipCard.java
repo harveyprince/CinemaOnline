@@ -9,17 +9,17 @@ import javax.persistence.Table;
 @Entity
 @Table(name="VipCard")
 public class VipCard {
-	private long vipId;//编号
+	private String vipId;//编号
 //	private int levelId;//会员卡级别
 	private int score;//积分
 	private double balance;//卡内余额
 	private VipLevel vipLevel;//会员级别
 	
 	@Id
-	public long getVipId() {
+	public String getVipId() {
 		return vipId;
 	}
-	public void setVipId(long vipId) {
+	public void setVipId(String vipId) {
 		this.vipId = vipId;
 	}
 	public int getScore() {

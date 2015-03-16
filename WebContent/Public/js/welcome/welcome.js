@@ -25,6 +25,8 @@ $("form").submit(function(e){
 				$box.alarm("user not found!");
 			}else if(data=="pserror"){
 				$box.alarm("password error");
+			}else{
+				window.location.href=data;
 			}
 		},
 		error:function(){

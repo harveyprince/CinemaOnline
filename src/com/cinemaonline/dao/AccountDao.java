@@ -2,13 +2,11 @@ package com.cinemaonline.dao;
 
 import com.cinemaonline.model.Account;
 import com.cinemaonline.model.client.AccountLogin;
-import com.cinemaonline.model.client.AccountSignUp;
-import com.cinemaonline.model.client.AccountUpdate;
 
 public interface AccountDao {
-	public long insert(AccountSignUp info);
+	public Account insert(Account info);
 	
-	public void update(AccountUpdate info);
+	public void update(Account info);
 	
 	public void deleteByAccountName(String ac);
 	

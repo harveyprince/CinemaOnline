@@ -6,16 +6,19 @@
 
       <package name="struts2" namespace=""
           extends="struts-default">
+          <!--  AccountAction-->
            <action name="" class="AccountAction" method="welcome">
           	<result name="success">/welcome/welcome.jsp</result>
           </action>
            <action name="loginAjax" class="AccountAction" method="loginJudge">
           	<result name="success">/Ajax/ajax.jsp</result>
-          	
           </action>
            <action name="signup" class="AccountAction" method="welcome">
           	<result name="success">/welcome/regist.jsp</result>
           </action>
-           
+           <action name="signupAjax" class="AccountAction" method="signupJudge">
+           	<result name="success">/Ajax/ajax.jsp</result>
+           </action>
+           <!--  AccountAction-->
       </package>
   </struts>

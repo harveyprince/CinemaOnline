@@ -1,5 +1,6 @@
 package com.cinemaonline.action;
 
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.cinemaonline.model.client.AccountLogin;
+import com.cinemaonline.model.client.AccountSignUp;
 import com.cinemaonline.model.client.OperaResult;
 import com.cinemaonline.service.AccountService;
 @Repository
@@ -26,6 +28,7 @@ public class AccountAction extends BaseAction {
 	}
 	
 	public String loginJudge(){
+		ajaxinfo="";
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String accountname = request.getParameter("accountid");
 		String password = request.getParameter("password");
@@ -35,22 +38,47 @@ public class AccountAction extends BaseAction {
 		OperaResult result = accountService.loginJudge(info);
 		if(result.getResult()){
 //			identity differs
-			
+			ajaxinfo = request.getContextPath();
+			switch(result.getStatus()){
+			case 0:
+				ajaxinfo+="";
+				break;
+			case 1:
+				ajaxinfo+="";
+				break;
+			case 2:
+				ajaxinfo+="";
+				break;
+			default:
+				ajaxinfo+="";
+				break;
+			}
 		}else{
-			System.out.println("login return error");
 			ajaxinfo = result.getComment();
 		}
 		return SUCCESS;
 	}
 	
+	public String signupJudge(){
+		ajaxinfo = "";
+		HttpServletRequest request = ServletActionContext.getRequest();
+		AccountSignUp info = new AccountSignUp();
+		info.setBirthday(request.getParameter("birthday"));
+		info.setEmail(request.getParameter("email"));
+		info.setLocation(request.getParameter("location"));
+		info.setName(request.getParameter("name"));
+		info.setPassword(request.getParameter("password"));
+		info.setPasswordRepeat(request.getParameter("password-repeat"));
+		info.setSex(Integer.parseInt(request.getParameter("sex")));
+		OperaResult result = accountService.signupJudge(info);
+		if(result.getResult()){
+			ajaxinfo = "success";
+		}else{
+			ajaxinfo = result.getComment();
+		}
+		return SUCCESS;
+	}
 //	/////////////////////////////////////////////////////////////////////////////////////////////////////
-	public AccountService getAccountService() {
-		return accountService;
-	}
-	public void setAccountService(AccountService accountService) {
-		this.accountService = accountService;
-	}
-
 	public String getAjaxinfo() {
 		return ajaxinfo;
 	}

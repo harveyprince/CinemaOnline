@@ -12,7 +12,7 @@ import javax.persistence.Table;
 @Table(name="VipRecord")
 public class VipRecord {
 	private long recordId;//记录流水号
-	private long vipId;//编号
+	private String vipId;//编号
 	private Date recordTime;//操作时间
 	private double recordNumber;//操作数[+50/-50]
 	private String result;//操作结果
@@ -26,10 +26,10 @@ public class VipRecord {
 	public void setRecordId(long recordId) {
 		this.recordId = recordId;
 	}
-	public long getVipId() {
+	public String getVipId() {
 		return vipId;
 	}
-	public void setVipId(long vipId) {
+	public void setVipId(String vipId) {
 		this.vipId = vipId;
 	}
 	public Date getRecordTime() {
