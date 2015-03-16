@@ -1,0 +1,12 @@
+.info-box {
+	margin: 10% 20%;
+}
+.info-box .info-line {
+	font-size: 30px;
+}
+.info-box .info-line span {
+	float: right;
+}
+.info-box button{
+	float: right;
+}
