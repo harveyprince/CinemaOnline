@@ -5,8 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.cinemaonline.dao.BankDao;
 import com.cinemaonline.dao.BaseDao;
-import com.cinemaonline.model.client.BankOperaInfo;
-import com.cinemaonline.model.client.OperaResult;
+import com.cinemaonline.model.Bank;
 
 @Repository
 public class BankDaoImpl implements BankDao {
@@ -15,23 +14,16 @@ public class BankDaoImpl implements BankDao {
 	public BankDaoImpl(){}
 
 	@Override
-	public OperaResult saveIn(BankOperaInfo info) {
+	public Bank findById(long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 	@Override
-	public OperaResult consume(BankOperaInfo info) {
+	public void update(Bank bank) {
 		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public BaseDao getBaseDao() {
-		return baseDao;
-	}
-
-	public void setBaseDao(BaseDao baseDao) {
-		this.baseDao = baseDao;
+		
 	}
 
 }

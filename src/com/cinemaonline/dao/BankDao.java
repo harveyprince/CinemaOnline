@@ -1,11 +1,10 @@
 package com.cinemaonline.dao;
 
-import com.cinemaonline.model.client.BankOperaInfo;
-import com.cinemaonline.model.client.OperaResult;
+import com.cinemaonline.model.Bank;
 public interface BankDao {
 	
-	public OperaResult saveIn(BankOperaInfo info);
+	public Bank findById(long id);
 	
-	public OperaResult consume(BankOperaInfo info);
+	public void update(Bank bank);
 
 }

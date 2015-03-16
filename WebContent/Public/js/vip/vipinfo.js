@@ -26,7 +26,9 @@ $(".btn-save").click(function(){
 		contentType: false,
 		processData: false,
 		success: function(data) {
-			//
+			if(data=="success"){
+				window.location.reload();
+			}
 		},
 		error:function(){
 			$.scojs_message('error occured!', $.scojs_message.TYPE_ERROR);

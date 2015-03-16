@@ -10,7 +10,9 @@ import org.springframework.stereotype.Repository;
 
 import com.cinemaonline.dao.BaseDao;
 import com.cinemaonline.dao.VipDao;
+import com.cinemaonline.model.VipCard;
 import com.cinemaonline.model.VipInfo;
+import com.cinemaonline.model.VipLevel;
 
 @Repository
 public class VipDaoImpl implements VipDao {
@@ -97,6 +99,49 @@ public class VipDaoImpl implements VipDao {
 		if(list!=null){
 			if(list.size()>0){
 				return (VipInfo) list.get(0);
+			}else{
+				return null;
+			}
+		}else{
+			return null;
+		}
+	}
+
+	@Override
+	public VipCard insertCard(VipCard info) {
+		// TODO Auto-generated method stub
+		VipCard info_local = info;
+		Session session = baseDao.getNewSession();
+		Transaction ts = session.beginTransaction();
+		try{
+			session.save(info_local);
+			ts.commit();
+		}catch(Exception e){
+			e.printStackTrace();
+			ts.rollback();
+		}finally{
+			session.close();
+		}
+		return info_local;
+	}
+
+	@Override
+	public VipLevel getLevelById(int levelid) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String hql = "from com.cinemaonline.model.VipLevel as a where a.levelId='"+levelid+"'";
+		List list = null;
+		try{
+			Query query = session.createQuery(hql);
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return (VipLevel) list.get(0);
 			}else{
 				return null;
 			}

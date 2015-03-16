@@ -40,20 +40,9 @@
 			<div class="table-box">
 				
 				<div class="clearfix info-box">
-					<div class="info-line">cardID:
-						<span>121250077</span>
+					<div class="info-line" style="text-align: center;float:none;">your card is not activated
 					</div>
-					<div class="info-line">status:
-						<span>disactive</span>
-					</div>
-					
-					<div class="info-line">score:
-						<span>250</span>
-					</div>
-					<div class="info-line">balance:
-						<span>2000</span>
-					</div>
-				<button class="btn btn-primary btn-moneyin" data-toggle="modal" data-target="#modalMoney">money in</button>
+				<button class="btn btn-primary btn-moneyin" data-toggle="modal" data-target="#modalMoney">activate</button>
 				</div>
 
 				
@@ -77,7 +66,7 @@
 				<div class="row-line">
 					<div class="row-label">sum($):</div>
 					<div class="form-group has-success row-content">
-						<input class="form-control money-input" type="number" placeholder="sum" />
+						<input class="form-control money-input" type="number" placeholder="sum" min="200" value="200"/>
 					</div>
 				</div>
 				<div class="row-line line-fix">
@@ -102,7 +91,17 @@
 <script src="./Public/sco/js/sco.message.js"></script>
 <script src="./Public/Flat-UI-master/dist/js/flat-ui.js"></script>
 <script type="text/javascript">
-
+$(".money-input").blur(function(){
+	if(Number($(this).val())){
+		if(Number($(this).val())>=200){
+			//
+		}else{
+			$(this).val(200);
+		}
+	}else{
+		$(this).val(200);
+	}
+});
 </script>
 <script src="./Public/js/common/form.js"></script>
 <script src="./Public/js/vip/vipcard.js"></script>

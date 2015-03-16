@@ -7,16 +7,17 @@ import com.cinemaonline.model.VipInfo;
 public class VipClientInfo {
 	private String vipid;
 	private Date birthday;
+	private String strbirthday;
 	private String location;
 	private String name;
 	private int sex;
 	
 	public void setByTable(VipInfo info){
-		vipid = info.getVipId();
-		birthday = info.getBirthday();
-		location = info.getLocation();
-		name = info.getName();
-		sex = info.getSex();
+		setVipid(info.getVipId());
+		setBirthday(info.getBirthday());
+		setLocation(info.getLocation());
+		setName(info.getName());
+		setSex(info.getSex());
 	}
 	public String getVipid() {
 		return vipid;
@@ -29,6 +30,7 @@ public class VipClientInfo {
 	}
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
+		this.strbirthday = (this.birthday.toLocaleString()).split(" ")[0];
 	}
 	public String getLocation() {
 		return location;
@@ -47,5 +49,14 @@ public class VipClientInfo {
 	}
 	public void setSex(int sex) {
 		this.sex = sex;
+	}
+	public void setSex(String sex) {
+		this.sex = Integer.parseInt(sex);
+	}
+	public String getStrbirthday() {
+		return strbirthday;
+	}
+	public void setStrbirthday(String strbirthday) {
+		this.strbirthday = strbirthday;
 	}
 }

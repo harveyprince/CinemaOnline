@@ -10,6 +10,7 @@ public class Bank {
 	private long cardId;//银行卡号
 	private double balance;//账户余额
 	private String name;//姓名
+	private String password;//
 	
 	@Id
 	public long getCardId() {
@@ -29,6 +30,12 @@ public class Bank {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }

@@ -72,7 +72,7 @@ public class AccountAction extends BaseAction {
 		info.setName(request.getParameter("name"));
 		info.setPassword(request.getParameter("password"));
 		info.setPasswordRepeat(request.getParameter("password-repeat"));
-		info.setSex(Integer.parseInt(request.getParameter("sex")));
+		info.setSex(request.getParameter("sex"));
 		OperaResult result = accountService.signupJudge(info);
 		if(result.getResult()){
 			ajaxinfo = "success";

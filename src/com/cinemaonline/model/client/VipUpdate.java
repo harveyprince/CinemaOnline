@@ -31,6 +31,9 @@ public class VipUpdate {
 	public void setSex(int sex) {
 		this.sex = sex;
 	}
+	public void setSex(String sex) {
+		this.sex = Integer.parseInt(sex);
+	}
 	public Date getBirthday() {
 		return birthday;
 	}

@@ -26,7 +26,7 @@
 								<i class="fa fa-arrow-circle-right"></i>
 							</span>
 						</div>
-						<form action="<%=application.getContextPath()%>/loginAjax" method="post" autocomplete="off" type="login">
+						<form action="loginAjax" method="post" autocomplete="off" type="login">
 						<div class="input-box-pack block-input-box">
 						<span class="fa fa-user"></span>
 						<input class="form-box-input" placeholder="id" type="text" style="ime-mode:disabled;" name="accountid" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" required="required">

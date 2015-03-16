@@ -23,5 +23,16 @@
            <action name="vipinfo" class="VipAction" method="viewInfo">
            	<result name="success">/vip/vipinfo.jsp</result>
            </action>
+           <action name="infoUpate" class="VipAction" method="updateInfo">
+           	<result name="success">/Ajax/ajax.jsp</result>
+           	<result name="error">/Ajax/ajax.jsp</result>
+           </action>
+           <action name="vipcard" class="VipAction" method="viewCard">
+           	<result name="success">/vip/vipcard.jsp</result>
+           	<result name="error">/vip/vipnocard.jsp</result>
+           </action>
+			<action name="activatecard" class="VipAction" method="activateCard">
+           	<result name="success">/Ajax/ajax.jsp</result>
+           </action>           
       </package>
   </struts>

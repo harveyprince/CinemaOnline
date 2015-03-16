@@ -24,7 +24,7 @@
 				<div class="">
 					<ul class="nav nav-list">
 						<li class="active"><a href="#"><i class="fa fa-pencil-square-o"></i>vip info</a></li>
-						<li><a href="#"><i class="fa fa-film"></i>vip card</a></li>
+						<li><a href="vipcard"><i class="fa fa-film"></i>vip card</a></li>
 						<li><a href="#"><i class="fa fa-dribbble"></i> vip record</a></li>
 						<li><a href="#"><i class="fa fa-user"></i> vip activity</a></li>
 					</ul>
@@ -40,7 +40,7 @@
 			<div class="table-box">
 				
 				<div class="clearfix info-box">
-					<form action="" id="info-form" onSubmit="return false;">
+					<form action="infoUpate" id="info-form" onSubmit="return false;">
 					<div class="info-line">id:
 						<span><s:property value="vipinfo.vipid"/></span>
 					</div>
@@ -52,7 +52,7 @@
 					</div>
 					
 					<div class="info-line">sex:
-						<span value='1'>boy</span>
+						<span value='<s:property value="vipinfo.sex"/>'><s:if test="%{vipinfo.sex}">boy</s:if><s:else>girl</s:else></span>
 						<div class="span3 row-content">
 									<select class="form-control select select-primary select-block mbl sex-input" name="sex">
 										<option value="0">girl</option>
@@ -61,7 +61,7 @@
 								</div>
 					</div>
 					<div class="info-line">birthday:
-						<span><s:property value="vipinfo.birthday"/></span>
+						<span><s:property value="vipinfo.strbirthday"/></span>
 						<div class="form-group row-content">
 							<input class="form-control birthday-input" type="date" placeholder="birthday" required="required" name="birthday"/>
 						</div>
