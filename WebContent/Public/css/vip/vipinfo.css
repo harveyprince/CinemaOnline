@@ -7,6 +7,21 @@
 .info-box .info-line span {
 	float: right;
 }
+.info-box .info-line .row-content{
+	display: none;
+}
 .info-box button{
 	float: right;
+}
+.info-box .info-line>div{
+	display: inline;
+	width: 240px;
+}
+.info-box .info-line .form-control{
+	margin-top: 4px;
+	width: 240px;
+	float: right;
+}
+.btn-save{
+	display: none;
 }

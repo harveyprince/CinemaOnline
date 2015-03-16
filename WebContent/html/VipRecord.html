@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>server page</title>
+	<link rel="stylesheet" type="text/css" href="../Public/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../Public/font-awesome-4.2.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../Public/Flat-UI-master/dist/css/flat-ui.min.css">
+	<link rel="stylesheet" type="text/css" href="../Public/css/common/user-sidebar.css">
+	<link rel="stylesheet" type="text/css" href="../Public/css/server/ServerPage.css">
+	<link rel="stylesheet" type="text/css" href="../Public/sco/css/scojs.css">
+	<link rel="stylesheet" type="text/css" href="../Public/sco/css/sco.message.css">
+</head>
+<body>
+	<div class="contain clearfix">
+
+		<!-- left side bar//////////////////////////////////////////////////////////////////////////////// -->
+		<div class="left-sidebar">
+			<div class="row">
+				<div class="">
+					<ul class="nav nav-list">
+						<li><a href="#"><i class="fa fa-pencil-square-o"></i>vip info</a></li>
+						<li><a href="#"><i class="fa fa-film"></i>vip card</a></li>
+						<li class="active"><a href="#"><i class="fa fa-dribbble"></i> vip record</a></li>
+						<li><a href="#"><i class="fa fa-user"></i> vip activity</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- left side bar//////////////////////////////////////////////////////////////////////////////// -->
+
+
+		<!-- changable place -->
+
+		<div class="bar-match-content">
+			<div class="table-box">
+				
+				<div class="clearfix">
+					<div class="tab-page">
+						
+						<table class="table">
+							<thead>
+								<tr>
+									<th>id</th>
+									<th>filmname</th>
+									<th>No</th>
+									<th>seatSum</th>
+									<th>begintime</th>
+									<th>endtime</th>
+									<th>price</th>
+									<th>edit</th>
+									<th>submit</th>
+									<th><div class="btn-group">
+										<button class="btn btn-inverse dropdown-toggle table-button" type="button" data-toggle="dropdown">
+											status <span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu dropdown-menu-inverse" role="menu">
+											<li><a href="#">status</a></li>
+											<li><a href="#">in</a></li>
+											<li><a href="#">out</a></li>
+										</ul>
+									</div>
+
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="active">
+								<th class="planId">1</th>
+								<th class="filmName" filmId="0">enhancement</th>
+								<th class="hallNo" hallId="0">no.1</th>
+								<th class="seatSum">50</th>
+								<th class="beginTime" date-time="2015-01-02T00:01">00:01</th>
+								<th class="endTime" date-time="2015-01-02T00:01">00:01</th>
+								<th class="price">35</th>
+								<th>
+									<button class="btn btn-inverse table-button" disabled="disabled">
+										<i class="fa fa-pencil-square-o"></i>
+									</button>
+								</th>
+								<th>
+									<button class="btn btn-inverse table-button" disabled="disabled">
+										<i class="fa fa-arrow-up"></i>
+									</button>
+								</th>
+								<th>waiting for check</th>
+							</tr>
+							<tr class="danger">
+								<th class="planId">2</th>
+								<th class="filmName" filmId="1">bug</th>
+								<th class="hallNo" hallId="0">no.1</th>
+								<th class="seatSum">50</th>
+								<th class="beginTime" date-time="2015-01-02T00:01">00:01</th>
+								<th class="endTime" date-time="2015-01-02T00:01">00:01</th>
+								<th class="price">35</th>
+								<th>
+									<button class="btn btn-inverse table-button film-edit-button" data-toggle="modal" data-target="#modalEdit">
+										<i class="fa fa-pencil-square-o"></i>
+									</button>
+								</th>
+								<th>
+									<button class="btn btn-inverse table-button">
+										<i class="fa fa-arrow-up"></i>
+									</button>
+								</th>
+								<th>check failed</th>
+							</tr>
+							<tr class="info">
+								<th class="planId">3</th>
+								<th class="filmName" filmId="3">duplicate</th>
+								<th class="hallNo" hallId="1">no.2</th>
+								<th class="seatSum">50</th>
+								<th class="beginTime" date-time="2015-01-02T00:01">00:01</th>
+								<th class="endTime" date-time="2015-01-02T00:01">00:01</th>
+								<th class="price">35</th>
+								<th>
+									<button class="btn btn-inverse table-button film-edit-button" data-toggle="modal" data-target="#modalEdit">
+										<i class="fa fa-pencil-square-o"></i>
+									</button>
+								</th>
+								<th>
+									<button class="btn btn-inverse table-button">
+										<i class="fa fa-arrow-up"></i>
+									</button>
+								</th>
+								<th>check failed</th>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+
+
+
+				<!-- /////////////////////////////////////////////////////// -->
+				
+			</div>
+		</div>
+
+	</div>
+	<!-- changable place -->
+</body>
+<script src="../Public/jquery/jquery.min.js"></script>
+<script src="../Public/dist/js/bootstrap.min.js"></script>
+<script src="../Public/sco/js/sco.panes.js"></script>
+<script src="../Public/sco/js/sco.tab.js"></script>
+<script src="../Public/Flat-UI-master/dist/js/flat-ui.js"></script>
+<script type="text/javascript">
+var filmslist = [{ id: 0, text: 'enhancement' }, { id: 1, text: 'bug' }, { id: 2, text: 'duplicate' }, { id: 3, text: 'invalid' }, { id: 4, text: 'wontfix' }];
+var hallslist = [{ id: 0, text: 'no.1' }, { id: 1, text: 'no.2' }, { id: 2, text: 'no.3' }, { id: 3, text: 'no.4' }, { id: 4, text: 'no.4' }];
+</script>
+<script src="../Public/js/server/server.js"></script>
+<script src="../Public/js/server/serverFilmPlan.js"></script>
+</html>

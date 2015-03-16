@@ -37,12 +37,41 @@
 			<div class="table-box">
 				
 				<div class="clearfix info-box">
-					<div class="info-line">name:<span>harvey</span></div>
-					<div class="info-line">id:<span>121250077</span></div>
-					<div class="info-line">sex:<span>boy</span></div>
-					<div class="info-line">birthday:<span>1994-10-20</span></div>
-					<div class="info-line">location:<span>NanJing</span></div>
-					<button class="btn btn-primary">Info Modify</button>
+					<form action="" id="info-form" onSubmit="return false;">
+					<div class="info-line">id:
+						<span>121250077</span>
+					</div>
+					<div class="info-line">name:
+						<span>harvey</span>
+						<div class="form-group row-content">
+							<input class="form-control name-input" type="text" placeholder="name" name="name" required="required"/>
+						</div>
+					</div>
+					
+					<div class="info-line">sex:
+						<span value='1'>boy</span>
+						<div class="span3 row-content">
+									<select class="form-control select select-primary select-block mbl sex-input" name="sex">
+										<option value="0">girl</option>
+										<option value="1">boy</option>
+									</select>
+								</div>
+					</div>
+					<div class="info-line">birthday:
+						<span>1994-10-20</span>
+						<div class="form-group row-content">
+							<input class="form-control birthday-input" type="date" placeholder="birthday" required="required" name="birthday"/>
+						</div>
+					</div>
+					<div class="info-line">location:
+						<span>NanJing</span>
+						<div class="form-group row-content">
+							<input class="form-control location-input" type="text" placeholder="location" required="required" name="location"/>
+						</div>
+					</div>
+					<button class="btn btn-primary btn-save">Save Modify</button>
+				</form>
+				<button class="btn btn-primary btn-modify">Info Modify</button>
 				</div>
 
 				
@@ -60,10 +89,11 @@
 <script src="../Public/jquery/jquery.min.js"></script>
 <script src="../Public/dist/js/bootstrap.min.js"></script>
 <script src="../Public/sco/js/sco.panes.js"></script>
-<script src="../Public/sco/js/sco.tab.js"></script>
+<script src="../Public/sco/js/sco.message.js"></script>
 <script src="../Public/Flat-UI-master/dist/js/flat-ui.js"></script>
 <script type="text/javascript">
 
 </script>
+<script src="../Public/js/common/form.js"></script>
 <script src="../Public/js/vip/vipinfo.js"></script>
 </html>

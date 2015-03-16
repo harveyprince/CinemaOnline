@@ -1,0 +1,26 @@
+.modal-body .row-line {
+	text-align: center;
+}
+.modal-body .row-line .row-label{
+	text-align: center;
+	float: none;
+}
+.title-panel {
+	word-break:break-all;
+	text-align: center;
+}
+.answers-panel .answer {
+	border-radius: 4px;
+	background-color: #E3F4E2;
+	margin-bottom: 3px;
+	cursor: pointer;
+}
+.answers-panel .answer:hover,.answers-panel .answer.active {
+	border-radius: 4px;
+	background-color: #96D693;
+	margin-bottom: 3px;
+	color: #000;
+}
+.answers-panel .answer.active {
+	border: 5px solid rgb(91, 170, 87);
+}
