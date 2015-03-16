@@ -62,9 +62,6 @@ public class AccountSignUp {
 	}
 	public void setBirthday(String birthday) {
 		this.birthday =Date.valueOf(birthday);
-		System.out.println("in AccountSignUp");
-		System.out.println(this.birthday);
-		System.out.println(this.birthday.getYear());
 		///////////////////////////////////////////////////////////////////////////////////////////////////
 	}
 	public int getSex() {

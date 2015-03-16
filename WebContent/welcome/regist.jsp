@@ -57,7 +57,7 @@
 				</form>
 			</div>
 			<div class="tab-page">
-			<form action="" id="pass-form" onSubmit="return false;">
+			<form action="<%=application.getContextPath()%>/signupAjax" id="pass-form" onSubmit="return false;">
 				<div class="page-row">
 					<div class="row-label">email:</div>
 					<div class="form-group row-content">
@@ -97,6 +97,7 @@
 	</div>
 </body>
 <script src="./Public/jquery/jquery.min.js"></script>
+<script src="./Public/jquery/jquery.md5.js"></script>
 <script src="./Public/dist/js/bootstrap.min.js"></script>
 <script src="./Public/sco/js/sco.panes.js"></script>
 <script src="./Public/sco/js/sco.tab.js"></script>
@@ -104,5 +105,6 @@
 <script src="./Public/Flat-UI-master/dist/js/flat-ui.js"></script>
 <script type="text/javascript">
 </script>
+<script src="./Public/js/common/form.js"></script>
 <script src="./Public/js/welcome/regist.js"></script>
 </html>

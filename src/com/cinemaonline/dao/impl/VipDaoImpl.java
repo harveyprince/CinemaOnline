@@ -62,6 +62,49 @@ public class VipDaoImpl implements VipDao {
 		return info_local;
 	}
 
+	@Override
+	public void update(VipInfo info) {
+		// TODO Auto-generated method stub
+		VipInfo info_local = info;
+		Session session = baseDao.getNewSession();
+		Transaction ts = session.beginTransaction();
+		try{
+			session.update(info_local);
+			ts.commit();
+		}catch(Exception e){
+			e.printStackTrace();
+			ts.rollback();
+		}finally{
+			session.close();
+		}
+	}
+
+	@Override
+	public VipInfo getVipInfoById(String userid) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		
+		String hql = "from com.cinemaonline.model.VipInfo as a where a.vipId='"+userid+"'";
+		List list = null;
+		try{
+			Query query = session.createQuery(hql);
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return (VipInfo) list.get(0);
+			}else{
+				return null;
+			}
+		}else{
+			return null;
+		}
+	}
+
 	
 
 

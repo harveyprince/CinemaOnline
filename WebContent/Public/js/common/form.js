@@ -2,7 +2,12 @@ function getFormData($which,formData){
 	var data = formData;
 	$which.find(".row-content input").each(function(){
 		if($(this).attr('name')){
-			data.append($(this).attr('name'),$(this).val());
+			if($(this).attr('name')=="password"||$(this).attr('name')=="password-repeat"){
+				data.append($(this).attr('name'),$.md5($(this).val()));
+			}else{
+				data.append($(this).attr('name'),$(this).val());
+			}
+			
 		}
 	});
 	$which.find(".row-content select").each(function(){

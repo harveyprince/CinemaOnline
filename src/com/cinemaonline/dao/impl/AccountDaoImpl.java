@@ -12,7 +12,7 @@ import com.cinemaonline.dao.AccountDao;
 import com.cinemaonline.dao.BaseDao;
 import com.cinemaonline.model.Account;
 import com.cinemaonline.model.client.AccountLogin;
-import com.cinemaonline.model.client.AccountUpdate;
+import com.cinemaonline.model.client.VipUpdate;
 
 @Repository
 public class AccountDaoImpl implements AccountDao {

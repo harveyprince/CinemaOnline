@@ -36,7 +36,8 @@ public class AccountServiceImpl implements AccountService {
 		}else{
 			if(ac_sql.getPassword().equals(info.getPassword())){
 				result.setResult(true);
-				result.setStatus(ac_sql.getIdentityId());;
+				result.setStatus(ac_sql.getIdentityId());
+				result.setAccount(ac_sql);
 			}else{
 				result.setResult(false);
 				result.setComment("pserror");
@@ -58,6 +59,7 @@ public class AccountServiceImpl implements AccountService {
 			VipInfo vi = info.constructVipInfo(ac);
 			vipDao.insert(vi);
 			result.setResult(true);
+			result.setComment(ac.getAccountName());
 		}else{
 			result = result_check;
 		}

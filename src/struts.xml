@@ -19,6 +19,9 @@
            <action name="signupAjax" class="AccountAction" method="signupJudge">
            	<result name="success">/Ajax/ajax.jsp</result>
            </action>
-           <!--  AccountAction-->
+           <!--  VipAction-->
+           <action name="vipinfo" class="VipAction" method="viewInfo">
+           	<result name="success">/vip/vipinfo.jsp</result>
+           </action>
       </package>
   </struts>

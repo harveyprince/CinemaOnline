@@ -2,6 +2,7 @@ package com.cinemaonline.action;
 
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,19 +39,21 @@ public class AccountAction extends BaseAction {
 		OperaResult result = accountService.loginJudge(info);
 		if(result.getResult()){
 //			identity differs
+			 HttpSession session = request.getSession(true);
+			 session.setAttribute("userid", result.getAccount().getAccountName());
 			ajaxinfo = request.getContextPath();
 			switch(result.getStatus()){
 			case 0:
 				ajaxinfo+="";
 				break;
 			case 1:
-				ajaxinfo+="";
+				ajaxinfo+="/vipinfo";
 				break;
 			case 2:
-				ajaxinfo+="";
+				ajaxinfo+="/server";
 				break;
 			default:
-				ajaxinfo+="";
+				ajaxinfo+="/manager";
 				break;
 			}
 		}else{
@@ -73,6 +76,8 @@ public class AccountAction extends BaseAction {
 		OperaResult result = accountService.signupJudge(info);
 		if(result.getResult()){
 			ajaxinfo = "success";
+			ajaxinfo+="#";
+			ajaxinfo+=result.getComment();
 		}else{
 			ajaxinfo = result.getComment();
 		}
