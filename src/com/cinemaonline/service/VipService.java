@@ -7,6 +7,7 @@ import com.cinemaonline.model.client.OperaResult;
 import com.cinemaonline.model.client.VipCardInfo;
 import com.cinemaonline.model.client.VipClientInfo;
 import com.cinemaonline.model.client.VipOperaInfo;
+import com.cinemaonline.model.client.VipRecordInfo;
 import com.cinemaonline.model.client.VipUpdate;
 
 public interface VipService {
@@ -25,4 +26,6 @@ public interface VipService {
 	public OperaResult cardBalanceOpera(VipOperaInfo info);
 	
 	public List<VipLevel> getLvList();
+	
+	public List<VipRecordInfo> getRecords(String userid);
 }

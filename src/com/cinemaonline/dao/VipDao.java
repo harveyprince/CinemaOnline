@@ -26,4 +26,6 @@ public interface VipDao {
 	public List<VipLevel> getAllLevel();
 //	record
 	public VipRecord insertRecord(VipRecord info);
+	
+	public List<VipRecord> getRecordsById(String userid);
 }

@@ -42,6 +42,10 @@
            </action> 
            <action name="cardrecharge" class="VipAction" method="rechargeCard">
            	<result name="success">/Ajax/ajax.jsp</result>
-           </action>           
+           </action>    
+           <!--record  -->       
+           <action name="viprecord" class="VipAction" method="viewRecord">
+           	<result name="success">/vip/viprecord.jsp</result>
+           </action>
       </package>
   </struts>

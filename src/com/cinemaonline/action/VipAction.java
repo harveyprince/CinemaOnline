@@ -15,6 +15,7 @@ import com.cinemaonline.model.client.OperaResult;
 import com.cinemaonline.model.client.VipCardInfo;
 import com.cinemaonline.model.client.VipClientInfo;
 import com.cinemaonline.model.client.VipOperaInfo;
+import com.cinemaonline.model.client.VipRecordInfo;
 import com.cinemaonline.model.client.VipUpdate;
 import com.cinemaonline.service.BankService;
 import com.cinemaonline.service.VipService;
@@ -35,6 +36,8 @@ public class VipAction extends BaseAction {
 	private VipClientInfo vipinfo;
 	private VipCardInfo cardinfo;
 	private List<VipLevel> lvslist;
+	private List<VipRecordInfo> recordlist;
+	
 	/*
 	 * info
 	 * */
@@ -148,6 +151,18 @@ public class VipAction extends BaseAction {
 		 }
 		return SUCCESS;
 	}
+	
+	
+	/*
+	 * record
+	 * */
+	public String viewRecord(){
+		HttpServletRequest request = ServletActionContext.getRequest();
+		 HttpSession session = request.getSession(false);
+		 String userid = (String)session.getAttribute("userid");
+		 setRecordlist(vipService.getRecords(userid));
+		return SUCCESS;
+	}
 // ////////////////////////////////////////////////////////////////////////////////////////////////////
 	public String getAjaxinfo() {
 		return ajaxinfo;
@@ -180,4 +195,14 @@ public class VipAction extends BaseAction {
 	public void setLvslist(List<VipLevel> lvslist) {
 		this.lvslist = lvslist;
 	}
+
+	public List<VipRecordInfo> getRecordlist() {
+		return recordlist;
+	}
+
+	public void setRecordlist(List<VipRecordInfo> recordlist) {
+		this.recordlist = recordlist;
+	}
+
+
 }

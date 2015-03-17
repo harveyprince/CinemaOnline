@@ -1,5 +1,6 @@
 package com.cinemaonline.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +10,12 @@ import com.cinemaonline.dao.VipDao;
 import com.cinemaonline.model.VipCard;
 import com.cinemaonline.model.VipInfo;
 import com.cinemaonline.model.VipLevel;
+import com.cinemaonline.model.VipRecord;
 import com.cinemaonline.model.client.OperaResult;
 import com.cinemaonline.model.client.VipCardInfo;
 import com.cinemaonline.model.client.VipClientInfo;
 import com.cinemaonline.model.client.VipOperaInfo;
+import com.cinemaonline.model.client.VipRecordInfo;
 import com.cinemaonline.model.client.VipUpdate;
 import com.cinemaonline.service.RecordService;
 import com.cinemaonline.service.VipService;
@@ -139,6 +142,14 @@ public class VipServiceImpl implements VipService {
 		VipCardInfo vcinfo = new VipCardInfo();
 		vcinfo.setCardInfo(card);
 		return vcinfo;
+	}
+
+	@Override
+	public List<VipRecordInfo> getRecords(String userid) {
+		// TODO Auto-generated method stub
+		List<VipRecord> res = vipDao.getRecordsById(userid);
+		List<VipRecordInfo> records = VipRecordInfo.parseVRI(res);
+		return records;
 	}
 
 
