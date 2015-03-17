@@ -13,6 +13,7 @@ import com.cinemaonline.dao.VipDao;
 import com.cinemaonline.model.VipCard;
 import com.cinemaonline.model.VipInfo;
 import com.cinemaonline.model.VipLevel;
+import com.cinemaonline.model.VipRecord;
 
 @Repository
 public class VipDaoImpl implements VipDao {
@@ -124,6 +125,23 @@ public class VipDaoImpl implements VipDao {
 		}
 		return info_local;
 	}
+	
+	@Override
+	public void updateCard(VipCard info) {
+		// TODO Auto-generated method stub
+		VipCard info_local = info;
+		Session session = baseDao.getNewSession();
+		Transaction ts = session.beginTransaction();
+		try{
+			session.update(info_local);
+			ts.commit();
+		}catch(Exception e){
+			e.printStackTrace();
+			ts.rollback();
+		}finally{
+			session.close();
+		}
+	}
 
 	@Override
 	public VipLevel getLevelById(int levelid) {
@@ -150,7 +168,47 @@ public class VipDaoImpl implements VipDao {
 		}
 	}
 
-	
+	@Override
+	public VipRecord insertRecord(VipRecord info) {
+		// TODO Auto-generated method stub
+		VipRecord info_local = info;
+		Session session = baseDao.getNewSession();
+		Transaction ts = session.beginTransaction();
+		try{
+			session.save(info_local);
+			ts.commit();
+		}catch(Exception e){
+			e.printStackTrace();
+			ts.rollback();
+		}finally{
+			session.close();
+		}
+		return info_local;
+	}
 
+	@Override
+	public List<VipLevel> getAllLevel() {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String hql = "from com.cinemaonline.model.VipLevel";
+		List list = null;
+		try{
+			Query query = session.createQuery(hql);
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return list;
+			}else{
+				return null;
+			}
+		}else{
+			return null;
+		}
+	}
 
 }

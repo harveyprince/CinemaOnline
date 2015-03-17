@@ -9,6 +9,7 @@ import javax.persistence.Table;
 public class VipLevel {
 	private int levelId;//会员级别
 	private double cost;//价格
+	private String lvName;//
 	
 	@Id
 	public int getLevelId() {
@@ -22,6 +23,12 @@ public class VipLevel {
 	}
 	public void setCost(double cost) {
 		this.cost = cost;
+	}
+	public String getLvName() {
+		return lvName;
+	}
+	public void setLvName(String lvName) {
+		this.lvName = lvName;
 	}
 
 }

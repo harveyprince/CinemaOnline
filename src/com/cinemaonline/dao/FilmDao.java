@@ -1,13 +1,16 @@
 package com.cinemaonline.dao;
 
+import java.util.List;
+
+import com.cinemaonline.model.Film;
 import com.cinemaonline.model.FilmPlan;
-import com.cinemaonline.model.client.FilmInfo;
-import com.cinemaonline.model.client.OperaResult;
 
 public interface FilmDao {
+//	film
+	public Film insertFilm(Film info);
 	
-	public OperaResult addFilm(FilmInfo info);
-	
-	public OperaResult publishFilmPlan(FilmPlan plan);
+//	film plan
+	public FilmPlan insertFilmPlan(FilmPlan info);
 
+	public List<FilmPlan> getAllUnpassedPlans();
 }

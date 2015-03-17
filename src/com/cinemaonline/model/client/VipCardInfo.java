@@ -18,6 +18,13 @@ public class VipCardInfo {
 		info.setVipLevel(vipLevel);
 		return info;
 	}
+	public void setCardInfo(VipCard info){
+		vipid = info.getVipId();
+		balance = info.getBalance();
+		score = info.getScore();
+		viplevel = info.getVipLevel().getLevelId();
+		vipLevel = info.getVipLevel();
+	}
 	public String getVipid() {
 		return vipid;
 	}
@@ -41,6 +48,9 @@ public class VipCardInfo {
 	}
 	public void setViplevel(int viplevel) {
 		this.viplevel = viplevel;
+	}
+	public void setViplevel(String viplevel) {
+		this.viplevel = Integer.parseInt(viplevel);
 	}
 	public VipLevel getVipLevel() {
 		return vipLevel;

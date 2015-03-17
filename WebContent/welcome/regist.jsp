@@ -57,7 +57,7 @@
 				</form>
 			</div>
 			<div class="tab-page">
-			<form action="<%=application.getContextPath()%>/signupAjax" id="pass-form" onSubmit="return false;">
+			<form action="signupAjax" id="pass-form" onSubmit="return false;">
 				<div class="page-row">
 					<div class="row-label">email:</div>
 					<div class="form-group row-content">

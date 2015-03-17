@@ -23,10 +23,10 @@
 			<div class="row">
 				<div class="">
 					<ul class="nav nav-list">
-						<li><a href="#"><i class="fa fa-pencil-square-o"></i>vip info</a></li>
+						<li><a href="vipinfo"><i class="fa fa-pencil-square-o"></i>vip info</a></li>
 						<li class="active"><a href="#"><i class="fa fa-film"></i>vip card</a></li>
-						<li><a href="#"><i class="fa fa-dribbble"></i> vip record</a></li>
-						<li><a href="#"><i class="fa fa-user"></i> vip activity</a></li>
+						<li><a href="viprecord"><i class="fa fa-dribbble"></i> vip record</a></li>
+						<li><a href="vipactivity"><i class="fa fa-user"></i> vip activity</a></li>
 					</ul>
 				</div>
 			</div>
@@ -63,17 +63,38 @@
 				<h5 id="myModalLabel">Money In</h5>
 			</div>
 			<div class="modal-body">
+				<form action="activatecard" id="pay-form" onSubmit="return false;">
 				<div class="row-line">
 					<div class="row-label">sum($):</div>
 					<div class="form-group has-success row-content">
-						<input class="form-control money-input" type="number" placeholder="sum" min="200" value="200"/>
+						<input class="form-control money-input" type="number" placeholder="sum" min="200" value="200" name="num"/>
 					</div>
 				</div>
-				<div class="row-line line-fix">
+				<div class="row-line">
+					<div class="row-label">viplevel:</div>
 					<div class="span3 row-content">
-						<button class="btn btn-primary moneyin-button">go ahead</button>
+						<select class="form-control select select-primary select-block mbl viplv-input" name="viplevel">
+						</select>
+					</div>
+				</div>
+				<div class="row-line">
+					<div class="row-label">bankNo:</div>
+					<div class="span3 row-content">
+						<input class="form-control bank-no-input" type="text" placeholder="bankid" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" required="required" name="bankid"/>
 					</div>
 				</div> 
+				<div class="row-line">
+					<div class="row-label">bankPassword:</div>
+					<div class="span3 row-content">
+						<input class="form-control bank-password-input" type="password" placeholder="bankpassword" name="bankps"/>
+					</div>
+				</div> 
+				<div class="row-line line-fix">
+					<div class="span3 row-content">
+						<button class="btn btn-primary pay-button">pay</button>
+					</div>
+				</div> 
+				</form>
 				
 					 
 			</div>
@@ -91,18 +112,17 @@
 <script src="./Public/sco/js/sco.message.js"></script>
 <script src="./Public/Flat-UI-master/dist/js/flat-ui.js"></script>
 <script type="text/javascript">
-$(".money-input").blur(function(){
-	if(Number($(this).val())){
-		if(Number($(this).val())>=200){
-			//
-		}else{
-			$(this).val(200);
-		}
-	}else{
-		$(this).val(200);
-	}
-});
+
+var lvslist = [
+<s:iterator id="lv" value="lvslist" status="st">
+{ id: <s:property value="#lv.levelId"/>, text: '<s:property value="#lv.lvName"/>' }
+<s:if test="%{!#st.last}">,</s:if>
+</s:iterator>
+];
+
 </script>
 <script src="./Public/js/common/form.js"></script>
+<script src="./Public/js/server/server.js"></script>
 <script src="./Public/js/vip/vipcard.js"></script>
+<script src="./Public/js/vip/vipnocard.js"></script>
 </html>

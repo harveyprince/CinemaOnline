@@ -11,6 +11,8 @@ public class VipClientInfo {
 	private String location;
 	private String name;
 	private int sex;
+	private int status;
+	private String strstatus;
 	
 	public void setByTable(VipInfo info){
 		setVipid(info.getVipId());
@@ -18,6 +20,7 @@ public class VipClientInfo {
 		setLocation(info.getLocation());
 		setName(info.getName());
 		setSex(info.getSex());
+		setStatus(info.getVipStatus());
 	}
 	public String getVipid() {
 		return vipid;
@@ -58,5 +61,37 @@ public class VipClientInfo {
 	}
 	public void setStrbirthday(String strbirthday) {
 		this.strbirthday = strbirthday;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+//		[1正常/2暂停/0未激活/4停止/5取消]
+		switch(status){
+		case 0:
+			setStrstatus("disactivate");
+			break;
+		case 1:
+			setStrstatus("normal");
+			break;
+		case 2:
+			setStrstatus("pause");
+			break;
+		case 3:
+			setStrstatus("stop");
+			break;
+		case 4:
+			setStrstatus("canceled");
+			break;
+		default:
+			break;
+		}
+	}
+	public String getStrstatus() {
+		return strstatus;
+	}
+	public void setStrstatus(String strstatus) {
+		this.strstatus = strstatus;
 	}
 }

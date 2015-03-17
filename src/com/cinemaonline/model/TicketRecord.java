@@ -1,6 +1,5 @@
 package com.cinemaonline.model;
 
-import java.sql.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -17,7 +16,7 @@ import javax.persistence.Table;
 @Table(name="TicketRecord")
 public class TicketRecord {
 	private long recordId;//售票记录流水号
-	private Date recordTime;//时间
+	private long recordTime;//时间
 //	private int identityId;//身份级
 	private Identity identity;//身份
 	private long identifyNumber;//识别码[游客流水/会员ID]游客流水采用时间戳
@@ -33,10 +32,10 @@ public class TicketRecord {
 	public void setRecordId(long recordId) {
 		this.recordId = recordId;
 	}
-	public Date getRecordTime() {
+	public long getRecordTime() {
 		return recordTime;
 	}
-	public void setRecordTime(Date recordTime) {
+	public void setRecordTime(long recordTime) {
 		this.recordTime = recordTime;
 	}
 	@ManyToOne

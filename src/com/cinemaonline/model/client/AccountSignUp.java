@@ -14,6 +14,7 @@ public class AccountSignUp {
 	private int sex;
 	private String location;
 	private String name;
+	private int status = 0;
 	
 	public Account getAccount(){
 		Account account = new Account();
@@ -35,6 +36,7 @@ public class AccountSignUp {
 			info.setLocation(location);
 			info.setName(name);
 			info.setSex(sex);
+			info.setVipStatus(status);
 			info.setVipId(account.getAccountName());
 			return info;
 		}else{
@@ -100,6 +102,14 @@ public class AccountSignUp {
 
 	public void setIdentityid(int identityid) {
 		this.identityid = identityid;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 	
 	

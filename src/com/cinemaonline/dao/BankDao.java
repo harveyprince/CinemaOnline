@@ -6,5 +6,7 @@ public interface BankDao {
 	public Bank findById(long id);
 	
 	public void update(Bank bank);
+	
+	public Bank insert(Bank info);
 
 }

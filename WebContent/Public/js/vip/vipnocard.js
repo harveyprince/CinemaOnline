@@ -1,0 +1,13 @@
+selectInitial($("select.viplv-input"),lvslist);
+$("select.viplv-input").select2();
+$(".money-input").blur(function(){
+	if(Number($(this).val())){
+		if(Number($(this).val())>=200){
+			//
+		}else{
+			$(this).val(200);
+		}
+	}else{
+		$(this).val(200);
+	}
+});

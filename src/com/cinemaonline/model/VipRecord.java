@@ -1,6 +1,5 @@
 package com.cinemaonline.model;
 
-import java.sql.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,10 +12,11 @@ import javax.persistence.Table;
 public class VipRecord {
 	private long recordId;//记录流水号
 	private String vipId;//编号
-	private Date recordTime;//操作时间
+	private long recordTime;//操作时间
 	private double recordNumber;//操作数[+50/-50]
-	private String result;//操作结果
+	private int result;//操作结果 0失败 1成功
 	private String comment;//备注[失败原因]
+	private String purpose;//
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -32,10 +32,10 @@ public class VipRecord {
 	public void setVipId(String vipId) {
 		this.vipId = vipId;
 	}
-	public Date getRecordTime() {
+	public long getRecordTime() {
 		return recordTime;
 	}
-	public void setRecordTime(Date recordTime) {
+	public void setRecordTime(long recordTime) {
 		this.recordTime = recordTime;
 	}
 	public double getRecordNumber() {
@@ -44,10 +44,10 @@ public class VipRecord {
 	public void setRecordNumber(double recordNumber) {
 		this.recordNumber = recordNumber;
 	}
-	public String getResult() {
+	public int getResult() {
 		return result;
 	}
-	public void setResult(String result) {
+	public void setResult(int result) {
 		this.result = result;
 	}
 	public String getComment() {
@@ -55,6 +55,12 @@ public class VipRecord {
 	}
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+	public String getPurpose() {
+		return purpose;
+	}
+	public void setPurpose(String purpose) {
+		this.purpose = purpose;
 	}
 
 }

@@ -50,6 +50,8 @@
 	</bean>
 	
 
+	<bean id="TestAction" class="com.cinemaonline.action.TestAction">
+	</bean>
 	<bean id="AccountAction" class="com.cinemaonline.action.AccountAction">
 	</bean>
 	<bean id="VipAction" class="com.cinemaonline.action.VipAction">

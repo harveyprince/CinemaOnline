@@ -6,7 +6,11 @@
 
       <package name="struts2" namespace=""
           extends="struts-default">
-          <!--  AccountAction-->
+          <!-- TestAction --><!-- TestAction --><!-- TestAction -->
+          <action name="init" class="TestAction" method="DataInit">
+          	<result name="success">/Ajax/ajax.jsp</result>
+          </action>
+          <!--  AccountAction--><!--  AccountAction--><!--  AccountAction-->
            <action name="" class="AccountAction" method="welcome">
           	<result name="success">/welcome/welcome.jsp</result>
           </action>
@@ -19,7 +23,8 @@
            <action name="signupAjax" class="AccountAction" method="signupJudge">
            	<result name="success">/Ajax/ajax.jsp</result>
            </action>
-           <!--  VipAction-->
+           <!--  VipAction--><!--  VipAction--><!--  VipAction-->
+           <!--info  -->
            <action name="vipinfo" class="VipAction" method="viewInfo">
            	<result name="success">/vip/vipinfo.jsp</result>
            </action>
@@ -27,11 +32,15 @@
            	<result name="success">/Ajax/ajax.jsp</result>
            	<result name="error">/Ajax/ajax.jsp</result>
            </action>
+           <!--card  -->
            <action name="vipcard" class="VipAction" method="viewCard">
            	<result name="success">/vip/vipcard.jsp</result>
            	<result name="error">/vip/vipnocard.jsp</result>
            </action>
 			<action name="activatecard" class="VipAction" method="activateCard">
+           	<result name="success">/Ajax/ajax.jsp</result>
+           </action> 
+           <action name="cardrecharge" class="VipAction" method="rechargeCard">
            	<result name="success">/Ajax/ajax.jsp</result>
            </action>           
       </package>

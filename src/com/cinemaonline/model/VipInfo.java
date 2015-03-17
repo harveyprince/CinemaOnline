@@ -21,7 +21,7 @@ public class VipInfo {
 	private String location;//居住地
 	private String name;//姓名
 	private String email;//邮箱
-	private String vipStatus;//会员状态[正常/暂停/未激活/停止/取消]
+	private int vipStatus;//会员状态[1正常/2暂停/0未激活/4停止/5取消]
 	private VipCard vipCard;//会员卡
 	private Set<VipRecord> vipRecords;//会员记录
 	
@@ -56,10 +56,10 @@ public class VipInfo {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getVipStatus() {
+	public int getVipStatus() {
 		return vipStatus;
 	}
-	public void setVipStatus(String vipStatus) {
+	public void setVipStatus(int vipStatus) {
 		this.vipStatus = vipStatus;
 	}
 	@OneToOne

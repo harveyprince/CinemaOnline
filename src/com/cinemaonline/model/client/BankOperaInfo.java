@@ -5,6 +5,13 @@ public class BankOperaInfo {
 	private long userId;//银行帐号
 	private String password;//password
 	private int operateNum;//正负充值消费
+	public void setConsume(int num){
+		operateNum = num<0?num:-num;
+	}
+	public void setConsume(String num){
+		int num_temp = Integer.parseInt(num);
+		operateNum = num_temp<0?num_temp:-num_temp;
+	}
 	public int getOperateNum() {
 		return operateNum;
 	}

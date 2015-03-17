@@ -1,14 +1,20 @@
 package com.cinemaonline.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cinemaonline.dao.VipDao;
+import com.cinemaonline.model.VipCard;
 import com.cinemaonline.model.VipInfo;
+import com.cinemaonline.model.VipLevel;
 import com.cinemaonline.model.client.OperaResult;
 import com.cinemaonline.model.client.VipCardInfo;
 import com.cinemaonline.model.client.VipClientInfo;
+import com.cinemaonline.model.client.VipOperaInfo;
 import com.cinemaonline.model.client.VipUpdate;
+import com.cinemaonline.service.RecordService;
 import com.cinemaonline.service.VipService;
 
 @Service
@@ -16,6 +22,8 @@ public class VipServiceImpl implements VipService {
 
 	@Autowired
 	private VipDao vipDao;
+	@Autowired
+	private RecordService recordService;
 	
 	private VipServiceImpl(){}
 
@@ -64,8 +72,74 @@ public class VipServiceImpl implements VipService {
 		}else{
 			info_local.setVipLevel(vipDao.getLevelById(info_local.getViplevel()));
 			vipDao.insertCard(info_local.getCardInfo());
+			info_temp = vipDao.getVipInfoById(info_local.getVipid());
+			info_temp.setVipStatus(1);
+			vipDao.update(info_temp);
 			result.setResult(true);
+			VipOperaInfo opinfo = new VipOperaInfo();
+			opinfo.dateInit();
+			opinfo.setUserid(info_local.getVipid());
+			opinfo.setPurpose("activate card");
+			opinfo.setRecharge(info_local.getBalance());
+			opinfo.setResult(true);
+			recordService.insertVipRecord(opinfo);
 		}
 		return result;
 	}
+
+	@Override
+	public OperaResult cardLevelCost(String userid) {
+		// TODO Auto-generated method stub
+		OperaResult result = new OperaResult();
+		VipInfo userinfo = vipDao.getVipInfoById(userid);
+		VipOperaInfo info = new VipOperaInfo();
+		info.setUserid(userid);
+		info.setCostNum(userinfo.getVipCard().getVipLevel().getCost());
+		info.setPurpose("lvcost");
+		result = cardBalanceOpera(info);
+		return result;
+	}
+
+	@Override
+	public OperaResult cardBalanceOpera(VipOperaInfo info_const) {
+		// TODO Auto-generated method stub
+		OperaResult result = new OperaResult();
+		VipInfo info = vipDao.getVipInfoById(info_const.getUserid());
+		VipCard card = info.getVipCard();
+		double moneyleft = card.getBalance();
+		double numopera = info_const.getNum();
+		VipOperaInfo opinfo = info_const;
+		opinfo.dateInit();
+		if(moneyleft+numopera>=0){
+			card.setBalance(moneyleft+numopera);
+			vipDao.updateCard(card);
+			result.setResult(true);
+			opinfo.setResult(true);
+		}else{
+			result.setResult(false);
+			result.setComment("less");
+			opinfo.setResult(false);
+			opinfo.setComment("not enough");
+		}
+		recordService.insertVipRecord(opinfo);
+		return result;
+	}
+
+	@Override
+	public List<VipLevel> getLvList() {
+		// TODO Auto-generated method stub
+		return vipDao.getAllLevel();
+	}
+
+	@Override
+	public VipCardInfo getVipCardInfoForClient(String userid) {
+		// TODO Auto-generated method stub
+		VipInfo info = vipDao.getVipInfoById(userid);
+		VipCard card = info.getVipCard();
+		VipCardInfo vcinfo = new VipCardInfo();
+		vcinfo.setCardInfo(card);
+		return vcinfo;
+	}
+
+
 }

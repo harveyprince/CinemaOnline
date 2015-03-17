@@ -1,6 +1,5 @@
 package com.cinemaonline.model;
 
-import java.sql.Date;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -10,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -17,11 +17,12 @@ import javax.persistence.Table;
 @Table(name="FilmPlan")
 public class FilmPlan {
 	private long planId;//计划流水号
-	private int hallNo;//厅号
+//	private int hallNo;//厅号
+	private Hall hall;
 	private int seatSum;//座位
 //	private long filmId;//电影流水号
-	private Date beginTime;//开始时间
-	private Date endTime;//结束时间
+	private long beginTime;//开始时间
+	private long endTime;//结束时间
 	private double price;//价格
 	private int status;//状态[待批准、通过]
 	private Set<Activity> activities;//活动
@@ -35,11 +36,13 @@ public class FilmPlan {
 	public void setPlanId(long planId) {
 		this.planId = planId;
 	}
-	public int getHallNo() {
-		return hallNo;
+	@OneToOne
+	@JoinColumn(name="hallNo")
+	public Hall getHall() {
+		return hall;
 	}
-	public void setHallNo(int hallNo) {
-		this.hallNo = hallNo;
+	public void setHall(Hall hall) {
+		this.hall = hall;
 	}
 	public int getSeatSum() {
 		return seatSum;
@@ -47,16 +50,16 @@ public class FilmPlan {
 	public void setSeatSum(int seatSum) {
 		this.seatSum = seatSum;
 	}
-	public Date getBeginTime() {
+	public long getBeginTime() {
 		return beginTime;
 	}
-	public void setBeginTime(Date beginTime) {
+	public void setBeginTime(long beginTime) {
 		this.beginTime = beginTime;
 	}
-	public Date getEndTime() {
+	public long getEndTime() {
 		return endTime;
 	}
-	public void setEndTime(Date endTime) {
+	public void setEndTime(long endTime) {
 		this.endTime = endTime;
 	}
 	public double getPrice() {
@@ -86,5 +89,6 @@ public class FilmPlan {
 	public void setFilm(Film film) {
 		this.film = film;
 	}
+
 
 }

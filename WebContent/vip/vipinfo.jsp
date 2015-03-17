@@ -25,8 +25,8 @@
 					<ul class="nav nav-list">
 						<li class="active"><a href="#"><i class="fa fa-pencil-square-o"></i>vip info</a></li>
 						<li><a href="vipcard"><i class="fa fa-film"></i>vip card</a></li>
-						<li><a href="#"><i class="fa fa-dribbble"></i> vip record</a></li>
-						<li><a href="#"><i class="fa fa-user"></i> vip activity</a></li>
+						<li><a href="viprecord"><i class="fa fa-dribbble"></i> vip record</a></li>
+						<li><a href="vipactivity"><i class="fa fa-user"></i> vip activity</a></li>
 					</ul>
 				</div>
 			</div>
