@@ -56,6 +56,8 @@
 	</bean>
 	<bean id="VipAction" class="com.cinemaonline.action.VipAction">
 	</bean>
+	<bean id="ServerAction" class="com.cinemaonline.action.ServerAction">
+	</bean>
 
 	
 	<!-- 定义 Autowired 自动注入 bean -->

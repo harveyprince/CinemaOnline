@@ -47,5 +47,9 @@
            <action name="viprecord" class="VipAction" method="viewRecord">
            	<result name="success">/vip/viprecord.jsp</result>
            </action>
+           <!-- ServerAction --><!-- ServerAction --><!-- ServerAction -->
+           <action name="serverfilmplan" class="ServerAction" method="viewPlan">
+           	<result name="success">/server/serverfilmplan.jsp</result>
+           </action>
       </package>
   </struts>

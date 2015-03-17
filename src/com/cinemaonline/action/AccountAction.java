@@ -50,7 +50,7 @@ public class AccountAction extends BaseAction {
 				ajaxinfo+="/vipinfo";
 				break;
 			case 2:
-				ajaxinfo+="/server";
+				ajaxinfo+="/serverfilmplan";
 				break;
 			default:
 				ajaxinfo+="/manager";

@@ -3,6 +3,7 @@ package com.cinemaonline.action;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.cinemaonline.model.Account;
 import com.cinemaonline.model.Bank;
 import com.cinemaonline.model.Hall;
 import com.cinemaonline.model.Identity;
@@ -18,9 +19,17 @@ public class TestAction extends BaseAction {
 	private static final long serialVersionUID = 1L;
 
 	@Autowired
-	InfoService infoService;
+	private InfoService infoService;
 	
 	public String DataInit(){
+//		user
+		//server
+		Account ac0 = new Account();
+		ac0.setAccountName("1234567");
+		ac0.setPassword("202cb962ac59075b964b07152d234b70");//123
+		ac0.setIdentityId(2);
+		infoService.addAccount(ac0);
+		
 //		bank
 		Bank bank0 = new Bank();
 		bank0.setBalance(1000);

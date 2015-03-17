@@ -1,10 +1,12 @@
 package com.cinemaonline.model.client;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.cinemaonline.model.VipInfo;
 
 public class VipClientInfo {
+	SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
 	private String vipid;
 	private Date birthday;
 	private String strbirthday;
@@ -33,7 +35,7 @@ public class VipClientInfo {
 	}
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
-		this.strbirthday = (this.birthday.toLocaleString()).split(" ")[0];
+		this.strbirthday = df.format(birthday);
 	}
 	public String getLocation() {
 		return location;

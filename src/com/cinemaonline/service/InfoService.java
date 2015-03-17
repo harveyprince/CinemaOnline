@@ -1,5 +1,6 @@
 package com.cinemaonline.service;
 
+import com.cinemaonline.model.Account;
 import com.cinemaonline.model.Bank;
 import com.cinemaonline.model.Hall;
 import com.cinemaonline.model.Identity;
@@ -15,4 +16,6 @@ public interface InfoService {
 	public OperaResult addIdentity(Identity info);
 	
 	public OperaResult addVipLevel(VipLevel info);
+	
+	public OperaResult addAccount(Account info);
 }

@@ -35,26 +35,72 @@ $(".film-edit-button").click(function(){
 	$endTimeInput.val(endtime);
 });
 $("#modalEdit").find(".save-button").click(function(){
-	$modal = $("#modalEdit");
-	// film-input
-	$filmInput = $modal.find("select.film-input");
-	$filmsource.attr("filmId",$filmInput.val());
-	$filmsource.html(findValueByKey(filmslist,$filmInput.val()));
-	// hall-input
-	$hallInput = $modal.find("select.hall-input");
-	$hallsource.attr("hallId",$hallInput.val());
-	$hallsource.html(findValueByKey(hallslist,$hallInput.val()));
-	// seat-sum
+	var action = $("#planedit-form").attr("action");
+	if(isFormValid($("#planedit-form"))){
+		var data = new FormData();
+		data = getFormData($("#planedit-form"),data);
+		$.ajax({
+			data: data,
+			type: "POST",
+			url: action,
+			cache: false,
+			contentType: false,
+			processData: false,
+			success: function(data) {
+				if(data=="success"){
+				//
+				$modal = $("#modalEdit");
+				// film-input
+				$filmInput = $modal.find("select.film-input");
+				$filmsource.attr("filmId",$filmInput.val());
+				$filmsource.html(findValueByKey(filmslist,$filmInput.val()));
+				// hall-input
+				$hallInput = $modal.find("select.hall-input");
+				$hallsource.attr("hallId",$hallInput.val());
+				$hallsource.html(findValueByKey(hallslist,$hallInput.val()));
+				// seat-sum
 
-	// price
-	$priceInput = $modal.find(".price-input");
-	$pricesource.html($priceInput.val());
-	// beginTime
-	$beginTimeInput = $modal.find(".beginTime-input");
-	$beginsource.attr("date-time",$beginTimeInput.val());
-	$beginsource.html($beginTimeInput.val().split("T")[1]);
-	// endTime
-	$endTimeInput = $modal.find(".endTime-input");
-	$endsource.attr("date-time",$endTimeInput.val());
-	$endsource.html($endTimeInput.val().split("T")[1]);
+				// price
+				$priceInput = $modal.find(".price-input");
+				$pricesource.html($priceInput.val());
+				// beginTime
+				$beginTimeInput = $modal.find(".beginTime-input");
+				$beginsource.attr("date-time",$beginTimeInput.val());
+				$beginsource.html($beginTimeInput.val().split("T")[1]);
+				// endTime
+				$endTimeInput = $modal.find(".endTime-input");
+				$endsource.attr("date-time",$endTimeInput.val());
+				$endsource.html($endTimeInput.val().split("T")[1]);
+			}
+			},
+			error:function(){
+				$.scojs_message('error occured!', $.scojs_message.TYPE_ERROR);
+			}
+			});
+			}
+
+});
+
+$("#modalAdd").find(".save-button").click(function(){
+	var action = $("#planadd-form").attr("action");
+	if(isFormValid($("#planadd-form"))){
+		var data = new FormData();
+		data = getFormData($("#planadd-form"),data);
+		$.ajax({
+		data: data,
+		type: "POST",
+		url: action,
+		cache: false,
+		contentType: false,
+		processData: false,
+		success: function(data) {
+			if(data=="success"){
+				window.location.reload();
+			}
+		},
+		error:function(){
+			$.scojs_message('error occured!', $.scojs_message.TYPE_ERROR);
+		}
+	});
+	}
 });

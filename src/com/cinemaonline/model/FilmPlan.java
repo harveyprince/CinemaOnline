@@ -24,7 +24,7 @@ public class FilmPlan {
 	private long beginTime;//开始时间
 	private long endTime;//结束时间
 	private double price;//价格
-	private int status;//状态[待批准、通过]
+	private int status;//状态[0未审核、1待批准、2通过、3驳回]
 	private Set<Activity> activities;//活动
 	private Film film;//电影
 	

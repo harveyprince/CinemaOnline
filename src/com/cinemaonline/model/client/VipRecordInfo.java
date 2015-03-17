@@ -17,6 +17,9 @@ public class VipRecordInfo {
 	private String comment;
 	private String purpose;
 	public void setVipRecord(VipRecord info){
+		if(info==null){
+			return;
+		}
 		setComment(info.getComment());
 		setPurpose(info.getPurpose());
 		setRecordId(info.getRecordId());
@@ -27,6 +30,9 @@ public class VipRecordInfo {
 	}
 	
 	public static List<VipRecordInfo> parseVRI(List<VipRecord> infolist){
+		if(infolist==null){
+			return null;
+		}
 		List<VipRecordInfo> info = new ArrayList<VipRecordInfo>();
 		for(VipRecord rc:infolist){
 			VipRecordInfo rci =  new VipRecordInfo();

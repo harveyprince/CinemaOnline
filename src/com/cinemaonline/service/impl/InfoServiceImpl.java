@@ -1,10 +1,13 @@
 package com.cinemaonline.service.impl;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cinemaonline.dao.AccountDao;
 import com.cinemaonline.dao.BankDao;
 import com.cinemaonline.dao.InfoDao;
+import com.cinemaonline.model.Account;
 import com.cinemaonline.model.Bank;
 import com.cinemaonline.model.Hall;
 import com.cinemaonline.model.Identity;
@@ -14,9 +17,11 @@ import com.cinemaonline.service.InfoService;
 @Service
 public class InfoServiceImpl implements InfoService {
 	@Autowired
-	BankDao bankDao;
+	private BankDao bankDao;
 	@Autowired
-	InfoDao infoDao;
+	private InfoDao infoDao;
+	@Autowired
+	private AccountDao accountDao;
 	
 	@Override
 	public OperaResult addHall(Hall info) {
@@ -52,6 +57,15 @@ public class InfoServiceImpl implements InfoService {
 		VipLevel info_local = info;
 		info_local = infoDao.insertVipLevel(info_local);
 		result.setResult(true);
+		return result;
+	}
+
+	@Override
+	public OperaResult addAccount(Account info) {
+		// TODO Auto-generated method stub
+		OperaResult result = new OperaResult();
+			accountDao.insert(info);
+			result.setResult(true);
 		return result;
 	}
 
