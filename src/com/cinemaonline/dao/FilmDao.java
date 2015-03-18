@@ -12,11 +12,18 @@ public interface FilmDao {
 	
 	public List<Film> getAllReleasingFilms();
 	
+	public Film getFilmById(long id);
 //	film plan
 	public FilmPlan insertFilmPlan(FilmPlan info);
+	
+	public void updateFilmPlan(FilmPlan info);
 
 	public List<FilmPlan> getAllUnpassedPlans();
 	
+	public FilmPlan getFilmPlanById(long id);
+	
 //	hall
 	public List<Hall> getAllHalls();
+	
+	public Hall getHallById(int id);
 }

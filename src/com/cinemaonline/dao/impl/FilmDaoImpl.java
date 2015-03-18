@@ -127,6 +127,95 @@ public class FilmDaoImpl implements FilmDao {
 			return null;
 		}
 	}
+	@Override
+	public Film getFilmById(long id) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String hql = "from com.cinemaonline.model.Film where filmId=?";
+		List list = null;
+		try{
+			Query query = session.createQuery(hql);
+			query.setParameter(0, id);
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return (Film)list.get(0);
+			}else{
+				return null;
+			}
+		}else{
+			return null;
+		}
+	}
+	@Override
+	public Hall getHallById(int id) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String hql = "from com.cinemaonline.model.Hall where hallNo=?";
+		List list = null;
+		try{
+			Query query = session.createQuery(hql);
+			query.setParameter(0, id);
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return (Hall)list.get(0);
+			}else{
+				return null;
+			}
+		}else{
+			return null;
+		}
+	}
+	@Override
+	public FilmPlan getFilmPlanById(long id) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String hql = "from com.cinemaonline.model.FilmPlan where planId=?";
+		List list = null;
+		try{
+			Query query = session.createQuery(hql);
+			query.setParameter(0, id);
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return (FilmPlan)list.get(0);
+			}else{
+				return null;
+			}
+		}else{
+			return null;
+		}
+	}
+	@Override
+	public void updateFilmPlan(FilmPlan info) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		Transaction ts = session.beginTransaction();
+		try{
+			session.update(info);
+			ts.commit();
+		}catch(Exception e){
+			ts.rollback();
+		}finally{
+			session.close();
+		}
+	}
 
 	
 

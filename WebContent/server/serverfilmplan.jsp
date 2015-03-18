@@ -168,7 +168,7 @@
 				<h5 id="myModalLabel">Film Plan Edit</h5>
 			</div>
 			<div class="modal-body">
-				<form action="#" id="planedit-form" onSubmit="return false;">
+				<form action="planedit" id="planedit-form" onSubmit="return false;">
 				<div class="row-line">
 					<div class="row-label">film:</div>
 					<div class="span3 row-content">
@@ -222,7 +222,7 @@
 				<h5 id="myModalLabel">Film Plan Add</h5>
 			</div>
 			<div class="modal-body">
-				<form action="#" id="planadd-form" onSubmit="return false;">
+				<form action="planadd" id="planadd-form" onSubmit="return false;">
 				<div class="row-line">
 					<div class="row-label">film:</div>
 					<div class="span3 row-content">

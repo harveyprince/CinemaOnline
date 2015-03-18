@@ -51,5 +51,11 @@
            <action name="serverfilmplan" class="ServerAction" method="viewPlan">
            	<result name="success">/server/serverfilmplan.jsp</result>
            </action>
+           <action name="planedit" class="ServerAction" method="updatePlan">
+           	<result name="success">/Ajax/ajax.jsp</result>
+           </action>
+            <action name="planadd" class="ServerAction" method="insertPlan">
+           	<result name="success">/Ajax/ajax.jsp</result>
+           </action>
       </package>
   </struts>

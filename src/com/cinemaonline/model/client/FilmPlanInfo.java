@@ -1,5 +1,6 @@
 package com.cinemaonline.model.client;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,10 +12,11 @@ import com.cinemaonline.model.Hall;
 
 public class FilmPlanInfo {
 
-	SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd HH:MM");
-	SimpleDateFormat dft=new SimpleDateFormat("HH:MM");
+	SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	SimpleDateFormat dft=new SimpleDateFormat("HH:mm");
 	private long planid;
 	private Hall hall;
+	private int hallNo;
 	private int seatSum;
 	private long beginTime;
 	private long endTime;
@@ -25,11 +27,22 @@ public class FilmPlanInfo {
 	private String begindft;
 	private String enddft;
 	private double price;
-	private int status;
+	private int status = 0;
 	private String strstatus;
 	private Film film;
 	private String filmName;
 	private long filmid;
+	public FilmPlan getFilmPlan(){
+		FilmPlan info = new FilmPlan();
+		info.setBeginTime(beginTime);
+		info.setEndTime(endTime);
+		info.setFilm(film);
+		info.setHall(hall);
+		info.setPrice(price);
+		info.setSeatSum(seatSum);
+		info.setStatus(status);
+		return info;
+	}
 	public void setFilmPlan(FilmPlan info){
 		if(info==null){
 			return;
@@ -61,11 +74,15 @@ public class FilmPlanInfo {
 	public void setPlanid(long planid) {
 		this.planid = planid;
 	}
+	public void setPlanid(String planid) {
+		setPlanid(Long.parseLong(planid));
+	}
 	public Hall getHall() {
 		return hall;
 	}
 	public void setHall(Hall hall) {
 		this.hall = hall;
+		setHallNo(hall.getHallNo());
 	}
 	public int getSeatSum() {
 		return seatSum;
@@ -73,8 +90,15 @@ public class FilmPlanInfo {
 	public void setSeatSum(int seatSum) {
 		this.seatSum = seatSum;
 	}
+	public void setSeatSum(String seatSum) {
+		setSeatSum(Integer.parseInt(seatSum));
+	}
 	public long getBeginTime() {
 		return beginTime;
+	}
+	public void setBeginTime(String beginTime) throws ParseException{
+		Date temp = df.parse(beginTime.replace("T", " "));
+		setBeginTime(temp.getTime());
 	}
 	public void setBeginTime(long beginTime) {
 		this.beginTime = beginTime;
@@ -84,6 +108,10 @@ public class FilmPlanInfo {
 	}
 	public long getEndTime() {
 		return endTime;
+	}
+	public void setEndTime(String endTime) throws ParseException{
+		Date temp = df.parse(endTime.replace("T", " "));
+		setEndTime(temp.getTime());
 	}
 	public void setEndTime(long endTime) {
 		this.endTime = endTime;
@@ -108,6 +136,9 @@ public class FilmPlanInfo {
 	}
 	public void setPrice(double price) {
 		this.price = price;
+	}
+	public void setPrice(String price) {
+		setPrice(Double.parseDouble(price));
 	}
 	public int getStatus() {
 		return status;
@@ -157,6 +188,9 @@ public class FilmPlanInfo {
 	public void setFilmid(long filmid) {
 		this.filmid = filmid;
 	}
+	public void setFilmid(String filmid) {
+		setFilmid(Long.parseLong(filmid));
+	}
 	public String getBeginTtime() {
 		return beginTtime;
 	}
@@ -188,5 +222,14 @@ public class FilmPlanInfo {
 	}
 	public void setEnddft(String enddft) {
 		this.enddft = enddft;
+	}
+	public int getHallNo() {
+		return hallNo;
+	}
+	public void setHallNo(int hallNo) {
+		this.hallNo = hallNo;
+	}
+	public void setHallNo(String hallNo) {
+		setHallNo(Integer.parseInt(hallNo));
 	}
 }
