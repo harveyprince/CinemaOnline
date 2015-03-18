@@ -6,22 +6,22 @@
 
       <package name="struts2" namespace=""
           extends="struts-default">
+          <global-results>
+          	<result name="ajaxinfo">/Ajax/ajax.jsp</result>
+          </global-results>
           <!-- TestAction --><!-- TestAction --><!-- TestAction -->
           <action name="init" class="TestAction" method="DataInit">
-          	<result name="success">/Ajax/ajax.jsp</result>
           </action>
           <!--  AccountAction--><!--  AccountAction--><!--  AccountAction-->
            <action name="" class="AccountAction" method="welcome">
           	<result name="success">/welcome/welcome.jsp</result>
           </action>
            <action name="loginAjax" class="AccountAction" method="loginJudge">
-          	<result name="success">/Ajax/ajax.jsp</result>
           </action>
            <action name="signup" class="AccountAction" method="welcome">
           	<result name="success">/welcome/regist.jsp</result>
           </action>
            <action name="signupAjax" class="AccountAction" method="signupJudge">
-           	<result name="success">/Ajax/ajax.jsp</result>
            </action>
            <!--  VipAction--><!--  VipAction--><!--  VipAction-->
            <!--info  -->
@@ -29,8 +29,6 @@
            	<result name="success">/vip/vipinfo.jsp</result>
            </action>
            <action name="infoUpate" class="VipAction" method="updateInfo">
-           	<result name="success">/Ajax/ajax.jsp</result>
-           	<result name="error">/Ajax/ajax.jsp</result>
            </action>
            <!--card  -->
            <action name="vipcard" class="VipAction" method="viewCard">
@@ -38,24 +36,29 @@
            	<result name="error">/vip/vipnocard.jsp</result>
            </action>
 			<action name="activatecard" class="VipAction" method="activateCard">
-           	<result name="success">/Ajax/ajax.jsp</result>
            </action> 
            <action name="cardrecharge" class="VipAction" method="rechargeCard">
-           	<result name="success">/Ajax/ajax.jsp</result>
            </action>    
            <!--record  -->       
            <action name="viprecord" class="VipAction" method="viewRecord">
            	<result name="success">/vip/viprecord.jsp</result>
            </action>
            <!-- ServerAction --><!-- ServerAction --><!-- ServerAction -->
+           <!--plan  -->
            <action name="serverfilmplan" class="ServerAction" method="viewPlan">
            	<result name="success">/server/serverfilmplan.jsp</result>
            </action>
            <action name="planedit" class="ServerAction" method="updatePlan">
-           	<result name="success">/Ajax/ajax.jsp</result>
            </action>
             <action name="planadd" class="ServerAction" method="insertPlan">
-           	<result name="success">/Ajax/ajax.jsp</result>
+           </action>
+           <!-- film -->
+           <action name="serverfilm" class="ServerAction" method="viewFilm">
+           	<result name="success">/server/serverfilm.jsp</result>
+           </action>
+           <action name="filmadd" class="ServerAction" method="insertFilm">
+           </action>
+           <action name="filmedit" class="ServerAction" method="updateFilm">
            </action>
       </package>
   </struts>

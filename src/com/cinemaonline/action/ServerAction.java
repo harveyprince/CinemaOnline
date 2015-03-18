@@ -3,14 +3,11 @@ package com.cinemaonline.action;
 import java.text.ParseException;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.cinemaonline.model.Film;
 import com.cinemaonline.model.Hall;
+import com.cinemaonline.model.client.FilmInfo;
 import com.cinemaonline.model.client.FilmPlanInfo;
 import com.cinemaonline.model.client.OperaResult;
 import com.cinemaonline.service.FilmService;
@@ -26,9 +23,38 @@ public class ServerAction extends BaseAction {
 	
 	private String ajaxinfo;
 	private List<FilmPlanInfo> filmplanlist;
-	private List<Film> filmlist;
+	private List<FilmInfo> filmlist;
 	private List<Hall> halllist;
+
+	/*
+	 * film
+	 * */
+	public String viewFilm(){
+		filmlist = filmService.getAllFilms();
+		return SUCCESS;
+	}
 	
+	public String insertFilm(){
+		FilmInfo info = new FilmInfo();
+		info.setDuration(request.getParameter("duration"));
+		info.setKind(request.getParameter("kind"));
+		info.setName(request.getParameter("name"));
+		filmService.addFilm(info);
+		return AJAXINFO;
+	}
+	
+	public String updateFilm(){
+		FilmInfo info = new FilmInfo();
+		info.setFilmId(request.getParameter("filmid"));
+		info.setDuration(request.getParameter("duration"));
+		info.setKind(request.getParameter("kind"));
+		info.setName(request.getParameter("name"));
+		filmService.updateFilm(info);
+		return AJAXINFO;
+	}
+	/*
+	 * plan
+	 * */
 	public String viewPlan(){
 		filmplanlist = filmService.getAllUnoldPlans();
 		filmlist = filmService.getAllReleasingFilms();
@@ -37,7 +63,6 @@ public class ServerAction extends BaseAction {
 	}
 	
 	public String updatePlan(){
-		HttpServletRequest request = ServletActionContext.getRequest();
 		FilmPlanInfo info = new FilmPlanInfo();
 		try {
 			info.setBeginTime(request.getParameter("beginTime"));
@@ -57,11 +82,10 @@ public class ServerAction extends BaseAction {
 			// TODO Auto-generated catch block
 			ajaxinfo = e.getLocalizedMessage();
 		}
-		return SUCCESS;
+		return AJAXINFO;
 	}
 	
 	public String insertPlan(){
-		HttpServletRequest request = ServletActionContext.getRequest();
 		FilmPlanInfo info = new FilmPlanInfo();
 		try {
 			info.setBeginTime(request.getParameter("beginTime"));
@@ -80,7 +104,7 @@ public class ServerAction extends BaseAction {
 			// TODO Auto-generated catch block
 			ajaxinfo = e.getLocalizedMessage();
 		}
-		return SUCCESS;
+		return AJAXINFO;
 	}
 //	//////////////////////////////////////////////////////////////////////////////////////////////
 	public List<FilmPlanInfo> getFilmplanlist() {
@@ -90,10 +114,10 @@ public class ServerAction extends BaseAction {
 	public void setFilmplanlist(List<FilmPlanInfo> filmplanlist) {
 		this.filmplanlist = filmplanlist;
 	}
-	public List<Film> getFilmlist() {
+	public List<FilmInfo> getFilmlist() {
 		return filmlist;
 	}
-	public void setFilmlist(List<Film> filmlist) {
+	public void setFilmlist(List<FilmInfo> filmlist) {
 		this.filmlist = filmlist;
 	}
 	public List<Hall> getHalllist() {

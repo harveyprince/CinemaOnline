@@ -2,10 +2,6 @@ package com.cinemaonline.action;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -42,17 +38,13 @@ public class VipAction extends BaseAction {
 	 * info
 	 * */
 	public String viewInfo(){
-		HttpServletRequest request = ServletActionContext.getRequest();
-		 HttpSession session = request.getSession(false);
-		 String userid = (String)session.getAttribute("userid");
+		String userid = (String) session.get("userid");
 		 vipinfo = vipService.getVipInfoForClient(userid);
 		return SUCCESS;
 	}
 	
 	public String updateInfo(){
-		HttpServletRequest request = ServletActionContext.getRequest();
-		HttpSession session = request.getSession(false);
-		 String userid = (String)session.getAttribute("userid");
+		String userid = (String) session.get("userid");
 		VipUpdate info = new VipUpdate();
 		info.setBirthday(request.getParameter("birthday"));
 		info.setLocation(request.getParameter("location"));
@@ -61,20 +53,17 @@ public class VipAction extends BaseAction {
 		OperaResult result = vipService.vipinfoUpate(info,userid);
 		if(result.getResult()){
 			ajaxinfo = "success";
-			return SUCCESS;
 		}else{
 			ajaxinfo = "error";
-			return ERROR;
 		}
+		return AJAXINFO;
 	}
 	
 	/*
 	 * card
 	 * */
 	public String viewCard(){
-		HttpServletRequest request = ServletActionContext.getRequest();
-		 HttpSession session = request.getSession(false);
-		 String userid = (String)session.getAttribute("userid");
+		String userid = (String) session.get("userid");
 		 lvslist = vipService.getLvList();
 		 vipinfo = vipService.getVipInfoForClient(userid);
 		 OperaResult result = vipService.cardActivatedCheck(userid);//检测卡是否存在，不存在则未激活
@@ -87,9 +76,7 @@ public class VipAction extends BaseAction {
 	}
 	
 	public String activateCard(){
-		HttpServletRequest request = ServletActionContext.getRequest();
-		 HttpSession session = request.getSession(false);
-		 String userid = (String)session.getAttribute("userid");
+		String userid = (String) session.get("userid");
 		 BankOperaInfo info = new BankOperaInfo();
 		 info.setUserId(request.getParameter("bankid"));
 		 info.setPassword(request.getParameter("bankps"));
@@ -101,7 +88,7 @@ public class VipAction extends BaseAction {
 		 infocard.setViplevel(request.getParameter("viplevel"));
 		 if(info.getOperateNum()>-200){
 			 ajaxinfo = "less1";
-			 return SUCCESS;
+			 return AJAXINFO;
 		 }
 		 OperaResult bank_result = bankService.pay(info);
 		 if(bank_result.getResult()){
@@ -110,10 +97,10 @@ public class VipAction extends BaseAction {
 				 OperaResult levelcost_result = vipService.cardLevelCost(userid);
 				 if(levelcost_result.getResult()){
 					 ajaxinfo = "success";
-					 return SUCCESS;
+					 return AJAXINFO;
 				 }else{
 					 ajaxinfo = "lvcostfailed";
-					 return SUCCESS;
+					 return AJAXINFO;
 				 }
 			 }else{
 				 ajaxinfo = "activatefailed";
@@ -121,13 +108,11 @@ public class VipAction extends BaseAction {
 		 }else{
 			 ajaxinfo="bankcostfailed";
 		 }
-		return SUCCESS;
+		return AJAXINFO;
 	}
 //	money in
 	public String rechargeCard(){
-		HttpServletRequest request = ServletActionContext.getRequest();
-		 HttpSession session = request.getSession(false);
-		 String userid = (String)session.getAttribute("userid");
+		String userid = (String) session.get("userid");
 		 BankOperaInfo info = new BankOperaInfo();
 		 info.setUserId(request.getParameter("bankid"));
 		 info.setPassword(request.getParameter("bankps"));
@@ -149,7 +134,7 @@ public class VipAction extends BaseAction {
 		 }else{
 			 ajaxinfo = bank_result.getComment();
 		 }
-		return SUCCESS;
+		return AJAXINFO;
 	}
 	
 	
@@ -157,9 +142,7 @@ public class VipAction extends BaseAction {
 	 * record
 	 * */
 	public String viewRecord(){
-		HttpServletRequest request = ServletActionContext.getRequest();
-		 HttpSession session = request.getSession(false);
-		 String userid = (String)session.getAttribute("userid");
+		String userid = (String) session.get("userid");
 		 setRecordlist(vipService.getRecords(userid));
 		return SUCCESS;
 	}

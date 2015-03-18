@@ -16,6 +16,7 @@ public class BaseAction extends ActionSupport implements SessionAware,
         ServletRequestAware, ServletResponseAware {  
   
     private static final long serialVersionUID = 1L;  
+    protected static final String AJAXINFO = "ajaxinfo";
  
     public HttpServletRequest   request;  
     public HttpServletResponse  response;  

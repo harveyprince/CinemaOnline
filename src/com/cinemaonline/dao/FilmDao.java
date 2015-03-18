@@ -10,7 +10,11 @@ public interface FilmDao {
 //	film
 	public Film insertFilm(Film info);
 	
+	public Film updateFilm(Film info);
+	
 	public List<Film> getAllReleasingFilms();
+	
+	public List<Film> getAllFilms();
 	
 	public Film getFilmById(long id);
 //	film plan

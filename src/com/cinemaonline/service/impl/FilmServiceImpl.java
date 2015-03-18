@@ -9,6 +9,7 @@ import com.cinemaonline.dao.FilmDao;
 import com.cinemaonline.model.Film;
 import com.cinemaonline.model.FilmPlan;
 import com.cinemaonline.model.Hall;
+import com.cinemaonline.model.client.FilmInfo;
 import com.cinemaonline.model.client.FilmPlanInfo;
 import com.cinemaonline.model.client.OperaResult;
 import com.cinemaonline.service.FilmService;
@@ -27,9 +28,9 @@ public class FilmServiceImpl implements FilmService {
 	}
 
 	@Override
-	public List<Film> getAllReleasingFilms() {
+	public List<FilmInfo> getAllReleasingFilms() {
 		// TODO Auto-generated method stub
-		return filmDao.getAllReleasingFilms();
+		return FilmInfo.parseFI(filmDao.getAllReleasingFilms());
 	}
 
 	@Override
@@ -65,6 +66,37 @@ public class FilmServiceImpl implements FilmService {
 		info_old.setSeatSum(info.getSeatSum());
 		info_old.setStatus(info.getStatus());
 		filmDao.updateFilmPlan(info_old);
+		result.setResult(true);
+		return result;
+	}
+
+	@Override
+	public List<FilmInfo> getAllFilms() {
+		// TODO Auto-generated method stub
+		return FilmInfo.parseFI(filmDao.getAllFilms());
+	}
+
+	@Override
+	public OperaResult addFilm(FilmInfo info) {
+		// TODO Auto-generated method stub
+		OperaResult result = new OperaResult();
+		filmDao.insertFilm(info.getFilm());
+		result.setResult(true);
+		return result;
+	}
+
+	@Override
+	public OperaResult updateFilm(FilmInfo info) {
+		// TODO Auto-generated method stub
+		OperaResult result = new OperaResult();
+		Film f = filmDao.getFilmById(info.getFilmId());
+		f.setDuration(info.getDuration());
+		f.setKind(info.getKind());
+		f.setName(info.getName());
+		f.setStatus(info.getStatus());
+		f.setReleaseTime(info.getReleaseTime());
+		f.setShelvesTime(info.getReleaseTime());
+		filmDao.updateFilm(f);
 		result.setResult(true);
 		return result;
 	}

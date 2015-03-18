@@ -6,6 +6,11 @@ $("select.hall-input").select2();
 $(".film-edit-button").click(function(){
 	$row = $(this).parent().parent();
 	$modal = $("#modalEdit");
+	// planid-input
+	$planIdInput = $modal.find(".planid-input");
+	$plansource = $row.children(".planId");
+	var planId = $plansource.html();
+	$planIdInput.val(planId);
 	// film-input
 	$filmInput = $modal.find(".film-input");
 	$filmsource = $row.children(".filmName");

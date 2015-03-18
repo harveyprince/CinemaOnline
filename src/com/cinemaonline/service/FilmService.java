@@ -2,8 +2,8 @@ package com.cinemaonline.service;
 
 import java.util.List;
 
-import com.cinemaonline.model.Film;
 import com.cinemaonline.model.Hall;
+import com.cinemaonline.model.client.FilmInfo;
 import com.cinemaonline.model.client.FilmPlanInfo;
 import com.cinemaonline.model.client.OperaResult;
 
@@ -11,9 +11,15 @@ public interface FilmService {
 
 	public List<FilmPlanInfo> getAllUnoldPlans();
 	
-	public List<Film> getAllReleasingFilms();
+	public List<FilmInfo> getAllReleasingFilms();
+	
+	public List<FilmInfo> getAllFilms();
 	
 	public List<Hall> getAllHalls();
+	
+	public OperaResult addFilm(FilmInfo info);
+	
+	public OperaResult updateFilm(FilmInfo info);
 	
 	public OperaResult addPlan(FilmPlanInfo info);
 	

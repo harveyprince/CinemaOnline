@@ -99,6 +99,6 @@ public class TestAction extends BaseAction {
 		lv2.setLvName("lv3");
 		infoService.addVipLevel(lv2);
 		
-		return SUCCESS;
+		return AJAXINFO;
 	}
 }

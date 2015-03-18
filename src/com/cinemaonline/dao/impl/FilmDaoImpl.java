@@ -216,6 +216,46 @@ public class FilmDaoImpl implements FilmDao {
 			session.close();
 		}
 	}
+	@Override
+	public List<Film> getAllFilms() {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String hql = "from com.cinemaonline.model.Film";
+		List list = null;
+		try{
+			Query query = session.createQuery(hql);
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return list;
+			}else{
+				return null;
+			}
+		}else{
+			return null;
+		}
+	}
+	@Override
+	public Film updateFilm(Film info) {
+		// TODO Auto-generated method stub
+		Film info_local = info;
+		Session session = baseDao.getNewSession();
+		Transaction ts = session.beginTransaction();
+		try{
+			session.update(info_local);
+			ts.commit();
+		}catch(Exception e){
+			ts.rollback();
+		}finally{
+			session.close();
+		}
+		return info_local;
+	}
 
 	
 

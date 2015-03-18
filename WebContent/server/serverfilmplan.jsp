@@ -23,7 +23,7 @@
 				<div class="">
 					<ul class="nav nav-list">
 						<li class="active"><a href="#"><i class="fa fa-pencil-square-o"></i>Film Plan</a></li>
-						<li ><a href="#"><i class="fa fa-film"></i>Film</a></li>
+						<li ><a href="serverfilm"><i class="fa fa-film"></i>Film</a></li>
 						<li><a href="#"><i class="fa fa-dribbble"></i> Activity</a></li>
 						<li><a href="#"><i class="fa fa-usd"></i> Ticket Sale</a></li>
 						<li><a href="#"><i class="fa fa-user"></i> VIP</a></li>
@@ -169,40 +169,46 @@
 			</div>
 			<div class="modal-body">
 				<form action="planedit" id="planedit-form" onSubmit="return false;">
+					<div class="row-line" style="display:none;">
+					<div class="row-label">planid:</div>
+					<div class="span3 row-content">
+						<select class="form-control select select-primary select-block mbl planid-input" name="planid"></select>
+					</div>
+				</div>
 				<div class="row-line">
 					<div class="row-label">film:</div>
 					<div class="span3 row-content">
-						<select class="form-control select select-primary select-block mbl film-input"></select>
+						<select class="form-control select select-primary select-block mbl film-input" name="filmid"></select>
 					</div>
 				</div>
 				<div class="row-line">
 					<div class="row-label">hallNo:</div>
 					<div class="span3 row-content">
-						<select class="form-control select select-primary select-block mbl hall-input"></select>
+						<select class="form-control select select-primary select-block mbl hall-input" name="hallNo"></select>
 					</div>
 				</div> 
 				<div class="row-line">
 					<div class="row-label">seatSum:</div>
 					<div class="form-group has-success row-content">
-						<input class="form-control seat-input" type="number" placeholder="Sum" />
+						<input class="form-control seat-input" type="number" placeholder="Sum" name="seatSum"/>
 					</div>
 				</div>
 				<div class="row-line">
 					<div class="row-label">price:</div>
 					<div class="form-group has-success row-content">
-						<input class="form-control price-input" type="number" placeholder="price" />
+						<input class="form-control price-input" type="number" placeholder="price" name="price"/>
 					</div>
 				</div> 
 				<div class="row-line">
 					<div class="row-label">beginTime:</div>
 					<div class="form-group has-success row-content">
-						<input class="form-control beginTime-input" type="datetime-local" placeholder="beginTime" />
+						<input class="form-control beginTime-input" type="datetime-local" placeholder="beginTime" name="beginTime" />
 					</div>
 				</div> 
 				<div class="row-line">
 					<div class="row-label">endTime:</div>
 					<div class="form-group has-success row-content">
-						<input class="form-control endTime-input" type="datetime-local" placeholder="endTime" />
+						<input class="form-control endTime-input" type="datetime-local" placeholder="endTime" name="endTime"/>
 					</div>
 				</div> 
 			</form>
@@ -226,37 +232,37 @@
 				<div class="row-line">
 					<div class="row-label">film:</div>
 					<div class="span3 row-content">
-						<select class="form-control select select-primary select-block mbl film-input"></select>
+						<select class="form-control select select-primary select-block mbl film-input" name="filmid"></select>
 					</div>
 				</div>
 				<div class="row-line">
 					<div class="row-label">hallNo:</div>
 					<div class="span3 row-content">
-						<select class="form-control select select-primary select-block mbl hall-input"></select>
+						<select class="form-control select select-primary select-block mbl hall-input" name="hallNo"></select>
 					</div>
 				</div> 
 				<div class="row-line">
 					<div class="row-label">seatSum:</div>
 					<div class="form-group has-success row-content">
-						<input class="form-control seat-input" type="number" placeholder="Sum" />
+						<input class="form-control seat-input" type="number" placeholder="Sum" name="seatSum"/>
 					</div>
 				</div>
 				<div class="row-line">
 					<div class="row-label">price:</div>
 					<div class="form-group has-success row-content">
-						<input class="form-control price-input" type="number" placeholder="price" />
+						<input class="form-control price-input" type="number" placeholder="price" name="price"/>
 					</div>
 				</div> 
 				<div class="row-line">
 					<div class="row-label">beginTime:</div>
 					<div class="form-group has-success row-content">
-						<input class="form-control beginTime-input" type="datetime-local" placeholder="beginTime" />
+						<input class="form-control beginTime-input" type="datetime-local" placeholder="beginTime" name="beginTime"/>
 					</div>
 				</div> 
 				<div class="row-line">
 					<div class="row-label">endTime:</div>
 					<div class="form-group has-success row-content">
-						<input class="form-control endTime-input" type="datetime-local" placeholder="endTime" />
+						<input class="form-control endTime-input" type="datetime-local" placeholder="endTime" name="endTime"/>
 					</div>
 				</div> 
 				</form>
