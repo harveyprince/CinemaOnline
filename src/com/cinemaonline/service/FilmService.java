@@ -24,4 +24,10 @@ public interface FilmService {
 	public OperaResult addPlan(FilmPlanInfo info);
 	
 	public OperaResult updatePlan(FilmPlanInfo info);
+
+	public OperaResult releaseFilm(String filmid);
+
+	public OperaResult unreleaseFilm(String filmid);
+
+	public OperaResult submitPlanForCheck(String planid);
 }

@@ -27,10 +27,11 @@ $(".film-edit-button").click(function(){
 	
 });
 function answerCount(){
-	var count = 0;
-	$("#modalEdit .answer-row").each(function(){
-		$(this).children("div[value]").attr("value",count);
-		count++;
+	$("#modalEdit .answer-row").each(function(idx){
+		$(this).children("div[value]").attr("value",idx);
+	});
+	$("#modalAdd .answer-row").each(function(idx){
+		$(this).children("div[value]").attr("value",idx);
 	});
 }
 $(".answer-input").keydown(function(event){
@@ -75,3 +76,34 @@ $("#modalEdit .save-button").click(function(){
 	var title = $modal.find(".title-input").val();
 	$row.children(".activityName").html(title);
 });
+
+$("#modalAdd .save-button").click(function(){
+	var $form = $("#activityadd-form");
+	var data = new FormData();
+	data = constructFormData($form);
+	var action = $form.attr("action");
+	$.ajax({
+			data: data,
+			type: "POST",
+			url: action,
+			cache: false,
+			contentType: false,
+			processData: false,
+			success: function(data) {},
+			error:function(){}
+		});
+});
+
+function constructFormData($form){
+	var data = new FormData();
+	data.append("hv_activity.title",$form.find(".title-input").val());
+	var planlist = $form.find("select.plan-input").val();
+	for(var idx in planlist){
+		data.append("hv_activity.planidlist["+idx+"]",planlist[idx]);
+	}
+	$form.find(".answer-row div[value]").each(function(idx){
+		data.append("hv_activity.answerlistList["+idx+"].answerId",$(this).attr("value"));
+		data.append("hv_activity.answerlistList["+idx+"].answerContent",$(this).html());
+	});
+	return data;
+}

@@ -4,6 +4,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,8 +19,7 @@ import javax.persistence.JoinColumn;
 public class Activity {
 	private long activityId;//活动流水号
 	private String title;//题目
-	private String content;//内容
-	private int status;//状态
+	private int status;//状态[0未发布,1发布，2结束
 	private Set<ActivityAnswer> answerlist;//答案
 	private Set<FilmPlan> plans;//计划
 	
@@ -37,21 +37,15 @@ public class Activity {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
-	}
 	
-	@OneToMany(cascade=CascadeType.ALL,mappedBy="activity")
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="activity",fetch=FetchType.EAGER)
 	public Set<ActivityAnswer> getAnswerlist() {
 		return answerlist;
 	}
 	public void setAnswerlist(Set<ActivityAnswer> answerlist) {
 		this.answerlist = answerlist;
 	}
-	@ManyToMany(cascade = CascadeType.PERSIST)
+	@ManyToMany(cascade = CascadeType.PERSIST,fetch=FetchType.EAGER)
 	@JoinTable(
 			name="ActivityMatchPlan",
 			joinColumns=

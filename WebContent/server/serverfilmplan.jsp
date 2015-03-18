@@ -115,7 +115,7 @@
 									</button>
 									</s:if>
 								<s:else>
-								<button class="btn btn-inverse table-button">
+								<button class="btn btn-inverse table-button submitforcheck-button" target="plansubmit">
 										<i class="fa fa-arrow-up"></i>
 									</button>
 							</s:else>
@@ -171,8 +171,8 @@
 				<form action="planedit" id="planedit-form" onSubmit="return false;">
 					<div class="row-line" style="display:none;">
 					<div class="row-label">planid:</div>
-					<div class="span3 row-content">
-						<select class="form-control select select-primary select-block mbl planid-input" name="planid"></select>
+					<div class="form-group has-success row-content">
+						<input class="form-control planid-input" type="text" placeholder="planid" name="planid"/>
 					</div>
 				</div>
 				<div class="row-line">
@@ -269,7 +269,7 @@
 			</div>
 			<div class="modal-footer">
 				<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
-				<button class="btn btn-primary">Save changes</button>
+				<button class="btn btn-primary save-button">Save changes</button>
 			</div>
 		</div>
 	</div>

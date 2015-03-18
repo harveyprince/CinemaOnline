@@ -101,4 +101,41 @@ public class FilmServiceImpl implements FilmService {
 		return result;
 	}
 
+	@Override
+	public OperaResult releaseFilm(String filmid) {
+		// TODO Auto-generated method stub
+		OperaResult result = new OperaResult();
+		Film f = filmDao.getFilmById(Long.parseLong(filmid));
+		f.setStatus(1);
+		f.setReleaseTime(new java.sql.Date((new java.util.Date()).getTime()));
+		filmDao.updateFilm(f);
+		result.setResult(true);
+		return result;
+	}
+
+	@Override
+	public OperaResult unreleaseFilm(String filmid) {
+		// TODO Auto-generated method stub
+		OperaResult result = new OperaResult();
+		Film f = filmDao.getFilmById(Long.parseLong(filmid));
+		f.setStatus(0);
+		f.setShelvesTime(new java.sql.Date((new java.util.Date()).getTime()));
+		filmDao.updateFilm(f);
+//		活动评测------------------------------------------------------------------------------------------待续
+//		计划未结束-----------------------------------------------------------------------------------禁止下架
+		result.setResult(true);
+		return result;
+	}
+
+	@Override
+	public OperaResult submitPlanForCheck(String planid) {
+		// TODO Auto-generated method stub
+		OperaResult result = new OperaResult();
+		FilmPlan info = filmDao.getFilmPlanById(Long.parseLong(planid));
+		info.setStatus(1);
+		filmDao.updateFilmPlan(info);
+		result.setResult(true);
+		return result;
+	}
+
 }

@@ -3,6 +3,7 @@ package com.cinemaonline.model;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -82,7 +83,7 @@ public class FilmPlan {
 		this.activities = activities;
 	}
 	@JoinColumn(name="filmId")
-	@ManyToOne(targetEntity=Film.class)
+	@ManyToOne(targetEntity=Film.class,fetch = FetchType.EAGER)
 	public Film getFilm() {
 		return film;
 	}

@@ -1,5 +1,30 @@
 $("select").select2();
-
+$(".film-eye-button").click(function(){
+	var $button = $(this);
+	var filmid = $(this).parent().siblings(".filmId").html();
+	var action = $(this).attr("target");
+	var data = new FormData();
+	data.append("filmid",filmid);
+	$.ajax({
+		data: data,
+		type: "POST",
+		url: action,
+		cache: false,
+		contentType: false,
+		processData: false,
+		success: function(data) {
+			if(data=="success"){
+				$.scojs_message('success', $.scojs_message.TYPE_OK);
+				setTimeout(function(){window.location.reload()},500);
+			}else{
+				$.scojs_message(data, $.scojs_message.TYPE_ERROR);
+			}
+		},
+		error:function(){
+			$.scojs_message('error occured!', $.scojs_message.TYPE_ERROR);
+		}
+	});
+});
 $(".film-edit-button").click(function(){
 	$row = $(this).parent().parent();
 	$modal = $("#modalEdit");
@@ -52,31 +77,36 @@ $("#modalEdit").find(".save-button").click(function(){
 			success: function(data) {
 				if(data=="success"){
 					$modal = $("#modalEdit");
-	// film-input
-	$filmInput = $modal.find(".filmname-input");
-	$filmsource.html($filmInput.val());
-	// duration-input
-	$durationInput = $modal.find(".duration-input");
-	$durationsource.html($durationInput.val());
-	// 
+					// film-input
+					$filmInput = $modal.find(".filmname-input");
+					$filmsource.html($filmInput.val());
+					// duration-input
+					$durationInput = $modal.find(".duration-input");
+					$durationsource.html($durationInput.val());
+					// 
 
-	// kind
-	$kindInput = $modal.find("select.kind-input");
-	$kindsource.html($kindInput.val());
-	// releaseTime
-	$releaseTimeInput = $modal.find(".releaseTime-input");
-	$releasesource.html($releaseTimeInput.val());
-	// shelvesTime
-	$shelvesTimeInput = $modal.find(".shelvesTime-input");
-	$shelvessource.html($shelvesTimeInput.val());
-		}
+					// kind
+					$kindInput = $modal.find("select.kind-input");
+					$kindsource.html($kindInput.val());
+					// releaseTime
+					$releaseTimeInput = $modal.find(".releaseTime-input");
+					$releasesource.html($releaseTimeInput.val());
+					// shelvesTime
+					$shelvesTimeInput = $modal.find(".shelvesTime-input");
+					$shelvessource.html($shelvesTimeInput.val());
+					
+					$.scojs_message('success', $.scojs_message.TYPE_OK);
+					$modal.modal("hide");
+				}else{
+					$.scojs_message(data, $.scojs_message.TYPE_ERROR);
+				}
 			},
 			error:function(){
 				$.scojs_message('error occured!', $.scojs_message.TYPE_ERROR);
 			}
-			});
-	}
-	
+		});
+}
+
 });
 
 $("#modalAdd").find(".save-button").click(function(){
@@ -85,20 +115,22 @@ $("#modalAdd").find(".save-button").click(function(){
 		var data = new FormData();
 		data = getFormData($("#filmadd-form"),data);
 		$.ajax({
-		data: data,
-		type: "POST",
-		url: action,
-		cache: false,
-		contentType: false,
-		processData: false,
-		success: function(data) {
-			if(data=="success"){
-				window.location.reload();
+			data: data,
+			type: "POST",
+			url: action,
+			cache: false,
+			contentType: false,
+			processData: false,
+			success: function(data) {
+				if(data=="success"){
+					$.scojs_message('success', $.scojs_message.TYPE_OK);
+					$modal.modal("hide");
+					setTimeout(function(){window.location.reload()},500);
+				}
+			},
+			error:function(){
+				$.scojs_message('error occured!', $.scojs_message.TYPE_ERROR);
 			}
-		},
-		error:function(){
-			$.scojs_message('error occured!', $.scojs_message.TYPE_ERROR);
-		}
-	});
+		});
 	}
 });

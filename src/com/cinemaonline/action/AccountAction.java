@@ -35,9 +35,7 @@ public class AccountAction extends BaseAction {
 		OperaResult result = accountService.loginJudge(info);
 		if(result.getResult()){
 //			identity differs
-//			 HttpSession session = request.getSession(true);
 			session.put("userid", result.getAccount().getAccountName());
-//			 session.setAttribute("userid", result.getAccount().getAccountName());
 			ajaxinfo = request.getContextPath();
 			switch(result.getStatus()){
 			case 0:

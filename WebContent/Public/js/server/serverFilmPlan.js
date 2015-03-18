@@ -22,7 +22,10 @@ $(".film-edit-button").click(function(){
 	var hallId = $hallsource.attr("hallId");
 	$hallInput.val(hallId).trigger("change");
 	// seat-sum
-
+	$seatInput = $modal.find(".seat-input");
+	$seatsource = $row.children(".seatSum");
+	var seat = $seatsource.html();
+	$seatInput.val(seat);
 	// price
 	$priceInput = $modal.find(".price-input");
 	$pricesource = $row.children(".price");
@@ -53,30 +56,36 @@ $("#modalEdit").find(".save-button").click(function(){
 			processData: false,
 			success: function(data) {
 				if(data=="success"){
-				//
-				$modal = $("#modalEdit");
-				// film-input
-				$filmInput = $modal.find("select.film-input");
-				$filmsource.attr("filmId",$filmInput.val());
-				$filmsource.html(findValueByKey(filmslist,$filmInput.val()));
-				// hall-input
-				$hallInput = $modal.find("select.hall-input");
-				$hallsource.attr("hallId",$hallInput.val());
-				$hallsource.html(findValueByKey(hallslist,$hallInput.val()));
-				// seat-sum
+					//
+					$modal = $("#modalEdit");
+					// film-input
+					$filmInput = $modal.find("select.film-input");
+					$filmsource.attr("filmId",$filmInput.val());
+					$filmsource.html(findValueByKey(filmslist,$filmInput.val()));
+					// hall-input
+					$hallInput = $modal.find("select.hall-input");
+					$hallsource.attr("hallId",$hallInput.val());
+					$hallsource.html(findValueByKey(hallslist,$hallInput.val()));
+					// seat-sum
+					$seatInput = $modal.find(".seat-input");
+					$seatsource.html($seatInput.val());
+					// price
+					$priceInput = $modal.find(".price-input");
+					$pricesource.html($priceInput.val());
+					// beginTime
+					$beginTimeInput = $modal.find(".beginTime-input");
+					$beginsource.attr("date-time",$beginTimeInput.val());
+					$beginsource.html($beginTimeInput.val().split("T")[1]);
+					// endTime
+					$endTimeInput = $modal.find(".endTime-input");
+					$endsource.attr("date-time",$endTimeInput.val());
+					$endsource.html($endTimeInput.val().split("T")[1]);
 
-				// price
-				$priceInput = $modal.find(".price-input");
-				$pricesource.html($priceInput.val());
-				// beginTime
-				$beginTimeInput = $modal.find(".beginTime-input");
-				$beginsource.attr("date-time",$beginTimeInput.val());
-				$beginsource.html($beginTimeInput.val().split("T")[1]);
-				// endTime
-				$endTimeInput = $modal.find(".endTime-input");
-				$endsource.attr("date-time",$endTimeInput.val());
-				$endsource.html($endTimeInput.val().split("T")[1]);
-			}
+					$.scojs_message('success', $.scojs_message.TYPE_OK);
+					$modal.modal("hide");
+				}else{
+					$.scojs_message(data, $.scojs_message.TYPE_ERROR);
+				}
 			},
 			error:function(){
 				$.scojs_message('error occured!', $.scojs_message.TYPE_ERROR);
@@ -100,7 +109,9 @@ $("#modalAdd").find(".save-button").click(function(){
 		processData: false,
 		success: function(data) {
 			if(data=="success"){
-				window.location.reload();
+				$.scojs_message('success', $.scojs_message.TYPE_OK);
+				$("#modalAdd").modal("hide");
+				setTimeout(function(){window.location.reload()},500);
 			}
 		},
 		error:function(){
@@ -109,3 +120,32 @@ $("#modalAdd").find(".save-button").click(function(){
 	});
 	}
 });
+
+try{
+	$(".submitforcheck-button").click(function(){
+		var $button = $(this);
+		var planid = $(this).parent().siblings(".planId").html();
+		var action = $(this).attr("target");
+		var data = new FormData();
+		data.append("planid",planid);
+		$.ajax({
+			data: data,
+			type: "POST",
+			url: action,
+			cache: false,
+			contentType: false,
+			processData: false,
+			success: function(data) {
+				if(data=="success"){
+					$.scojs_message('success', $.scojs_message.TYPE_OK);
+					setTimeout(function(){window.location.reload()},500);
+				}else{
+					$.scojs_message(data, $.scojs_message.TYPE_ERROR);
+				}
+			},
+			error:function(){
+				$.scojs_message('error occured!', $.scojs_message.TYPE_ERROR);
+			}
+		});
+	});
+}catch(e){}

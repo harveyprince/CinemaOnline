@@ -52,6 +52,8 @@
            </action>
             <action name="planadd" class="ServerAction" method="insertPlan">
            </action>
+           <action name="plansubmit" class="ServerAction" method="submitPlan">
+           </action>
            <!-- film -->
            <action name="serverfilm" class="ServerAction" method="viewFilm">
            	<result name="success">/server/serverfilm.jsp</result>
@@ -59,6 +61,16 @@
            <action name="filmadd" class="ServerAction" method="insertFilm">
            </action>
            <action name="filmedit" class="ServerAction" method="updateFilm">
+           </action>
+           <action name="releasefilm" class="ServerAction" method="releaseFilm">
+           </action>
+           <action name="unreleasefilm" class="ServerAction" method="unreleaseFilm">
+           </action>
+           <!--activity  -->
+           <action name="serveractivity" class="ServerAction" method="viewActivity">
+           	<result name="success">/server/serveractivity.jsp</result>
+           </action>
+           <action name="activityadd" class="ServerAction" method="insertActivity">
            </action>
       </package>
   </struts>
