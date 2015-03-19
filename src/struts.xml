@@ -72,5 +72,7 @@
            </action>
            <action name="activityadd" class="ServerAction" method="insertActivity">
            </action>
+           <action name="activityedit" class="ServerAction" method="updateActivity">
+           </action>
       </package>
   </struts>

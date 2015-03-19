@@ -23,6 +23,7 @@ public class ActivityInfo {
 		info.setTitle(title);
 		info.setStatus(status);
 		info.setPlans(plans);
+		info.setAnswerlist(answerlist);
 		return info;
 	}
 	public void addPlanId(long id){

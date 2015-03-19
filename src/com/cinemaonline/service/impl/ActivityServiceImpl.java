@@ -51,4 +51,28 @@ public class ActivityServiceImpl implements ActivityService {
 		return result;
 	}
 
+	@Override
+	public OperaResult updateActivity(ActivityInfo info) {
+		// TODO Auto-generated method stub
+		OperaResult result = new OperaResult();
+		Activity info_old = activityDao.getActivityById(info.getActivityid());
+		List<Long> planidlist = info.getPlanidlist();
+		Set<FilmPlan> planlist = new HashSet<FilmPlan>();
+		for(long temp:planidlist){
+			planlist.add(filmDao.getFilmPlanById(temp));
+		}
+		info_old.setPlans(planlist);
+		info_old.setTitle(info.getTitle());
+		info_old.setStatus(info.getStatus());
+		activityDao.updateActivity(info_old);
+		activityDao.deleteAnswerByActId(info.getActivityid());
+		List<ActivityAnswer> answerlist = info.getAnswerlistList();
+		for(ActivityAnswer temp:answerlist){
+			temp.setActivity(info_old);
+			activityDao.insertAnswer(temp);
+		}
+		result.setResult(true);
+		return result;
+	}
+
 }

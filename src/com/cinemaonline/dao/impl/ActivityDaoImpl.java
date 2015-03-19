@@ -1,6 +1,5 @@
 package com.cinemaonline.dao.impl;
 
-import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -83,6 +82,48 @@ public class ActivityDaoImpl implements ActivityDao {
 		Transaction ts = session.beginTransaction();
 		try{
 			session.update(info_local);
+			ts.commit();
+		}catch(Exception e){
+			ts.rollback();
+		}finally{
+			session.close();
+		}
+	}
+	@Override
+	public Activity getActivityById(long id) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String hql = "from com.cinemaonline.model.Activity where activityId=?";
+		List list = null;
+		try{
+			Query query = session.createQuery(hql);
+			query.setParameter(0, id);
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return (Activity) list.get(0);
+			}else{
+				return null;
+			}
+		}else{
+			return null;
+		}
+	}
+	@Override
+	public void deleteAnswerByActId(long activityid) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String hql = "delete com.cinemaonline.model.ActivityAnswer where activityId=?";
+		Transaction ts = session.beginTransaction();
+		try{
+			Query query = session.createQuery(hql);
+			query.setParameter(0, activityid);
+			query.executeUpdate();
 			ts.commit();
 		}catch(Exception e){
 			ts.rollback();

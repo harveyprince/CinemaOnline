@@ -16,4 +16,8 @@ public interface ActivityDao {
 	public void insertAnswer(ActivityAnswer info);
 	
 	public List<Activity> getAllUnpassedActivities();
+
+	public Activity getActivityById(long id);
+
+	public void deleteAnswerByActId(long activityid);
 }

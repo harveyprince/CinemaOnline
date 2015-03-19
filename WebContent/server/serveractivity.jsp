@@ -164,6 +164,13 @@
 				<h5 id="myModalLabel">Activity Edit</h5>
 			</div>
 			<div class="modal-body">
+				<form action="activityedit" id="activityedit-form" onSubmit="return false;">
+					<div class="row-line" style="display:none;">
+					<div class="row-label">id:</div>
+					<div class="form-group has-success row-content">
+						<input class="form-control id-input" type="text" placeholder="id" />
+					</div>
+				</div>
 				<div class="row-line">
 					<div class="row-label">title:</div>
 					<div class="form-group has-success row-content">
@@ -184,13 +191,13 @@
 					</div>
 				</div>
 				<div class="answers-panel">
-					 
+				</div>
+			</form>
 			</div>
 			<div class="modal-footer">
 				<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
 				<button class="btn btn-primary save-button">Save changes</button>
 			</div>
-		</div>
 	</div>
 </div>
 

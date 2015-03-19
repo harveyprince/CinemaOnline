@@ -54,6 +54,16 @@ public class ServerAction extends BaseAction {
 		}
 		return AJAXINFO;
 	}
+	
+	public String updateActivity(){
+		OperaResult result = activityService.updateActivity(hv_activity);
+		if(result.getResult()){
+			ajaxinfo = "success";
+		}else{
+			ajaxinfo = result.getComment();
+		}
+		return AJAXINFO;
+	}
 	/*
 	 * film
 	 * */

@@ -96,7 +96,7 @@ $("#modalEdit").find(".save-button").click(function(){
 					$shelvessource.html($shelvesTimeInput.val());
 					
 					$.scojs_message('success', $.scojs_message.TYPE_OK);
-					$modal.modal("hide");
+					$("#modalEdit").modal("hide");
 				}else{
 					$.scojs_message(data, $.scojs_message.TYPE_ERROR);
 				}

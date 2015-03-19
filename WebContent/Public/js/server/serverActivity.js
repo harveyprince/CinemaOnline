@@ -4,7 +4,6 @@ $("select.plan-input").select2();
 $(".film-edit-button").click(function(){
 	$row = $(this).parent().parent();
 	$modal = $("#modalEdit");
-
 	//plan
 	var planarray = [];
 	$row.children(".activity-plans").children("li").each(function(){
@@ -24,7 +23,9 @@ $(".film-edit-button").click(function(){
 	//title
 	var title = $row.children(".activityName").html();
 	$modal.find(".title-input").val(title);
-	
+	//id
+	var id = $row.children(".activityId").html();
+	$modal.find(".id-input").val(id);
 });
 function answerCount(){
 	$("#modalEdit .answer-row").each(function(idx){
@@ -59,22 +60,46 @@ $(".answer-row").click(function(){
 });
 
 $("#modalEdit .save-button").click(function(){
-	//plan
-	var planarray = $modal.find("select.plan-input").val();
-	$row.children(".activity-plans").html("");
-	for(var temp in planarray){
-		var singleplan = planarray[temp];
-		$row.children(".activity-plans").append($("<li>").attr("value",singleplan).html(singleplan));
-	}
-	//answer
-	$row.children(".activity-answers").html("");
-	$modal.find(".answer-row").each(function(){
-		var $answerval = $(this).children("div[value]");
-		$row.children(".activity-answers").append($("<li>").attr("value",$answerval.attr("value")).html($answerval.html()));
-	});
-	//title
-	var title = $modal.find(".title-input").val();
-	$row.children(".activityName").html(title);
+	var $form = $("#activityedit-form");
+	var data = new FormData();
+	data = constructFormData($form);
+	data.append("hv_activity.activityid",$form.find(".id-input").val());
+	var action = $form.attr("action");
+	$.ajax({
+			data: data,
+			type: "POST",
+			url: action,
+			cache: false,
+			contentType: false,
+			processData: false,
+			success: function(data) {
+				if(data=="success"){
+					//plan
+					var planarray = $modal.find("select.plan-input").val();
+					$row.children(".activity-plans").html("");
+					for(var temp in planarray){
+						var singleplan = planarray[temp];
+						$row.children(".activity-plans").append($("<li>").attr("value",singleplan).html(singleplan));
+					}
+					//answer
+					$row.children(".activity-answers").html("");
+					$modal.find(".answer-row").each(function(){
+						var $answerval = $(this).children("div[value]");
+						$row.children(".activity-answers").append($("<li>").attr("value",$answerval.attr("value")).html($answerval.html()));
+					});
+					//title
+					var title = $modal.find(".title-input").val();
+					$row.children(".activityName").html(title);
+					
+					$.scojs_message('success', $.scojs_message.TYPE_OK);
+					$("#modalEdit").modal("hide");
+				}
+			},
+			error:function(){
+				$.scojs_message('error occured!', $.scojs_message.TYPE_ERROR);
+			}
+		});
+	
 });
 
 $("#modalAdd .save-button").click(function(){
@@ -89,8 +114,16 @@ $("#modalAdd .save-button").click(function(){
 			cache: false,
 			contentType: false,
 			processData: false,
-			success: function(data) {},
-			error:function(){}
+			success: function(data) {
+				if(data=="success"){
+					$.scojs_message('success', $.scojs_message.TYPE_OK);
+					$("#modalAdd").modal("hide");
+					setTimeout(function(){window.location.reload()},500);
+				}
+			},
+			error:function(){
+				$.scojs_message('error occured!', $.scojs_message.TYPE_ERROR);
+			}
 		});
 });
 

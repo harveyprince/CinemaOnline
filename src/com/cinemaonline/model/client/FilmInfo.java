@@ -8,7 +8,7 @@ import java.util.List;
 import com.cinemaonline.model.Film;
 
 public class FilmInfo {
-	SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
 	private long filmId;
 	private String name;
 	private int duration;

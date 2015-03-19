@@ -11,4 +11,6 @@ public interface ActivityService {
 	public List<Activity> getAllUnpassedActivities();
 
 	public OperaResult insertActivity(ActivityInfo info);
+
+	public OperaResult updateActivity(ActivityInfo info);
 }

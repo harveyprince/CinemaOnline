@@ -38,7 +38,7 @@ public class Activity {
 		this.title = title;
 	}
 	
-	@OneToMany(cascade=CascadeType.ALL,mappedBy="activity",fetch=FetchType.EAGER)
+	@OneToMany(cascade={CascadeType.PERSIST,CascadeType.REMOVE},mappedBy="activity",fetch=FetchType.EAGER)
 	public Set<ActivityAnswer> getAnswerlist() {
 		return answerlist;
 	}
