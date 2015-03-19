@@ -13,7 +13,6 @@ import com.cinemaonline.dao.ActivityDao;
 import com.cinemaonline.dao.BaseDao;
 import com.cinemaonline.model.Activity;
 import com.cinemaonline.model.ActivityAnswer;
-import com.cinemaonline.model.ActivityMatchPlan;
 
 @Repository
 public class ActivityDaoImpl implements ActivityDao {
@@ -51,21 +50,7 @@ public class ActivityDaoImpl implements ActivityDao {
 			session.close();
 		}
 	}
-	@Override
-	public void insertMatchPlan(ActivityMatchPlan info) {
-		// TODO Auto-generated method stub
-		ActivityMatchPlan info_local = info;
-		Session session = baseDao.getNewSession();
-		Transaction ts = session.beginTransaction();
-		try{
-			session.save(info_local);
-			ts.commit();
-		}catch(Exception e){
-			ts.rollback();
-		}finally{
-			session.close();
-		}
-	}
+
 	@Override
 	public List<Activity> getAllUnpassedActivities() {
 		// TODO Auto-generated method stub
@@ -88,6 +73,21 @@ public class ActivityDaoImpl implements ActivityDao {
 			}
 		}else{
 			return null;
+		}
+	}
+	@Override
+	public void updateActivity(Activity info) {
+		// TODO Auto-generated method stub
+		Activity info_local = info;
+		Session session = baseDao.getNewSession();
+		Transaction ts = session.beginTransaction();
+		try{
+			session.update(info_local);
+			ts.commit();
+		}catch(Exception e){
+			ts.rollback();
+		}finally{
+			session.close();
 		}
 	}
 

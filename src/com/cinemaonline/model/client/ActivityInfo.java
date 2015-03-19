@@ -22,6 +22,7 @@ public class ActivityInfo {
 		Activity info = new Activity();
 		info.setTitle(title);
 		info.setStatus(status);
+		info.setPlans(plans);
 		return info;
 	}
 	public void addPlanId(long id){
