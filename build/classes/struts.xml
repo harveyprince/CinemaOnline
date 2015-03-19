@@ -74,5 +74,11 @@
            </action>
            <action name="activityedit" class="ServerAction" method="updateActivity">
            </action>
+           <action name="actpublish" class="ServerAction" method="publishActivity">
+           </action>
+           <!--ticket  -->
+           <action name="ticketsale" class="ServerAction" method="viewTicketSale">
+           <result name="success">/server/ticketsale.jsp</result>
+           </action>
       </package>
   </struts>

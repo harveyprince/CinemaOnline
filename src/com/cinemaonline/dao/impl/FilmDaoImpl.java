@@ -53,7 +53,7 @@ public class FilmDaoImpl implements FilmDao {
 		return info_local;
 	}
 	@Override
-	public List<FilmPlan> getAllUnpassedPlans() {
+	public List<FilmPlan> getAllUnoldPlans() {
 		// TODO Auto-generated method stub
 		Session session = baseDao.getNewSession();
 		Date timestamp = new Date();
@@ -255,6 +255,30 @@ public class FilmDaoImpl implements FilmDao {
 			session.close();
 		}
 		return info_local;
+	}
+	@Override
+	public List<FilmPlan> getAllPassedPlans() {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String hql = "from com.cinemaonline.model.FilmPlan where status=2";
+		List list = null;
+		try{
+			Query query = session.createQuery(hql);
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return list;
+			}else{
+				return null;
+			}
+		}else{
+			return null;
+		}
 	}
 
 	

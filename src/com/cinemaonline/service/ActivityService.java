@@ -13,4 +13,6 @@ public interface ActivityService {
 	public OperaResult insertActivity(ActivityInfo info);
 
 	public OperaResult updateActivity(ActivityInfo info);
+
+	public OperaResult pulishActivity(long actid);
 }

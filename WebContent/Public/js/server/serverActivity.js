@@ -1,6 +1,35 @@
 selectInitial($("select.plan-input"),planslist);
 $("select.plan-input").select2();
 
+try{
+$(".act-publish-button").click(function(){
+	var $button = $(this);
+	var actid = $(this).parent().siblings(".activityId").html();
+	var action = $(this).attr("target");
+	var data = new FormData();
+	data.append("activityid",actid);
+	$.ajax({
+		data: data,
+		type: "POST",
+		url: action,
+		cache: false,
+		contentType: false,
+		processData: false,
+		success: function(data) {
+			if(data=="success"){
+				$.scojs_message('success', $.scojs_message.TYPE_OK);
+				setTimeout(function(){window.location.reload()},500);
+			}else{
+				$.scojs_message(data, $.scojs_message.TYPE_ERROR);
+			}
+		},
+		error:function(){
+			$.scojs_message('error occured!', $.scojs_message.TYPE_ERROR);
+		}
+	});
+});
+}catch(e){}
+
 $(".film-edit-button").click(function(){
 	$row = $(this).parent().parent();
 	$modal = $("#modalEdit");

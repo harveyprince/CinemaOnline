@@ -23,10 +23,10 @@
 			<div class="row">
 				<div class="">
 					<ul class="nav nav-list">
-						<li><a href="serverplan"><i class="fa fa-pencil-square-o"></i>Film Plan</a></li>
+						<li><a href="serverfilmplan"><i class="fa fa-pencil-square-o"></i>Film Plan</a></li>
 						<li ><a href="serverfilm"><i class="fa fa-film"></i>Film</a></li>
 						<li class="active"><a href="#"><i class="fa fa-dribbble"></i> Activity</a></li>
-						<li><a href="#"><i class="fa fa-usd"></i> Ticket Sale</a></li>
+						<li><a href="ticketsale"><i class="fa fa-usd"></i> Ticket Sale</a></li>
 						<li><a href="#"><i class="fa fa-user"></i> VIP</a></li>
 					</ul>
 				</div>
@@ -86,7 +86,7 @@
 									</button>
 								</th>
 								<th>
-									<button class="btn btn-inverse table-button">
+									<button class="btn btn-inverse table-button act-publish-button" target="actpublish">
 										<i class="fa fa-arrow-up"></i>
 									</button>
 								</th>

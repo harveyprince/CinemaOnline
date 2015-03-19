@@ -75,4 +75,15 @@ public class ActivityServiceImpl implements ActivityService {
 		return result;
 	}
 
+	@Override
+	public OperaResult pulishActivity(long actid) {
+		// TODO Auto-generated method stub
+		OperaResult result = new OperaResult();
+		Activity info = activityDao.getActivityById(actid);
+		info.setStatus(1);
+		activityDao.updateActivity(info);
+		result.setResult(true);
+		return result;
+	}
+
 }

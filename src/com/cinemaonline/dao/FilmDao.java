@@ -22,7 +22,9 @@ public interface FilmDao {
 	
 	public void updateFilmPlan(FilmPlan info);
 
-	public List<FilmPlan> getAllUnpassedPlans();
+	public List<FilmPlan> getAllUnoldPlans();
+	
+	public List<FilmPlan> getAllPassedPlans();
 	
 	public FilmPlan getFilmPlanById(long id);
 	
@@ -30,4 +32,6 @@ public interface FilmDao {
 	public List<Hall> getAllHalls();
 	
 	public Hall getHallById(int id);
+
+	
 }

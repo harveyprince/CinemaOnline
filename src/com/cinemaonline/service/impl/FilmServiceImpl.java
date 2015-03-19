@@ -23,7 +23,14 @@ public class FilmServiceImpl implements FilmService {
 	@Override
 	public List<FilmPlanInfo> getAllUnoldPlans() {
 		// TODO Auto-generated method stub
-		List<FilmPlanInfo> plans = FilmPlanInfo.parseFPI(filmDao.getAllUnpassedPlans());
+		List<FilmPlanInfo> plans = FilmPlanInfo.parseFPI(filmDao.getAllUnoldPlans());
+		return plans;
+	}
+
+	@Override
+	public List<FilmPlanInfo> getAllPassedPlans() {
+		// TODO Auto-generated method stub
+		List<FilmPlanInfo> plans = FilmPlanInfo.parseFPI(filmDao.getAllPassedPlans());
 		return plans;
 	}
 
@@ -137,5 +144,6 @@ public class FilmServiceImpl implements FilmService {
 		result.setResult(true);
 		return result;
 	}
+
 
 }

@@ -36,11 +36,21 @@ public class ServerAction extends BaseAction {
 	/*get from client*/
 	private ActivityInfo hv_activity;
 	//	///////////////////////////////////////////////////////////
+	
+	/*
+	 * ticket
+	 * */
+	public String viewTicketSale(){
+		filmplanlist = filmService.getAllPassedPlans();
+		filmlist = filmService.getAllReleasingFilms();
+		halllist = filmService.getAllHalls();
+		return SUCCESS;
+	}
 	/*
 	 * activity
 	 * */
 	public String viewActivity(){
-		filmplanlist = filmService.getAllUnoldPlans();
+		filmplanlist = filmService.getAllPassedPlans();
 		activitylist = activityService.getAllUnpassedActivities();
 		return SUCCESS;
 	}
@@ -57,6 +67,16 @@ public class ServerAction extends BaseAction {
 	
 	public String updateActivity(){
 		OperaResult result = activityService.updateActivity(hv_activity);
+		if(result.getResult()){
+			ajaxinfo = "success";
+		}else{
+			ajaxinfo = result.getComment();
+		}
+		return AJAXINFO;
+	}
+	
+	public String publishActivity(){
+		OperaResult result = activityService.pulishActivity(Long.parseLong(request.getParameter("activityid")));
 		if(result.getResult()){
 			ajaxinfo = "success";
 		}else{

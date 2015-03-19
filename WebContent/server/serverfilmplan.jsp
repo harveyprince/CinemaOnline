@@ -24,8 +24,8 @@
 					<ul class="nav nav-list">
 						<li class="active"><a href="#"><i class="fa fa-pencil-square-o"></i>Film Plan</a></li>
 						<li ><a href="serverfilm"><i class="fa fa-film"></i>Film</a></li>
-						<li><a href="#"><i class="fa fa-dribbble"></i> Activity</a></li>
-						<li><a href="#"><i class="fa fa-usd"></i> Ticket Sale</a></li>
+						<li><a href="serveractivity"><i class="fa fa-dribbble"></i> Activity</a></li>
+						<li><a href="ticketsale"><i class="fa fa-usd"></i> Ticket Sale</a></li>
 						<li><a href="#"><i class="fa fa-user"></i> VIP</a></li>
 					</ul>
 				</div>

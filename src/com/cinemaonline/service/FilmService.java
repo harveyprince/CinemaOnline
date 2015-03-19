@@ -10,6 +10,8 @@ import com.cinemaonline.model.client.OperaResult;
 public interface FilmService {
 
 	public List<FilmPlanInfo> getAllUnoldPlans();
+
+	public List<FilmPlanInfo> getAllPassedPlans();
 	
 	public List<FilmInfo> getAllReleasingFilms();
 	
@@ -30,4 +32,5 @@ public interface FilmService {
 	public OperaResult unreleaseFilm(String filmid);
 
 	public OperaResult submitPlanForCheck(String planid);
+
 }
