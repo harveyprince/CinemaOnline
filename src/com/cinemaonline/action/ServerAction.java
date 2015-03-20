@@ -14,9 +14,13 @@ import com.cinemaonline.model.client.FilmInfo;
 import com.cinemaonline.model.client.FilmPlanInfo;
 import com.cinemaonline.model.client.OperaResult;
 import com.cinemaonline.model.client.TicketOrder;
+import com.cinemaonline.model.client.VipCardInfo;
+import com.cinemaonline.model.client.VipClientInfo;
+import com.cinemaonline.model.client.VipRecordInfo;
 import com.cinemaonline.service.ActivityService;
 import com.cinemaonline.service.FilmService;
 import com.cinemaonline.service.TicketService;
+import com.cinemaonline.service.VipService;
 
 @Repository
 public class ServerAction extends BaseAction {
@@ -30,18 +34,44 @@ public class ServerAction extends BaseAction {
 	private ActivityService activityService;
 	@Autowired
 	private TicketService ticketService;
+	@Autowired
+	private VipService vipService;
 	
 	private String ajaxinfo;
 	private List<FilmPlanInfo> filmplanlist;
 	private List<FilmInfo> filmlist;
 	private List<Hall> halllist;
 	private List<Activity> activitylist;
+	private List<VipRecordInfo> viprecordlist;
+	private VipClientInfo vipclientinfo;
+	private VipCardInfo vipcardinfo;
 
 //	///////////////////////////////////////////////////////////
 	/*get from client*/
 	private ActivityInfo hv_activity;
 	private TicketOrder ticketOrder;
 	//	///////////////////////////////////////////////////////////
+	
+	/*
+	 * vip reader
+	 * */
+	public String viewVip(){
+		String searchkey = request.getParameter("searchkey");
+		if(searchkey==null){
+			viprecordlist=null;
+			vipclientinfo=null;
+			vipcardinfo=null;
+		}else{
+			viprecordlist = vipService.getRecords(searchkey);
+			vipclientinfo = vipService.getVipInfoForClient(searchkey);
+			if(vipclientinfo.getStatus()!=0){
+				vipcardinfo = vipService.getVipCardInfoForClient(searchkey);
+			}else{
+				vipcardinfo = null;
+			}
+		}
+		return SUCCESS;
+	}
 	
 	/*
 	 * ticket
@@ -301,8 +331,28 @@ public class ServerAction extends BaseAction {
 		this.ticketOrder = ticketOrder;
 	}
 
+	public List<VipRecordInfo> getViprecordlist() {
+		return viprecordlist;
+	}
 
+	public void setViprecordlist(List<VipRecordInfo> viprecordlist) {
+		this.viprecordlist = viprecordlist;
+	}
 
+	public VipClientInfo getVipclientinfo() {
+		return vipclientinfo;
+	}
 
+	public void setVipclientinfo(VipClientInfo vipclientinfo) {
+		this.vipclientinfo = vipclientinfo;
+	}
+
+	public VipCardInfo getVipcardinfo() {
+		return vipcardinfo;
+	}
+
+	public void setVipcardinfo(VipCardInfo vipcardinfo) {
+		this.vipcardinfo = vipcardinfo;
+	}
 
 }

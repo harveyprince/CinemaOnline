@@ -43,6 +43,10 @@
            <action name="viprecord" class="VipAction" method="viewRecord">
            	<result name="success">/vip/viprecord.jsp</result>
            </action>
+           <!--activity  -->
+           <action name="vipactivity" class="VipAction" method="viewActivity">
+           	<result name="success">/vip/vipactivity.jsp</result>
+           </action>
            <!-- ServerAction --><!-- ServerAction --><!-- ServerAction -->
            <!--plan  -->
            <action name="serverfilmplan" class="ServerAction" method="viewPlan">
@@ -83,6 +87,10 @@
            <action name="ticketCheck" class="ServerAction" method="ticketJudge">
            </action>
            <action name="ticketPay" class="ServerAction" method="ticketPay">
+           </action>
+           <!--vip read  -->
+           <action name="viewVipDetail" class="ServerAction" method="viewVip">
+           <result name="success">/server/servervipread.jsp</result>
            </action>
       </package>
   </struts>

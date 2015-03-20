@@ -75,7 +75,7 @@ public class FilmPlan {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	@ManyToMany(mappedBy="plans")
+	@ManyToMany(mappedBy="plans",fetch = FetchType.EAGER)
 	public Set<Activity> getActivities() {
 		return activities;
 	}

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.cinemaonline.dao.ActivityDao;
 import com.cinemaonline.dao.FilmDao;
+import com.cinemaonline.dao.TicketDao;
 import com.cinemaonline.model.Activity;
 import com.cinemaonline.model.ActivityAnswer;
 import com.cinemaonline.model.FilmPlan;
@@ -23,6 +24,8 @@ public class ActivityServiceImpl implements ActivityService {
 	private ActivityDao activityDao;
 	@Autowired
 	private FilmDao filmDao;
+	@Autowired
+	private TicketDao ticketDao;
 	
 	@Override
 	public List<Activity> getAllUnpassedActivities() {
@@ -84,6 +87,13 @@ public class ActivityServiceImpl implements ActivityService {
 		activityDao.updateActivity(info);
 		result.setResult(true);
 		return result;
+	}
+
+	@Override
+	public List<Activity> getActivitiesForVip(String userid) {
+		// TODO Auto-generated method stub
+		
+		return null;
 	}
 
 }

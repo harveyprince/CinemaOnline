@@ -73,9 +73,6 @@ pageEncoding="UTF-8"%>
 									<th class="comment"><s:property value="#record.comment"/></th>
 								</tr>
 								</s:iterator>
-								<tr class="info">
-									
-								</tr>
 							</tbody>
 						</table>
 					</div>

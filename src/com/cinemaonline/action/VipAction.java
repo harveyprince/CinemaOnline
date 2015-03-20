@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.cinemaonline.model.Activity;
 import com.cinemaonline.model.VipLevel;
 import com.cinemaonline.model.client.BankOperaInfo;
 import com.cinemaonline.model.client.OperaResult;
@@ -13,6 +14,7 @@ import com.cinemaonline.model.client.VipClientInfo;
 import com.cinemaonline.model.client.VipOperaInfo;
 import com.cinemaonline.model.client.VipRecordInfo;
 import com.cinemaonline.model.client.VipUpdate;
+import com.cinemaonline.service.ActivityService;
 import com.cinemaonline.service.BankService;
 import com.cinemaonline.service.VipService;
 
@@ -27,12 +29,24 @@ public class VipAction extends BaseAction {
 	private VipService vipService;
 	@Autowired
 	private BankService bankService;
+	@Autowired
+	private ActivityService activityService;
 	
 	private String ajaxinfo;
 	private VipClientInfo vipinfo;
 	private VipCardInfo cardinfo;
 	private List<VipLevel> lvslist;
 	private List<VipRecordInfo> recordlist;
+	private List<Activity> activitylist;
+	
+	/*
+	 * activity
+	 * */
+	public String viewActivity(){
+		String userid = (String) session.get("userid");
+		activitylist = activityService.getActivitiesForVip(userid);
+		return SUCCESS;
+	}
 	
 	/*
 	 * info
@@ -185,6 +199,14 @@ public class VipAction extends BaseAction {
 
 	public void setRecordlist(List<VipRecordInfo> recordlist) {
 		this.recordlist = recordlist;
+	}
+
+	public List<Activity> getActivitylist() {
+		return activitylist;
+	}
+
+	public void setActivitylist(List<Activity> activitylist) {
+		this.activitylist = activitylist;
 	}
 
 

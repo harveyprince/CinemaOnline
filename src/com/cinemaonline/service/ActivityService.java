@@ -15,4 +15,6 @@ public interface ActivityService {
 	public OperaResult updateActivity(ActivityInfo info);
 
 	public OperaResult pulishActivity(long actid);
+
+	public List<Activity> getActivitiesForVip(String userid);
 }
