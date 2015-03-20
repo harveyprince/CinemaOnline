@@ -4,22 +4,22 @@ public class BankOperaInfo {
 	
 	private long userId;//银行帐号
 	private String password;//password
-	private int operateNum;//正负充值消费
-	public void setConsume(int num){
+	private double operateNum;//正负充值消费
+	public void setConsume(double num){
 		operateNum = num<0?num:-num;
 	}
 	public void setConsume(String num){
-		int num_temp = Integer.parseInt(num);
+		double num_temp = Double.parseDouble(num);
 		operateNum = num_temp<0?num_temp:-num_temp;
 	}
-	public int getOperateNum() {
+	public double getOperateNum() {
 		return operateNum;
 	}
-	public void setOperateNum(int operateNum) {
+	public void setOperateNum(double operateNum) {
 		this.operateNum = operateNum;
 	}
 	public void setOperateNum(String operateNum) {
-		this.operateNum = Integer.parseInt(operateNum);
+		this.operateNum = Double.parseDouble(operateNum);
 	}
 	public long getUserId() {
 		return userId;

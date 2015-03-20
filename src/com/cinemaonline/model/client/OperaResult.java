@@ -1,6 +1,7 @@
 package com.cinemaonline.model.client;
 
 import com.cinemaonline.model.Account;
+import com.cinemaonline.model.TicketRecord;
 
 public class OperaResult {
 	
@@ -8,6 +9,8 @@ public class OperaResult {
 	private String comment;
 	private int status;
 	private Account account;
+	private TicketOrder ticketOrder;
+	private TicketRecord ticketRecord;
 	public boolean getResult() {
 		return result;
 	}
@@ -32,5 +35,18 @@ public class OperaResult {
 	public void setAccount(Account account) {
 		this.account = account;
 	}
+	public TicketOrder getTicketOrder() {
+		return ticketOrder;
+	}
+	public void setTicketOrder(TicketOrder ticketOrder) {
+		this.ticketOrder = ticketOrder;
+	}
+	public TicketRecord getTicketRecord() {
+		return ticketRecord;
+	}
+	public void setTicketRecord(TicketRecord ticketRecord) {
+		this.ticketRecord = ticketRecord;
+	}
+
 
 }

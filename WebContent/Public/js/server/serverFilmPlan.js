@@ -112,6 +112,8 @@ $("#modalAdd").find(".save-button").click(function(){
 				$.scojs_message('success', $.scojs_message.TYPE_OK);
 				$("#modalAdd").modal("hide");
 				setTimeout(function(){window.location.reload()},500);
+			}else{
+				$.scojs_message(data, $.scojs_message.TYPE_ERROR);
 			}
 		},
 		error:function(){

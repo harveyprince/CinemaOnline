@@ -1,5 +1,8 @@
 package com.cinemaonline.dao.impl;
 
+import java.util.List;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +68,33 @@ public class InfoDaoImpl implements InfoDao {
 			session.close();
 		}
 		return info_local;
+	}
+
+	@Override
+	public Identity getIdentityById(int id) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		
+		String hql = "from com.cinemaonline.model.Identity as a where a.identityId='"+id+"'";
+		List list = null;
+		try{
+			Query query = session.createQuery(hql);
+			list = query.list();
+		}catch(Exception e){
+			
+		}finally{
+			session.close();
+		}
+		if(list==null){
+			return null;
+		}
+		else{
+		if(list.size()>0){
+			return (Identity)(list.get(0));
+		}else{
+			return null;
+		}
+		}
 	}
 
 }

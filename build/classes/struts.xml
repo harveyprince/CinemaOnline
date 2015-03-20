@@ -80,5 +80,9 @@
            <action name="ticketsale" class="ServerAction" method="viewTicketSale">
            <result name="success">/server/ticketsale.jsp</result>
            </action>
+           <action name="ticketCheck" class="ServerAction" method="ticketJudge">
+           </action>
+           <action name="ticketPay" class="ServerAction" method="ticketPay">
+           </action>
       </package>
   </struts>

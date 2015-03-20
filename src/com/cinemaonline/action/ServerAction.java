@@ -8,12 +8,15 @@ import org.springframework.stereotype.Repository;
 
 import com.cinemaonline.model.Activity;
 import com.cinemaonline.model.Hall;
+import com.cinemaonline.model.Ticket;
 import com.cinemaonline.model.client.ActivityInfo;
 import com.cinemaonline.model.client.FilmInfo;
 import com.cinemaonline.model.client.FilmPlanInfo;
 import com.cinemaonline.model.client.OperaResult;
+import com.cinemaonline.model.client.TicketOrder;
 import com.cinemaonline.service.ActivityService;
 import com.cinemaonline.service.FilmService;
+import com.cinemaonline.service.TicketService;
 
 @Repository
 public class ServerAction extends BaseAction {
@@ -25,6 +28,8 @@ public class ServerAction extends BaseAction {
 	private FilmService filmService;
 	@Autowired
 	private ActivityService activityService;
+	@Autowired
+	private TicketService ticketService;
 	
 	private String ajaxinfo;
 	private List<FilmPlanInfo> filmplanlist;
@@ -35,6 +40,7 @@ public class ServerAction extends BaseAction {
 //	///////////////////////////////////////////////////////////
 	/*get from client*/
 	private ActivityInfo hv_activity;
+	private TicketOrder ticketOrder;
 	//	///////////////////////////////////////////////////////////
 	
 	/*
@@ -45,6 +51,44 @@ public class ServerAction extends BaseAction {
 		filmlist = filmService.getAllReleasingFilms();
 		halllist = filmService.getAllHalls();
 		return SUCCESS;
+	}
+	
+	public String ticketJudge(){
+		OperaResult result = ticketService.judgeTicket(ticketOrder);
+		if(result.getResult()){
+			session.put("ticketorder", result.getTicketOrder());
+			ajaxinfo = "success"+"#"+result.getTicketOrder().getCost();
+		}else{
+			ajaxinfo = result.getComment();
+		}
+		return AJAXINFO;
+	}
+	
+	public String ticketPay(){
+		try{
+			TicketOrder order = (TicketOrder) session.get("ticketorder");
+			if(order==null){
+				ajaxinfo="failed";
+				return AJAXINFO;
+			}
+			order.setPayway(ticketOrder.getPayway());
+			order.setBank_account(ticketOrder.getBank_account());
+			OperaResult result = ticketService.payTheBill(order);
+			if(result.getResult()){
+				session.remove("ticketorder");
+				ajaxinfo = "success"+"#";
+				for(Ticket tick:result.getTicketRecord().getTickets()){
+					ajaxinfo += tick.getSeatNumber();
+					ajaxinfo += "&";
+				}
+			}else{
+				ajaxinfo = result.getComment();
+			}
+		}catch(Exception e){
+			ajaxinfo="failed";
+			e.printStackTrace();
+		}
+		return AJAXINFO;
 	}
 	/*
 	 * activity
@@ -247,6 +291,14 @@ public class ServerAction extends BaseAction {
 
 	public void setHv_activity(ActivityInfo hv_activity) {
 		this.hv_activity = hv_activity;
+	}
+
+	public TicketOrder getTicketOrder() {
+		return ticketOrder;
+	}
+
+	public void setTicketOrder(TicketOrder ticketOrder) {
+		this.ticketOrder = ticketOrder;
 	}
 
 

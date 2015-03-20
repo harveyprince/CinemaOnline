@@ -60,7 +60,7 @@ pageEncoding="UTF-8"%>
 							</thead>
 							<tbody>
 								<s:iterator id="plan" value="filmplanlist" status="st">
-								<tr class="danger">
+								<tr class="success">
 									<th class="planId"><s:property value="#plan.planid"/></th>
 									<th class="filmName" filmId='<s:property value="#plan.filmid"/>'><s:property value="#plan.filmName"/></th>
 									<th class="hallNo" hallId='<s:property value="#plan.hall.hallNo"/>'><s:property value="#plan.hall.name"/></th>
@@ -126,34 +126,40 @@ pageEncoding="UTF-8"%>
 					</ul>
 					<div class="pane-wrapper slide clearfix">
 						<div class="modal-tab-page">
+							<div class="row-line" style="display:none;">
+								<div class="row-label">planid:</div>
+								<div class="span3 row-content">
+									<div class="text-shown planid-shown"></div>
+								</div>
+							</div>
 							<div class="row-line">
 								<div class="row-label">film:</div>
 								<div class="span3 row-content">
-									<div class="text-shown film-shown">duplicate</div>
+									<div class="text-shown film-shown"></div>
 								</div>
 							</div>
 							<div class="row-line">
 								<div class="row-label">hallNo:</div>
 								<div class="span3 row-content">
-									<div class="text-shown hall-shown">no.1</div>
+									<div class="text-shown hall-shown"></div>
 								</div>
 							</div> 
 							<div class="row-line">
 								<div class="row-label">seatLeft:</div>
 								<div class="form-group has-success row-content">
-									<div class="text-shown seat-shown">30</div>
+									<div class="text-shown seat-shown"></div>
 								</div>
 							</div>
 							<div class="row-line">
 								<div class="row-label">price:</div>
 								<div class="form-group has-success row-content">
-									<div class="text-shown price-shown">100</div>
+									<div class="text-shown price-shown"></div>
 								</div>
 							</div> 
 							<div class="row-line">
 								<div class="row-label">time:</div>
 								<div class="form-group has-success row-content">
-									<div class="text-shown time-shown">00:01~00:05</div>
+									<div class="text-shown time-shown"></div>
 								</div>
 							</div> 
 							<div class="row-line">
@@ -192,12 +198,11 @@ pageEncoding="UTF-8"%>
 										<input class="form-control vip-password-input" type="password" placeholder="id" />
 									</div>
 								</div> 
-
 							</div>
 							<div class="row-line">
 
 								<div class="form-group has-success row-content">
-									<button class="btn btn-primary ticket-confirm">next step</button>
+									<button class="btn btn-primary ticket-confirm" target="ticketCheck">next step</button>
 								</div>
 							</div>
 						</div>
@@ -205,7 +210,7 @@ pageEncoding="UTF-8"%>
 							<div class="row-line">
 								<div class="row-label">Bill:</div>
 								<div class="form-group has-success row-content">
-									<div class="text-shown bill-shown">300</div>
+									<div class="text-shown bill-shown"></div>
 								</div>
 							</div>
 							<div class="row-line">
@@ -235,7 +240,7 @@ pageEncoding="UTF-8"%>
 							<div class="row-line">
 
 								<div class="form-group has-success row-content">
-									<button class="btn btn-primary ticket-finish-button">finish</button>
+									<button class="btn btn-primary ticket-finish-button" target="ticketPay">finish</button>
 								</div>
 							</div>
 						</div>
@@ -251,9 +256,11 @@ pageEncoding="UTF-8"%>
 
 </body>
 <script src="./Public/jquery/jquery.min.js"></script>
+<script src="./Public/jquery/jquery.md5.js"></script>
 <script src="./Public/dist/js/bootstrap.min.js"></script>
 <script src="./Public/sco/js/sco.panes.js"></script>
 <script src="./Public/sco/js/sco.tab.js"></script>
+<script src="./Public/sco/js/sco.message.js"></script>
 <script src="./Public/Flat-UI-master/dist/js/flat-ui.js"></script>
 <script type="text/javascript">
 var filmslist = [

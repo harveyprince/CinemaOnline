@@ -5,11 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cinemaonline.dao.AccountDao;
 import com.cinemaonline.dao.VipDao;
+import com.cinemaonline.model.Account;
 import com.cinemaonline.model.VipCard;
 import com.cinemaonline.model.VipInfo;
 import com.cinemaonline.model.VipLevel;
 import com.cinemaonline.model.VipRecord;
+import com.cinemaonline.model.client.AccountLogin;
 import com.cinemaonline.model.client.OperaResult;
 import com.cinemaonline.model.client.VipCardInfo;
 import com.cinemaonline.model.client.VipClientInfo;
@@ -26,6 +29,8 @@ public class VipServiceImpl implements VipService {
 	private VipDao vipDao;
 	@Autowired
 	private RecordService recordService;
+	@Autowired
+	private AccountDao accountDao;
 	
 	private VipServiceImpl(){}
 
@@ -149,6 +154,33 @@ public class VipServiceImpl implements VipService {
 		List<VipRecord> res = vipDao.getRecordsById(userid);
 		List<VipRecordInfo> records = VipRecordInfo.parseVRI(res);
 		return records;
+	}
+
+	@Override
+	public OperaResult checkVipAccount(AccountLogin info) {
+		// TODO Auto-generated method stub
+		OperaResult result = new OperaResult();
+		String ac = info.getAccountName();
+		Account ac_sql = accountDao.findByAccountName(ac);
+		if(ac_sql==null){
+			result.setResult(false);
+			result.setComment("usernotfound");
+		}else{
+			if(ac_sql.getPassword().equals(info.getPassword())){
+				if(ac_sql.getIdentityId()==1){
+					result.setResult(true);
+					result.setStatus(ac_sql.getIdentityId());
+					result.setAccount(ac_sql);
+				}else{
+					result.setResult(false);
+					result.setComment("notvip");
+				}
+			}else{
+				result.setResult(false);
+				result.setComment("pserror");
+			}
+		}
+		return result;
 	}
 
 

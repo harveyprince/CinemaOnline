@@ -66,7 +66,7 @@ pageEncoding="UTF-8"%>
 							</s:else>
 								</s:if>
 									<th class="recordId"><s:property value="#record.recordId"/></th>
-									<th class="recordTime"><s:property value="#record.recordTimeDate"/></th>
+									<th class="recordTime"><s:property value="#record.strrecordTime"/></th>
 									<th class="operanum"><s:property value="#record.recordNumber"/></th>
 									<th class="purpose"><s:property value="#record.purpose"/></th>
 									<th class="result"><s:property value="#record.strresult"/></th>

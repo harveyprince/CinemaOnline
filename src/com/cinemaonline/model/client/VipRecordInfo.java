@@ -1,5 +1,6 @@
 package com.cinemaonline.model.client;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -7,10 +8,12 @@ import java.util.List;
 import com.cinemaonline.model.VipRecord;
 
 public class VipRecordInfo {
+	SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	private long recordId;
 	private String vipId;
 	private long recordTime;
 	private Date recordTimeDate;
+	private String strrecordTime;
 	private double recordNumber;
 	private int result;
 	private String strresult;
@@ -59,6 +62,7 @@ public class VipRecordInfo {
 	public void setRecordTime(long recordTime) {
 		this.recordTime = recordTime;
 		this.recordTimeDate = new Date(recordTime);
+		this.strrecordTime = df.format(recordTimeDate);
 	}
 	public Date getRecordTimeDate() {
 		return recordTimeDate;
@@ -96,5 +100,13 @@ public class VipRecordInfo {
 	}
 	public void setPurpose(String purpose) {
 		this.purpose = purpose;
+	}
+
+	public String getStrrecordTime() {
+		return strrecordTime;
+	}
+
+	public void setStrrecordTime(String strrecordTime) {
+		this.strrecordTime = strrecordTime;
 	}
 }

@@ -8,6 +8,7 @@ public interface InfoDao {
 //	identity
 	public Identity insertIdentity(Identity info);
 	
+	public Identity getIdentityById(int id);
 //hall
 	public Hall insertHall(Hall info);
 	

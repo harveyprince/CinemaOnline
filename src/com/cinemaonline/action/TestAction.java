@@ -85,18 +85,21 @@ public class TestAction extends BaseAction {
 		lv0.setLevelId(0);
 		lv0.setCost(30);
 		lv0.setLvName("lv1");
+		lv0.setDiscount(0.9);
 		infoService.addVipLevel(lv0);
 		
 		VipLevel lv1 = new VipLevel();
 		lv1.setLevelId(1);
 		lv1.setCost(60);
 		lv1.setLvName("lv2");
+		lv1.setDiscount(0.8);
 		infoService.addVipLevel(lv1);
 		
 		VipLevel lv2 = new VipLevel();
 		lv2.setLevelId(2);
 		lv2.setCost(90);
 		lv2.setLvName("lv3");
+		lv2.setDiscount(0.7);
 		infoService.addVipLevel(lv2);
 		
 		return AJAXINFO;

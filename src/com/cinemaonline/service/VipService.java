@@ -3,6 +3,7 @@ package com.cinemaonline.service;
 import java.util.List;
 
 import com.cinemaonline.model.VipLevel;
+import com.cinemaonline.model.client.AccountLogin;
 import com.cinemaonline.model.client.OperaResult;
 import com.cinemaonline.model.client.VipCardInfo;
 import com.cinemaonline.model.client.VipClientInfo;
@@ -28,4 +29,6 @@ public interface VipService {
 	public List<VipLevel> getLvList();
 	
 	public List<VipRecordInfo> getRecords(String userid);
+
+	public OperaResult checkVipAccount(AccountLogin info);
 }
