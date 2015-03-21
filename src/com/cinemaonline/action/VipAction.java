@@ -38,16 +38,30 @@ public class VipAction extends BaseAction {
 	private List<VipLevel> lvslist;
 	private List<VipRecordInfo> recordlist;
 	private List<Activity> activitylist;
+	private List<Activity> activitylist_unparticipated;
 	
 	/*
 	 * activity
 	 * */
 	public String viewActivity(){
 		String userid = (String) session.get("userid");
-		activitylist = activityService.getActivitiesForVip(userid);
+		activitylist = activityService.getParticipatedActivitiesForVip(userid);
+		activitylist_unparticipated = activityService.getUnparticipatedActivitiesForVip(userid);
 		return SUCCESS;
 	}
 	
+	public String joinActivity(){
+		String activityid = request.getParameter("activityid");
+		String answerid = request.getParameter("answerid");
+		String userid = (String) session.get("userid");
+		OperaResult result = activityService.joinActivity(activityid,answerid,userid);
+		if(result.getResult()){
+			ajaxinfo = "success";
+		}else{
+			ajaxinfo = result.getComment();
+		}
+		return AJAXINFO;
+	}
 	/*
 	 * info
 	 * */
@@ -207,6 +221,15 @@ public class VipAction extends BaseAction {
 
 	public void setActivitylist(List<Activity> activitylist) {
 		this.activitylist = activitylist;
+	}
+
+	public List<Activity> getActivitylist_unparticipated() {
+		return activitylist_unparticipated;
+	}
+
+	public void setActivitylist_unparticipated(
+			List<Activity> activitylist_unparticipated) {
+		this.activitylist_unparticipated = activitylist_unparticipated;
 	}
 
 

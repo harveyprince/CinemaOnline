@@ -8,7 +8,7 @@ public class TicketOrder {
 
 	private long planid;
 	private int seatNum;
-	private int identity;
+	private int identity = 0;
 	private AccountLogin vip_account;
 	private double cost;
 	private double discount=1.0;

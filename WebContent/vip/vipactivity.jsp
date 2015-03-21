@@ -66,53 +66,25 @@
 							</tr>
 						</thead>
 						<tbody>
+							<s:iterator id="activity" value="activitylist_unparticipated" status="st">
 							<tr class="active">
-								<th class="activityId">1</th>
-								<th class="activityName">what do you think of the weather today?</th>
-								<th>
-									<button class="btn btn-inverse table-button" disabled="disabled">
-										<i class="fa fa-pencil-square-o"></i>
-									</button>
-								</th>
-								<th class="activity-answers" style="display:none;">
-									<li value="0">answer1</li>
-									<li value="1">answer2</li>
-									<li value="2">answer3</li>
-								</th>
-								
-								<th>participated</th>
-							</tr>
-							<tr class="danger">
-								<th class="activityId">2</th>
-								<th class="activityName">do you understand these films</th>
+								<th class="activityId"><s:property value="#activity.activityId"/></th>
+								<th class="activityName"><s:property value="#activity.title"/></th>
 								<th>
 									<button class="btn btn-inverse table-button participate-button" data-toggle="modal" data-target="#modalParticipate">
 										<i class="fa fa-pencil-square-o"></i>
 									</button>
 								</th>
 								<th class="activity-answers" style="display:none;">
-									<li value="0">answer1</li>
-									<li value="1">answer2</li>
-									<li value="2">answer3</li>
-								</th>
-								<th>unparticipated</th>
-							</tr>
-							<tr class="info">
-								<th class="activityId">3</th>
-								<th class="activityName">this is just for test</th>
-								<th>
-									<button class="btn btn-inverse table-button participate-button" data-toggle="modal" data-target="#modalParticipate">
-										<i class="fa fa-pencil-square-o"></i>
-									</button>
-								</th>
-								<th>unparticipated</th>
-								<th class="activity-answers" style="display:none;">
-									<li value="0">answer1</li>
-									<li value="1">answer2</li>
-									<li value="2">answer3</li>
+									<s:iterator id="answer" value="#activity.answerlist" status="ast">
+									<li value='<s:property value="#answer.answerId"/>'><s:property value="#answer.answerContent"/></li>
+								</s:iterator>
 								</th>
 								
+								<th>unparticipated</th>
 							</tr>
+						</s:iterator>
+							
 						</tbody>
 					</table>
 				</div>
@@ -123,23 +95,45 @@
 				<!-- /////////////////////////////////////////////////////// -->
 				<div class="tab-page">
 					<table class="table">
-						<thead>
-							<tr>
-								<th>id</th>
-								<th>filmname</th>
-								<th>No</th>
-								<th>time</th>
-								<th>price</th>
+							<thead>
+								<tr>
+									<th>id</th>
+									<th>title</th>
+									<th>participate</th>
+									<th><div class="btn-group">
+										<button class="btn btn-inverse dropdown-toggle table-button" type="button" data-toggle="dropdown">
+											status <span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu dropdown-menu-inverse" role="menu">
+											<li><a href="#">status</a></li>
+											<li><a href="#">unparticipated</a></li>
+											<li><a href="#">participated</a></li>
+										</ul>
+									</div>
+
+								</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<th>#</th>
-								<th>#</th>
-								<th>#</th>
-								<th>#</th>
-								<th>#</th>
+							<s:iterator id="activity" value="activitylist" status="st">
+							<tr class="active">
+								<th class="activityId"><s:property value="#activity.activityId"/></th>
+								<th class="activityName"><s:property value="#activity.title"/></th>
+								<th>
+									<button class="btn btn-inverse table-button" disabled="disabled">
+										<i class="fa fa-pencil-square-o"></i>
+									</button>
+								</th>
+								<th class="activity-answers" style="display:none;">
+									<s:iterator id="answer" value="#activity.answerlist" status="ast">
+									<li value='<s:property value="#answer.answerId"/>'><s:property value="#answer.answerContent"/></li>
+								</s:iterator>
+								</th>
+								
+								<th>participated</th>
 							</tr>
+						</s:iterator>
+							
 						</tbody>
 					</table>
 				</div>
@@ -156,26 +150,24 @@
 				<h5 id="myModalLabel">Activity</h5>
 			</div>
 			<div class="modal-body">
+				<div class="row-line" style="display:none;">
+					<div class="row-label activityid-input"></div>
+				</div>
 				<div class="row-line">
 					<div class="row-label">title:</div>
 				</div>
 				<div class="title-panel">
-					titletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitle
 				</div>
 				<div class="row-line">
 					<div class="row-label">answer:</div>
 				</div>
 				<div class="answers-panel">
-					 <div class="answer" value="0">answer1.......................................
-					 </div>
-					 	<div class="answer" value="1">answer2answer1.......................................answer1.......................................answer1.......................................answer1..............................................................................
-					 	</div>
-			</div>
-			<div class="modal-footer">
-				<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
-				<button class="btn btn-primary save-button">sure</button>
 			</div>
 		</div>
+		<div class="modal-footer">
+				<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+				<button class="btn btn-primary save-button" target="joinActivity">sure</button>
+			</div>
 	</div>
 </div>
 
@@ -184,6 +176,7 @@
 <script src="./Public/dist/js/bootstrap.min.js"></script>
 <script src="./Public/sco/js/sco.panes.js"></script>
 <script src="./Public/sco/js/sco.tab.js"></script>
+<script src="./Public/sco/js/sco.message.js"></script>
 <script src="./Public/Flat-UI-master/dist/js/flat-ui.js"></script>
 <script type="text/javascript">
 // $("#modalParticipate").modal('show');

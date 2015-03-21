@@ -4,6 +4,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -50,7 +51,7 @@ public class ActivityAnswer {
 		this.activityRecords = activityRecords;
 	}
 	@JoinColumn(name="activityId")
-	@ManyToOne(targetEntity=Activity.class)
+	@ManyToOne(targetEntity=Activity.class,fetch = FetchType.EAGER)
 	public Activity getActivity() {
 		return activity;
 	}

@@ -12,6 +12,7 @@ import com.cinemaonline.dao.ActivityDao;
 import com.cinemaonline.dao.BaseDao;
 import com.cinemaonline.model.Activity;
 import com.cinemaonline.model.ActivityAnswer;
+import com.cinemaonline.model.ActivityRecord;
 
 @Repository
 public class ActivityDaoImpl implements ActivityDao {
@@ -130,6 +131,98 @@ public class ActivityDaoImpl implements ActivityDao {
 		}finally{
 			session.close();
 		}
+	}
+	@Override
+	public List<Activity> getActivitiesForVip(long id) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String sql = "select distinct a.* from Activity a inner join ActivityMatchPlan p on a.activityId = p.activityId inner join TicketRecord t on p.planId = t.filmplanId where t.identifyNumber=?";
+		List list = null;
+		try{
+			Query query = session.createSQLQuery(sql).addEntity(Activity.class);
+			query.setParameter(0, id);
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return list;
+			}else{
+				return null;
+			}
+		}else{
+			return null;
+		}
+	}
+	@Override
+	public List<Activity> getParticipatedActivitiesForVip(long id) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String sql = "select distinct a.* from Activity a inner join ActivityAnswer p on a.activityId = p.activityId inner join ActivityRecord t on p.activityAnswerId = t.activityAnswerId where t.vipId=?";
+		List list = null;
+		try{
+			Query query = session.createSQLQuery(sql).addEntity(Activity.class);
+			query.setParameter(0, id);
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return list;
+			}else{
+				return null;
+			}
+		}else{
+			return null;
+		}
+	}
+	@Override
+	public List<Activity> getUnarticipatedActivitiesForVip(long id) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String sql = "select distinct a.* from Activity a inner join ActivityMatchPlan p on a.activityId = p.activityId inner join TicketRecord t on p.planId = t.filmplanId where t.identifyNumber=? and a.activityId not in (select distinct a.activityId from Activity a inner join ActivityAnswer p on a.activityId = p.activityId inner join ActivityRecord t on p.activityAnswerId = t.activityAnswerId where t.vipId=?)";
+		List list = null;
+		try{
+			Query query = session.createSQLQuery(sql).addEntity(Activity.class);
+			query.setParameter(0, id);
+			query.setParameter(1, id);
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return list;
+			}else{
+				return null;
+			}
+		}else{
+			return null;
+		}
+	}
+	@Override
+	public ActivityRecord insertRecord(ActivityRecord info) {
+		// TODO Auto-generated method stub
+		ActivityRecord info_local = info;
+		Session session = baseDao.getNewSession();
+		Transaction ts = session.beginTransaction();
+		try{
+			session.save(info_local);
+			ts.commit();
+		}catch(Exception e){
+			ts.rollback();
+		}finally{
+			session.close();
+		}
+		return info_local;
 	}
 
 

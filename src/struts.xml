@@ -47,6 +47,8 @@
            <action name="vipactivity" class="VipAction" method="viewActivity">
            	<result name="success">/vip/vipactivity.jsp</result>
            </action>
+           <action name="joinActivity" class="VipAction" method="joinActivity">
+           </action>
            <!-- ServerAction --><!-- ServerAction --><!-- ServerAction -->
            <!--plan  -->
            <action name="serverfilmplan" class="ServerAction" method="viewPlan">

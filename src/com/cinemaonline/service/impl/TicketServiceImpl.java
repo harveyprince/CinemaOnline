@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cinemaonline.dao.FilmDao;
+import com.cinemaonline.dao.InfoDao;
 import com.cinemaonline.dao.TicketDao;
 import com.cinemaonline.dao.VipDao;
 import com.cinemaonline.model.FilmPlan;
+import com.cinemaonline.model.Identity;
 import com.cinemaonline.model.Ticket;
 import com.cinemaonline.model.TicketRecord;
 import com.cinemaonline.model.VipInfo;
@@ -34,6 +36,8 @@ public class TicketServiceImpl implements TicketService {
 	private BankService bankService;
 	@Autowired
 	private RecordService recordService;
+	@Autowired
+	private InfoDao infoDao;
 	
 	@Override
 	public OperaResult judgeTicket(TicketOrder info) {

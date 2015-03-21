@@ -17,4 +17,11 @@ public interface ActivityService {
 	public OperaResult pulishActivity(long actid);
 
 	public List<Activity> getActivitiesForVip(String userid);
+
+	public List<Activity> getParticipatedActivitiesForVip(String userid);
+
+	public List<Activity> getUnparticipatedActivitiesForVip(String userid);
+
+	public OperaResult joinActivity(String activityid, String answerid,
+			String userid);
 }
