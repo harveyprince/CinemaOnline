@@ -59,7 +59,7 @@ public class FilmDaoImpl implements FilmDao {
 		Session session = baseDao.getNewSession();
 		Date timestamp = new Date();
 		long timenow = timestamp.getTime();
-		String hql = "from com.cinemaonline.model.FilmPlan where endTime>?";
+		String hql = "from com.cinemaonline.model.FilmPlan where beginTime>?";
 		List list = null;
 		try{
 			Query query = session.createQuery(hql);
@@ -338,6 +338,59 @@ public class FilmDaoImpl implements FilmDao {
 			result.setResult(true);
 		}
 		return result;
+	}
+	@Override
+	public List<FilmPlan> getAllNotEndedPlansByFilm(Film info) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		Date timestamp = new Date();
+		long timenow = timestamp.getTime();
+		String hql = "from com.cinemaonline.model.FilmPlan as a where a.endTime>? and a.film=?";
+		List list = null;
+		try{
+			Query query = session.createQuery(hql);
+			query.setParameter(0, timenow);
+			query.setParameter(1, info);
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return list;
+			}else{
+				return null;
+			}
+		}else{
+			return null;
+		}
+	}
+	@Override
+	public List<Film> getReleasingFilmsByActivityId(long activityId) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String sql = "select distinct f.* from Film f inner join FilmPlan p on f.filmId = p.filmId inner join ActivityMatchPlan a on a.planId = p.planId where a.activityId=? and f.status=1";
+		List list = null;
+		try{
+			Query query = session.createSQLQuery(sql).addEntity(Film.class);
+			query.setParameter(0, activityId);
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return list;
+			}else{
+				return null;
+			}
+		}else{
+			return null;
+		}
 	}
 
 	

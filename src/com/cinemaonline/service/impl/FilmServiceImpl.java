@@ -13,6 +13,7 @@ import com.cinemaonline.model.Hall;
 import com.cinemaonline.model.client.FilmInfo;
 import com.cinemaonline.model.client.FilmPlanInfo;
 import com.cinemaonline.model.client.OperaResult;
+import com.cinemaonline.service.ActivityService;
 import com.cinemaonline.service.FilmService;
 
 @Service
@@ -20,6 +21,8 @@ public class FilmServiceImpl implements FilmService {
 
 	@Autowired
 	private FilmDao filmDao;
+	@Autowired
+	private ActivityService activityService;
 	
 	@Override
 	public List<FilmPlanInfo> getAllUnoldPlans() {
@@ -146,11 +149,18 @@ public class FilmServiceImpl implements FilmService {
 		// TODO Auto-generated method stub
 		OperaResult result = new OperaResult();
 		Film f = filmDao.getFilmById(Long.parseLong(filmid));
+//		计划未结束-----------------------------------------------------------------------------------禁止下架
+		List<FilmPlan> futureplan = filmDao.getAllNotEndedPlansByFilm(f);
+		if(futureplan!=null){
+			result.setResult(false);
+			result.setComment("the plan is still working");
+			return result;
+		}
 		f.setStatus(0);
 		f.setShelvesTime(new java.sql.Date((new java.util.Date()).getTime()));
 		filmDao.updateFilm(f);
-//		活动评测------------------------------------------------------------------------------------------待续
-//		计划未结束-----------------------------------------------------------------------------------禁止下架
+//		活动评测------------------------------------------------------------------------------------------
+		OperaResult activity_result = activityService.endActivityByFilm(f);
 		result.setResult(true);
 		return result;
 	}

@@ -3,6 +3,7 @@ package com.cinemaonline.service;
 import java.util.List;
 
 import com.cinemaonline.model.Activity;
+import com.cinemaonline.model.Film;
 import com.cinemaonline.model.client.ActivityInfo;
 import com.cinemaonline.model.client.OperaResult;
 
@@ -24,4 +25,6 @@ public interface ActivityService {
 
 	public OperaResult joinActivity(String activityid, String answerid,
 			String userid);
+
+	public OperaResult endActivityByFilm(Film info);
 }

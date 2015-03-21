@@ -224,6 +224,31 @@ public class ActivityDaoImpl implements ActivityDao {
 		}
 		return info_local;
 	}
+	@Override
+	public List<Activity> getActivitiesByFilmId(long filmId) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String sql = "select distinct a.* from Activity a inner join ActivityMatchPlan p on a.activityId = p.activityId inner join FilmPlan t on p.planId = t.planId where t.filmId=?";
+		List list = null;
+		try{
+			Query query = session.createSQLQuery(sql).addEntity(Activity.class);
+			query.setParameter(0, filmId);
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return list;
+			}else{
+				return null;
+			}
+		}else{
+			return null;
+		}
+	}
 
 
 

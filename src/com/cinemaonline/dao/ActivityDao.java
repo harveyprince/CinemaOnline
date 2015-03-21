@@ -28,4 +28,6 @@ public interface ActivityDao {
 	public List<Activity> getUnarticipatedActivitiesForVip(long id);
 
 	public ActivityRecord insertRecord(ActivityRecord info);
+
+	public List<Activity> getActivitiesByFilmId(long filmId);
 }

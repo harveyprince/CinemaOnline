@@ -18,12 +18,16 @@ public interface FilmDao {
 	public List<Film> getAllFilms();
 	
 	public Film getFilmById(long id);
+
+	public List<Film> getReleasingFilmsByActivityId(long activityId);
 //	film plan
 	public FilmPlan insertFilmPlan(FilmPlan info);
 	
 	public void updateFilmPlan(FilmPlan info);
 
 	public List<FilmPlan> getAllUnoldPlans();
+
+	public List<FilmPlan> getAllNotEndedPlansByFilm(Film info);
 	
 	public List<FilmPlan> getAllPassedPlans();
 	
@@ -36,6 +40,8 @@ public interface FilmDao {
 	public List<Hall> getAllHalls();
 	
 	public Hall getHallById(int id);
+
+
 
 	
 
