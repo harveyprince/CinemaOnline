@@ -213,8 +213,12 @@ public class VipServiceImpl implements VipService {
 		}
 		card.setScore(card.getScore()-score);
 //		兑换率
-		card.setBalance(card.getBalance()+score/100);
 		vipDao.updateCard(card);
+		VipOperaInfo voi = new VipOperaInfo();
+		voi.setRecharge(score/100);
+		voi.setPurpose("score translate");
+		voi.setUserid(userid);
+		cardBalanceOpera(voi);
 		result.setResult(true);
 		return result;
 	}
