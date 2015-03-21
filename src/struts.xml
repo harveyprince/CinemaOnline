@@ -47,6 +47,10 @@
            </action> 
            <action name="cardrecharge" class="VipAction" method="rechargeCard">
            </action>    
+           <action name="scoreTranslate" class="VipAction" method="translateScore">
+           </action>
+           <action name="disactivateCard" class="VipAction" method="disactivateCard">
+           </action>
            <!--record  -->       
            <action name="viprecord" class="VipAction" method="viewRecord">
            	<result name="success">/vip/viprecord.jsp</result>

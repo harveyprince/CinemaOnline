@@ -8,7 +8,6 @@ import com.cinemaonline.dao.InfoDao;
 import com.cinemaonline.dao.TicketDao;
 import com.cinemaonline.dao.VipDao;
 import com.cinemaonline.model.FilmPlan;
-import com.cinemaonline.model.Identity;
 import com.cinemaonline.model.Ticket;
 import com.cinemaonline.model.TicketRecord;
 import com.cinemaonline.model.VipInfo;
@@ -126,6 +125,7 @@ public class TicketServiceImpl implements TicketService {
 		ticketRecord = ticketDao.getRecordById(ticketRecord.getRecordId());
 		result.setResult(true);
 		result.setTicketRecord(ticketRecord);
+		vipService.addVipScore(order.getVip_account().getAccountName(), (int)order.getCost()/10);
 		return result;
 	}
 

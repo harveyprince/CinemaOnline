@@ -31,4 +31,10 @@ public interface VipService {
 	public List<VipRecordInfo> getRecords(String userid);
 
 	public OperaResult checkVipAccount(AccountLogin info);
+	
+	public OperaResult addVipScore(String userid,int score);
+	
+	public OperaResult scoreToBalance(String userid,int score);
+
+	public OperaResult disactivateCardById(String userid);
 }

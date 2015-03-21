@@ -183,5 +183,52 @@ public class VipServiceImpl implements VipService {
 		return result;
 	}
 
+	@Override
+	public OperaResult addVipScore(String userid, int score) {
+		// TODO Auto-generated method stub
+		OperaResult result = new OperaResult();
+		VipInfo info = vipDao.getVipInfoById(userid);
+		VipCard card = info.getVipCard();
+		card.setScore(card.getScore()+score);
+		vipDao.updateCard(card);
+		result.setResult(true);
+		return result;
+	}
+
+	@Override
+	public OperaResult scoreToBalance(String userid, int score) {
+		// TODO Auto-generated method stub
+		OperaResult result = new OperaResult();
+		VipInfo info = vipDao.getVipInfoById(userid);
+		VipCard card = info.getVipCard();
+		score = (score/100)*100;
+		if(score==0){
+			result.setResult(false);
+			result.setComment("less than 100 cannot translate");
+		}
+		if(card.getScore()<score){
+			result.setResult(false);
+			result.setComment("not enough score");
+			return result;
+		}
+		card.setScore(card.getScore()-score);
+//		兑换率
+		card.setBalance(card.getBalance()+score/100);
+		vipDao.updateCard(card);
+		result.setResult(true);
+		return result;
+	}
+
+	@Override
+	public OperaResult disactivateCardById(String userid) {
+		// TODO Auto-generated method stub
+		OperaResult result = new OperaResult();
+		VipInfo info = vipDao.getVipInfoById(userid);
+		info.setVipStatus(5);
+		vipDao.update(info);
+		result.setResult(true);
+		return result;
+	}
+
 
 }

@@ -103,6 +103,34 @@ public class VipAction extends BaseAction {
 		 }
 	}
 	
+	public String disactivateCard(){
+		String confirm = request.getParameter("confirm");
+		String userid = (String) session.get("userid");
+		if(confirm=="1"){
+			OperaResult result = vipService.disactivateCardById(userid);
+			if(result.getResult()){
+				ajaxinfo = "success";
+			}else{
+				ajaxinfo = result.getComment();
+			}
+		}else{
+			ajaxinfo = "request error";
+		}
+		return AJAXINFO;
+	}
+	
+	public String translateScore(){
+		String score = request.getParameter("score");
+		String userid = (String) session.get("userid");
+		OperaResult result = vipService.scoreToBalance(userid, Integer.parseInt(score));
+		if(result.getResult()){
+			ajaxinfo = "success";
+		}else{
+			ajaxinfo = result.getComment();
+		}
+		return AJAXINFO;
+	}
+	
 	public String activateCard(){
 		String userid = (String) session.get("userid");
 		 BankOperaInfo info = new BankOperaInfo();

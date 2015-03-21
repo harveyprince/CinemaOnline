@@ -49,7 +49,7 @@
 					<div class="info-line">status:
 						<span><s:property value="vipinfo.strstatus"/></span>
 					</div>
-					
+					<s:if test="%{vipinfo.status!=5}">
 					<div class="info-line">score:
 						<span><s:property value="cardinfo.score"/></span>
 					</div>
@@ -57,6 +57,9 @@
 						<span><s:property value="cardinfo.balance"/></span>
 					</div>
 				<button class="btn btn-primary btn-moneyin" data-toggle="modal" data-target="#modalMoney">money in</button>
+				<button class="btn btn-primary btn-scoretrans" data-toggle="modal" data-target="#modalScoreTrans" style="margin-right:5px;">score trans</button>
+				<button class="btn btn-danger btn-disactiveVip" data-toggle="modal" data-target="#modalDisactivate" style="margin-right:5px;">Disactive</button>
+			</s:if>
 				</div>
 
 				
@@ -108,6 +111,52 @@
 			<div class="modal-footer">
 				<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
 				<button class="btn btn-primary save-button">Save changes</button>
+			</div>
+		</div>
+	</div>
+
+	<div id="modalScoreTrans" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalScoreTransLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h5 id="myModalLabel">Score Translate[balance=score/100]</h5>
+			</div>
+			<div class="modal-body">
+				<div class="row-line">
+					<div class="row-label">score:</div>
+					<div class="form-group has-success row-content">
+						<input class="form-control score-input" type="number" placeholder="sum" min="100" value="100" name="score"/>
+					</div>
+				</div>
+				<div class="row-line line-fix">
+					<div class="span3 row-content">
+						<button class="btn btn-primary scoretrans-button" target="scoreTranslate">translate</button>
+					</div>
+				</div> 
+			</div>
+			<div class="modal-footer">
+				<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+				<button class="btn btn-primary save-button">Save changes</button>
+			</div>
+		</div>
+	</div>
+
+	<div id="modalDisactivate" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalDisactivateLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h5 id="myModalLabel">Dangerous Operation</h5>
+			</div>
+			<div class="modal-body">
+				<div class="row-line line-fix">
+					<div class="span3 row-content" style="float:none;">
+						<div class="row-label" style="font-size:20px;">Do you really want to disactivate your card?</div>
+					</div>
+				</div> 
+			</div>
+			<div class="modal-footer">
+				<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+				<button class="btn btn-danger save-button" target="disactivateCard">Sure</button>
 			</div>
 		</div>
 	</div>
