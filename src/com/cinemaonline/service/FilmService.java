@@ -33,4 +33,10 @@ public interface FilmService {
 
 	public OperaResult submitPlanForCheck(String planid);
 
+	public List<FilmPlanInfo> getPlansForCheck();
+
+	public OperaResult passPlan(String planid);
+
+	public OperaResult unpassPlan(String planid);
+
 }

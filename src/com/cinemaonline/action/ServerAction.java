@@ -260,7 +260,7 @@ public class ServerAction extends BaseAction {
 			if(result.getResult()){
 				ajaxinfo = "success";
 			}else{
-				ajaxinfo = "failed";
+				ajaxinfo = result.getComment();
 			}
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block

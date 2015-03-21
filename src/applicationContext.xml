@@ -58,6 +58,8 @@
 	</bean>
 	<bean id="ServerAction" class="com.cinemaonline.action.ServerAction">
 	</bean>
+	<bean id="ManagerAction" class="com.cinemaonline.action.ManagerAction">
+	</bean>
 
 	
 	<!-- 定义 Autowired 自动注入 bean -->

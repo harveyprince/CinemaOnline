@@ -5,6 +5,7 @@ import java.util.List;
 import com.cinemaonline.model.Film;
 import com.cinemaonline.model.FilmPlan;
 import com.cinemaonline.model.Hall;
+import com.cinemaonline.model.client.OperaResult;
 
 public interface FilmDao {
 //	film
@@ -28,10 +29,16 @@ public interface FilmDao {
 	
 	public FilmPlan getFilmPlanById(long id);
 	
+	public List<FilmPlan> getPlansForCheck();
+
+	public OperaResult checkFilmPlan(long beginTime, long endTime, Hall hall);
 //	hall
 	public List<Hall> getAllHalls();
 	
 	public Hall getHallById(int id);
+
+	
+
 
 	
 }

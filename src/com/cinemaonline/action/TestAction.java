@@ -29,6 +29,12 @@ public class TestAction extends BaseAction {
 		ac0.setPassword("202cb962ac59075b964b07152d234b70");//123
 		ac0.setIdentityId(2);
 		infoService.addAccount(ac0);
+		//manager
+		Account ac1 = new Account();
+		ac1.setAccountName("7654321");
+		ac1.setPassword("202cb962ac59075b964b07152d234b70");//123
+		ac1.setIdentityId(3);
+		infoService.addAccount(ac1);
 		
 //		bank
 		Bank bank0 = new Bank();

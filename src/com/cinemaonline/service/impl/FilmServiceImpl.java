@@ -1,5 +1,6 @@
 package com.cinemaonline.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,11 +52,31 @@ public class FilmServiceImpl implements FilmService {
 		// TODO Auto-generated method stub
 		OperaResult result = new OperaResult();
 		FilmPlanInfo info_local = info;
+		//上映时间不得比现在早
+		Date time = new Date();
+		long timenow = time.getTime();
+		if(info.getBeginTime()<timenow){
+			result.setResult(false);
+			result.setComment("cannot insert a plan into the old time");
+			return result;
+		}
+		//begintime不得大于endtime
+		if(info.getBeginTime()>=info.getEndTime()){
+			result.setResult(false);
+			result.setComment("begin time cannot bigger than end time");
+			return result;
+		}
+//		检测时空冲突
+		OperaResult check_result = filmDao.checkFilmPlan(info_local.getBeginTime(),info_local.getEndTime(),filmDao.getHallById(info_local.getHallNo()));
+		if(check_result.getResult()){
 //		先获取film\hall
-		info_local.setFilm(filmDao.getFilmById(info_local.getFilmid()));
-		info_local.setHall(filmDao.getHallById(info_local.getHallNo()));
-		filmDao.insertFilmPlan(info_local.getFilmPlan());
-		result.setResult(true);
+			info_local.setFilm(filmDao.getFilmById(info_local.getFilmid()));
+			info_local.setHall(filmDao.getHallById(info_local.getHallNo()));
+			filmDao.insertFilmPlan(info_local.getFilmPlan());
+			result.setResult(true);
+		}else{
+			result = check_result;
+		}
 		return result;
 	}
 
@@ -141,6 +162,35 @@ public class FilmServiceImpl implements FilmService {
 		FilmPlan info = filmDao.getFilmPlanById(Long.parseLong(planid));
 		info.setStatus(1);
 		filmDao.updateFilmPlan(info);
+		result.setResult(true);
+		return result;
+	}
+
+	@Override
+	public List<FilmPlanInfo> getPlansForCheck() {
+		// TODO Auto-generated method stub
+		List<FilmPlanInfo> plans = FilmPlanInfo.parseFPI(filmDao.getPlansForCheck());
+		return plans;
+	}
+
+	@Override
+	public OperaResult passPlan(String planid) {
+		// TODO Auto-generated method stub
+		OperaResult result = new OperaResult();
+		FilmPlan plan = filmDao.getFilmPlanById(Long.parseLong(planid));
+		plan.setStatus(2);
+		filmDao.updateFilmPlan(plan);
+		result.setResult(true);
+		return result;
+	}
+
+	@Override
+	public OperaResult unpassPlan(String planid) {
+		// TODO Auto-generated method stub
+		OperaResult result = new OperaResult();
+		FilmPlan plan = filmDao.getFilmPlanById(Long.parseLong(planid));
+		plan.setStatus(3);
+		filmDao.updateFilmPlan(plan);
 		result.setResult(true);
 		return result;
 	}

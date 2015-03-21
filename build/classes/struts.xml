@@ -12,6 +12,14 @@
           <!-- TestAction --><!-- TestAction --><!-- TestAction -->
           <action name="init" class="TestAction" method="DataInit">
           </action>
+          <!--  ManagerAction--><!--  ManagerAction--><!--  ManagerAction-->
+          <action name="manager" class="ManagerAction" method="checkPlan">
+          	<result name="success">/manar/managerplancheck.jsp</result>
+          </action>
+          <action name="planpass" class="ManagerAction" method="passPlan">
+          </action>
+          <action name="planunpass" class="ManagerAction" method="unpassPlan">
+          </action>
           <!--  AccountAction--><!--  AccountAction--><!--  AccountAction-->
            <action name="" class="AccountAction" method="welcome">
           	<result name="success">/welcome/welcome.jsp</result>

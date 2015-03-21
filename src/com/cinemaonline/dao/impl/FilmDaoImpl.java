@@ -14,6 +14,7 @@ import com.cinemaonline.dao.FilmDao;
 import com.cinemaonline.model.Film;
 import com.cinemaonline.model.FilmPlan;
 import com.cinemaonline.model.Hall;
+import com.cinemaonline.model.client.OperaResult;
 
 @Repository
 public class FilmDaoImpl implements FilmDao {
@@ -279,6 +280,64 @@ public class FilmDaoImpl implements FilmDao {
 		}else{
 			return null;
 		}
+	}
+	@Override
+	public List<FilmPlan> getPlansForCheck() {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String hql = "from com.cinemaonline.model.FilmPlan where status=1";
+		List list = null;
+		try{
+			Query query = session.createQuery(hql);
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return list;
+			}else{
+				return null;
+			}
+		}else{
+			return null;
+		}
+	}
+	@Override
+	public OperaResult checkFilmPlan(long beginTime, long endTime, Hall hall) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String hql = "from com.cinemaonline.model.FilmPlan as a where a.hall=? and ((a.beginTime>=? and a.beginTime<=?) or (a.endTime>=? and a.endTime<=?) or (a.beginTime<=? and a.endTime>=?))";
+		List list = null;
+		try{
+			Query query = session.createQuery(hql);
+			query.setParameter(0, hall);
+			query.setParameter(1, beginTime);
+			query.setParameter(2, endTime);
+			query.setParameter(3, beginTime);
+			query.setParameter(4, endTime);
+			query.setParameter(5, beginTime);
+			query.setParameter(6, endTime);
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		OperaResult result = new OperaResult();
+		if(list!=null){
+			if(list.size()>0){
+				result.setResult(false);
+				result.setComment("time conflict");
+			}else{
+				result.setResult(true);
+			}
+		}else{
+			result.setResult(true);
+		}
+		return result;
 	}
 
 	

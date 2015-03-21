@@ -53,6 +53,7 @@ $(".ticket-finish-button").click(function(){
 			success: function(data) {
 				if(data.indexOf("success")!=-1){
 					$.scojs_message(data, $.scojs_message.TYPE_OK);
+					$("#modalSale").modal("hide");
 				}else{
 					$.scojs_message(data, $.scojs_message.TYPE_ERROR);
 				}
