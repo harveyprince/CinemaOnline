@@ -144,6 +144,9 @@ public class VipServiceImpl implements VipService {
 		opinfo.dateInit();
 		if(moneyleft+numopera>=0){
 			card.setBalance(moneyleft+numopera);
+			if(info_const.isCost()){
+				card.setScore(card.getScore()+(int) numopera/10);
+			}
 			vipDao.updateCard(card);
 			result.setResult(true);
 			opinfo.setResult(true);
