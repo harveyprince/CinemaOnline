@@ -49,6 +49,30 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
+	<bean id="quartzJob" class="com.cinemaonline.service.impl.CronServiceImpl"></bean>
+	<bean id="jobtask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="quartzJob"/>
+		</property>
+		<property name="targetMethod">
+			<value>vipLevelCostJudge</value>
+		</property>
+	</bean>
+	<bean id="doTime" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="jobtask"/>
+		</property>
+		<property name="cronExpression">
+			<value>0 0 0 * * ?</value>
+		</property>
+	</bean>
+	<bean id="startQuertz" lazy-init="false" autowire="no" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="doTime"/>
+			</list>
+		</property>
+	</bean>
 
 	<bean id="TestAction" class="com.cinemaonline.action.TestAction">
 	</bean>
