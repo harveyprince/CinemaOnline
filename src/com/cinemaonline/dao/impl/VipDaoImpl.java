@@ -1,5 +1,6 @@
 package com.cinemaonline.dao.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -219,6 +220,34 @@ public class VipDaoImpl implements VipDao {
 		List list = null;
 		try{
 			Query query = session.createQuery(hql);
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return list;
+			}else{
+				return null;
+			}
+		}else{
+			return null;
+		}
+	}
+
+	@Override
+	public List<VipInfo> getVipForLevelPay() {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		Date time = new Date();
+		long timestamp = time.getTime()-365*24*60*60*1000;
+		String sql = "select a.* from VipInfo as a inner join (select max(r.recordTime) e,r.vipId from VipRecord as r where r.purpose='lvcost' group by r.vipId having e<?) as v on a.vipId = v.vipId where a.vipStatus<4";
+		List list = null;
+		try{
+			Query query = session.createSQLQuery(sql).addEntity(VipInfo.class);
+			query.setParameter(0, timestamp);
 			list = query.list();
 		}catch(Exception e){
 			e.printStackTrace();

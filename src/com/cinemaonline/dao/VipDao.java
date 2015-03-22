@@ -16,6 +16,8 @@ public interface VipDao {
 	public void update(VipInfo info);
 	
 	public VipInfo getVipInfoById(String userid);
+
+	public List<VipInfo> getVipForLevelPay();
 //	card
 	public VipCard insertCard(VipCard info);
 	
@@ -28,4 +30,5 @@ public interface VipDao {
 	public VipRecord insertRecord(VipRecord info);
 	
 	public List<VipRecord> getRecordsById(String userid);
+
 }

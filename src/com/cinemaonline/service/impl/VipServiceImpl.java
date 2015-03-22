@@ -104,6 +104,22 @@ public class VipServiceImpl implements VipService {
 		info.setCostNum(userinfo.getVipCard().getVipLevel().getCost());
 		info.setPurpose("lvcost");
 		result = cardBalanceOpera(info);
+		if(result.getResult()){
+			if(userinfo.getVipStatus()==2){
+				userinfo.setVipStatus(1);
+				vipDao.update(userinfo);
+			}
+			return result;
+		}else{
+			//lvcost失败，会员状态暂停[如果状态已经为暂停，则停止会员记录]
+			if(userinfo.getVipStatus()==1){
+				userinfo.setVipStatus(2);
+			}
+			if(userinfo.getVipStatus()==2){
+				userinfo.setVipStatus(4);
+			}
+			vipDao.update(userinfo);
+		}
 		return result;
 	}
 
@@ -112,6 +128,15 @@ public class VipServiceImpl implements VipService {
 		// TODO Auto-generated method stub
 		OperaResult result = new OperaResult();
 		VipInfo info = vipDao.getVipInfoById(info_const.getUserid());
+		if(info.getVipStatus()>=4){
+			result.setResult(false);
+			result.setComment("vip has been canceled");
+			return result;
+		}
+		if(info.getVipStatus()==2&&info_const.isCost()){
+			result.setResult(false);
+			result.setComment("vip has been frozed");
+		}
 		VipCard card = info.getVipCard();
 		double moneyleft = card.getBalance();
 		double numopera = info_const.getNum();
@@ -129,6 +154,11 @@ public class VipServiceImpl implements VipService {
 			opinfo.setComment("not enough");
 		}
 		recordService.insertVipRecord(opinfo);
+		if(info.getVipStatus()==2){
+			if(card.getBalance()>=card.getVipLevel().getCost()){
+				cardLevelCost(info.getVipId());
+			}
+		}
 		return result;
 	}
 
