@@ -249,6 +249,58 @@ public class ActivityDaoImpl implements ActivityDao {
 			return null;
 		}
 	}
+	@Override
+	public int getParticipateSumByTime(long firstday, long lastday) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String sql = "select count(*) from ActivityRecord where recordTime>? and recordTime<?";
+		List list = null;
+		try{
+			Query query = session.createSQLQuery(sql);
+			query.setParameter(0, firstday);
+			query.setParameter(1, lastday);
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return (int) list.get(0);
+			}else{
+				return 0;
+			}
+		}else{
+			return 0;
+		}
+	}
+	@Override
+	public ActivityRecord getRecordByActivityId(long activityId,long userid) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String sql = "select a.* from ActivityRecord a inner join ActivityAnswer s on a.activityAnswerId = s.activityAnswerId inner join Activity t on t.activityId = s.activityId where t.activityId=? and a.vipId=?";
+		List list = null;
+		try{
+			Query query = session.createSQLQuery(sql).addEntity(ActivityRecord.class);
+			query.setParameter(0, activityId);
+			query.setParameter(1, userid);
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return (ActivityRecord) list.get(0);
+			}else{
+				return null;
+			}
+		}else{
+			return null;
+		}
+	}
 
 
 

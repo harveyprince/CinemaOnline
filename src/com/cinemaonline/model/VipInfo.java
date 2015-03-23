@@ -4,8 +4,10 @@ import java.sql.Date;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -18,7 +20,7 @@ public class VipInfo {
 	private String vipId;//会员编号
 	private Date birthday;//出生日期
 	private int sex;//性别[1代表男,0代表女]
-	private String location;//居住地
+	private Location location;//居住地
 	private String name;//姓名
 	private String email;//邮箱
 	private int vipStatus;//会员状态[1正常/2暂停/0未激活/4停止/5取消]
@@ -44,10 +46,12 @@ public class VipInfo {
 	public void setSex(int sex) {
 		this.sex = sex;
 	}
-	public String getLocation() {
+	@JoinColumn(name="locationId")
+	@ManyToOne(targetEntity=Location.class)
+	public Location getLocation() {
 		return location;
 	}
-	public void setLocation(String location) {
+	public void setLocation(Location location) {
 		this.location = location;
 	}
 	public String getName() {

@@ -8,12 +8,11 @@ public class VipUpdate {
 	private String name;
 	private int sex;
 	private Date birthday;
-	private String location;
+	private int location;
 	
 	public VipInfo setBase(VipInfo info){
 		VipInfo info_local = info;
 		if(birthday!=null)info_local.setBirthday(birthday);
-		if(location!=null&&location.length()>0)info_local.setLocation(location);
 		if(name!=null&&name.length()>0)info_local.setName(name);
 		info_local.setSex(sex);
 		return info_local;
@@ -43,10 +42,10 @@ public class VipUpdate {
 	public void setBirthday(String birthday) {
 		this.birthday = Date.valueOf(birthday);
 	}
-	public String getLocation() {
+	public int getLocation() {
 		return location;
 	}
-	public void setLocation(String location) {
+	public void setLocation(int location) {
 		this.location = location;
 	}
 

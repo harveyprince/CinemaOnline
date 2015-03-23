@@ -1,6 +1,8 @@
 package com.cinemaonline.service.impl;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,7 @@ import com.cinemaonline.model.Account;
 import com.cinemaonline.model.Bank;
 import com.cinemaonline.model.Hall;
 import com.cinemaonline.model.Identity;
+import com.cinemaonline.model.Location;
 import com.cinemaonline.model.VipLevel;
 import com.cinemaonline.model.client.OperaResult;
 import com.cinemaonline.service.InfoService;
@@ -67,6 +70,16 @@ public class InfoServiceImpl implements InfoService {
 			accountDao.insert(info);
 			result.setResult(true);
 		return result;
+	}
+	@Override
+	public List<Location> getAllLocation() {
+		// TODO Auto-generated method stub
+		return infoDao.getAllLocation();
+	}
+	@Override
+	public void addLocation(Location info) {
+		// TODO Auto-generated method stub
+		infoDao.insertLocation(info);
 	}
 
 	

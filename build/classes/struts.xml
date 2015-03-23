@@ -13,6 +13,11 @@
           <action name="init" class="TestAction" method="DataInit">
           </action>
           <!--  ManagerAction--><!--  ManagerAction--><!--  ManagerAction-->
+          <!--statics  -->
+          <action name="viewStatics" class="ManagerAction" method="showStatics">
+          <result name="success">/manar/managerstatics.jsp</result>
+          </action>
+          <!-- plan check -->
           <action name="manager" class="ManagerAction" method="checkPlan">
           	<result name="success">/manar/managerplancheck.jsp</result>
           </action>
@@ -26,7 +31,7 @@
           </action>
            <action name="loginAjax" class="AccountAction" method="loginJudge">
           </action>
-           <action name="signup" class="AccountAction" method="welcome">
+           <action name="signup" class="AccountAction" method="welcomeRegist">
           	<result name="success">/welcome/regist.jsp</result>
           </action>
            <action name="signupAjax" class="AccountAction" method="signupJudge">

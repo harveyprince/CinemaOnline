@@ -11,6 +11,7 @@ public class VipClientInfo {
 	private Date birthday;
 	private String strbirthday;
 	private String location;
+	private int locationid;
 	private String name;
 	private int sex;
 	private int status;
@@ -19,7 +20,8 @@ public class VipClientInfo {
 	public void setByTable(VipInfo info){
 		setVipid(info.getVipId());
 		setBirthday(info.getBirthday());
-		setLocation(info.getLocation());
+		setLocation(info.getLocation().getStrdescribe());
+		setLocationid(info.getLocation().getLocationId());
 		setName(info.getName());
 		setSex(info.getSex());
 		setStatus(info.getVipStatus());
@@ -95,5 +97,11 @@ public class VipClientInfo {
 	}
 	public void setStrstatus(String strstatus) {
 		this.strstatus = strstatus;
+	}
+	public int getLocationid() {
+		return locationid;
+	}
+	public void setLocationid(int locationid) {
+		this.locationid = locationid;
 	}
 }

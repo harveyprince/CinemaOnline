@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.cinemaonline.model.Activity;
+import com.cinemaonline.model.ActivityRecord;
+import com.cinemaonline.model.Location;
 import com.cinemaonline.model.VipLevel;
 import com.cinemaonline.model.client.BankOperaInfo;
 import com.cinemaonline.model.client.OperaResult;
@@ -16,6 +18,7 @@ import com.cinemaonline.model.client.VipRecordInfo;
 import com.cinemaonline.model.client.VipUpdate;
 import com.cinemaonline.service.ActivityService;
 import com.cinemaonline.service.BankService;
+import com.cinemaonline.service.InfoService;
 import com.cinemaonline.service.VipService;
 
 @Repository
@@ -31,6 +34,8 @@ public class VipAction extends BaseAction {
 	private BankService bankService;
 	@Autowired
 	private ActivityService activityService;
+	@Autowired
+	private InfoService infoService;
 	
 	private String ajaxinfo;
 	private VipClientInfo vipinfo;
@@ -39,6 +44,8 @@ public class VipAction extends BaseAction {
 	private List<VipRecordInfo> recordlist;
 	private List<Activity> activitylist;
 	private List<Activity> activitylist_unparticipated;
+	private List<Location> locationlist;
+	private List<ActivityRecord> activityrecordlist;
 	
 	/*
 	 * activity
@@ -47,6 +54,7 @@ public class VipAction extends BaseAction {
 		String userid = (String) session.get("userid");
 		activitylist = activityService.getParticipatedActivitiesForVip(userid);
 		activitylist_unparticipated = activityService.getUnparticipatedActivitiesForVip(userid);
+		activityrecordlist = activityService.getRecordsByActivities(activitylist,Long.parseLong(userid));
 		return SUCCESS;
 	}
 	
@@ -68,6 +76,7 @@ public class VipAction extends BaseAction {
 	public String viewInfo(){
 		String userid = (String) session.get("userid");
 		 vipinfo = vipService.getVipInfoForClient(userid);
+		 locationlist = infoService.getAllLocation();
 		return SUCCESS;
 	}
 	
@@ -75,7 +84,7 @@ public class VipAction extends BaseAction {
 		String userid = (String) session.get("userid");
 		VipUpdate info = new VipUpdate();
 		info.setBirthday(request.getParameter("birthday"));
-		info.setLocation(request.getParameter("location"));
+		info.setLocation(Integer.parseInt(request.getParameter("location")));
 		info.setName(request.getParameter("name"));
 		info.setSex(request.getParameter("sex"));
 		OperaResult result = vipService.vipinfoUpate(info,userid);
@@ -258,6 +267,22 @@ public class VipAction extends BaseAction {
 	public void setActivitylist_unparticipated(
 			List<Activity> activitylist_unparticipated) {
 		this.activitylist_unparticipated = activitylist_unparticipated;
+	}
+
+	public List<Location> getLocationlist() {
+		return locationlist;
+	}
+
+	public void setLocationlist(List<Location> locationlist) {
+		this.locationlist = locationlist;
+	}
+
+	public List<ActivityRecord> getActivityrecordlist() {
+		return activityrecordlist;
+	}
+
+	public void setActivityrecordlist(List<ActivityRecord> activityrecordlist) {
+		this.activityrecordlist = activityrecordlist;
 	}
 
 

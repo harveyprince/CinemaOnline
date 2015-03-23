@@ -43,7 +43,7 @@ public class ActivityAnswer {
 	public void setAnswerContent(String answerContent) {
 		this.answerContent = answerContent;
 	}
-	@OneToMany(cascade=CascadeType.ALL,mappedBy="activityAnswer")
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="activityAnswer",fetch = FetchType.EAGER)
 	public Set<ActivityRecord> getActivityRecords() {
 		return activityRecords;
 	}

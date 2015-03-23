@@ -7,6 +7,7 @@ import com.cinemaonline.model.Account;
 import com.cinemaonline.model.Bank;
 import com.cinemaonline.model.Hall;
 import com.cinemaonline.model.Identity;
+import com.cinemaonline.model.Location;
 import com.cinemaonline.model.VipLevel;
 import com.cinemaonline.service.InfoService;
 
@@ -22,6 +23,13 @@ public class TestAction extends BaseAction {
 	private InfoService infoService;
 	
 	public String DataInit(){
+//		Location
+		String[] locations = {"玄武区","鼓楼区","建邺区","白下区","秦淮区","下关区","雨花台区","浦口区","栖霞区","江宁区","六合区"};
+		for(String temp:locations){
+			Location lc0 = new Location();
+			lc0.setStrdescribe(temp);
+			infoService.addLocation(lc0);
+		}
 //		user
 		//server
 		Account ac0 = new Account();
@@ -69,22 +77,22 @@ public class TestAction extends BaseAction {
 //		identity
 		Identity iden0 = new Identity();
 		iden0.setIdentityId(0);
-		iden0.setDescribe("youke");
+		iden0.setStrdescribe("youke");
 		infoService.addIdentity(iden0);
 		
 		Identity iden1 = new Identity();
 		iden1.setIdentityId(1);
-		iden1.setDescribe("vip");
+		iden1.setStrdescribe("vip");
 		infoService.addIdentity(iden1);
 		
 		Identity iden2 = new Identity();
 		iden2.setIdentityId(2);
-		iden2.setDescribe("server");
+		iden2.setStrdescribe("server");
 		infoService.addIdentity(iden2);
 		
 		Identity iden3 = new Identity();
 		iden3.setIdentityId(3);
-		iden3.setDescribe("manager");
+		iden3.setStrdescribe("manager");
 		infoService.addIdentity(iden3);
 //		viplevel
 		VipLevel lv0 = new VipLevel();

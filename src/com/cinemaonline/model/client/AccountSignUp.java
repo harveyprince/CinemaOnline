@@ -12,7 +12,7 @@ public class AccountSignUp {
 	private String passwordRepeat;
 	private Date birthday;
 	private int sex;
-	private String location;
+	private int locationId;
 	private String name;
 	private int status = 0;
 	
@@ -33,7 +33,6 @@ public class AccountSignUp {
 			info.setAccount(account);
 			info.setBirthday(birthday);
 			info.setEmail(email);
-			info.setLocation(location);
 			info.setName(name);
 			info.setSex(sex);
 			info.setVipStatus(status);
@@ -75,11 +74,11 @@ public class AccountSignUp {
 	public void setSex(String sex) {
 		this.sex = Integer.parseInt(sex);
 	}
-	public String getLocation() {
-		return location;
+	public int getLocation() {
+		return locationId;
 	}
-	public void setLocation(String location) {
-		this.location = location;
+	public void setLocation(int location) {
+		this.locationId = location;
 	}
 	public String getName() {
 		return name;

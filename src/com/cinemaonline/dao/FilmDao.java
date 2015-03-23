@@ -41,6 +41,15 @@ public interface FilmDao {
 	
 	public Hall getHallById(int id);
 
+//statistic
+	public int getPersonSumByTime(long begin, long end);
+
+	public double getHallAttendenceByTime(int hallNo, long begin, long end);
+
+	public double getFilmAttendenceByTime(long filmId, long begin, long end);
+
+	public List<Film> getFilmByPlanTime(
+			long firstDay, long lastDay);
 
 
 	

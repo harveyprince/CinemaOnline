@@ -19,6 +19,23 @@ $(".participate-button").click(function(){
 	});
 });
 
+$(".participated-button").click(function(){
+	var $modalshow = $("#modalParticipated");
+	var $sibBaseshow = $(this).parent();
+	$modalshow.find(".activityid-input").html($sibBaseshow.siblings(".activityId").html());
+	$modalshow.find(".title-panel").html($sibBaseshow.siblings(".activityName").html());
+	var $answerPanelshow = $modalshow.find(".answers-panel");
+
+	$answerPanelshow.html("");
+	$sibBaseshow.siblings(".activity-answers").children("li").each(function(){
+		if($(this).attr("choosen")=="choosen"){
+			$("<div class='answer active'>").attr('value',$(this).attr('value')).html($(this).html()).appendTo($answerPanelshow);
+		}else{
+			$("<div class='answer'>").attr('value',$(this).attr('value')).html($(this).html()).appendTo($answerPanelshow);
+		}
+	});
+});
+
 $("#modalParticipate").find(".save-button").click(function(){
 	var action = $(this).attr("target");
 	var data = new FormData();

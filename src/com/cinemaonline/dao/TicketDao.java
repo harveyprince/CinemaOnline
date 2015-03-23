@@ -11,4 +11,6 @@ public interface TicketDao {
 
 	public TicketRecord getRecordById(long recordId);
 
+	public int getRecordSumByPayWay(int payway, long begin, long end);
+
 }

@@ -1,5 +1,5 @@
 $("select.sex-input").select2();
-
+$("select.location-input").select2();
 $(".btn-modify").click(function(){
 	$(this).hide();
 	$(".btn-save").show();
@@ -10,6 +10,7 @@ $(".btn-modify").click(function(){
 		$(this).children("input").val($(this).prev().html());
 		// some bugs may shown here
 		$(this).children("select.sex-input").val($(this).prev().attr('value')).trigger("change");
+		$(this).children("select.location-input").val($(this).prev().attr('value')).trigger("change");
 	});
 });
 

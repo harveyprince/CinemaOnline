@@ -30,4 +30,8 @@ public interface ActivityDao {
 	public ActivityRecord insertRecord(ActivityRecord info);
 
 	public List<Activity> getActivitiesByFilmId(long filmId);
+
+	public int getParticipateSumByTime(long firstday, long lastday);
+
+	public ActivityRecord getRecordByActivityId(long activityId,long userid);
 }

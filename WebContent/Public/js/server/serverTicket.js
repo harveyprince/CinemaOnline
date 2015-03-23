@@ -54,6 +54,7 @@ $(".ticket-finish-button").click(function(){
 				if(data.indexOf("success")!=-1){
 					$.scojs_message(data, $.scojs_message.TYPE_OK);
 					$("#modalSale").modal("hide");
+					setTimeout(function(){window.location.reload()},500);
 				}else{
 					$.scojs_message(data, $.scojs_message.TYPE_ERROR);
 				}
@@ -63,33 +64,21 @@ $(".ticket-finish-button").click(function(){
 			}
 		});
 });
-function identityJudge(){
-	var i = $("select.identity-input").val();
+$(".identity-input").on("select2-selected", function (e) { 
+	var i = e.val;
 	if(i==1){
 		$(".vip-box").slideDown();
 	}else{
 		$(".vip-box").slideUp();
 	}
-}
-function paywayJudge(){
-	var i = $("select.payway-input").val();
+});
+$(".payway-input").on("select2-selected", function (e) { 
+	var i = e.val;
 	if(i==1){
 		$(".bank-box").slideDown();
 	}else{
 		$(".bank-box").slideUp();
 	}
-}
-$(".identity-input").click(function(){
-	identityJudge();
-});
-$(".payway-input").click(function(){
-	paywayJudge();
-});
-$(".identity-input").on("change",function(e){
-	identityJudge();
-});
-$(".payway-input").on("change",function(e){
-	paywayJudge();
 });
 $(".ticket-sale-button").click(function(){
 	$row = $(this).parent().parent();

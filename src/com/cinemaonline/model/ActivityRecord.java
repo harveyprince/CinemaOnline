@@ -15,6 +15,7 @@ public class ActivityRecord {
 	private long vipId;//会员编号
 //	private long activityAnswerId;//活动答案流水号
 	private ActivityAnswer activityAnswer;//活动答案
+	private long recordTime;//记录时间
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -38,6 +39,12 @@ public class ActivityRecord {
 	}
 	public void setActivityAnswer(ActivityAnswer activityAnswer) {
 		this.activityAnswer = activityAnswer;
+	}
+	public long getRecordTime() {
+		return recordTime;
+	}
+	public void setRecordTime(long recordTime) {
+		this.recordTime = recordTime;
 	}
 
 }

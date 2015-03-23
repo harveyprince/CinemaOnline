@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -45,9 +46,13 @@
 				</div>
 				<div class="page-row">
 					<div class="row-label">location:</div>
-					<div class="form-group row-content">
-						<input class="form-control location-input" type="text" placeholder="location" name="location" required="required"/>
-					</div>
+					<div class="span3 row-content">
+									<select class="form-control select select-primary select-block mbl location-input" name="location">
+										<s:iterator id="location" value="locationlist" status="st">
+										<option value='<s:property value="#location.locationId"/>'><s:property value="#location.strdescribe"/></option>
+									</s:iterator>
+									</select>
+								</div>
 				</div>
 				<div class="page-row">
 					<div class="form-group row-content">

@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cinemaonline.dao.AccountDao;
+import com.cinemaonline.dao.InfoDao;
 import com.cinemaonline.dao.VipDao;
 import com.cinemaonline.model.Account;
+import com.cinemaonline.model.Location;
 import com.cinemaonline.model.VipInfo;
 import com.cinemaonline.model.client.AccountLogin;
 import com.cinemaonline.model.client.AccountSignUp;
@@ -20,6 +22,8 @@ public class AccountServiceImpl implements AccountService {
 	private AccountDao accountDao;
 	@Autowired
 	private VipDao vipDao;
+	@Autowired
+	private InfoDao infoDao;
 	private AccountServiceImpl(){}
 	
 //	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -57,6 +61,8 @@ public class AccountServiceImpl implements AccountService {
 			ac.setAccountName(produceVipId(ac.getAccountId()));
 			accountDao.update(ac);
 			VipInfo vi = info.constructVipInfo(ac);
+			Location locat = infoDao.getLocationById(info.getLocation());
+			vi.setLocation(locat);
 			vipDao.insert(vi);
 			result.setResult(true);
 			result.setComment(ac.getAccountName());

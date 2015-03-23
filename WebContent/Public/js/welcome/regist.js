@@ -1,4 +1,5 @@
 $("select.sex-input").select2();
+$("select.location-input").select2();
 $(".info-regist-button").click(function(){
 //	$("#info-form").submit();
 	if(isFormValid($("#info-form"))){
@@ -35,4 +36,8 @@ $(".password-regist-button").click(function(){
 		});
 		// $(".result-tab").click();
 	}
+});
+
+$(".result-regist-button").click(function(){
+	window.location.href = "";
 });

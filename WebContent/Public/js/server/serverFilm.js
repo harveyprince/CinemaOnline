@@ -124,7 +124,7 @@ $("#modalAdd").find(".save-button").click(function(){
 			success: function(data) {
 				if(data=="success"){
 					$.scojs_message('success', $.scojs_message.TYPE_OK);
-					$modal.modal("hide");
+					$("#modalAdd").modal("hide");
 					setTimeout(function(){window.location.reload()},500);
 				}
 			},

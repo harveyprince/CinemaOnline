@@ -151,3 +151,11 @@ try{
 		});
 	});
 }catch(e){}
+
+$(".hall-input").on("select2-selected", function (e) { 
+	var i = e.val+"";
+	var seatsum = hall_seat[i];
+	var $input = $(this).parents(".row-line").next().find(".seat-input");
+	$input.val(seatsum);
+	$input.attr("max",seatsum);
+});

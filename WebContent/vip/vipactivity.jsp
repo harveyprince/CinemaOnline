@@ -99,7 +99,7 @@
 								<tr>
 									<th>id</th>
 									<th>title</th>
-									<th>participate</th>
+									<th>view</th>
 									<th><div class="btn-group">
 										<button class="btn btn-inverse dropdown-toggle table-button" type="button" data-toggle="dropdown">
 											status <span class="caret"></span>
@@ -120,14 +120,19 @@
 								<th class="activityId"><s:property value="#activity.activityId"/></th>
 								<th class="activityName"><s:property value="#activity.title"/></th>
 								<th>
-									<button class="btn btn-inverse table-button" disabled="disabled">
+									<button class="btn btn-inverse table-button participated-button" data-toggle="modal" data-target="#modalParticipated">
 										<i class="fa fa-pencil-square-o"></i>
 									</button>
 								</th>
 								<th class="activity-answers" style="display:none;">
 									<s:iterator id="answer" value="#activity.answerlist" status="ast">
-									<li value='<s:property value="#answer.answerId"/>'><s:property value="#answer.answerContent"/></li>
-								</s:iterator>
+										<s:if test="%{#answer.answerId==activityrecordlist[#st.index].activityAnswer.answerId}">
+											<li value='<s:property value="#answer.answerId"/>' choosen="choosen"><s:property value="#answer.answerContent"/>[<s:property value="#answer.activityRecords.size()"/>]</li>
+										</s:if>
+										<s:else>
+										<li value='<s:property value="#answer.answerId"/>'><s:property value="#answer.answerContent"/>[<s:property value="#answer.activityRecords.size()"/>]</li>
+										</s:else>
+									</s:iterator>
 								</th>
 								
 								<th>participated</th>
@@ -167,6 +172,32 @@
 		<div class="modal-footer">
 				<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
 				<button class="btn btn-primary save-button" target="joinActivity">sure</button>
+			</div>
+	</div>
+</div>
+<div id="modalParticipated" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalParticipatedLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h5 id="myModalLabel">Activity</h5>
+			</div>
+			<div class="modal-body">
+				<div class="row-line" style="display:none;">
+					<div class="row-label activityid-input"></div>
+				</div>
+				<div class="row-line">
+					<div class="row-label">title:</div>
+				</div>
+				<div class="title-panel">
+				</div>
+				<div class="row-line">
+					<div class="row-label">answer:</div>
+				</div>
+				<div class="answers-panel">
+			</div>
+		</div>
+		<div class="modal-footer">
+				<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
 			</div>
 	</div>
 </div>

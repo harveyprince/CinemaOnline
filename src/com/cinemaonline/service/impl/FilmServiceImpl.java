@@ -55,6 +55,12 @@ public class FilmServiceImpl implements FilmService {
 		// TODO Auto-generated method stub
 		OperaResult result = new OperaResult();
 		FilmPlanInfo info_local = info;
+		Hall hall = filmDao.getHallById(info.getHallNo());
+		if(info.getSeatSum()>hall.getSeats()){
+			result.setResult(false);
+			result.setComment("this hall do not have such much seats");
+			return result;
+		}
 		//上映时间不得比现在早
 		Date time = new Date();
 		long timenow = time.getTime();
@@ -87,17 +93,44 @@ public class FilmServiceImpl implements FilmService {
 	public OperaResult updatePlan(FilmPlanInfo info) {
 		// TODO Auto-generated method stub
 		OperaResult result = new OperaResult();
-		FilmPlan info_old = filmDao.getFilmPlanById(info.getPlanid());
-//		先获取film/hall/plan
-		info_old.setFilm(filmDao.getFilmById(info.getFilmid()));
-		info_old.setHall(filmDao.getHallById(info.getHallNo()));
-		info_old.setBeginTime(info.getBeginTime());
-		info_old.setEndTime(info.getEndTime());
-		info_old.setPrice(info.getPrice());
-		info_old.setSeatSum(info.getSeatSum());
-		info_old.setStatus(info.getStatus());
-		filmDao.updateFilmPlan(info_old);
-		result.setResult(true);
+		Hall hall = filmDao.getHallById(info.getHallNo());
+		if(info.getSeatSum()>hall.getSeats()){
+			result.setResult(false);
+			result.setComment("this hall do not have such much seats");
+			return result;
+		}
+		//上映时间不得比现在早
+		Date time = new Date();
+		long timenow = time.getTime();
+		if(info.getBeginTime()<timenow){
+			result.setResult(false);
+			result.setComment("cannot insert a plan into the old time");
+			return result;
+		}
+		//begintime不得大于endtime
+		if(info.getBeginTime()>=info.getEndTime()){
+			result.setResult(false);
+			result.setComment("begin time cannot bigger than end time");
+			return result;
+		}
+//		检测时空冲突
+		OperaResult check_result = filmDao.checkFilmPlan(info.getBeginTime(),info.getEndTime(),filmDao.getHallById(info.getHallNo()));
+		if(check_result.getResult()){
+			FilmPlan info_old = filmDao.getFilmPlanById(info.getPlanid());
+	//		先获取film/hall/plan
+			info_old.setFilm(filmDao.getFilmById(info.getFilmid()));
+			info_old.setHall(filmDao.getHallById(info.getHallNo()));
+			info_old.setBeginTime(info.getBeginTime());
+			info_old.setEndTime(info.getEndTime());
+			info_old.setPrice(info.getPrice());
+			info_old.setSeatSum(info.getSeatSum());
+			info_old.setStatus(info.getStatus());
+			filmDao.updateFilmPlan(info_old);
+			result.setResult(true);
+			return result;
+		}else{
+			result = check_result;
+		}
 		return result;
 	}
 

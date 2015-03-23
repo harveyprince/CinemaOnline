@@ -244,7 +244,7 @@
 				<div class="row-line">
 					<div class="row-label">seatSum:</div>
 					<div class="form-group has-success row-content">
-						<input class="form-control seat-input" type="number" placeholder="Sum" name="seatSum"/>
+						<input class="form-control seat-input" type="number" placeholder="Sum" name="seatSum" min="0" value='<s:property value="halllist[0].seats"/>' max='<s:property value="halllist[0].seats"/>'/>
 					</div>
 				</div>
 				<div class="row-line">
@@ -295,6 +295,13 @@ var hallslist = [
 <s:if test="%{!#st.last}">,</s:if>
 </s:iterator>
 ];
+
+var hall_seat = {
+<s:iterator id="hall" value="halllist" status="st">
+ '<s:property value="#hall.hallNo"/>': '<s:property value="#hall.seats"/>' 
+<s:if test="%{!#st.last}">,</s:if>
+</s:iterator>
+}
 </script>
 <script src="./Public/js/common/form.js"></script>
 <script src="./Public/js/server/server.js"></script>

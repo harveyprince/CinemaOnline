@@ -81,6 +81,36 @@ public class TicketDaoImpl implements TicketDao {
 		}
 	}
 
+	@Override
+	public int getRecordSumByPayWay(int payway, long begin, long end) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		
+		String hql = "from com.cinemaonline.model.TicketRecord as a where a.recordTime>? and a.recordTime<? and a.payWay=?";
+		List list = null;
+		try{
+			Query query = session.createQuery(hql);
+			query.setParameter(0, begin);
+			query.setParameter(1, end);
+			query.setParameter(2, payway);
+			list = query.list();
+		}catch(Exception e){
+			
+		}finally{
+			session.close();
+		}
+		if(list==null){
+			return 0;
+		}
+		else{
+		if(list.size()>0){
+			return list.size();
+		}else{
+			return 0;
+		}
+		}
+	}
+
 	
 
 }

@@ -67,10 +67,14 @@
 						</div>
 					</div>
 					<div class="info-line">location:
-						<span><s:property value="vipinfo.location"/></span>
-						<div class="form-group row-content">
-							<input class="form-control location-input" type="text" placeholder="location" required="required" name="location"/>
-						</div>
+						<span  value='<s:property value="vipinfo.locationid"/>'><s:property value="vipinfo.location"/></span>
+						<div class="span3 row-content">
+									<select class="form-control select select-primary select-block mbl location-input" name="location">
+										<s:iterator id="location" value="locationlist" status="st">
+										<option value='<s:property value="#location.locationId"/>'><s:property value="#location.strdescribe"/></option>
+									</s:iterator>
+									</select>
+								</div>
 					</div>
 					<button class="btn btn-primary btn-save">Save Modify</button>
 				</form>

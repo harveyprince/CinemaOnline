@@ -1,5 +1,6 @@
 package com.cinemaonline.dao.impl;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.cinemaonline.dao.BaseDao;
 import com.cinemaonline.dao.VipDao;
+import com.cinemaonline.model.Location;
 import com.cinemaonline.model.VipCard;
 import com.cinemaonline.model.VipInfo;
 import com.cinemaonline.model.VipLevel;
@@ -262,6 +264,235 @@ public class VipDaoImpl implements VipDao {
 			}
 		}else{
 			return null;
+		}
+	}
+
+	@Override
+	public int getVipSumByLocation(Location location) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String hql = "from com.cinemaonline.model.VipInfo as a where a.location=?";
+		List list = null;
+		try{
+			Query query = session.createQuery(hql);
+			query.setParameter(0, location);
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return list.size();
+			}else{
+				return 0;
+			}
+		}else{
+			return 0;
+		}
+	}
+
+	@Override
+	public int getVipSumByStatus(int status) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String hql = "from com.cinemaonline.model.VipInfo as a where a.vipStatus=?";
+		List list = null;
+		try{
+			Query query = session.createQuery(hql);
+			query.setParameter(0, status);
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return list.size();
+			}else{
+				return 0;
+			}
+		}else{
+			return 0;
+		}
+	}
+
+	@Override
+	public double getConsumeSumByTime(long firstday, long lastday) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String sql  = "select sum(v.recordNumber) from VipRecord as v where v.recordTime>? and v.recordTime<? and a.result=1 and v.recordNumber<0";
+		List list = null;
+		try{
+			Query query = session.createSQLQuery(sql);
+			query.setParameter(0, firstday);
+			query.setParameter(1, lastday);
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return Math.abs((double) list.get(0));
+			}else{
+				return 0;
+			}
+		}else{
+			return 0;
+		}
+	}
+
+	public int getPersonNumByBirthdayTime(long begin,long end){
+		Session session = baseDao.getNewSession();
+		String hql = "from com.cinemaonline.model.VipInfo as a where a.birthday>? and a.birthday<?";
+		List list = null;
+		try{
+			Query query = session.createQuery(hql);
+			query.setParameter(0, new java.sql.Date(begin));
+			query.setParameter(0, new java.sql.Date(end));
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return list.size();
+			}else{
+				return 0;
+			}
+		}else{
+			return 0;
+		}
+	}
+	
+	@Override
+	public int getAge_0_10() {
+		// TODO Auto-generated method stub
+		Calendar cal = Calendar.getInstance();
+		long time2 = cal.getTimeInMillis();
+		cal.set(Calendar.MONTH, -11-12*9);
+		long time1 = cal.getTimeInMillis();
+		return getPersonNumByBirthdayTime(time1,time2);
+	}
+
+	@Override
+	public int getAge_10_20() {
+		// TODO Auto-generated method stub
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.MONTH, -11-12*9);
+		long time1 = cal.getTimeInMillis();
+		cal.set(Calendar.MONTH, -11-12*9);
+		long time2 = cal.getTimeInMillis();
+		return getPersonNumByBirthdayTime(time1,time2);
+	}
+
+	@Override
+	public int getAge_20_30() {
+		// TODO Auto-generated method stub
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.MONTH, -11-12*9);
+		cal.set(Calendar.MONTH, -11-12*9);
+		long time1 = cal.getTimeInMillis();
+		cal.set(Calendar.MONTH, -11-12*9);
+		long time2 = cal.getTimeInMillis();
+		return getPersonNumByBirthdayTime(time1,time2);
+	}
+
+	@Override
+	public int getAge_30_40() {
+		// TODO Auto-generated method stub
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.MONTH, -11-12*9);
+		cal.set(Calendar.MONTH, -11-12*9);
+		cal.set(Calendar.MONTH, -11-12*9);
+		long time1 = cal.getTimeInMillis();
+		cal.set(Calendar.MONTH, -11-12*9);
+		long time2 = cal.getTimeInMillis();
+		return getPersonNumByBirthdayTime(time1,time2);
+	}
+
+	@Override
+	public int getAge_40_50() {
+		// TODO Auto-generated method stub
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.MONTH, -11-12*9);
+		cal.set(Calendar.MONTH, -11-12*9);
+		cal.set(Calendar.MONTH, -11-12*9);
+		cal.set(Calendar.MONTH, -11-12*9);
+		long time1 = cal.getTimeInMillis();
+		cal.set(Calendar.MONTH, -11-12*9);
+		long time2 = cal.getTimeInMillis();
+		return getPersonNumByBirthdayTime(time1,time2);
+	}
+
+	@Override
+	public int getAge_50_60() {
+		// TODO Auto-generated method stub
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.MONTH, -11-12*9);
+		cal.set(Calendar.MONTH, -11-12*9);
+		cal.set(Calendar.MONTH, -11-12*9);
+		cal.set(Calendar.MONTH, -11-12*9);
+		cal.set(Calendar.MONTH, -11-12*9);
+		long time1 = cal.getTimeInMillis();
+		cal.set(Calendar.MONTH, -11-12*9);
+		long time2 = cal.getTimeInMillis();
+		return getPersonNumByBirthdayTime(time1,time2);
+	}
+
+	@Override
+	public int getBoy_num() {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String hql = "from com.cinemaonline.model.VipInfo as a where a.sex=1";
+		List list = null;
+		try{
+			Query query = session.createQuery(hql);
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return list.size();
+			}else{
+				return 0;
+			}
+		}else{
+			return 0;
+		}
+	}
+
+	@Override
+	public int getGirl_num() {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String hql = "from com.cinemaonline.model.VipInfo as a where a.sex=0";
+		List list = null;
+		try{
+			Query query = session.createQuery(hql);
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return list.size();
+			}else{
+				return 0;
+			}
+		}else{
+			return 0;
 		}
 	}
 

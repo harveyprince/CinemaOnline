@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cinemaonline.dao.AccountDao;
+import com.cinemaonline.dao.InfoDao;
 import com.cinemaonline.dao.VipDao;
 import com.cinemaonline.model.Account;
 import com.cinemaonline.model.VipCard;
@@ -31,6 +32,8 @@ public class VipServiceImpl implements VipService {
 	private RecordService recordService;
 	@Autowired
 	private AccountDao accountDao;
+	@Autowired
+	private InfoDao infoDao;
 	
 	private VipServiceImpl(){}
 
@@ -40,6 +43,7 @@ public class VipServiceImpl implements VipService {
 		OperaResult result = new OperaResult();
 		VipInfo info = vipDao.getVipInfoById(userid);
 		info = info_update.setBase(info);
+		info.setLocation(infoDao.getLocationById(info_update.getLocation()));
 		vipDao.update(info);
 		result.setResult(true);
 		return result;
@@ -145,7 +149,7 @@ public class VipServiceImpl implements VipService {
 		if(moneyleft+numopera>=0){
 			card.setBalance(moneyleft+numopera);
 			if(info_const.isCost()){
-				card.setScore(card.getScore()+(int) numopera/10);
+				card.setScore(card.getScore()+(int) Math.abs(numopera)/10);
 			}
 			vipDao.updateCard(card);
 			result.setResult(true);

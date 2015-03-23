@@ -1,13 +1,17 @@
 package com.cinemaonline.action;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.cinemaonline.model.Location;
 import com.cinemaonline.model.client.AccountLogin;
 import com.cinemaonline.model.client.AccountSignUp;
 import com.cinemaonline.model.client.OperaResult;
 import com.cinemaonline.service.AccountService;
+import com.cinemaonline.service.InfoService;
 @Repository
 public class AccountAction extends BaseAction {
 
@@ -17,10 +21,18 @@ public class AccountAction extends BaseAction {
 	private static final long serialVersionUID = 1L;
 	@Autowired
 	private AccountService accountService;
+	@Autowired
+	private InfoService infoService;
 	
 	private String ajaxinfo;
+	private List<Location> locationlist;
 //	/////////////////////////////////////////////////////////////////////////////////////////////////////
 	public String welcome(){
+		return SUCCESS;
+	}
+	
+	public String welcomeRegist(){
+		locationlist = infoService.getAllLocation();
 		return SUCCESS;
 	}
 	
@@ -62,7 +74,7 @@ public class AccountAction extends BaseAction {
 		AccountSignUp info = new AccountSignUp();
 		info.setBirthday(request.getParameter("birthday"));
 		info.setEmail(request.getParameter("email"));
-		info.setLocation(request.getParameter("location"));
+		info.setLocation(Integer.parseInt(request.getParameter("location")));
 		info.setName(request.getParameter("name"));
 		info.setPassword(request.getParameter("password"));
 		info.setPasswordRepeat(request.getParameter("password-repeat"));
@@ -84,5 +96,13 @@ public class AccountAction extends BaseAction {
 
 	public void setAjaxinfo(String ajaxinfo) {
 		this.ajaxinfo = ajaxinfo;
+	}
+
+	public List<Location> getLocationlist() {
+		return locationlist;
+	}
+
+	public void setLocationlist(List<Location> locationlist) {
+		this.locationlist = locationlist;
 	}
 }

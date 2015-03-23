@@ -1,6 +1,7 @@
 package com.cinemaonline.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -134,6 +135,8 @@ public class ActivityServiceImpl implements ActivityService {
 		ActivityRecord record = new ActivityRecord();
 		record.setActivityAnswer(the_answer);
 		record.setVipId(Long.parseLong(userid));
+		Date time = new Date();
+		record.setRecordTime(time.getTime());
 		activityDao.insertRecord(record);
 		result.setResult(true);
 		return result;
@@ -182,6 +185,16 @@ public class ActivityServiceImpl implements ActivityService {
 			activityDao.updateActivity(temp);
 		}
 		result.setResult(true);
+		return result;
+	}
+
+	@Override
+	public List<ActivityRecord> getRecordsByActivities(List<Activity> info,long userid) {
+		// TODO Auto-generated method stub
+		List<ActivityRecord> result = new ArrayList<ActivityRecord>();
+		for(Activity temp:info){
+			result.add(activityDao.getRecordByActivityId(temp.getActivityId(),userid));
+		}
 		return result;
 	}
 

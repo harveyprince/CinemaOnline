@@ -28,6 +28,19 @@ public class ManagerAction extends BaseAction {
 	private List<Hall> halllist;
 	
 	/*
+	 * statics
+	 * */
+	public String showStatics(){
+		return SUCCESS;
+	}
+	
+	public String queryStatics(){
+		String year = request.getParameter("year");
+		String month = request.getParameter("month");
+		
+		return STATICSINFO;
+	}
+	/*
 	 * plan check
 	 * */
 	public String checkPlan(){

@@ -23,6 +23,7 @@
 				<div class="">
 					<ul class="nav nav-list">
 						<li class="active"><a href="#"><i class="fa fa-pencil-square-o"></i>check Plan</a></li>
+						<li><a href="viewStatics"><i class="fa fa-pencil-square-o"></i>statics</a></li>
 					</ul>
 				</div>
 			</div>
