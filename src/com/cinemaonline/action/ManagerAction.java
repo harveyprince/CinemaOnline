@@ -24,6 +24,7 @@ public class ManagerAction extends BaseAction {
 
 	private String ajaxinfo;
 	private List<FilmPlanInfo> filmplanlist;
+	private List<FilmPlanInfo> checkedfilmplanlist;
 	private List<FilmInfo> filmlist;
 	private List<Hall> halllist;
 	
@@ -35,9 +36,10 @@ public class ManagerAction extends BaseAction {
 	}
 	
 	public String queryStatics(){
-		String year = request.getParameter("year");
-		String month = request.getParameter("month");
-		
+		String stryear = request.getParameter("year");
+		String strmonth = request.getParameter("month");
+		int year = Integer.parseInt(stryear);
+		int month = Integer.parseInt(strmonth);
 		return STATICSINFO;
 	}
 	/*
@@ -45,6 +47,7 @@ public class ManagerAction extends BaseAction {
 	 * */
 	public String checkPlan(){
 		filmplanlist = filmService.getPlansForCheck();
+		checkedfilmplanlist = filmService.getAllCheckedUnoldPlans();
 		filmlist = filmService.getAllReleasingFilms();
 		halllist = filmService.getAllHalls();
 		return SUCCESS;
@@ -110,6 +113,14 @@ public class ManagerAction extends BaseAction {
 	
 	public void setHalllist(List<Hall> halllist) {
 		this.halllist = halllist;
+	}
+
+	public List<FilmPlanInfo> getCheckedfilmplanlist() {
+		return checkedfilmplanlist;
+	}
+
+	public void setCheckedfilmplanlist(List<FilmPlanInfo> checkedfilmplanlist) {
+		this.checkedfilmplanlist = checkedfilmplanlist;
 	}
 }
 

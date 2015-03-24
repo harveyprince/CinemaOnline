@@ -301,6 +301,30 @@ public class ActivityDaoImpl implements ActivityDao {
 			return null;
 		}
 	}
+	@Override
+	public List<Activity> getAllendedActivities() {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String hql = "from com.cinemaonline.model.Activity as a where a.status=2";
+		List list = null;
+		try{
+			Query query = session.createQuery(hql);
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return list;
+			}else{
+				return null;
+			}
+		}else{
+			return null;
+		}
+	}
 
 
 

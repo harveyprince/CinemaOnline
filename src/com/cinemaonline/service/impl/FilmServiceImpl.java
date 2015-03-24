@@ -238,5 +238,11 @@ public class FilmServiceImpl implements FilmService {
 		return result;
 	}
 
+	@Override
+	public List<FilmPlanInfo> getAllCheckedUnoldPlans() {
+		// TODO Auto-generated method stub
+		return FilmPlanInfo.parseFPI(filmDao.getAllCheckedUnoldPlans());
+	}
+
 
 }

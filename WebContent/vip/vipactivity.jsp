@@ -116,7 +116,12 @@
 						</thead>
 						<tbody>
 							<s:iterator id="activity" value="activitylist" status="st">
-							<tr class="active">
+							<s:if test="%{#activity.status=1}">
+									<tr class="success">
+								</s:if>
+								<s:if test="%{#activity.status=2}">
+									<tr class="active">
+								</s:if>
 								<th class="activityId"><s:property value="#activity.activityId"/></th>
 								<th class="activityName"><s:property value="#activity.title"/></th>
 								<th>
@@ -134,8 +139,12 @@
 										</s:else>
 									</s:iterator>
 								</th>
-								
-								<th>participated</th>
+								<s:if test="%{#activity.status=1}">
+									<th>participated</th>
+								</s:if>
+								<s:if test="%{#activity.status=2}">
+									<th>ended</th>
+								</s:if>
 							</tr>
 						</s:iterator>
 							

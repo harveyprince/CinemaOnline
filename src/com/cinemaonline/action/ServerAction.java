@@ -42,6 +42,7 @@ public class ServerAction extends BaseAction {
 	private List<FilmInfo> filmlist;
 	private List<Hall> halllist;
 	private List<Activity> activitylist;
+	private List<Activity> ended_activitylist;
 	private List<VipRecordInfo> viprecordlist;
 	private VipClientInfo vipclientinfo;
 	private VipCardInfo vipcardinfo;
@@ -64,11 +65,15 @@ public class ServerAction extends BaseAction {
 		}else{
 			viprecordlist = vipService.getRecords(searchkey);
 			vipclientinfo = vipService.getVipInfoForClient(searchkey);
+			if(vipclientinfo==null){
+				return SUCCESS;
+			}
 			if(vipclientinfo.getStatus()!=0){
 				vipcardinfo = vipService.getVipCardInfoForClient(searchkey);
 			}else{
 				vipcardinfo = null;
 			}
+		
 		}
 		return SUCCESS;
 	}
@@ -126,6 +131,7 @@ public class ServerAction extends BaseAction {
 	public String viewActivity(){
 		filmplanlist = filmService.getAllPassedPlans();
 		activitylist = activityService.getAllUnpassedActivities();
+		ended_activitylist = activityService.getAllendedActivities();
 		return SUCCESS;
 	}
 	
@@ -353,6 +359,14 @@ public class ServerAction extends BaseAction {
 
 	public void setVipcardinfo(VipCardInfo vipcardinfo) {
 		this.vipcardinfo = vipcardinfo;
+	}
+
+	public List<Activity> getEnded_activitylist() {
+		return ended_activitylist;
+	}
+
+	public void setEnded_activitylist(List<Activity> ended_activitylist) {
+		this.ended_activitylist = ended_activitylist;
 	}
 
 }

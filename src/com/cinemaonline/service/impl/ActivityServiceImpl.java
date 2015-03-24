@@ -41,6 +41,12 @@ public class ActivityServiceImpl implements ActivityService {
 	}
 
 	@Override
+	public List<Activity> getAllendedActivities() {
+		// TODO Auto-generated method stub
+		return activityDao.getAllendedActivities();
+	}
+	
+	@Override
 	public OperaResult insertActivity(ActivityInfo info) {
 		// TODO Auto-generated method stub
 		OperaResult result = new OperaResult();
@@ -197,5 +203,7 @@ public class ActivityServiceImpl implements ActivityService {
 		}
 		return result;
 	}
+
+
 
 }

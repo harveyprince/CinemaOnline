@@ -39,4 +39,6 @@ public interface FilmService {
 
 	public OperaResult unpassPlan(String planid);
 
+	public List<FilmPlanInfo> getAllCheckedUnoldPlans();
+
 }

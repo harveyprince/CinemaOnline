@@ -18,6 +18,9 @@ public class VipClientInfo {
 	private String strstatus;
 	
 	public void setByTable(VipInfo info){
+		if(info==null){
+			return;
+		}
 		setVipid(info.getVipId());
 		setBirthday(info.getBirthday());
 		setLocation(info.getLocation().getStrdescribe());

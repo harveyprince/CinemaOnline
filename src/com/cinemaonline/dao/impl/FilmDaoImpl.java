@@ -14,6 +14,7 @@ import com.cinemaonline.dao.FilmDao;
 import com.cinemaonline.model.Film;
 import com.cinemaonline.model.FilmPlan;
 import com.cinemaonline.model.Hall;
+import com.cinemaonline.model.client.FilmPlanInfo;
 import com.cinemaonline.model.client.OperaResult;
 
 @Repository
@@ -545,6 +546,32 @@ public class FilmDaoImpl implements FilmDao {
 			Query query = session.createSQLQuery(sql).addEntity(Film.class);
 			query.setParameter(0, begin);
 			query.setParameter(1, end);
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return list;
+			}else{
+				return null;
+			}
+		}else{
+			return null;
+		}
+	}
+	@Override
+	public List<FilmPlan> getAllCheckedUnoldPlans() {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		Date day = new Date();
+		String hql = "from com.cinemaonline.model.FilmPlan where status>1 and beginTime>?";
+		List list = null;
+		try{
+			Query query = session.createQuery(hql);
+			query.setParameter(0, day.getTime());
 			list = query.list();
 		}catch(Exception e){
 			e.printStackTrace();

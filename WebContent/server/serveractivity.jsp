@@ -12,6 +12,7 @@
 	<link rel="stylesheet" type="text/css" href="./Public/css/common/user-sidebar.css">
 	<link rel="stylesheet" type="text/css" href="./Public/css/server/ServerPage.css">
 	<link rel="stylesheet" type="text/css" href="./Public/css/server/ServerAdd.css">
+	<link rel="stylesheet" type="text/css" href="./Public/css/vip/vipactivity.css">
 	<link rel="stylesheet" type="text/css" href="./Public/sco/css/scojs.css">
 	<link rel="stylesheet" type="text/css" href="./Public/sco/css/sco.message.css">
 </head>
@@ -55,6 +56,7 @@
 									<th>title</th>
 									<th>edit</th>
 									<th>submit</th>
+									<th>view</th>
 									<th><div class="btn-group">
 										<button class="btn btn-inverse dropdown-toggle table-button" type="button" data-toggle="dropdown">
 											status <span class="caret"></span>
@@ -103,10 +105,22 @@
 									</button>
 								</th>
 							</s:if>
+							<th>
+									<button class="btn btn-inverse table-button participated-button" data-toggle="modal" data-target="#modalParticipated">
+										<i class="fa fa-pencil-square-o"></i>
+									</button>
+								</th>
 								<th class="activity-answers" style="display:none;">
+									<s:if test="%{#activity.status==1}">
+										<s:iterator id="answer" value="#activity.answerlist" status="ast">
+											<li value='<s:property value="#answer.answerId"/>'><s:property value="#answer.answerContent"/>[<s:property value="#answer.activityRecords.size()"/>]</li>
+										</s:iterator>
+									</s:if>
+									<s:else>
 									<s:iterator id="answer" value="#activity.answerlist" status="sti">
-									<li value='<s:property value="#answer.answerId"/>'><s:property value="#answer.answerContent"/></li>
-								</s:iterator>
+										<li value='<s:property value="#answer.answerId"/>'><s:property value="#answer.answerContent"/></li>
+									</s:iterator>
+									</s:else>
 								</th>
 								<th class="activity-plans" style="display:none;">
 									<s:iterator id="plan" value="#activity.plans" status="stp">
@@ -131,23 +145,30 @@
 				<!-- /////////////////////////////////////////////////////// -->
 				<div class="tab-page">
 					<table class="table">
-						<thead>
-							<tr>
-								<th>id</th>
-								<th>filmname</th>
-								<th>No</th>
-								<th>time</th>
-								<th>price</th>
+							<thead>
+								<tr>
+									<th>id</th>
+									<th>title</th>
+									<th>view</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<th>#</th>
-								<th>#</th>
-								<th>#</th>
-								<th>#</th>
-								<th>#</th>
+							<s:iterator id="activity" value="ended_activitylist" status="st">
+							<tr class="active">
+								<th class="activityId"><s:property value="#activity.activityId"/></th>
+								<th class="activityName"><s:property value="#activity.title"/></th>
+								<th>
+									<button class="btn btn-inverse table-button participated-button" data-toggle="modal" data-target="#modalParticipated">
+										<i class="fa fa-pencil-square-o"></i>
+									</button>
+								</th>
+								<th class="activity-answers" style="display:none;">
+									<s:iterator id="answer" value="#activity.answerlist" status="ast">
+										<li value='<s:property value="#answer.answerId"/>'><s:property value="#answer.answerContent"/>[<s:property value="#answer.activityRecords.size()"/>]</li>
+									</s:iterator>
+								</th>
 							</tr>
+						</s:iterator>
 						</tbody>
 					</table>
 				</div>
@@ -156,6 +177,32 @@
 
 	</div>
 	<!-- changable place -->
+	<div id="modalParticipated" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalParticipatedLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h5 id="myModalLabel">Activity</h5>
+			</div>
+			<div class="modal-body">
+				<div class="row-line" style="display:none;">
+					<div class="row-label activityid-input"></div>
+				</div>
+				<div class="row-line">
+					<div class="row-label">title:</div>
+				</div>
+				<div class="title-panel">
+				</div>
+				<div class="row-line">
+					<div class="row-label">answer:</div>
+				</div>
+				<div class="answers-panel">
+			</div>
+		</div>
+		<div class="modal-footer">
+				<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+			</div>
+	</div>
+</div>
 	<!-- Modal -->
 	<div id="modalEdit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalEditLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -239,6 +286,7 @@
 				<button class="btn btn-primary save-button">Save changes</button>
 			</div>
 	</div>
+</div>
 </body>
 <script src="./Public/jquery/jquery.min.js"></script>
 <script src="./Public/dist/js/bootstrap.min.js"></script>

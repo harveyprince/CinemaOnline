@@ -54,6 +54,7 @@ public class VipServiceImpl implements VipService {
 		// TODO Auto-generated method stub
 		VipClientInfo cinfo = new VipClientInfo();
 		VipInfo info = vipDao.getVipInfoById(userid);
+		if(info==null){return null;}
 		cinfo.setByTable(info);
 		return cinfo;
 	}

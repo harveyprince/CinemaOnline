@@ -18,6 +18,8 @@ public interface ActivityDao {
 	public void insertAnswer(ActivityAnswer info);
 	
 	public List<Activity> getAllUnpassedActivities();
+	
+	public List<Activity> getAllendedActivities();
 
 	public Activity getActivityById(long id);
 

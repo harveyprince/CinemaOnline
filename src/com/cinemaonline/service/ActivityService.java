@@ -11,6 +11,8 @@ import com.cinemaonline.model.client.OperaResult;
 public interface ActivityService {
 
 	public List<Activity> getAllUnpassedActivities();
+	
+	public List<Activity> getAllendedActivities();
 
 	public OperaResult insertActivity(ActivityInfo info);
 
