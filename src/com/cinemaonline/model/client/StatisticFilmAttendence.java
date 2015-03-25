@@ -5,7 +5,7 @@ import com.cinemaonline.model.Film;
 public class StatisticFilmAttendence {
 
 	private Film film;
-	private double attendence;
+	private double attendence = 0;
 	public Film getFilm() {
 		return film;
 	}

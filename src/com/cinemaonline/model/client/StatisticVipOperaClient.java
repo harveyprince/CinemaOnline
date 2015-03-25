@@ -16,6 +16,9 @@ public class StatisticVipOperaClient {
 	private int year;
 	private int month;
 	public static StatisticVipOperaClient parseSVO(List<StatisticCardStatus> cardlist,StatisticVipOpera vo){
+		if(cardlist==null||vo==null){
+			return null;
+		}
 		StatisticVipOperaClient info_return = new StatisticVipOperaClient();
 		for(StatisticCardStatus temp:cardlist){
 			switch(temp.getStatus()){

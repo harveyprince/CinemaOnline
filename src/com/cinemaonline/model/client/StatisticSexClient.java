@@ -11,6 +11,9 @@ public class StatisticSexClient {
 	private int year;
 	private int month;
 	public static StatisticSexClient parseSSC(List<StatisticSex> info){
+		if(info==null){
+			return null;
+		}
 		StatisticSexClient info_return = new StatisticSexClient();
 		for(StatisticSex temp:info){
 			switch(temp.getSex()){

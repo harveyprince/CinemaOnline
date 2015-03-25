@@ -1,5 +1,6 @@
 package com.cinemaonline.dao.impl;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -398,78 +399,60 @@ public class FilmDaoImpl implements FilmDao {
 		// TODO Auto-generated method stub
 		Session session = baseDao.getNewSession();
 		String sql = "select sum(v.seats) from (select h.seats-a.seatSum as seats from FilmPlan a inner join Hall h on a.hallNo = h.hallNo where a.beginTime>? and a.endTime<?) as v";
-		List list = null;
 		try{
 			Query query = session.createSQLQuery(sql);
 			query.setParameter(0, begin);
 			query.setParameter(1, end);
-			list = query.list();
+			if(query.list()==null){
+				return 0;
+			}
+			return ((Number)query.uniqueResult()).intValue();
 		}catch(Exception e){
-			e.printStackTrace();
+//			e.printStackTrace();
 		}finally{
 			session.close();
 		}
-		if(list!=null){
-			if(list.size()>0){
-				return (int) list.get(0);
-			}else{
-				return 0;
-			}
-		}else{
-			return 0;
-		}
+		return 0;
 	}
 	public int getHallSeatsAddupByTime(int hallNo, long begin, long end) {
 		// TODO Auto-generated method stub
 		Session session = baseDao.getNewSession();
 		String sql = "select sum(v.seats) from (select h.seats as seats from FilmPlan a inner join Hall h on a.hallNo = h.hallNo where a.beginTime>? and a.endTime<? and h.hallNo=?) as v";
-		List list = null;
 		try{
 			Query query = session.createSQLQuery(sql);
 			query.setParameter(0, begin);
 			query.setParameter(1, end);
 			query.setParameter(2, hallNo);
-			list = query.list();
+			if(query.list()==null){
+				return 0;
+			}
+			return ((Number)query.uniqueResult()).intValue();
 		}catch(Exception e){
-			e.printStackTrace();
+//			e.printStackTrace();
 		}finally{
 			session.close();
 		}
-		if(list!=null){
-			if(list.size()>0){
-				return (int) list.get(0);
-			}else{
-				return 0;
-			}
-		}else{
-			return 0;
-		}
+		return 0;
 	}
 	public int getHallSeatsAttendencedByTime(int hallNo, long begin, long end) {
 		// TODO Auto-generated method stub
 		Session session = baseDao.getNewSession();
 		String sql = "select sum(v.seats) from (select h.seats-a.seatSum as seats from FilmPlan a inner join Hall h on a.hallNo = h.hallNo where a.beginTime>? and a.endTime<? and h.hallNo=?) as v";
-		List list = null;
 		try{
 			Query query = session.createSQLQuery(sql);
 			query.setParameter(0, begin);
 			query.setParameter(1, end);
 			query.setParameter(2, hallNo);
-			list = query.list();
+			if(query.list()==null){
+				return 0;
+			}
+			return ((Number)query.uniqueResult()).intValue();
 		}catch(Exception e){
-			e.printStackTrace();
+//			e.printStackTrace();
 		}finally{
 			session.close();
 		}
-		if(list!=null){
-			if(list.size()>0){
-				return (int) list.get(0);
-			}else{
-				return 0;
-			}
-		}else{
-			return 0;
-		}
+		return 0;
 	}
 	
 	@Override
@@ -482,53 +465,41 @@ public class FilmDaoImpl implements FilmDao {
 		// TODO Auto-generated method stub
 		Session session = baseDao.getNewSession();
 		String sql = "select sum(v.seats) from (select h.seats as seats from FilmPlan a inner join Hall h on a.hallNo = h.hallNo where a.beginTime>? and a.endTime<? and a.filmId=?) as v";
-		List list = null;
 		try{
 			Query query = session.createSQLQuery(sql);
 			query.setParameter(0, begin);
 			query.setParameter(1, end);
 			query.setParameter(2, filmId);
-			list = query.list();
+			if(query.list()==null){
+				return 0;
+			}
+			return ((Number)query.uniqueResult()).intValue();
 		}catch(Exception e){
-			e.printStackTrace();
+//			e.printStackTrace();
 		}finally{
 			session.close();
 		}
-		if(list!=null){
-			if(list.size()>0){
-				return (int) list.get(0);
-			}else{
-				return 0;
-			}
-		}else{
-			return 0;
-		}
+		return 0;
 	}
 	public int getFilmSeatsAttendencedByTime(long filmId, long begin, long end) {
 		// TODO Auto-generated method stub
 		Session session = baseDao.getNewSession();
 		String sql = "select sum(v.seats) from (select h.seats-a.seatSum as seats from FilmPlan a inner join Hall h on a.hallNo = h.hallNo where a.beginTime>? and a.endTime<? and a.filmId=?) as v";
-		List list = null;
 		try{
 			Query query = session.createSQLQuery(sql);
 			query.setParameter(0, begin);
 			query.setParameter(1, end);
 			query.setParameter(2, filmId);
-			list = query.list();
+			if(query.list()==null){
+				return 0;
+			}
+			return ((Number)query.uniqueResult()).intValue();
 		}catch(Exception e){
-			e.printStackTrace();
+//			e.printStackTrace();
 		}finally{
 			session.close();
 		}
-		if(list!=null){
-			if(list.size()>0){
-				return (int) list.get(0);
-			}else{
-				return 0;
-			}
-		}else{
-			return 0;
-		}
+		return 0;
 	}
 	
 	@Override

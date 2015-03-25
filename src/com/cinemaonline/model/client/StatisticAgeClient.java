@@ -16,6 +16,9 @@ public class StatisticAgeClient {
 	private int year;
 	private int month;
 	public static StatisticAgeClient parseSAC(List<StatisticAge> info){
+		if(info==null){
+			return null;
+		}
 		StatisticAgeClient info_return = new StatisticAgeClient();
 		for(StatisticAge temp:info){
 			switch(temp.getAge_block()){

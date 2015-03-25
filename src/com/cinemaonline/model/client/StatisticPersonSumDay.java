@@ -1,16 +1,15 @@
 package com.cinemaonline.model.client;
 
-import java.util.Calendar;
 
 public class StatisticPersonSumDay {
 
-	private Calendar cal;
+	private long cal;
 	private int personsum;
-	public Calendar getCal() {
+	public long getCal() {
 		return cal;
 	}
-	public void setCal(Calendar cal) {
-		this.cal.setTime(cal.getTime());;
+	public void setCal(long cal) {
+		this.cal = cal;
 	}
 	public int getPersonsum() {
 		return personsum;

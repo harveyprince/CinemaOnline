@@ -9,7 +9,7 @@ import com.cinemaonline.model.client.StatisticCinemaClient;
 import com.cinemaonline.model.client.StatisticSexClient;
 import com.cinemaonline.model.client.StatisticVipOperaClient;
 
-public interface StaticsService {
+public interface StatisticService {
 
 	public StatisticAgeClient getAgeStatic(int year,int month);
 	

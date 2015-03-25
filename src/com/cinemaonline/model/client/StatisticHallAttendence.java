@@ -5,7 +5,7 @@ import com.cinemaonline.model.Hall;
 public class StatisticHallAttendence {
 
 	private Hall hall;
-	private double attendence;
+	private double attendence = 0;
 	public Hall getHall() {
 		return hall;
 	}

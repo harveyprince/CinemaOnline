@@ -17,8 +17,11 @@ public class BaseAction extends ActionSupport implements SessionAware,
   
     private static final long serialVersionUID = 1L;  
     protected static final String AJAXINFO = "ajaxinfo";
-    protected static final String STATICSINFO = "staticsinfo";
- 
+    protected static final String STATISTICAGE = "statisticage";
+    protected static final String STATISTICSEX = "statisticsex";
+    protected static final String STATISTICLOCATION = "statisticlocation";
+    protected static final String STATISTICCARD = "statisticcard";
+    protected static final String STATISTICCINEMA = "statisticcinema"; 
     public HttpServletRequest   request;  
     public HttpServletResponse  response;  
     @SuppressWarnings("unchecked")  

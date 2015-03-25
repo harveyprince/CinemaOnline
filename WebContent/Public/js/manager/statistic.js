@@ -1,6 +1,8 @@
-$("select").select2();
-
-$(function () {
+function ageChartsEmp(){
+    $('#age-container').html('');
+    $('#age-container').removeAttr('data-highcharts-chart');
+}
+function ageCharts(data){
     $('#age-container').highcharts({
         chart: {
             plotBackgroundColor: null,
@@ -29,20 +31,17 @@ $(function () {
         series: [{
             type: 'pie',
             name: 'Age',
-            data: [
-                ['0-10',   45],
-                ['10-20',       26],
-                ['20-30',    8],
-                ['30-40',     6],
-                ['40-50',   9],
-                ['50-60',   10]
-            ]
+            data: data
         }]
     });
-});
+}
+    
 
-
-$(function () {
+function sexChartsEmp(){
+    $('#sex-container').html('');
+    $('#sex-container').removeAttr('data-highcharts-chart');
+}
+function sexCharts(data){
     $('#sex-container').highcharts({
         chart: {
             plotBackgroundColor: null,
@@ -79,15 +78,16 @@ $(function () {
             type: 'pie',
             name: 'Browser share',
             innerSize: '50%',
-            data: [
-                ['Boy',   45],
-                ['Girl',       26]
-            ]
+            data: data
         }]
     });
-});
+}
 
-$(function () {
+function locationChartsEmp(){
+    $('#location-container').html('');
+    $('#location-container').removeAttr('data-highcharts-chart');
+}
+function locationCharts(data){
     $('#location-container').highcharts({
         chart: {
             plotBackgroundColor: null,
@@ -116,18 +116,15 @@ $(function () {
         series: [{
             type: 'pie',
             name: 'Location',
-            data: [
-                ['Nanjing',   45],
-                ['Beijing',       26],
-                ['Jiangsu',    8],
-                ['Xianlin',     6],
-                ['Gulou',   9],
-            ]
+            data: data
         }]
     });
-});
-
-$(function () {
+}
+function cardChartsEmp(){
+    $('#card-container').html('');
+    $('#card-container').removeAttr('data-highcharts-chart');
+}
+function cardCharts(data){
     $('#card-container').highcharts({
         chart: {
             plotBackgroundColor: null,
@@ -156,17 +153,15 @@ $(function () {
         series: [{
             type: 'pie',
             name: 'Card Stauts',
-            data: [
-                ['normal',   45],
-                ['stop',       26],
-                ['pause',    8],
-                ['cancelw',     6],
-            ]
+            data: data
         }]
     });
-});
-
-$(function () {
+}
+function personChartsEmp(){
+    $('#person-day-container').html('');
+    $('#person-day-container').removeAttr('data-highcharts-chart');
+}
+function personCharts(data){
     $('#person-day-container').highcharts({
         title: {
             text: "Persons' Sum By Day"
@@ -197,14 +192,15 @@ $(function () {
         },
         series: [{
             name: 'sum-line',
-            data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3,
-            7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3,
-           7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2,25.6]
+            data: data
         }]
     });
-});
-
-$(function () {
+}
+function filmAttendenceChartsEmp(){
+    $('#film-attendence-container').html('');
+    $('#film-attendence-container').removeAttr('data-highcharts-chart');
+}
+function filmAttendenceCharts(datax,datay){
     $('#film-attendence-container').highcharts({
         chart: {
             type: 'column'
@@ -213,20 +209,7 @@ $(function () {
             text: 'Film Attendence'
         },
         xAxis: {
-            categories: [
-                'Jan',
-                'Feb',
-                'Mar',
-                'Apr',
-                'May',
-                'Jun',
-                'Jul',
-                'Aug',
-                'Sep',
-                'Oct',
-                'Nov',
-                'Dec'
-            ]
+            categories: datax
         },
         yAxis: {
             min: 0,
@@ -245,13 +228,16 @@ $(function () {
         },
         series: [{
             name: 'Attendence',
-            data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+            data: datay
 
         }]
     });
-});
-
-$(function () {
+}
+function hallAttendenceChartsEmp(){
+    $('#hall-attendence-container').html('');
+    $('#hall-attendence-container').removeAttr('data-highcharts-chart');
+}
+function hallAttendenceCharts(datax,datay){
     $('#hall-attendence-container').highcharts({
         chart: {
             type: 'column'
@@ -260,20 +246,7 @@ $(function () {
             text: 'Hall Attendence'
         },
         xAxis: {
-            categories: [
-                'Jan',
-                'Feb',
-                'Mar',
-                'Apr',
-                'May',
-                'Jun',
-                'Jul',
-                'Aug',
-                'Sep',
-                'Oct',
-                'Nov',
-                'Dec'
-            ]
+            categories: datax
         },
         yAxis: {
             min: 0,
@@ -292,13 +265,16 @@ $(function () {
         },
         series: [{
             name: 'Attendence',
-            data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+            data: datay
 
         }]
     });
-});
-
-$(function () {
+}
+function paywayChartsEmp(){
+    $('#payway-container').html('');
+    $('#payway-container').removeAttr('data-highcharts-chart');
+}
+function paywayCharts(data){
     $('#payway-container').highcharts({
         chart: {
             plotBackgroundColor: null,
@@ -327,11 +303,7 @@ $(function () {
         series: [{
             type: 'pie',
             name: 'Payway',
-            data: [
-                ['cash',   45],
-                ['vip card',       26],
-                ['bank card',    8],
-            ]
+            data: data
         }]
     });
-});
+}

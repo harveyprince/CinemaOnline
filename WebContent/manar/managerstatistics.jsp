@@ -40,17 +40,18 @@ pageEncoding="UTF-8"%>
 				<div class="row-line">
 					<div class="row-label">year:</div>
 					<div class="span3 row-content">
-						<select class="form-control select select-primary select-block mbl film-input" name="filmid">
-							<option value="0">1994</option>
-							<option value="1">1995</option>
-							<option value="2">1996</option>
+						<select class="form-control select select-primary select-block mbl year-input" name="year">
+							<option value="1994">1994</option>
+							<option value="1995">1995</option>
+							<option value="1996">1996</option>
+							<option value="1996">1996</option><option value="2015">2015</option>
 						</select>
 					</div>
 				</div>
 				<div class="row-line">
 					<div class="row-label">month:</div>
 					<div class="span3 row-content">
-						<select class="form-control select select-primary select-block mbl film-input" name="filmid">
+						<select class="form-control select select-primary select-block mbl month-input" name="month">
 							<option value="1">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>
@@ -74,8 +75,8 @@ pageEncoding="UTF-8"%>
 			<div class="pane-wrapper slide clearfix">
 				<div class="tab-page">
 					<div id="container" style="min-width: 310px; height: 100px; max-width: 600px; margin: 0 auto">
-						<div class="statistic-label">total-consume:80000</div>
-						<div class="statistic-label">total-activity-participate:10000</div>
+						<div class="statistic-label">total-consume:<span class="consume-show"></span></div>
+						<div class="statistic-label">total-activity-participate:<span class="participate-show"></span></div>
 					</div>
 					<div id="card-container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
 					<div id="age-container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
@@ -84,7 +85,7 @@ pageEncoding="UTF-8"%>
 				</div>
 				<div class="tab-page">
 					<div id="container" style="min-width: 310px; height: 70px; max-width: 600px; margin: 0 auto">
-						<div class="statistic-label">persons-sum-by-month:80000</div>
+						<div class="statistic-label">persons-sum-by-month:<span class="person-month-show"></span></div>
 					</div>
 					<div id="person-day-container" style="height: 400px; width: 601px; margin: 0 auto"></div>
 					<div id="film-attendence-container" style="height: 400px; width: 601px; margin: 0 auto"></div>
@@ -108,8 +109,11 @@ pageEncoding="UTF-8"%>
 <script src="./Public/sco/js/sco.message.js"></script>
 <script src="./Public/Flat-UI-master/dist/js/flat-ui.js"></script>
 <script type="text/javascript">
+$("select").select2();
+
 </script>
 <script src="./Public/js/common/form.js"></script>
 <script src="./Public/js/server/server.js"></script>
 <script src="./Public/js/manager/statistic.js"></script>
+<script src="./Public/js/manager/statisticworker.js"></script>
 </html>

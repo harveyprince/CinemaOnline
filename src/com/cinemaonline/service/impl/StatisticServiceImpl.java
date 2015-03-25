@@ -29,10 +29,10 @@ import com.cinemaonline.model.client.StatisticPayway;
 import com.cinemaonline.model.client.StatisticPersonSumDay;
 import com.cinemaonline.model.client.StatisticSexClient;
 import com.cinemaonline.model.client.StatisticVipOperaClient;
-import com.cinemaonline.service.StaticsService;
+import com.cinemaonline.service.StatisticService;
 
 @Service
-public class StaticsServiceImpl implements StaticsService {
+public class StatisticServiceImpl implements StatisticService {
 	@Autowired
 	private StatisticDao statisticDao;
 	@Autowired
@@ -93,16 +93,19 @@ public class StaticsServiceImpl implements StaticsService {
 //		////////////////////////////////////time opera////////////////////////////////////////////
 		StatisticCinemaClient info = new StatisticCinemaClient();
 		info.setCinemapersonsum_month(getCinemaPersonSumByMonth(firstDay,lastDay));
+		if(info.getCinemapersonsum_month()!=0){
 		List<StatisticPersonSumDay> spsd = new ArrayList<StatisticPersonSumDay>();
 		for(int i = 1;i<=cal.getActualMaximum(Calendar.DATE);i++){
 			cal.set(Calendar.DATE, i);
 			StatisticPersonSumDay temp = new StatisticPersonSumDay();
-			temp.setCal(cal);
+			temp.setCal(cal.getTimeInMillis());
 			temp.setPersonsum(getCinemaPersonSumByDay(cal));
 			spsd.add(temp);
 		}
 		info.setCinemapersonsum_daylist(spsd);
+		}
 		List<Film> filmlist = filmDao.getFilmByPlanTime(firstDay,lastDay);
+		if(filmlist!=null){
 		List<StatisticFilmAttendence> sfad = new ArrayList<StatisticFilmAttendence>();
 		for(Film temp:filmlist){
 			StatisticFilmAttendence t = new StatisticFilmAttendence();
@@ -111,6 +114,7 @@ public class StaticsServiceImpl implements StaticsService {
 			sfad.add(t);
 		}
 		info.setFilmAttendencelist(sfad);
+		}
 		List<Hall> halllist = filmDao.getAllHalls();
 		List<StatisticHallAttendence> shad = new ArrayList<StatisticHallAttendence>();
 		for(Hall temp:halllist){
