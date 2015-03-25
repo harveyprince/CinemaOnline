@@ -1,0 +1,39 @@
+.bar-match-content{
+	  overflow-y: hidden;
+	  height: 100%;
+}
+.bar-match-content>div{
+	display: inline-block;
+}
+.tab-pag-bar {
+	height: 100%;
+	box-shadow: 7px 0 10px -10px rgba(0,0,0,.6);
+	width: 26%;
+	margin-left: -20px;
+	vertical-align: top;
+}
+.time-choose-bar{
+	width: 220px;
+	margin-top: 50px;
+	height: 100%;
+	padding-top: 50px;
+}
+.row-line{
+	margin-bottom: 7px;
+}
+.time-confirm {
+	margin-top: 10px;
+	width: 100%;
+}
+.info-show-panel{
+	height: 100%;
+	overflow-y: scroll;
+	width: 79%;
+	float: right;
+	margin-right: -56px;
+}
+.statistic-label{
+	font-size: 20px;
+	text-align: center;
+	
+}
