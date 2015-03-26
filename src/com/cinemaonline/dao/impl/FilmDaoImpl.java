@@ -1,6 +1,5 @@
 package com.cinemaonline.dao.impl;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +14,6 @@ import com.cinemaonline.dao.FilmDao;
 import com.cinemaonline.model.Film;
 import com.cinemaonline.model.FilmPlan;
 import com.cinemaonline.model.Hall;
-import com.cinemaonline.model.client.FilmPlanInfo;
 import com.cinemaonline.model.client.OperaResult;
 
 @Repository
@@ -66,6 +64,35 @@ public class FilmDaoImpl implements FilmDao {
 		try{
 			Query query = session.createQuery(hql);
 			query.setParameter(0, timenow);
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return list;
+			}else{
+				return null;
+			}
+		}else{
+			return null;
+		}
+	}
+	@Override
+	public List<FilmPlan> getAllUnoldPlansByPage(int page) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		Date timestamp = new Date();
+		long timenow = timestamp.getTime();
+		String hql = "from com.cinemaonline.model.FilmPlan where beginTime>?";
+		List list = null;
+		try{
+			Query query = session.createQuery(hql);
+			query.setParameter(0, timenow);
+			query.setFirstResult(page*baseDao.getPageCount());
+			query.setMaxResults(baseDao.getPageCount());
 			list = query.list();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -243,6 +270,60 @@ public class FilmDaoImpl implements FilmDao {
 			return null;
 		}
 	}
+	
+	@Override
+	public List<Film> getAllFilmsByPage(int page) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String hql = "from com.cinemaonline.model.Film as f where f.shelvesTime is null";
+		List list = null;
+		try{
+			Query query = session.createQuery(hql);
+			query.setFirstResult(page*baseDao.getPageCount());
+			query.setMaxResults(baseDao.getPageCount());
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return list;
+			}else{
+				return null;
+			}
+		}else{
+			return null;
+		}
+	}
+	@Override
+	public List<Film> getAllOldFilmsByPage(int page) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String hql = "from com.cinemaonline.model.Film as f where f.shelvesTime is not null";
+		List list = null;
+		try{
+			Query query = session.createQuery(hql);
+			query.setFirstResult(page*baseDao.getPageCount());
+			query.setMaxResults(baseDao.getPageCount());
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return list;
+			}else{
+				return null;
+			}
+		}else{
+			return null;
+		}
+	}
+	
 	@Override
 	public Film updateFilm(Film info) {
 		// TODO Auto-generated method stub
@@ -260,13 +341,71 @@ public class FilmDaoImpl implements FilmDao {
 		return info_local;
 	}
 	@Override
-	public List<FilmPlan> getAllPassedPlans() {
+	public List<FilmPlan> getAllPassedPlansNotOld() {
 		// TODO Auto-generated method stub
 		Session session = baseDao.getNewSession();
-		String hql = "from com.cinemaonline.model.FilmPlan where status=2";
+		Date day = new Date();
+		String hql = "from com.cinemaonline.model.FilmPlan where status=2 and beginTime>?";
 		List list = null;
 		try{
 			Query query = session.createQuery(hql);
+			query.setParameter(0, day.getTime());
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return list;
+			}else{
+				return null;
+			}
+		}else{
+			return null;
+		}
+	}
+	@Override
+	public List<FilmPlan> getAllPassedPlansNotOldByPage(int page) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		Date day = new Date();
+		String hql = "from com.cinemaonline.model.FilmPlan where status=2 and beginTime>?";
+		List list = null;
+		try{
+			Query query = session.createQuery(hql);
+			query.setParameter(0, day.getTime());
+			query.setFirstResult(page*baseDao.getPageCount());
+			query.setMaxResults(baseDao.getPageCount());
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return list;
+			}else{
+				return null;
+			}
+		}else{
+			return null;
+		}
+	}
+	@Override
+	public List<FilmPlan> getAllPassedPlansOldByPage(int page) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		Date day = new Date();
+		String hql = "from com.cinemaonline.model.FilmPlan where status=2 and beginTime<=?";
+		List list = null;
+		try{
+			Query query = session.createQuery(hql);
+			query.setParameter(0, day.getTime());
+			query.setFirstResult(page*baseDao.getPageCount());
+			query.setMaxResults(baseDao.getPageCount());
 			list = query.list();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -291,6 +430,32 @@ public class FilmDaoImpl implements FilmDao {
 		List list = null;
 		try{
 			Query query = session.createQuery(hql);
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return list;
+			}else{
+				return null;
+			}
+		}else{
+			return null;
+		}
+	}
+	@Override
+	public List<FilmPlan> getPlansForCheckByPage(int page) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String hql = "from com.cinemaonline.model.FilmPlan where status=1";
+		List list = null;
+		try{
+			Query query = session.createQuery(hql);
+			query.setFirstResult(page*baseDao.getPageCount());
+			query.setMaxResults(baseDao.getPageCount());
 			list = query.list();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -398,7 +563,7 @@ public class FilmDaoImpl implements FilmDao {
 	public int getPersonSumByTime(long begin, long end) {
 		// TODO Auto-generated method stub
 		Session session = baseDao.getNewSession();
-		String sql = "select sum(v.seats) from (select h.seats-a.seatSum as seats from FilmPlan a inner join Hall h on a.hallNo = h.hallNo where a.beginTime>? and a.endTime<?) as v";
+		String sql = "select sum(v.seats) from (select h.seats-a.seatSum as seats from FilmPlan a inner join Hall h on a.hallNo = h.hallNo where a.beginTime>=? and a.endTime<?) as v";
 		try{
 			Query query = session.createSQLQuery(sql);
 			query.setParameter(0, begin);
@@ -417,7 +582,7 @@ public class FilmDaoImpl implements FilmDao {
 	public int getHallSeatsAddupByTime(int hallNo, long begin, long end) {
 		// TODO Auto-generated method stub
 		Session session = baseDao.getNewSession();
-		String sql = "select sum(v.seats) from (select h.seats as seats from FilmPlan a inner join Hall h on a.hallNo = h.hallNo where a.beginTime>? and a.endTime<? and h.hallNo=?) as v";
+		String sql = "select sum(v.seats) from (select h.seats as seats from FilmPlan a inner join Hall h on a.hallNo = h.hallNo where a.beginTime>=? and a.endTime<? and h.hallNo=?) as v";
 		try{
 			Query query = session.createSQLQuery(sql);
 			query.setParameter(0, begin);
@@ -437,7 +602,7 @@ public class FilmDaoImpl implements FilmDao {
 	public int getHallSeatsAttendencedByTime(int hallNo, long begin, long end) {
 		// TODO Auto-generated method stub
 		Session session = baseDao.getNewSession();
-		String sql = "select sum(v.seats) from (select h.seats-a.seatSum as seats from FilmPlan a inner join Hall h on a.hallNo = h.hallNo where a.beginTime>? and a.endTime<? and h.hallNo=?) as v";
+		String sql = "select sum(v.seats) from (select h.seats-a.seatSum as seats from FilmPlan a inner join Hall h on a.hallNo = h.hallNo where a.beginTime>=? and a.endTime<? and h.hallNo=?) as v";
 		try{
 			Query query = session.createSQLQuery(sql);
 			query.setParameter(0, begin);
@@ -464,7 +629,7 @@ public class FilmDaoImpl implements FilmDao {
 	public int getFilmSeatsAddupByTime(long filmId, long begin, long end) {
 		// TODO Auto-generated method stub
 		Session session = baseDao.getNewSession();
-		String sql = "select sum(v.seats) from (select h.seats as seats from FilmPlan a inner join Hall h on a.hallNo = h.hallNo where a.beginTime>? and a.endTime<? and a.filmId=?) as v";
+		String sql = "select sum(v.seats) from (select h.seats as seats from FilmPlan a inner join Hall h on a.hallNo = h.hallNo where a.beginTime>=? and a.endTime<? and a.filmId=?) as v";
 		try{
 			Query query = session.createSQLQuery(sql);
 			query.setParameter(0, begin);
@@ -484,7 +649,7 @@ public class FilmDaoImpl implements FilmDao {
 	public int getFilmSeatsAttendencedByTime(long filmId, long begin, long end) {
 		// TODO Auto-generated method stub
 		Session session = baseDao.getNewSession();
-		String sql = "select sum(v.seats) from (select h.seats-a.seatSum as seats from FilmPlan a inner join Hall h on a.hallNo = h.hallNo where a.beginTime>? and a.endTime<? and a.filmId=?) as v";
+		String sql = "select sum(v.seats) from (select h.seats-a.seatSum as seats from FilmPlan a inner join Hall h on a.hallNo = h.hallNo where a.beginTime>=? and a.endTime<? and a.filmId=?) as v";
 		try{
 			Query query = session.createSQLQuery(sql);
 			query.setParameter(0, begin);
@@ -511,7 +676,7 @@ public class FilmDaoImpl implements FilmDao {
 	public List<Film> getFilmByPlanTime(long begin, long end) {
 		// TODO Auto-generated method stub
 		Session session = baseDao.getNewSession();
-		String sql = "select f.* from Film f inner join FilmPlan p on f.filmId = p.filmId where p.beginTime>? and p.endTime<?";
+		String sql = "select distinct f.* from Film f inner join FilmPlan p on f.filmId = p.filmId where p.beginTime>=? and p.endTime<?";
 		List list = null;
 		try{
 			Query query = session.createSQLQuery(sql).addEntity(Film.class);
@@ -543,6 +708,34 @@ public class FilmDaoImpl implements FilmDao {
 		try{
 			Query query = session.createQuery(hql);
 			query.setParameter(0, day.getTime());
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return list;
+			}else{
+				return null;
+			}
+		}else{
+			return null;
+		}
+	}
+	@Override
+	public List<FilmPlan> getAllCheckedUnoldPlansByPage(int page) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		Date day = new Date();
+		String hql = "from com.cinemaonline.model.FilmPlan where status>1 and beginTime>?";
+		List list = null;
+		try{
+			Query query = session.createQuery(hql);
+			query.setParameter(0, day.getTime());
+			query.setFirstResult(page*baseDao.getPageCount());
+			query.setMaxResults(baseDao.getPageCount());
 			list = query.list();
 		}catch(Exception e){
 			e.printStackTrace();

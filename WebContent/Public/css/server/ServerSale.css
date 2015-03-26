@@ -4,6 +4,7 @@
   box-shadow: none;
     font-size: 20px;
   text-align: center;
+  overflow-x: auto;
 }
 .account-box {
 	border-radius: 4px;

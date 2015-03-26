@@ -7,8 +7,17 @@ $(".info-regist-button").click(function(){
 	}
 	
 });
+$(".password-confirm-input").blur(function(){
+	if($(this).val()!=$(".password-input").val()){
+		$.scojs_message('password should be the same', $.scojs_message.TYPE_ERROR);
+		$(this).focus();
+	}
+});
 $(".password-regist-button").click(function(){
 //	$("#pass-form").submit();
+	if($(".password-confirm-input").val()!=$(".password-input").val()){
+		return false;
+	}
 	var action = $("#pass-form").attr("action");
 	if(isFormValid($("#pass-form"))){
 		var data = new FormData();
@@ -39,5 +48,5 @@ $(".password-regist-button").click(function(){
 });
 
 $(".result-regist-button").click(function(){
-	window.location.href = "";
+	window.location.href = "login";
 });

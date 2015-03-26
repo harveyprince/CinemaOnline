@@ -125,7 +125,9 @@ public class TicketServiceImpl implements TicketService {
 		ticketRecord = ticketDao.getRecordById(ticketRecord.getRecordId());
 		result.setResult(true);
 		result.setTicketRecord(ticketRecord);
+		if(order.getPayway()==2){
 		vipService.addVipScore(order.getVip_account().getAccountName(), (int)order.getCost()/10);
+		}
 		return result;
 	}
 

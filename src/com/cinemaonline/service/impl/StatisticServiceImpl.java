@@ -86,7 +86,7 @@ public class StatisticServiceImpl implements StatisticService {
 		cal.setTime(day);
 //		该月最后一天
 		cal.set(Calendar.DATE, cal.getActualMaximum(Calendar.DATE));
-		long lastDay = cal.getTimeInMillis();
+		long lastDay = cal.getTimeInMillis()+24*60*60*1000;
 //		该月第一天
 		cal.set(Calendar.DATE, 1);
 		long firstDay = cal.getTimeInMillis();

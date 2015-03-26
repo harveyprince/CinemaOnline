@@ -78,10 +78,10 @@ pageEncoding="UTF-8"%>
 						<div class="statistic-label">total-consume:<span class="consume-show"></span></div>
 						<div class="statistic-label">total-activity-participate:<span class="participate-show"></span></div>
 					</div>
-					<div id="card-container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-					<div id="age-container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-					<div id="sex-container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-					<div id="location-container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+					<div id="card-container" style="height: 400px; width: 601px; margin: 0 auto"></div>
+					<div id="age-container" style="height: 400px; width: 601px; margin: 0 auto"></div>
+					<div id="sex-container" style="height: 400px; width: 601px; margin: 0 auto"></div>
+					<div id="location-container" style="height: 400px; width: 601px; margin: 0 auto"></div>
 				</div>
 				<div class="tab-page">
 					<div id="container" style="min-width: 310px; height: 70px; max-width: 600px; margin: 0 auto">

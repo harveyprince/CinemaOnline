@@ -1,5 +1,6 @@
 $("select").select2();
-$(".film-eye-button").click(function(){
+function eventInit(){
+	$(".film-eye-button").click(function(){
 	var $button = $(this);
 	var filmid = $(this).parent().siblings(".filmId").html();
 	var action = $(this).attr("target");
@@ -62,6 +63,8 @@ $(".film-edit-button").click(function(){
 	var shelvestime = $shelvessource.html();
 	$shelvesTimeInput.val(shelvestime);
 });
+}
+
 $("#modalEdit").find(".save-button").click(function(){
 	var action = $("#filmedit-form").attr("action");
 	if(isFormValid($("#filmedit-form"))){
@@ -133,4 +136,72 @@ $("#modalAdd").find(".save-button").click(function(){
 			}
 		});
 	}
+});
+function queryPage(page){
+	var data = new FormData();
+	data.append("page",page);
+	$.ajax({
+		data: data,
+		type: "POST",
+		url: "server_film",
+		cache: false,
+		contentType: false,
+		processData: false,
+		success: function(data) {
+			if(data!="empty"){
+				$(".film-tbody").html(data);
+				eventInit();
+			}
+		},
+		error:function(){
+			$.scojs_message('error occured!', $.scojs_message.TYPE_ERROR);
+		}
+	});
+}
+$(".btn.next").click(function(){
+	var page = Number($(".film-tbody .page-symbol").html());
+	queryPage(page+1);
+});
+$(".btn.previous").click(function(){
+	var page = Number($(".film-tbody .page-symbol").html());
+	if(page>0){
+		queryPage(page-1);
+	}
+});
+$(document).ready(function(){
+	queryPage(0);
+});
+
+function oldqueryPage(page){
+	var data = new FormData();
+	data.append("page",page);
+	$.ajax({
+		data: data,
+		type: "POST",
+		url: "server_old_film",
+		cache: false,
+		contentType: false,
+		processData: false,
+		success: function(data) {
+			if(data!="empty"){
+				$(".old-film-tbody").html(data);
+			}
+		},
+		error:function(){
+			$.scojs_message('error occured!', $.scojs_message.TYPE_ERROR);
+		}
+	});
+}
+$(".btn.old-next").click(function(){
+	var page = Number($(".old-film-tbody .page-symbol").html());
+	oldqueryPage(page+1);
+});
+$(".btn.old-previous").click(function(){
+	var page = Number($(".old-film-tbody .page-symbol").html());
+	if(page>0){
+		oldqueryPage(page-1);
+	}
+});
+$(document).ready(function(){
+	oldqueryPage(0);
 });

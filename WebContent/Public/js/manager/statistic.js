@@ -218,7 +218,7 @@ function filmAttendenceCharts(datax,datay){
             }
         },
         tooltip: {
-            pointFormat: '{series.name}: <b>{point.y}</b>'
+            pointFormat: '{series.name}: <b>{point.y:.3f}</b>'
         },
         plotOptions: {
             column: {
@@ -255,7 +255,7 @@ function hallAttendenceCharts(datax,datay){
             }
         },
         tooltip: {
-            pointFormat: '{series.name}: <b>{point.y}</b>'
+            pointFormat: '{series.name}: <b>{point.y:.3f}</b>'
         },
         plotOptions: {
             column: {

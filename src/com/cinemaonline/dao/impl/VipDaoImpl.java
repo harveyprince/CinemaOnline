@@ -238,18 +238,43 @@ public class VipDaoImpl implements VipDao {
 			return null;
 		}
 	}
-
+	
 	@Override
-	public List<VipInfo> getVipForLevelPay() {
+	public List<VipRecord> getRecordsByIdByPage(String userid,int page) {
 		// TODO Auto-generated method stub
 		Session session = baseDao.getNewSession();
-		Date time = new Date();
-		long timestamp = time.getTime()-365*24*60*60*1000;
+		String hql = "from com.cinemaonline.model.VipRecord as a where a.vipId='"+userid+"'";
+		List list = null;
+		try{
+			Query query = session.createQuery(hql);
+			query.setFirstResult(page*baseDao.getPageCount());
+			query.setMaxResults(baseDao.getPageCount());
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return list;
+			}else{
+				return null;
+			}
+		}else{
+			return null;
+		}
+	}
+
+	@Override
+	public List<VipInfo> getVipForLevelPay(long oneyearago) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
 		String sql = "select a.* from VipInfo as a inner join (select max(r.recordTime) e,r.vipId from VipRecord as r where r.purpose='lvcost' group by r.vipId having e<?) as v on a.vipId = v.vipId where a.vipStatus<4";
 		List list = null;
 		try{
 			Query query = session.createSQLQuery(sql).addEntity(VipInfo.class);
-			query.setParameter(0, timestamp);
+			query.setParameter(0, oneyearago);
 			list = query.list();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -323,7 +348,7 @@ public class VipDaoImpl implements VipDao {
 	public double getConsumeSumByTime(long firstday, long lastday) {
 		// TODO Auto-generated method stub
 		Session session = baseDao.getNewSession();
-		String sql  = "select sum(v.recordNumber) from VipRecord as v where v.recordTime>? and v.recordTime<? and a.result=1 and v.recordNumber<0";
+		String sql  = "select sum(v.recordNumber) from VipRecord as v where v.recordTime>? and v.recordTime<? and v.result=1 and v.recordNumber<0";
 		List list = null;
 		try{
 			Query query = session.createSQLQuery(sql);
@@ -353,7 +378,7 @@ public class VipDaoImpl implements VipDao {
 		try{
 			Query query = session.createQuery(hql);
 			query.setParameter(0, new java.sql.Date(begin));
-			query.setParameter(0, new java.sql.Date(end));
+			query.setParameter(1, new java.sql.Date(end));
 			list = query.list();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -374,75 +399,83 @@ public class VipDaoImpl implements VipDao {
 	@Override
 	public int getAge_0_10() {
 		// TODO Auto-generated method stub
+		System.out.println("0_10");
 		Calendar cal = Calendar.getInstance();
 		long time2 = cal.getTimeInMillis();
-		cal.set(Calendar.MONTH, -11-12*9);
+		System.out.println(cal.getTime().toLocaleString());
+		cal.set(Calendar.MONTH, -10-12*9);
 		long time1 = cal.getTimeInMillis();
+		System.out.println(cal.getTime().toLocaleString());
 		return getPersonNumByBirthdayTime(time1,time2);
 	}
 
 	@Override
 	public int getAge_10_20() {
 		// TODO Auto-generated method stub
+		System.out.println("10_20");
 		Calendar cal = Calendar.getInstance();
-		cal.set(Calendar.MONTH, -11-12*9);
-		long time1 = cal.getTimeInMillis();
-		cal.set(Calendar.MONTH, -11-12*9);
+		cal.set(Calendar.MONTH, -10-12*9);
 		long time2 = cal.getTimeInMillis();
+		System.out.println(cal.getTime().toLocaleString());
+		cal.set(Calendar.MONTH, -10-12*9);
+		long time1 = cal.getTimeInMillis();
+		System.out.println(cal.getTime().toLocaleString());
 		return getPersonNumByBirthdayTime(time1,time2);
 	}
 
 	@Override
 	public int getAge_20_30() {
 		// TODO Auto-generated method stub
+		System.out.println("20_30");
 		Calendar cal = Calendar.getInstance();
-		cal.set(Calendar.MONTH, -11-12*9);
-		cal.set(Calendar.MONTH, -11-12*9);
-		long time1 = cal.getTimeInMillis();
-		cal.set(Calendar.MONTH, -11-12*9);
+		cal.set(Calendar.MONTH, -10-12*19);
 		long time2 = cal.getTimeInMillis();
+		System.out.println(cal.getTime().toLocaleString());
+		cal.set(Calendar.MONTH, -10-12*9);
+		long time1 = cal.getTimeInMillis();
+		System.out.println(cal.getTime().toLocaleString());
 		return getPersonNumByBirthdayTime(time1,time2);
 	}
 
 	@Override
 	public int getAge_30_40() {
 		// TODO Auto-generated method stub
+		System.out.println("30_40");
 		Calendar cal = Calendar.getInstance();
-		cal.set(Calendar.MONTH, -11-12*9);
-		cal.set(Calendar.MONTH, -11-12*9);
-		cal.set(Calendar.MONTH, -11-12*9);
-		long time1 = cal.getTimeInMillis();
-		cal.set(Calendar.MONTH, -11-12*9);
+		cal.set(Calendar.MONTH, -10-12*29);
 		long time2 = cal.getTimeInMillis();
+		System.out.println(cal.getTime().toLocaleString());
+		cal.set(Calendar.MONTH, -10-12*9);
+		long time1 = cal.getTimeInMillis();
+		System.out.println(cal.getTime().toLocaleString());
 		return getPersonNumByBirthdayTime(time1,time2);
 	}
 
 	@Override
 	public int getAge_40_50() {
 		// TODO Auto-generated method stub
+		System.out.println("40_50");
 		Calendar cal = Calendar.getInstance();
-		cal.set(Calendar.MONTH, -11-12*9);
-		cal.set(Calendar.MONTH, -11-12*9);
-		cal.set(Calendar.MONTH, -11-12*9);
-		cal.set(Calendar.MONTH, -11-12*9);
-		long time1 = cal.getTimeInMillis();
-		cal.set(Calendar.MONTH, -11-12*9);
+		cal.set(Calendar.MONTH, -10-12*39);
 		long time2 = cal.getTimeInMillis();
+		System.out.println(cal.getTime().toLocaleString());
+		cal.set(Calendar.MONTH, -10-12*9);
+		long time1 = cal.getTimeInMillis();
+		System.out.println(cal.getTime().toLocaleString());
 		return getPersonNumByBirthdayTime(time1,time2);
 	}
 
 	@Override
 	public int getAge_50_60() {
 		// TODO Auto-generated method stub
+		System.out.println("50_60");
 		Calendar cal = Calendar.getInstance();
-		cal.set(Calendar.MONTH, -11-12*9);
-		cal.set(Calendar.MONTH, -11-12*9);
-		cal.set(Calendar.MONTH, -11-12*9);
-		cal.set(Calendar.MONTH, -11-12*9);
-		cal.set(Calendar.MONTH, -11-12*9);
-		long time1 = cal.getTimeInMillis();
-		cal.set(Calendar.MONTH, -11-12*9);
+		cal.set(Calendar.MONTH, -10-12*49);
 		long time2 = cal.getTimeInMillis();
+		System.out.println(cal.getTime().toLocaleString());
+		cal.set(Calendar.MONTH, -10-12*9);
+		long time1 = cal.getTimeInMillis();
+		System.out.println(cal.getTime().toLocaleString());
 		return getPersonNumByBirthdayTime(time1,time2);
 	}
 

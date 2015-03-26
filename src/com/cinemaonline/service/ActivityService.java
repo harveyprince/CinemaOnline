@@ -33,4 +33,12 @@ public interface ActivityService {
 
 	public List<ActivityRecord> getRecordsByActivities(
 			List<Activity> info,long userid);
+
+	public List<Activity> getAllUnpassedActivitiesByPage(int page);
+
+	public List<Activity> getUnparticipatedActivitiesForVipByPage(
+			String userid, int page);
+
+	public List<Activity> getParticipatedActivitiesForVipByPage(String userid,
+			int page);
 }

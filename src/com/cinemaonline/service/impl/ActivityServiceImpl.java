@@ -39,6 +39,12 @@ public class ActivityServiceImpl implements ActivityService {
 		// TODO Auto-generated method stub
 		return activityDao.getAllUnpassedActivities();
 	}
+	
+	@Override
+	public List<Activity> getAllUnpassedActivitiesByPage(int page) {
+		// TODO Auto-generated method stub
+		return activityDao.getAllUnpassedActivitiesByPage(page);
+	}
 
 	@Override
 	public List<Activity> getAllendedActivities() {
@@ -113,11 +119,23 @@ public class ActivityServiceImpl implements ActivityService {
 		// TODO Auto-generated method stub
 		return activityDao.getParticipatedActivitiesForVip(Long.parseLong(userid));
 	}
+	
+	@Override
+	public List<Activity> getParticipatedActivitiesForVipByPage(String userid,int page) {
+		// TODO Auto-generated method stub
+		return activityDao.getParticipatedActivitiesForVipByPage(Long.parseLong(userid),page);
+	}
 
 	@Override
 	public List<Activity> getUnparticipatedActivitiesForVip(String userid) {
 		// TODO Auto-generated method stub
 		return activityDao.getUnarticipatedActivitiesForVip(Long.parseLong(userid));
+	}
+	
+	@Override
+	public List<Activity> getUnparticipatedActivitiesForVipByPage(String userid,int page) {
+		// TODO Auto-generated method stub
+		return activityDao.getUnarticipatedActivitiesForVipByPage(Long.parseLong(userid),page);
 	}
 
 	@Override
@@ -197,6 +215,9 @@ public class ActivityServiceImpl implements ActivityService {
 	@Override
 	public List<ActivityRecord> getRecordsByActivities(List<Activity> info,long userid) {
 		// TODO Auto-generated method stub
+		if(info==null){
+			return null;
+		}
 		List<ActivityRecord> result = new ArrayList<ActivityRecord>();
 		for(Activity temp:info){
 			result.add(activityDao.getRecordByActivityId(temp.getActivityId(),userid));

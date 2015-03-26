@@ -17,6 +17,8 @@ public interface FilmDao {
 	public List<Film> getAllReleasingFilms();
 	
 	public List<Film> getAllFilms();
+
+	public List<Film> getAllFilmsByPage(int page);
 	
 	public Film getFilmById(long id);
 
@@ -28,17 +30,23 @@ public interface FilmDao {
 
 	public List<FilmPlan> getAllUnoldPlans();
 
+	public List<FilmPlan> getAllUnoldPlansByPage(int page);
+
 	public List<FilmPlan> getAllNotEndedPlansByFilm(Film info);
 	
-	public List<FilmPlan> getAllPassedPlans();
+	public List<FilmPlan> getAllPassedPlansNotOld();
 	
 	public FilmPlan getFilmPlanById(long id);
 	
 	public List<FilmPlan> getPlansForCheck();
+	
+	public List<FilmPlan> getPlansForCheckByPage(int page);
 
 	public OperaResult checkFilmPlan(long beginTime, long endTime, Hall hall);
 
 	public List<FilmPlan> getAllCheckedUnoldPlans();
+	
+	public List<FilmPlan> getAllCheckedUnoldPlansByPage(int page);
 //	hall
 	public List<Hall> getAllHalls();
 	
@@ -53,6 +61,14 @@ public interface FilmDao {
 
 	public List<Film> getFilmByPlanTime(
 			long firstDay, long lastDay);
+
+	public List<FilmPlan> getAllPassedPlansNotOldByPage(int page);
+
+	public List<FilmPlan> getAllPassedPlansOldByPage(int page);
+
+	public List<Film> getAllOldFilmsByPage(int page);
+
+
 
 
 

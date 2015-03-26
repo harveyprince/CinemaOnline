@@ -99,4 +99,10 @@ public class BaseDaoImpl implements BaseDao {
 			}
 		}
 	}
+
+	@Override
+	public int getPageCount() {
+		// TODO Auto-generated method stub
+		return 10;
+	}
 }

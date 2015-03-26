@@ -37,4 +37,8 @@ public interface VipService {
 	public OperaResult scoreToBalance(String userid,int score);
 
 	public OperaResult disactivateCardById(String userid);
+	
+	public void vipLevelCostJudge();
+
+	public List<VipRecordInfo> getRecordsByPage(String userid, int page);
 }

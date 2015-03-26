@@ -30,11 +30,32 @@ public class FilmServiceImpl implements FilmService {
 		List<FilmPlanInfo> plans = FilmPlanInfo.parseFPI(filmDao.getAllUnoldPlans());
 		return plans;
 	}
+	
+	@Override
+	public List<FilmPlanInfo> getAllUnoldPlansByPage(int page) {
+		// TODO Auto-generated method stub
+		List<FilmPlanInfo> plans = FilmPlanInfo.parseFPI(filmDao.getAllUnoldPlansByPage(page));
+		return plans;
+	}
 
 	@Override
-	public List<FilmPlanInfo> getAllPassedPlans() {
+	public List<FilmPlanInfo> getAllPassedPlansNotOld() {
 		// TODO Auto-generated method stub
-		List<FilmPlanInfo> plans = FilmPlanInfo.parseFPI(filmDao.getAllPassedPlans());
+		List<FilmPlanInfo> plans = FilmPlanInfo.parseFPI(filmDao.getAllPassedPlansNotOld());
+		return plans;
+	}
+	
+	@Override
+	public List<FilmPlanInfo> getAllPassedPlansNotOldByPage(int page) {
+		// TODO Auto-generated method stub
+		List<FilmPlanInfo> plans = FilmPlanInfo.parseFPI(filmDao.getAllPassedPlansNotOldByPage(page));
+		return plans;
+	}
+	
+	@Override
+	public List<FilmPlanInfo> getAllPassedPlansOldByPage(int page) {
+		// TODO Auto-generated method stub
+		List<FilmPlanInfo> plans = FilmPlanInfo.parseFPI(filmDao.getAllPassedPlansOldByPage(page));
 		return plans;
 	}
 
@@ -139,6 +160,18 @@ public class FilmServiceImpl implements FilmService {
 		// TODO Auto-generated method stub
 		return FilmInfo.parseFI(filmDao.getAllFilms());
 	}
+	
+	@Override
+	public List<FilmInfo> getAllFilmsByPage(int page) {
+		// TODO Auto-generated method stub
+		return FilmInfo.parseFI(filmDao.getAllFilmsByPage(page));
+	}
+	
+	@Override
+	public List<FilmInfo> getAllOldFilmsByPage(int page) {
+		// TODO Auto-generated method stub
+		return FilmInfo.parseFI(filmDao.getAllOldFilmsByPage(page));
+	}
 
 	@Override
 	public OperaResult addFilm(FilmInfo info) {
@@ -215,6 +248,13 @@ public class FilmServiceImpl implements FilmService {
 		List<FilmPlanInfo> plans = FilmPlanInfo.parseFPI(filmDao.getPlansForCheck());
 		return plans;
 	}
+	
+	@Override
+	public List<FilmPlanInfo> getPlansForCheckByPage(int page) {
+		// TODO Auto-generated method stub
+		List<FilmPlanInfo> plans = FilmPlanInfo.parseFPI(filmDao.getPlansForCheckByPage(page));
+		return plans;
+	}
 
 	@Override
 	public OperaResult passPlan(String planid) {
@@ -243,6 +283,14 @@ public class FilmServiceImpl implements FilmService {
 		// TODO Auto-generated method stub
 		return FilmPlanInfo.parseFPI(filmDao.getAllCheckedUnoldPlans());
 	}
+	
+	@Override
+	public List<FilmPlanInfo> getAllCheckedUnoldPlansByPage(int page) {
+		// TODO Auto-generated method stub
+		return FilmPlanInfo.parseFPI(filmDao.getAllCheckedUnoldPlansByPage(page));
+	}
+
+	
 
 
 }

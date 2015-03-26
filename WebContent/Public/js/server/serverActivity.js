@@ -1,6 +1,6 @@
 selectInitial($("select.plan-input"),planslist);
 $("select.plan-input").select2();
-
+function eventInit(){
 $(".participated-button").click(function(){
 	var $modalshow = $("#modalParticipated");
 	var $sibBaseshow = $(this).parent();
@@ -73,6 +73,7 @@ $(".film-edit-button").click(function(){
 	var id = $row.children(".activityId").html();
 	$modal.find(".id-input").val(id);
 });
+}
 function answerCount(){
 	$("#modalEdit .answer-row").each(function(idx){
 		$(this).children("div[value]").attr("value",idx);
@@ -186,3 +187,73 @@ function constructFormData($form){
 	});
 	return data;
 }
+
+function queryPage(page){
+	var data = new FormData();
+	data.append("page",page);
+	$.ajax({
+		data: data,
+		type: "POST",
+		url: "server_activity",
+		cache: false,
+		contentType: false,
+		processData: false,
+		success: function(data) {
+			if(data!="empty"){
+				$(".film-tbody").html(data);
+				eventInit();
+			}
+		},
+		error:function(){
+			$.scojs_message('error occured!', $.scojs_message.TYPE_ERROR);
+		}
+	});
+}
+$(".btn.next").click(function(){
+	var page = Number($(".film-tbody .page-symbol").html());
+	queryPage(page+1);
+});
+$(".btn.previous").click(function(){
+	var page = Number($(".film-tbody .page-symbol").html());
+	if(page>0){
+		queryPage(page-1);
+	}
+});
+$(document).ready(function(){
+	queryPage(0);
+});
+
+function endedqueryPage(page){
+	var data = new FormData();
+	data.append("page",page);
+	$.ajax({
+		data: data,
+		type: "POST",
+		url: "server_ended_activity",
+		cache: false,
+		contentType: false,
+		processData: false,
+		success: function(data) {
+			if(data!="empty"){
+				$(".ended-tbody").html(data);
+				eventInit();
+			}
+		},
+		error:function(){
+			$.scojs_message('error occured!', $.scojs_message.TYPE_ERROR);
+		}
+	});
+}
+$(".btn.ended-next").click(function(){
+	var page = Number($(".ended-tbody .page-symbol").html());
+	endedqueryPage(page+1);
+});
+$(".btn.ended-previous").click(function(){
+	var page = Number($(".ended-tbody .page-symbol").html());
+	if(page>0){
+		endedqueryPage(page-1);
+	}
+});
+$(document).ready(function(){
+	endedqueryPage(0);
+});

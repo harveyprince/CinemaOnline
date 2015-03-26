@@ -9,7 +9,10 @@ import com.cinemaonline.model.Hall;
 import com.cinemaonline.model.Identity;
 import com.cinemaonline.model.Location;
 import com.cinemaonline.model.VipLevel;
+import com.cinemaonline.service.CronService;
 import com.cinemaonline.service.InfoService;
+import com.cinemaonline.service.StatisticService;
+import com.cinemaonline.service.VipService;
 
 @Repository
 public class TestAction extends BaseAction {
@@ -21,6 +24,20 @@ public class TestAction extends BaseAction {
 
 	@Autowired
 	private InfoService infoService;
+	@Autowired
+	private StatisticService statisticService;
+	@Autowired
+	private VipService vipService;
+	
+	public String Viplvcost(){
+		vipService.vipLevelCostJudge();
+		return AJAXINFO;
+	}
+	
+	public String MonthCron(){
+		statisticService.doStatic();
+		return AJAXINFO;
+	}
 	
 	public String DataInit(){
 //		Location

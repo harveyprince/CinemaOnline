@@ -17,3 +17,9 @@
 .add-plan {
   float: left;
 }
+.page-button{
+  float: right;
+}
+.pagination {
+  margin: 0 0;
+}

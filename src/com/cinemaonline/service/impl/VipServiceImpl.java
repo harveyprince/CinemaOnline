@@ -1,5 +1,6 @@
 package com.cinemaonline.service.impl;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -193,6 +194,14 @@ public class VipServiceImpl implements VipService {
 		List<VipRecordInfo> records = VipRecordInfo.parseVRI(res);
 		return records;
 	}
+	
+	@Override
+	public List<VipRecordInfo> getRecordsByPage(String userid,int page) {
+		// TODO Auto-generated method stub
+		List<VipRecord> res = vipDao.getRecordsByIdByPage(userid,page);
+		List<VipRecordInfo> records = VipRecordInfo.parseVRI(res);
+		return records;
+	}
 
 	@Override
 	public OperaResult checkVipAccount(AccountLogin info) {
@@ -270,6 +279,22 @@ public class VipServiceImpl implements VipService {
 		vipDao.update(info);
 		result.setResult(true);
 		return result;
+	}
+	
+	@Override
+	public void vipLevelCostJudge() {
+		// TODO Auto-generated method stub
+//		以年为周期，采用365天计数
+//		获取超过365天未缴费的会员，并分析状态[不获取4停止\5取消]
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.MONTH, -10-12*9);
+		System.out.println(cal.getTimeInMillis());
+		List<VipInfo> viplist = vipDao.getVipForLevelPay(cal.getTimeInMillis());
+		if(viplist!=null){
+		for(VipInfo vip:viplist){
+			cardLevelCost(vip.getVipId());
+		}
+		}
 	}
 
 

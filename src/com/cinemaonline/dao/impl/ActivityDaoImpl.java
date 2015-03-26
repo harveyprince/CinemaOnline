@@ -76,6 +76,32 @@ public class ActivityDaoImpl implements ActivityDao {
 		}
 	}
 	@Override
+	public List<Activity> getAllUnpassedActivitiesByPage(int page) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String hql = "from com.cinemaonline.model.Activity where status!=2";
+		List list = null;
+		try{
+			Query query = session.createQuery(hql);
+			query.setFirstResult(page*baseDao.getPageCount());
+			query.setMaxResults(baseDao.getPageCount());
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return list;
+			}else{
+				return null;
+			}
+		}else{
+			return null;
+		}
+	}
+	@Override
 	public void updateActivity(Activity info) {
 		// TODO Auto-generated method stub
 		Activity info_local = info;
@@ -183,6 +209,33 @@ public class ActivityDaoImpl implements ActivityDao {
 		}
 	}
 	@Override
+	public List<Activity> getParticipatedActivitiesForVipByPage(long id,int page) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String sql = "select distinct a.* from Activity a inner join ActivityAnswer p on a.activityId = p.activityId inner join ActivityRecord t on p.activityAnswerId = t.activityAnswerId where t.vipId=?";
+		List list = null;
+		try{
+			Query query = session.createSQLQuery(sql).addEntity(Activity.class);
+			query.setParameter(0, id);
+			query.setFirstResult(page*baseDao.getPageCount());
+			query.setMaxResults(baseDao.getPageCount());
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return list;
+			}else{
+				return null;
+			}
+		}else{
+			return null;
+		}
+	}
+	@Override
 	public List<Activity> getUnarticipatedActivitiesForVip(long id) {
 		// TODO Auto-generated method stub
 		Session session = baseDao.getNewSession();
@@ -192,6 +245,34 @@ public class ActivityDaoImpl implements ActivityDao {
 			Query query = session.createSQLQuery(sql).addEntity(Activity.class);
 			query.setParameter(0, id);
 			query.setParameter(1, id);
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return list;
+			}else{
+				return null;
+			}
+		}else{
+			return null;
+		}
+	}
+	@Override
+	public List<Activity> getUnarticipatedActivitiesForVipByPage(long id,int page) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String sql = "select distinct a.* from Activity a inner join ActivityMatchPlan p on a.activityId = p.activityId inner join TicketRecord t on p.planId = t.filmplanId where t.identifyNumber=? and a.activityId not in (select distinct a.activityId from Activity a inner join ActivityAnswer p on a.activityId = p.activityId inner join ActivityRecord t on p.activityAnswerId = t.activityAnswerId where t.vipId=?)";
+		List list = null;
+		try{
+			Query query = session.createSQLQuery(sql).addEntity(Activity.class);
+			query.setParameter(0, id);
+			query.setParameter(1, id);
+			query.setFirstResult(page*baseDao.getPageCount());
+			query.setMaxResults(baseDao.getPageCount());
 			list = query.list();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -254,26 +335,20 @@ public class ActivityDaoImpl implements ActivityDao {
 		// TODO Auto-generated method stub
 		Session session = baseDao.getNewSession();
 		String sql = "select count(*) from ActivityRecord where recordTime>? and recordTime<?";
-		List list = null;
 		try{
 			Query query = session.createSQLQuery(sql);
 			query.setParameter(0, firstday);
 			query.setParameter(1, lastday);
-			list = query.list();
+			if(query.list()==null){
+				return 0;
+			}
+			return ((Number)query.uniqueResult()).intValue();
 		}catch(Exception e){
-			e.printStackTrace();
+//			e.printStackTrace();
 		}finally{
 			session.close();
 		}
-		if(list!=null){
-			if(list.size()>0){
-				return (int) list.get(0);
-			}else{
-				return 0;
-			}
-		}else{
-			return 0;
-		}
+		return 0;
 	}
 	@Override
 	public ActivityRecord getRecordByActivityId(long activityId,long userid) {

@@ -45,6 +45,10 @@
 				</ul>
 				<div class="pane-wrapper slide clearfix">
 					<div class="tab-page">
+						<div class="pagination pagination-success page-button">
+							<a href="#" class="btn btn-success previous">Previous</a>
+							<a href="#" class="btn btn-success next">Next</a>
+						</div>
 						<table class="table">
 							<thead>
 								<tr>
@@ -65,25 +69,7 @@
 								</th>
 							</tr>
 						</thead>
-						<tbody>
-							<s:iterator id="activity" value="activitylist_unparticipated" status="st">
-							<tr class="active">
-								<th class="activityId"><s:property value="#activity.activityId"/></th>
-								<th class="activityName"><s:property value="#activity.title"/></th>
-								<th>
-									<button class="btn btn-inverse table-button participate-button" data-toggle="modal" data-target="#modalParticipate">
-										<i class="fa fa-pencil-square-o"></i>
-									</button>
-								</th>
-								<th class="activity-answers" style="display:none;">
-									<s:iterator id="answer" value="#activity.answerlist" status="ast">
-									<li value='<s:property value="#answer.answerId"/>'><s:property value="#answer.answerContent"/></li>
-								</s:iterator>
-								</th>
-								
-								<th>unparticipated</th>
-							</tr>
-						</s:iterator>
+						<tbody class="activity-tbody">
 							
 						</tbody>
 					</table>
@@ -94,6 +80,10 @@
 
 				<!-- /////////////////////////////////////////////////////// -->
 				<div class="tab-page">
+					<div class="pagination pagination-success page-button">
+							<a href="#" class="btn btn-success old-previous">Previous</a>
+							<a href="#" class="btn btn-success old-next">Next</a>
+						</div>
 					<table class="table">
 							<thead>
 								<tr>
@@ -114,39 +104,7 @@
 								</th>
 							</tr>
 						</thead>
-						<tbody>
-							<s:iterator id="activity" value="activitylist" status="st">
-							<s:if test="%{#activity.status=1}">
-									<tr class="success">
-								</s:if>
-								<s:if test="%{#activity.status=2}">
-									<tr class="active">
-								</s:if>
-								<th class="activityId"><s:property value="#activity.activityId"/></th>
-								<th class="activityName"><s:property value="#activity.title"/></th>
-								<th>
-									<button class="btn btn-inverse table-button participated-button" data-toggle="modal" data-target="#modalParticipated">
-										<i class="fa fa-pencil-square-o"></i>
-									</button>
-								</th>
-								<th class="activity-answers" style="display:none;">
-									<s:iterator id="answer" value="#activity.answerlist" status="ast">
-										<s:if test="%{#answer.answerId==activityrecordlist[#st.index].activityAnswer.answerId}">
-											<li value='<s:property value="#answer.answerId"/>' choosen="choosen"><s:property value="#answer.answerContent"/>[<s:property value="#answer.activityRecords.size()"/>]</li>
-										</s:if>
-										<s:else>
-										<li value='<s:property value="#answer.answerId"/>'><s:property value="#answer.answerContent"/>[<s:property value="#answer.activityRecords.size()"/>]</li>
-										</s:else>
-									</s:iterator>
-								</th>
-								<s:if test="%{#activity.status=1}">
-									<th>participated</th>
-								</s:if>
-								<s:if test="%{#activity.status=2}">
-									<th>ended</th>
-								</s:if>
-							</tr>
-						</s:iterator>
+						<tbody class="old-activity-tbody">
 							
 						</tbody>
 					</table>

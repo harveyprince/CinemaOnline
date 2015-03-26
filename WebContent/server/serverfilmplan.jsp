@@ -40,13 +40,16 @@
 			<div class="table-box">
 				<ul class="nav nav-tabs" data-trigger="tab">
 					<li><a href="#tab1">future plan</a></li>
-					<li><a href="#tab2">old plan</a></li>
 				</ul>
 				<div class="pane-wrapper slide clearfix">
 					<div class="tab-page">
 						<button class="btn btn-primary add-plan" data-toggle="modal" data-target="#modalAdd">
 							Add Plan
 						</button>
+						<div class="pagination pagination-success page-button">
+							<a href="#" class="btn btn-success previous">Previous</a>
+							<a href="#" class="btn btn-success next">Next</a>
+						</div>
 						<table class="table">
 							<thead>
 								<tr>
@@ -75,86 +78,11 @@
 								</th>
 							</tr>
 						</thead>
-						<tbody>
-							<s:iterator id="plan" value="filmplanlist" status="st">
-							<s:if test="%{#plan.status==0}">
-							<tr class="warning">
-							</s:if>
-							<s:if test="%{#plan.status==1}">
-							<tr class="active">
-							</s:if>
-							<s:if test="%{#plan.status==2}">
-							<tr class="success">
-							</s:if>
-							<s:if test="%{#plan.status==3}">
-							<tr class="danger">
-							</s:if>
-								<th class="planId"><s:property value="#plan.planid"/></th>
-								<th class="filmName" filmId='<s:property value="#plan.filmid"/>'><s:property value="#plan.filmName"/></th>
-								<th class="hallNo" hallId='<s:property value="#plan.hall.hallNo"/>'><s:property value="#plan.hall.name"/></th>
-								<th class="seatSum"><s:property value="#plan.seatSum"/></th>
-								<th class="beginTime" date-time='<s:property value="#plan.beginTtime"/>' data-toggle="tooltip" data-placement="top" title='<s:property value="#plan.beginTtime"/>'><s:property value="#plan.begindft"/></th>
-								<th class="endTime" date-time='<s:property value="#plan.endTtime"/>' data-toggle="tooltip" data-placement="top" title='<s:property value="#plan.endTtime"/>'><s:property value="#plan.enddft"/></th>
-								<th class="price"><s:property value="#plan.price"/></th>
-								<th>
-									<s:if test="%{#plan.status==1||#plan.status==2}">
-									<button class="btn btn-inverse table-button" disabled="disabled">
-										<i class="fa fa-pencil-square-o"></i>
-									</button>
-								</s:if>
-								<s:else>
-								<button class="btn btn-inverse table-button film-edit-button" data-toggle="modal" data-target="#modalEdit">
-										<i class="fa fa-pencil-square-o"></i>
-									</button>
-							</s:else>
-								</th>
-								<th>
-									<s:if test="%{#plan.status==1||#plan.status==2}">
-									<button class="btn btn-inverse table-button" disabled="disabled">
-										<i class="fa fa-arrow-up"></i>
-									</button>
-									</s:if>
-								<s:else>
-								<button class="btn btn-inverse table-button submitforcheck-button" target="plansubmit">
-										<i class="fa fa-arrow-up"></i>
-									</button>
-							</s:else>
-								</th>
-								<th><s:property value="#plan.strstatus"/></th>
-							</tr>
-							</s:iterator>
-
-							
+						<tbody class="film-tbody">
 						</tbody>
 					</table>
 				</div>
 
-
-
-
-				<!-- /////////////////////////////////////////////////////// -->
-				<div class="tab-page">
-					<table class="table">
-						<thead>
-							<tr>
-								<th>id</th>
-								<th>filmname</th>
-								<th>No</th>
-								<th>time</th>
-								<th>price</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th>#</th>
-								<th>#</th>
-								<th>#</th>
-								<th>#</th>
-								<th>#</th>
-							</tr>
-						</tbody>
-					</table>
-				</div>
 			</div>
 		</div>
 
@@ -289,6 +217,13 @@ var filmslist = [
 </s:iterator>
 ];
 
+var film_time = {
+<s:iterator id="film" value="filmlist" status="st">
+ '<s:property value="#film.filmId"/>': '<s:property value="#film.duration"/>' 
+<s:if test="%{!#st.last}">,</s:if>
+</s:iterator>
+}
+
 var hallslist = [
 <s:iterator id="hall" value="halllist" status="st">
 { id: <s:property value="#hall.hallNo"/>, text: '<s:property value="#hall.name"/>' }
@@ -303,6 +238,7 @@ var hall_seat = {
 </s:iterator>
 }
 </script>
+<script src="./Public/js/common/date.js"></script>
 <script src="./Public/js/common/form.js"></script>
 <script src="./Public/js/server/server.js"></script>
 <script src="./Public/js/server/serverFilmPlan.js"></script>

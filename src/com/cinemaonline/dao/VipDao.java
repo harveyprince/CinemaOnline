@@ -18,7 +18,7 @@ public interface VipDao {
 	
 	public VipInfo getVipInfoById(String userid);
 
-	public List<VipInfo> getVipForLevelPay();
+	public List<VipInfo> getVipForLevelPay(long oneyearago);
 
 	public int getVipSumByLocation(Location location);
 
@@ -53,6 +53,8 @@ public interface VipDao {
 	public int getBoy_num();
 
 	public int getGirl_num();
+
+	public List<VipRecord> getRecordsByIdByPage(String userid, int page);
 
 
 

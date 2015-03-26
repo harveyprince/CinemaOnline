@@ -2,8 +2,8 @@ $(".answer").click(function(){
 	$(this).addClass("active");
 	$(this).siblings(".active").removeClass("active");
 });
-
-$(".participate-button").click(function(){
+function eventInit(){
+	$(".participate-button").click(function(){
 	$modal = $("#modalParticipate");
 	$sibBase = $(this).parent();
 	$modal.find(".activityid-input").html($sibBase.siblings(".activityId").html());
@@ -36,6 +36,8 @@ $(".participated-button").click(function(){
 	});
 });
 
+}
+
 $("#modalParticipate").find(".save-button").click(function(){
 	var action = $(this).attr("target");
 	var data = new FormData();
@@ -67,4 +69,74 @@ $("#modalParticipate").find(".save-button").click(function(){
 		});
 	}
 	
+});
+
+function queryPage(page){
+	var data = new FormData();
+	data.append("page",page);
+	$.ajax({
+		data: data,
+		type: "POST",
+		url: "vip_activity",
+		cache: false,
+		contentType: false,
+		processData: false,
+		success: function(data) {
+			if(data!="empty"){
+				$(".activity-tbody").html(data);
+				eventInit();
+			}
+		},
+		error:function(){
+			$.scojs_message('error occured!', $.scojs_message.TYPE_ERROR);
+		}
+	});
+}
+$(".btn.next").click(function(){
+	var page = Number($(".activity-tbody .page-symbol").html());
+	queryPage(page+1);
+});
+$(".btn.previous").click(function(){
+	var page = Number($(".activity-tbody .page-symbol").html());
+	if(page>0){
+		queryPage(page-1);
+	}
+});
+$(document).ready(function(){
+	queryPage(0);
+});
+
+function endedqueryPage(page){
+	var data = new FormData();
+	data.append("page",page);
+	$.ajax({
+		data: data,
+		type: "POST",
+		url: "vip_old_activity",
+		cache: false,
+		contentType: false,
+		processData: false,
+		success: function(data) {
+			if(data!="empty"){
+				$(".old-activity-tbody").html(data);
+				eventInit();
+			}
+		},
+		error:function(){
+			$.scojs_message('error occured!', $.scojs_message.TYPE_ERROR);
+		}
+	});
+}
+$(".btn.old-next").click(function(){
+	var page = Number($(".old-activity-tbody .page-symbol").html());
+	endedqueryPage(page+1);
+});
+$(".btn.old-previous").click(function(){
+	var page = Number($(".old-activity-tbody .page-symbol").html());
+	if(page>0){
+		endedqueryPage(page-1);
+	}
+});
+$(document).ready(function(){
+	endedqueryPage(0);
 });

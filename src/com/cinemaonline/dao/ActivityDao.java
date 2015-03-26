@@ -28,6 +28,8 @@ public interface ActivityDao {
 	public List<Activity> getParticipatedActivitiesForVip(long id);
 
 	public List<Activity> getUnarticipatedActivitiesForVip(long id);
+	
+	public List<Activity> getUnarticipatedActivitiesForVipByPage(long id,int page);
 
 	public ActivityRecord insertRecord(ActivityRecord info);
 
@@ -36,4 +38,9 @@ public interface ActivityDao {
 	public int getParticipateSumByTime(long firstday, long lastday);
 
 	public ActivityRecord getRecordByActivityId(long activityId,long userid);
+
+	public List<Activity> getAllUnpassedActivitiesByPage(int page);
+
+	public List<Activity> getParticipatedActivitiesForVipByPage(long parseLong,
+			int page);
 }

@@ -35,8 +35,10 @@ public class ManagerAction extends BaseAction {
 	private List<FilmInfo> filmlist;
 	private List<Hall> halllist;
 	
+	private int page;
 	
-//	//////////////////////////////statistic param///////////////////////////////////////////////
+
+	//	//////////////////////////////statistic param///////////////////////////////////////////////
 	private StatisticAgeClient ageClient;
 	private StatisticSexClient sexClient;
 	private List<StatisticLocation> locationlistClient;
@@ -121,9 +123,23 @@ public class ManagerAction extends BaseAction {
 	/*
 	 * plan check
 	 * */
+	public String ajax_filmplan(){
+		filmplanlist = filmService.getPlansForCheckByPage(page);
+		if(filmplanlist==null||page<0){
+			ajaxinfo="empty";
+			return AJAXINFO;
+		}
+		return SUCCESS;
+	}
+	public String ajax_old_filmplan(){
+		checkedfilmplanlist = filmService.getAllCheckedUnoldPlansByPage(page);
+		if(checkedfilmplanlist==null||page<0){
+			ajaxinfo="empty";
+			return AJAXINFO;
+		}
+		return SUCCESS;
+	}
 	public String checkPlan(){
-		filmplanlist = filmService.getPlansForCheck();
-		checkedfilmplanlist = filmService.getAllCheckedUnoldPlans();
 		filmlist = filmService.getAllReleasingFilms();
 		halllist = filmService.getAllHalls();
 		return SUCCESS;
@@ -237,6 +253,14 @@ public class ManagerAction extends BaseAction {
 
 	public void setCinemaClient(StatisticCinemaClient cinemaClient) {
 		this.cinemaClient = cinemaClient;
+	}
+	
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
 	}
 }
 

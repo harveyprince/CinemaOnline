@@ -41,10 +41,14 @@ pageEncoding="UTF-8"%>
 			<div class="table-box">
 				<ul class="nav nav-tabs" data-trigger="tab">
 					<li><a href="#tab1">on sale</a></li>
-					<li><a href="#tab2">future</a></li>
+					<li><a href="#tab2">old sale</a></li>
 				</ul>
 				<div class="pane-wrapper slide clearfix">
 					<div class="tab-page">
+						<div class="pagination pagination-success page-button">
+							<a href="#" class="btn btn-success previous">Previous</a>
+							<a href="#" class="btn btn-success next">Next</a>
+						</div>
 						<table class="table">
 							<thead>
 								<tr>
@@ -58,29 +62,8 @@ pageEncoding="UTF-8"%>
 									<th>sell</th>
 								</tr>
 							</thead>
-							<tbody>
-								<s:iterator id="plan" value="filmplanlist" status="st">
-								<s:if test="%{#plan.seatSum==0}">
-								<tr class="warning">
-								</s:if>
-								<s:else>
-								<tr class="success">
-								</s:else>
-									<th class="planId"><s:property value="#plan.planid"/></th>
-									<th class="filmName" filmId='<s:property value="#plan.filmid"/>'><s:property value="#plan.filmName"/></th>
-									<th class="hallNo" hallId='<s:property value="#plan.hall.hallNo"/>'><s:property value="#plan.hall.name"/></th>
-									<th class="seatLeft"><s:property value="#plan.seatSum"/></th>
-									<th class="beginTime" date-time='<s:property value="#plan.beginTtime"/>' data-toggle="tooltip" title='<s:property value="#plan.beginTtime"/>' data-placement="top"><s:property value="#plan.begindft"/></th>
-									<th class="endTime" date-time='<s:property value="#plan.endTtime"/>' data-toggle="tooltip" title='<s:property value="#plan.endTtime"/>' data-placement="top"><s:property value="#plan.enddft"/></th>
-									<th class="price"><s:property value="#plan.price"/></th>
-									<th>
-										<button class="btn btn-inverse table-button ticket-sale-button" data-toggle="modal" data-target="#modalSale">
-											<i class="fa fa-ticket"></i>
-										</button>
-									</th>
-
-								</tr>
-								</s:iterator>
+							<tbody class="ticket-tbody">
+								
 							</tbody>
 						</table>
 					</div>
@@ -90,27 +73,28 @@ pageEncoding="UTF-8"%>
 
 					<!-- /////////////////////////////////////////////////////// -->
 					<div class="tab-page">
+						<div class="pagination pagination-success page-button">
+							<a href="#" class="btn btn-success old-previous">Previous</a>
+							<a href="#" class="btn btn-success old-next">Next</a>
+						</div>
 						<table class="table">
 							<thead>
 								<tr>
 									<th>id</th>
 									<th>filmname</th>
 									<th>No</th>
-									<th>time</th>
+									<th>seatSum</th>
+									<th>begintime</th>
+									<th>endtime</th>
 									<th>price</th>
 								</tr>
 							</thead>
-							<tbody>
-								<tr>
-									<th>#</th>
-									<th>#</th>
-									<th>#</th>
-									<th>#</th>
-									<th>#</th>
-								</tr>
+							<tbody class="old-ticket-tbody">
+								
 							</tbody>
 						</table>
 					</div>
+
 				</div>
 			</div>
 
@@ -128,6 +112,7 @@ pageEncoding="UTF-8"%>
 						<li><a href="#infoconfirm" class="info-tab">info confirm</a></li>
 						<li><a href="#ticket" class="ticket-tab">ticket</a></li>
 						<li><a href="#pay" class="pay-tab">pay</a></li>
+						<li><a href="#seats" class="seats-tab">seats</a></li>
 					</ul>
 					<div class="pane-wrapper slide clearfix">
 						<div class="modal-tab-page">
@@ -178,7 +163,7 @@ pageEncoding="UTF-8"%>
 							<div class="row-line">
 								<div class="row-label">seats:</div>
 								<div class="form-group has-success row-content">
-									<input class="form-control seatnum-input" type="number" placeholder="seats" min="1" />
+									<input class="form-control seatnum-input" type="number" placeholder="seats" min="1" value='1'/>
 								</div>
 							</div>
 							<div class="row-line">
@@ -246,6 +231,20 @@ pageEncoding="UTF-8"%>
 
 								<div class="form-group has-success row-content">
 									<button class="btn btn-primary ticket-finish-button" target="ticketPay">finish</button>
+								</div>
+							</div>
+						</div>
+						<div class="modal-tab-page">
+							<div class="row-line">
+								<div class="row-label">seats:</div>
+								<div class="span3 row-content">
+									<div class="text-shown seats-shown"></div>
+								</div>
+							</div>
+							<div class="row-line">
+
+								<div class="form-group has-success row-content">
+									<button class="btn btn-primary sale-close-button">sure</button>
 								</div>
 							</div>
 						</div>

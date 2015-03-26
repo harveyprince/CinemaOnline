@@ -52,9 +52,9 @@ $(".ticket-finish-button").click(function(){
 			processData: false,
 			success: function(data) {
 				if(data.indexOf("success")!=-1){
-					$.scojs_message(data, $.scojs_message.TYPE_OK);
-					$("#modalSale").modal("hide");
-					setTimeout(function(){window.location.reload()},500);
+					$(".seats-shown").html(data.replace("success#","").replace(/&/g,","));
+					$.scojs_message("success", $.scojs_message.TYPE_OK);
+					$(".seats-tab").click();
 				}else{
 					$.scojs_message(data, $.scojs_message.TYPE_ERROR);
 				}
@@ -63,6 +63,10 @@ $(".ticket-finish-button").click(function(){
 				$.scojs_message('error occured!', $.scojs_message.TYPE_ERROR);
 			}
 		});
+});
+$(".sale-close-button").click(function(){
+	$("#modalSale").modal("hide");
+	setTimeout(function(){window.location.reload()},500);
 });
 $(".identity-input").on("select2-selected", function (e) { 
 	var i = e.val;
@@ -94,7 +98,7 @@ $(".ticket-sale-button").click(function(){
 });
 function modalSaleInit(){
 	$modal = $("#modalSale");
-	$modal.find(".seatnum-input").val("");
+	$modal.find(".seatnum-input").val("1");
 	$modal.find("select.identity-input").val(0).trigger("change");
 	$modal.find(".vip-no-input").val("");
 	$modal.find(".vip-password-input").val("");
@@ -103,3 +107,72 @@ function modalSaleInit(){
 	$modal.find("bank-no-input").val("");
 	$modal.find(".bank-password-input").val("");
 }
+
+function queryPage(page){
+	var data = new FormData();
+	data.append("page",page);
+	$.ajax({
+		data: data,
+		type: "POST",
+		url: "server_ticket",
+		cache: false,
+		contentType: false,
+		processData: false,
+		success: function(data) {
+			if(data!="empty"){
+				$(".ticket-tbody").html(data);
+				eventInit();
+			}
+		},
+		error:function(){
+			$.scojs_message('error occured!', $.scojs_message.TYPE_ERROR);
+		}
+	});
+}
+$(".btn.next").click(function(){
+	var page = Number($(".ticket-tbody .page-symbol").html());
+	queryPage(page+1);
+});
+$(".btn.previous").click(function(){
+	var page = Number($(".ticket-tbody .page-symbol").html());
+	if(page>0){
+		queryPage(page-1);
+	}
+});
+$(document).ready(function(){
+	queryPage(0);
+});
+
+function oldqueryPage(page){
+	var data = new FormData();
+	data.append("page",page);
+	$.ajax({
+		data: data,
+		type: "POST",
+		url: "server_old_ticket",
+		cache: false,
+		contentType: false,
+		processData: false,
+		success: function(data) {
+			if(data!="empty"){
+				$(".old-ticket-tbody").html(data);
+			}
+		},
+		error:function(){
+			$.scojs_message('error occured!', $.scojs_message.TYPE_ERROR);
+		}
+	});
+}
+$(".btn.old-next").click(function(){
+	var page = Number($(".old-ticket-tbody .page-symbol").html());
+	oldqueryPage(page+1);
+});
+$(".btn.old-previous").click(function(){
+	var page = Number($(".old-ticket-tbody .page-symbol").html());
+	if(page>0){
+		oldqueryPage(page-1);
+	}
+});
+$(document).ready(function(){
+	oldqueryPage(0);
+});

@@ -46,15 +46,31 @@ public class VipAction extends BaseAction {
 	private List<Activity> activitylist_unparticipated;
 	private List<Location> locationlist;
 	private List<ActivityRecord> activityrecordlist;
+	private int page;
 	
 	/*
 	 * activity
 	 * */
-	public String viewActivity(){
+	public String ajax_activity(){
 		String userid = (String) session.get("userid");
-		activitylist = activityService.getParticipatedActivitiesForVip(userid);
-		activitylist_unparticipated = activityService.getUnparticipatedActivitiesForVip(userid);
+		activitylist_unparticipated = activityService.getUnparticipatedActivitiesForVipByPage(userid,page);
+		if(activitylist_unparticipated==null||page<0){
+			ajaxinfo="empty";
+			return AJAXINFO;
+		}
+		return SUCCESS;
+	}
+	public String ajax_old_activity(){
+		String userid = (String) session.get("userid");
+		activitylist = activityService.getParticipatedActivitiesForVipByPage(userid,page);
 		activityrecordlist = activityService.getRecordsByActivities(activitylist,Long.parseLong(userid));
+		if(activitylist==null||page<0){
+			ajaxinfo="empty";
+			return AJAXINFO;
+		}
+		return SUCCESS;
+	}
+	public String viewActivity(){
 		return SUCCESS;
 	}
 	
@@ -206,9 +222,16 @@ public class VipAction extends BaseAction {
 	/*
 	 * record
 	 * */
-	public String viewRecord(){
+	public String ajax_record(){
 		String userid = (String) session.get("userid");
-		 setRecordlist(vipService.getRecords(userid));
+		setRecordlist(vipService.getRecordsByPage(userid,page));
+		if(recordlist==null||page<0){
+			ajaxinfo="empty";
+			return AJAXINFO;
+		}
+		return SUCCESS;
+	}
+	public String viewRecord(){
 		return SUCCESS;
 	}
 // ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -283,6 +306,12 @@ public class VipAction extends BaseAction {
 
 	public void setActivityrecordlist(List<ActivityRecord> activityrecordlist) {
 		this.activityrecordlist = activityrecordlist;
+	}
+	public int getPage() {
+		return page;
+	}
+	public void setPage(int page) {
+		this.page = page;
 	}
 
 

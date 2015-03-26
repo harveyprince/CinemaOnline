@@ -11,7 +11,7 @@ public interface FilmService {
 
 	public List<FilmPlanInfo> getAllUnoldPlans();
 
-	public List<FilmPlanInfo> getAllPassedPlans();
+	public List<FilmPlanInfo> getAllPassedPlansNotOld();
 	
 	public List<FilmInfo> getAllReleasingFilms();
 	
@@ -40,5 +40,19 @@ public interface FilmService {
 	public OperaResult unpassPlan(String planid);
 
 	public List<FilmPlanInfo> getAllCheckedUnoldPlans();
+
+	public List<FilmInfo> getAllFilmsByPage(int page);
+
+	public List<FilmPlanInfo> getAllUnoldPlansByPage(int page);
+
+	public List<FilmPlanInfo> getAllPassedPlansNotOldByPage(int page);
+
+	public List<FilmPlanInfo> getAllPassedPlansOldByPage(int page);
+
+	public List<FilmInfo> getAllOldFilmsByPage(int page);
+
+	public List<FilmPlanInfo> getPlansForCheckByPage(int page);
+
+	public List<FilmPlanInfo> getAllCheckedUnoldPlansByPage(int page);
 
 }

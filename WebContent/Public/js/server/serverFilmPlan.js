@@ -2,8 +2,8 @@ selectInitial($("select.film-input"),filmslist);
 $("select.film-input").select2();
 selectInitial($("select.hall-input"),hallslist);
 $("select.hall-input").select2();
-
-$(".film-edit-button").click(function(){
+function eventInit(){
+	$(".film-edit-button").click(function(){
 	$row = $(this).parent().parent();
 	$modal = $("#modalEdit");
 	// planid-input
@@ -42,6 +42,58 @@ $(".film-edit-button").click(function(){
 	var endtime = $endsource.attr("date-time");
 	$endTimeInput.val(endtime);
 });
+try{
+	$(".submitforcheck-button").click(function(){
+		var $button = $(this);
+		var planid = $(this).parent().siblings(".planId").html();
+		var action = $(this).attr("target");
+		var data = new FormData();
+		data.append("planid",planid);
+		$.ajax({
+			data: data,
+			type: "POST",
+			url: action,
+			cache: false,
+			contentType: false,
+			processData: false,
+			success: function(data) {
+				if(data=="success"){
+					$.scojs_message('success', $.scojs_message.TYPE_OK);
+					setTimeout(function(){window.location.reload()},500);
+				}else{
+					$.scojs_message(data, $.scojs_message.TYPE_ERROR);
+				}
+			},
+			error:function(){
+				$.scojs_message('error occured!', $.scojs_message.TYPE_ERROR);
+			}
+		});
+	});
+}catch(e){}
+}
+$(".beginTime-input").blur(function(){
+	var filmId = $(this).parents(".modal-body").find("select.film-input").val();
+	var duration = film_time[filmId];
+	var time = $(this).val();
+	if(time!=""){
+		var block = time.split("T");
+		var dateblock = block[0];
+		var timeblock = block[1];
+		var dateblockdiv = dateblock.split("-");
+		var year = dateblockdiv[0];
+		var month = dateblockdiv[1];
+		var day = dateblockdiv[2];
+		var timeblockdiv = timeblock.split(":");
+		var hour = timeblockdiv[0];
+		var minite = timeblockdiv[1];
+		var date = new Date(Number(year),Number(month)-1,Number(day),Number(hour),Number(minite));
+		date.setTime(date.getTime()+Number(duration)*60*1000);
+		var endTime = date.format("yyyy-MM-dd hh:mm");
+		endTime = endTime.replace(" ","T");
+		$(this).parents(".modal-body").find(".endTime-input").val(endTime);
+	}
+});
+
 $("#modalEdit").find(".save-button").click(function(){
 	var action = $("#planedit-form").attr("action");
 	if(isFormValid($("#planedit-form"))){
@@ -123,34 +175,7 @@ $("#modalAdd").find(".save-button").click(function(){
 	}
 });
 
-try{
-	$(".submitforcheck-button").click(function(){
-		var $button = $(this);
-		var planid = $(this).parent().siblings(".planId").html();
-		var action = $(this).attr("target");
-		var data = new FormData();
-		data.append("planid",planid);
-		$.ajax({
-			data: data,
-			type: "POST",
-			url: action,
-			cache: false,
-			contentType: false,
-			processData: false,
-			success: function(data) {
-				if(data=="success"){
-					$.scojs_message('success', $.scojs_message.TYPE_OK);
-					setTimeout(function(){window.location.reload()},500);
-				}else{
-					$.scojs_message(data, $.scojs_message.TYPE_ERROR);
-				}
-			},
-			error:function(){
-				$.scojs_message('error occured!', $.scojs_message.TYPE_ERROR);
-			}
-		});
-	});
-}catch(e){}
+
 
 $(".hall-input").on("select2-selected", function (e) { 
 	var i = e.val+"";
@@ -158,4 +183,39 @@ $(".hall-input").on("select2-selected", function (e) {
 	var $input = $(this).parents(".row-line").next().find(".seat-input");
 	$input.val(seatsum);
 	$input.attr("max",seatsum);
+});
+
+function queryPage(page){
+	var data = new FormData();
+	data.append("page",page);
+	$.ajax({
+		data: data,
+		type: "POST",
+		url: "server_film_plan",
+		cache: false,
+		contentType: false,
+		processData: false,
+		success: function(data) {
+			if(data!="empty"){
+				$(".film-tbody").html(data);
+				eventInit();
+			}
+		},
+		error:function(){
+			$.scojs_message('error occured!', $.scojs_message.TYPE_ERROR);
+		}
+	});
+}
+$(".btn.next").click(function(){
+	var page = Number($(".page-symbol").html());
+	queryPage(page+1);
+});
+$(".btn.previous").click(function(){
+	var page = Number($(".page-symbol").html());
+	if(page>0){
+		queryPage(page-1);
+	}
+});
+$(document).ready(function(){
+	queryPage(0);
 });

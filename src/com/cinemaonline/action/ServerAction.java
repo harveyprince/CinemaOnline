@@ -40,12 +40,14 @@ public class ServerAction extends BaseAction {
 	private String ajaxinfo;
 	private List<FilmPlanInfo> filmplanlist;
 	private List<FilmInfo> filmlist;
+	private List<FilmInfo> oldfilmlist;
 	private List<Hall> halllist;
 	private List<Activity> activitylist;
 	private List<Activity> ended_activitylist;
-	private List<VipRecordInfo> viprecordlist;
+	private List<VipRecordInfo> recordlist;
 	private VipClientInfo vipclientinfo;
 	private VipCardInfo vipcardinfo;
+	private int page;
 
 //	///////////////////////////////////////////////////////////
 	/*get from client*/
@@ -56,14 +58,22 @@ public class ServerAction extends BaseAction {
 	/*
 	 * vip reader
 	 * */
+	public String ajax_record(){
+		String vipid = request.getParameter("vipid");
+		recordlist = vipService.getRecordsByPage(vipid,page);
+		if(recordlist==null||page<0){
+			ajaxinfo="empty";
+			return AJAXINFO;
+		}
+		return SUCCESS;
+	}
 	public String viewVip(){
 		String searchkey = request.getParameter("searchkey");
 		if(searchkey==null){
-			viprecordlist=null;
 			vipclientinfo=null;
 			vipcardinfo=null;
 		}else{
-			viprecordlist = vipService.getRecords(searchkey);
+			ajaxinfo=searchkey;
 			vipclientinfo = vipService.getVipInfoForClient(searchkey);
 			if(vipclientinfo==null){
 				return SUCCESS;
@@ -81,8 +91,23 @@ public class ServerAction extends BaseAction {
 	/*
 	 * ticket
 	 * */
+	public String ajax_ticket(){
+		filmplanlist = filmService.getAllPassedPlansNotOldByPage(page);
+		if(filmplanlist==null||page<0){
+			ajaxinfo="empty";
+			return AJAXINFO;
+		}
+		return SUCCESS;
+	}
+	public String ajax_old_ticket(){
+		filmplanlist = filmService.getAllPassedPlansOldByPage(page);
+		if(filmplanlist==null||page<0){
+			ajaxinfo="empty";
+			return AJAXINFO;
+		}
+		return SUCCESS;
+	}
 	public String viewTicketSale(){
-		filmplanlist = filmService.getAllPassedPlans();
 		filmlist = filmService.getAllReleasingFilms();
 		halllist = filmService.getAllHalls();
 		return SUCCESS;
@@ -128,10 +153,24 @@ public class ServerAction extends BaseAction {
 	/*
 	 * activity
 	 * */
-	public String viewActivity(){
-		filmplanlist = filmService.getAllPassedPlans();
-		activitylist = activityService.getAllUnpassedActivities();
+	public String ajax_activity(){
+		activitylist = activityService.getAllUnpassedActivitiesByPage(page);
+		if(activitylist==null||page<0){
+			ajaxinfo = "empty";
+			return AJAXINFO;
+		}
+		return SUCCESS;
+	}
+	public String ajax_ended_activity(){
 		ended_activitylist = activityService.getAllendedActivities();
+		if(ended_activitylist==null||page<0){
+			ajaxinfo = "empty";
+			return AJAXINFO;
+		}
+		return SUCCESS;
+	}
+	public String viewActivity(){
+		filmplanlist = filmService.getAllPassedPlansNotOld();
 		return SUCCESS;
 	}
 	
@@ -167,8 +206,25 @@ public class ServerAction extends BaseAction {
 	/*
 	 * film
 	 * */
+	public String ajax_film(){
+		filmlist = filmService.getAllFilmsByPage(page);
+		if(filmlist==null||page<0){
+			ajaxinfo = "empty";
+			return AJAXINFO;
+		}
+		return SUCCESS;
+	}
+	
+	public String ajax_old_film(){
+		oldfilmlist = filmService.getAllOldFilmsByPage(page);
+		if(oldfilmlist==null||page<0){
+			ajaxinfo = "empty";
+			return AJAXINFO;
+		}
+		return SUCCESS;
+	}
+	
 	public String viewFilm(){
-		filmlist = filmService.getAllFilms();
 		return SUCCESS;
 	}
 	
@@ -223,8 +279,16 @@ public class ServerAction extends BaseAction {
 	/*
 	 * plan
 	 * */
+	public String ajax_film_plan(){
+		filmplanlist = filmService.getAllUnoldPlansByPage(page);
+		if(filmplanlist==null||page<0){
+			ajaxinfo = "empty";
+			return AJAXINFO;
+		}
+		return SUCCESS;
+	}
+	
 	public String viewPlan(){
-		filmplanlist = filmService.getAllUnoldPlans();
 		filmlist = filmService.getAllReleasingFilms();
 		halllist = filmService.getAllHalls();
 		return SUCCESS;
@@ -337,12 +401,12 @@ public class ServerAction extends BaseAction {
 		this.ticketOrder = ticketOrder;
 	}
 
-	public List<VipRecordInfo> getViprecordlist() {
-		return viprecordlist;
+	public List<VipRecordInfo> getRecordlist() {
+		return recordlist;
 	}
 
-	public void setViprecordlist(List<VipRecordInfo> viprecordlist) {
-		this.viprecordlist = viprecordlist;
+	public void setRecordlist(List<VipRecordInfo> viprecordlist) {
+		this.recordlist = viprecordlist;
 	}
 
 	public VipClientInfo getVipclientinfo() {
@@ -367,6 +431,22 @@ public class ServerAction extends BaseAction {
 
 	public void setEnded_activitylist(List<Activity> ended_activitylist) {
 		this.ended_activitylist = ended_activitylist;
+	}
+
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
+	}
+
+	public List<FilmInfo> getOldfilmlist() {
+		return oldfilmlist;
+	}
+
+	public void setOldfilmlist(List<FilmInfo> oldfilmlist) {
+		this.oldfilmlist = oldfilmlist;
 	}
 
 }

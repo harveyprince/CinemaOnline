@@ -7,6 +7,8 @@ import org.hibernate.Session;
 
 public interface BaseDao {
 
+	public int getPageCount();
+	
 	public Session getSession();
 
 	public Session getNewSession();

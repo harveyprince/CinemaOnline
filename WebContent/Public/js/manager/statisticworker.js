@@ -75,6 +75,8 @@ $(".time-confirm").click(function(){
 		success: function(data) {
 			if(data=="empty"){
 				cardChartsEmp();
+				$(".consume-show").html("");
+				$(".participate-show").html("");
 				$.scojs_message('no record!', $.scojs_message.TYPE_ERROR);
 			}else{
 				var info = eval('('+data+')');
@@ -96,6 +98,7 @@ $(".time-confirm").click(function(){
 		processData: false,
 		success: function(data) {
 			if(data=="empty"){
+				$(".person-month-show").html("");
 				personChartsEmp();
 				filmAttendenceChartsEmp();
 				hallAttendenceChartsEmp();

@@ -12,6 +12,10 @@
           <!-- TestAction --><!-- TestAction --><!-- TestAction -->
           <action name="init" class="TestAction" method="DataInit">
           </action>
+          <action name="cron" class="TestAction" method="MonthCron">
+          </action>
+          <action name="lvcost" class="TestAction" method="Viplvcost">
+          </action>
           <!--  ManagerAction--><!--  ManagerAction--><!--  ManagerAction-->
           <!--statics  -->
           <action name="viewStatics" class="ManagerAction" method="showStatics">
@@ -33,6 +37,12 @@
           <result name="statisticcinema">/Ajax/statisticcinema.jsp</result>
           </action>
           <!-- plan check -->
+          <action name="manar_filmplan" class="ManagerAction" method="ajax_filmplan">
+          	<result name="success">/manar/filmplan/filmplan.jsp</result>
+          </action>
+           <action name="manar_old_filmplan" class="ManagerAction" method="ajax_old_filmplan">
+          	<result name="success">/manar/filmplan/oldfilmplan.jsp</result>
+          </action>
           <action name="manager" class="ManagerAction" method="checkPlan">
           	<result name="success">/manar/managerplancheck.jsp</result>
           </action>
@@ -42,6 +52,9 @@
           </action>
           <!--  AccountAction--><!--  AccountAction--><!--  AccountAction-->
            <action name="" class="AccountAction" method="welcome">
+          	<result name="success">/welcome/welcome.jsp</result>
+          </action>
+          <action name="login" class="AccountAction" method="welcome">
           	<result name="success">/welcome/welcome.jsp</result>
           </action>
            <action name="loginAjax" class="AccountAction" method="loginJudge">
@@ -72,10 +85,19 @@
            <action name="disactivateCard" class="VipAction" method="disactivateCard">
            </action>
            <!--record  -->       
+           <action name="vip_record" class="VipAction" method="ajax_record">
+           	<result name="success">/vip/record/record.jsp</result>
+           </action>
            <action name="viprecord" class="VipAction" method="viewRecord">
            	<result name="success">/vip/viprecord.jsp</result>
            </action>
            <!--activity  -->
+           <action name="vip_activity" class="VipAction" method="ajax_activity">
+           <result name="success">/vip/activity/activity.jsp</result>
+           </action>
+           <action name="vip_old_activity" class="VipAction" method="ajax_old_activity">
+           <result name="success">/vip/activity/oldactivity.jsp</result>
+           </action>
            <action name="vipactivity" class="VipAction" method="viewActivity">
            	<result name="success">/vip/vipactivity.jsp</result>
            </action>
@@ -83,6 +105,9 @@
            </action>
            <!-- ServerAction --><!-- ServerAction --><!-- ServerAction -->
            <!--plan  -->
+           <action name="server_film_plan" class="ServerAction" method="ajax_film_plan">
+           <result name="success">/server/filmplan/filmplan.jsp</result>
+           </action>
            <action name="serverfilmplan" class="ServerAction" method="viewPlan">
            	<result name="success">/server/serverfilmplan.jsp</result>
            </action>
@@ -93,6 +118,12 @@
            <action name="plansubmit" class="ServerAction" method="submitPlan">
            </action>
            <!-- film -->
+           <action name="server_film" class="ServerAction" method="ajax_film">
+           <result name="success">/server/film/film.jsp</result>
+           </action>
+            <action name="server_old_film" class="ServerAction" method="ajax_old_film">
+           <result name="success">/server/film/ended_film.jsp</result>
+           </action>
            <action name="serverfilm" class="ServerAction" method="viewFilm">
            	<result name="success">/server/serverfilm.jsp</result>
            </action>
@@ -105,6 +136,12 @@
            <action name="unreleasefilm" class="ServerAction" method="unreleaseFilm">
            </action>
            <!--activity  -->
+           <action name="server_activity" class="ServerAction" method="ajax_activity">
+           <result name="success">/server/activity/activity.jsp</result>
+           </action>
+           <action name="server_ended_activity" class="ServerAction" method="ajax_ended_activity">
+           <result name="success">/server/activity/ended_activity.jsp</result>
+           </action>
            <action name="serveractivity" class="ServerAction" method="viewActivity">
            	<result name="success">/server/serveractivity.jsp</result>
            </action>
@@ -115,6 +152,12 @@
            <action name="actpublish" class="ServerAction" method="publishActivity">
            </action>
            <!--ticket  -->
+           <action name="server_ticket" class="ServerAction" method="ajax_ticket">
+           <result name="success">/server/ticket/ticket.jsp</result>
+           </action>
+           <action name="server_old_ticket" class="ServerAction" method="ajax_old_ticket">
+           <result name="success">/server/ticket/oldticket.jsp</result>
+           </action>
            <action name="ticketsale" class="ServerAction" method="viewTicketSale">
            <result name="success">/server/ticketsale.jsp</result>
            </action>
@@ -123,6 +166,9 @@
            <action name="ticketPay" class="ServerAction" method="ticketPay">
            </action>
            <!--vip read  -->
+           <action name="server_vip_record" class="ServerAction" method="ajax_record">
+           	<result name="success">/vip/record/record.jsp</result>
+           </action>
            <action name="viewVipDetail" class="ServerAction" method="viewVip">
            <result name="success">/server/servervipread.jsp</result>
            </action>
