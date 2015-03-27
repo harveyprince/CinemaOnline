@@ -22,12 +22,12 @@
 			<div class="row">
 				<div class="">
 					<ul class="nav nav-list">
-						<li class="active"><a href="#"><i class="fa fa-pencil-square-o"></i>check Plan</a></li>
-						<li><a href="viewStatics"><i class="fa fa-pencil-square-o"></i>statics</a></li>
+						<li class="active"><a href="#"><i class="fa fa-newspaper-o"></i>check Plan</a></li>
+						<li><a href="viewStatics"><i class="fa fa-pie-chart"></i>statics</a></li>
 					</ul>
 				</div>
 			</div>
-			<div class="user-button"><a href="logout">logout</a></div>
+			<div class="user-button"><a href="logout"><i class="fa fa-sign-out"></i>logout</a></div>
 		</div>
 		<!-- left side bar//////////////////////////////////////////////////////////////////////////////// -->
 

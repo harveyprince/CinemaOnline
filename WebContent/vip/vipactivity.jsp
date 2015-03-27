@@ -24,14 +24,14 @@
 			<div class="row">
 				<div class="">
 					<ul class="nav nav-list">
-						<li><a href="vipinfo"><i class="fa fa-pencil-square-o"></i>vip info</a></li>
-						<li><a href="vipcard"><i class="fa fa-film"></i>vip card</a></li>
-						<li><a href="viprecord"><i class="fa fa-dribbble"></i> vip record</a></li>
-						<li class="active"><a href="#"><i class="fa fa-user"></i> vip activity</a></li>
+						<li><a href="vipinfo"><i class="fa fa-user"></i>vip info</a></li>
+						<li><a href="vipcard"><i class="fa fa-credit-card"></i>vip card</a></li>
+						<li><a href="viprecord"><i class="fa fa-tasks"></i> vip record</a></li>
+						<li class="active"><a href="#"><i class="fa fa-trophy"></i>vip activity</a></li>
 					</ul>
 				</div>
 			</div>
-			<div class="user-button"><a href="logout">logout</a></div>
+			<div class="user-button"><a href="logout"><i class="fa fa-sign-out"></i>logout</a></div>
 		</div>
 		<!-- left side bar//////////////////////////////////////////////////////////////////////////////// -->
 

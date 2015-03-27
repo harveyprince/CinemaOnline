@@ -6,7 +6,7 @@
 	<th class="activityName"><s:property value="#activity.title"/></th>
 	<th>
 		<button class="btn btn-inverse table-button participate-button" data-toggle="modal" data-target="#modalParticipate">
-			<i class="fa fa-pencil-square-o"></i>
+			<i class="fa fa-street-view"></i>
 		</button>
 	</th>
 	<th class="activity-answers" style="display:none;">
