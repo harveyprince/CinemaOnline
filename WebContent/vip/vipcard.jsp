@@ -49,7 +49,7 @@
 					<div class="info-line">status:
 						<span><s:property value="vipinfo.strstatus"/></span>
 					</div>
-					<s:if test="%{vipinfo.status!=5}">
+					<s:if test="%{vipinfo.status<4}">
 					<div class="info-line">score:
 						<span><s:property value="cardinfo.score"/></span>
 					</div>
@@ -136,7 +136,6 @@
 			</div>
 			<div class="modal-footer">
 				<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
-				<button class="btn btn-primary save-button">Save changes</button>
 			</div>
 		</div>
 	</div>

@@ -85,10 +85,10 @@ public class VipClientInfo {
 		case 2:
 			setStrstatus("pause");
 			break;
-		case 3:
+		case 4:
 			setStrstatus("stop");
 			break;
-		case 4:
+		case 5:
 			setStrstatus("canceled");
 			break;
 		default:

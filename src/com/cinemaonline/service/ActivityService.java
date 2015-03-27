@@ -41,4 +41,6 @@ public interface ActivityService {
 
 	public List<Activity> getParticipatedActivitiesForVipByPage(String userid,
 			int page);
+
+	public List<Activity> getAllendedActivitiesByPage(int page);
 }

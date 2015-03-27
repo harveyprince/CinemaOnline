@@ -53,6 +53,12 @@ public class ActivityServiceImpl implements ActivityService {
 	}
 	
 	@Override
+	public List<Activity> getAllendedActivitiesByPage(int page) {
+		// TODO Auto-generated method stub
+		return activityDao.getAllendedActivitiesByPage(page);
+	}
+	
+	@Override
 	public OperaResult insertActivity(ActivityInfo info) {
 		// TODO Auto-generated method stub
 		OperaResult result = new OperaResult();

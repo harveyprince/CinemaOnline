@@ -53,7 +53,7 @@ public class TicketServiceImpl implements TicketService {
 					info_local.setDiscount(vipinfo.getVipCard().getVipLevel().getDiscount());
 				}else{
 					result.setResult(false);
-					result.setComment("card is not activated");
+					result.setComment("card is not available");
 					return result;
 				}
 			}else{

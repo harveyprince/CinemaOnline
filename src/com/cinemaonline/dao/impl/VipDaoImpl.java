@@ -243,7 +243,7 @@ public class VipDaoImpl implements VipDao {
 	public List<VipRecord> getRecordsByIdByPage(String userid,int page) {
 		// TODO Auto-generated method stub
 		Session session = baseDao.getNewSession();
-		String hql = "from com.cinemaonline.model.VipRecord as a where a.vipId='"+userid+"'";
+		String hql = "from com.cinemaonline.model.VipRecord as a where a.vipId='"+userid+"' order by a.recordTime desc";
 		List list = null;
 		try{
 			Query query = session.createQuery(hql);

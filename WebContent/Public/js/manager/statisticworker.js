@@ -1,6 +1,9 @@
 $(".time-confirm").click(function(){
-    var year = $("select.year-input").val();
-    var month = $("select.month-input").val();
+    var time = $(".time-input").val();
+    if(time==""){return false;}
+    var timeblock = time.split("-");
+    var year = Number(timeblock[0]);
+    var month = Number(timeblock[1]);
     //age
     var data = new FormData();
     data.append("year",year);

@@ -22,10 +22,12 @@ function queryPage(page){
 }
 $(".btn.next").click(function(){
 	var page = Number($(".record-tbody .page-symbol").html());
+	if(isNaN(page)){return false;}
 	queryPage(page+1);
 });
 $(".btn.previous").click(function(){
 	var page = Number($(".record-tbody .page-symbol").html());
+	if(isNaN(page)){return false;}
 	if(page>0){
 		queryPage(page-1);
 	}

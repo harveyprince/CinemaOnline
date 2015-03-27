@@ -160,10 +160,12 @@ function queryPage(page){
 }
 $(".btn.next").click(function(){
 	var page = Number($(".film-tbody .page-symbol").html());
+	if(isNaN(page)){return false;}
 	queryPage(page+1);
 });
 $(".btn.previous").click(function(){
 	var page = Number($(".film-tbody .page-symbol").html());
+	if(isNaN(page)){return false;}
 	if(page>0){
 		queryPage(page-1);
 	}
@@ -194,10 +196,12 @@ function oldqueryPage(page){
 }
 $(".btn.old-next").click(function(){
 	var page = Number($(".old-film-tbody .page-symbol").html());
+	if(isNaN(page)){return false;}
 	oldqueryPage(page+1);
 });
 $(".btn.old-previous").click(function(){
 	var page = Number($(".old-film-tbody .page-symbol").html());
+	if(isNaN(page)){return false;}
 	if(page>0){
 		oldqueryPage(page-1);
 	}

@@ -36,6 +36,8 @@ public class VipServiceImpl implements VipService {
 	@Autowired
 	private InfoDao infoDao;
 	
+	private boolean lock = false;
+	
 	private VipServiceImpl(){}
 
 	@Override
@@ -120,12 +122,14 @@ public class VipServiceImpl implements VipService {
 			//lvcost失败，会员状态暂停[如果状态已经为暂停，则停止会员记录]
 			if(userinfo.getVipStatus()==1){
 				userinfo.setVipStatus(2);
-			}
+			}else{
 			if(userinfo.getVipStatus()==2){
 				userinfo.setVipStatus(4);
 			}
+			}
 			vipDao.update(userinfo);
 		}
+		if(lock){lock=false;}
 		return result;
 	}
 
@@ -163,10 +167,13 @@ public class VipServiceImpl implements VipService {
 			opinfo.setComment("not enough");
 		}
 		recordService.insertVipRecord(opinfo);
+		if(!lock){
 		if(info.getVipStatus()==2){
 			if(card.getBalance()>=card.getVipLevel().getCost()){
+				lock = true;
 				cardLevelCost(info.getVipId());
 			}
+		}
 		}
 		return result;
 	}
@@ -252,6 +259,7 @@ public class VipServiceImpl implements VipService {
 		if(score==0){
 			result.setResult(false);
 			result.setComment("less than 100 cannot translate");
+			return result;
 		}
 		if(card.getScore()<score){
 			result.setResult(false);
@@ -287,7 +295,7 @@ public class VipServiceImpl implements VipService {
 //		以年为周期，采用365天计数
 //		获取超过365天未缴费的会员，并分析状态[不获取4停止\5取消]
 		Calendar cal = Calendar.getInstance();
-		cal.set(Calendar.MONTH, -10-12*9);
+		cal.set(Calendar.MONTH, -10);
 		System.out.println(cal.getTimeInMillis());
 		List<VipInfo> viplist = vipDao.getVipForLevelPay(cal.getTimeInMillis());
 		if(viplist!=null){

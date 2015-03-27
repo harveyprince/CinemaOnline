@@ -39,6 +39,7 @@ public class ServerAction extends BaseAction {
 	
 	private String ajaxinfo;
 	private List<FilmPlanInfo> filmplanlist;
+	private List<FilmPlanInfo> oldfilmplanlist;
 	private List<FilmInfo> filmlist;
 	private List<FilmInfo> oldfilmlist;
 	private List<Hall> halllist;
@@ -100,8 +101,8 @@ public class ServerAction extends BaseAction {
 		return SUCCESS;
 	}
 	public String ajax_old_ticket(){
-		filmplanlist = filmService.getAllPassedPlansOldByPage(page);
-		if(filmplanlist==null||page<0){
+		oldfilmplanlist = filmService.getAllPassedPlansOldByPage(page);
+		if(oldfilmplanlist==null||page<0){
 			ajaxinfo="empty";
 			return AJAXINFO;
 		}
@@ -162,7 +163,7 @@ public class ServerAction extends BaseAction {
 		return SUCCESS;
 	}
 	public String ajax_ended_activity(){
-		ended_activitylist = activityService.getAllendedActivities();
+		ended_activitylist = activityService.getAllendedActivitiesByPage(page);
 		if(ended_activitylist==null||page<0){
 			ajaxinfo = "empty";
 			return AJAXINFO;
@@ -447,6 +448,12 @@ public class ServerAction extends BaseAction {
 
 	public void setOldfilmlist(List<FilmInfo> oldfilmlist) {
 		this.oldfilmlist = oldfilmlist;
+	}
+	public List<FilmPlanInfo> getOldfilmplanlist() {
+		return oldfilmplanlist;
+	}
+	public void setOldfilmplanlist(List<FilmPlanInfo> oldfilmplanlist) {
+		this.oldfilmplanlist = oldfilmplanlist;
 	}
 
 }

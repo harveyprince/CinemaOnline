@@ -43,4 +43,6 @@ public interface ActivityDao {
 
 	public List<Activity> getParticipatedActivitiesForVipByPage(long parseLong,
 			int page);
+
+	public List<Activity> getAllendedActivitiesByPage(int page);
 }

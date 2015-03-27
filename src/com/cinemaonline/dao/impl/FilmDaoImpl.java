@@ -301,7 +301,7 @@ public class FilmDaoImpl implements FilmDao {
 	public List<Film> getAllOldFilmsByPage(int page) {
 		// TODO Auto-generated method stub
 		Session session = baseDao.getNewSession();
-		String hql = "from com.cinemaonline.model.Film as f where f.shelvesTime is not null";
+		String hql = "from com.cinemaonline.model.Film as f where f.shelvesTime is not null order by f.shelvesTime desc";
 		List list = null;
 		try{
 			Query query = session.createQuery(hql);
@@ -399,7 +399,7 @@ public class FilmDaoImpl implements FilmDao {
 		// TODO Auto-generated method stub
 		Session session = baseDao.getNewSession();
 		Date day = new Date();
-		String hql = "from com.cinemaonline.model.FilmPlan where status=2 and beginTime<=?";
+		String hql = "from com.cinemaonline.model.FilmPlan where status=2 and beginTime<=? order by beginTime desc";
 		List list = null;
 		try{
 			Query query = session.createQuery(hql);

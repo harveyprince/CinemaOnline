@@ -222,11 +222,11 @@ public class FilmServiceImpl implements FilmService {
 			result.setComment("the plan is still working");
 			return result;
 		}
+//		活动评测------------------------------------------------------------------------------------------
+		OperaResult activity_result = activityService.endActivityByFilm(f);
 		f.setStatus(0);
 		f.setShelvesTime(new java.sql.Date((new java.util.Date()).getTime()));
 		filmDao.updateFilm(f);
-//		活动评测------------------------------------------------------------------------------------------
-		OperaResult activity_result = activityService.endActivityByFilm(f);
 		result.setResult(true);
 		return result;
 	}

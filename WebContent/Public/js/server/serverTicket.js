@@ -84,7 +84,8 @@ $(".payway-input").on("select2-selected", function (e) {
 		$(".bank-box").slideUp();
 	}
 });
-$(".ticket-sale-button").click(function(){
+function eventInit(){
+	$(".ticket-sale-button").click(function(){
 	$row = $(this).parent().parent();
 	$modal = $("#modalSale");
 	$modal.find(".planid-shown").html($row.children(".planId").html());
@@ -96,6 +97,8 @@ $(".ticket-sale-button").click(function(){
 	modalSaleInit();
 	$modal.find(".info-tab").click();
 });
+}
+
 function modalSaleInit(){
 	$modal = $("#modalSale");
 	$modal.find(".seatnum-input").val("1");
@@ -131,10 +134,12 @@ function queryPage(page){
 }
 $(".btn.next").click(function(){
 	var page = Number($(".ticket-tbody .page-symbol").html());
+	if(isNaN(page)){return false;}
 	queryPage(page+1);
 });
 $(".btn.previous").click(function(){
 	var page = Number($(".ticket-tbody .page-symbol").html());
+	if(isNaN(page)){return false;}
 	if(page>0){
 		queryPage(page-1);
 	}
@@ -165,10 +170,12 @@ function oldqueryPage(page){
 }
 $(".btn.old-next").click(function(){
 	var page = Number($(".old-ticket-tbody .page-symbol").html());
+	if(isNaN(page)){return false;}
 	oldqueryPage(page+1);
 });
 $(".btn.old-previous").click(function(){
 	var page = Number($(".old-ticket-tbody .page-symbol").html());
+	if(isNaN(page)){return false;}
 	if(page>0){
 		oldqueryPage(page-1);
 	}

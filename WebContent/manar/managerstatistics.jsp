@@ -38,26 +38,9 @@ pageEncoding="UTF-8"%>
 		<div class="tab-pag-bar">
 			<div class="time-choose-bar">
 				<div class="row-line">
-					<div class="row-label">year:</div>
-					<div class="span3 row-content">
-						<select class="form-control select select-primary select-block mbl year-input" name="year">
-							<option value="1994">1994</option>
-							<option value="1995">1995</option>
-							<option value="1996">1996</option>
-							<option value="1996">1996</option><option value="2015">2015</option>
-						</select>
-					</div>
-				</div>
-				<div class="row-line">
-					<div class="row-label">month:</div>
-					<div class="span3 row-content">
-						<select class="form-control select select-primary select-block mbl month-input" name="month">
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-						</select>
+					<div class="row-label">duration:</div>
+					<div class="form-group has-success row-content">
+						<input class="form-control time-input" type="month" placeholder="duration" name="time"/>
 					</div>
 				</div>
 				<div class="row-line" style="text-align:center;">
@@ -109,7 +92,6 @@ pageEncoding="UTF-8"%>
 <script src="./Public/sco/js/sco.message.js"></script>
 <script src="./Public/Flat-UI-master/dist/js/flat-ui.js"></script>
 <script type="text/javascript">
-$("select").select2();
 
 </script>
 <script src="./Public/js/common/form.js"></script>

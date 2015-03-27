@@ -400,6 +400,32 @@ public class ActivityDaoImpl implements ActivityDao {
 			return null;
 		}
 	}
+	@Override
+	public List<Activity> getAllendedActivitiesByPage(int page) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String hql = "from com.cinemaonline.model.Activity as a where a.status=2 order by a.activityId desc";
+		List list = null;
+		try{
+			Query query = session.createQuery(hql);
+			query.setFirstResult(page*baseDao.getPageCount());
+			query.setMaxResults(baseDao.getPageCount());
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return list;
+			}else{
+				return null;
+			}
+		}else{
+			return null;
+		}
+	}
 
 
 

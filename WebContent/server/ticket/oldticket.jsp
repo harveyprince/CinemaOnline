@@ -1,6 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <div class="page-symbol" style="display:none;"><s:property value="page"/></div>
-<s:iterator id="plan" value="filmplanlist" status="st">
+<s:iterator id="plan" value="oldfilmplanlist" status="st">
 <s:if test="%{#plan.seatSum==0}">
 <tr class="warning">
 </s:if>

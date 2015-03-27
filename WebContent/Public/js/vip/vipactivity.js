@@ -94,10 +94,12 @@ function queryPage(page){
 }
 $(".btn.next").click(function(){
 	var page = Number($(".activity-tbody .page-symbol").html());
+	if(isNaN(page)){return false;}
 	queryPage(page+1);
 });
 $(".btn.previous").click(function(){
 	var page = Number($(".activity-tbody .page-symbol").html());
+	if(isNaN(page)){return false;}
 	if(page>0){
 		queryPage(page-1);
 	}
@@ -129,10 +131,12 @@ function endedqueryPage(page){
 }
 $(".btn.old-next").click(function(){
 	var page = Number($(".old-activity-tbody .page-symbol").html());
+	if(isNaN(page)){return false;}
 	endedqueryPage(page+1);
 });
 $(".btn.old-previous").click(function(){
 	var page = Number($(".old-activity-tbody .page-symbol").html());
+	if(isNaN(page)){return false;}
 	if(page>0){
 		endedqueryPage(page-1);
 	}
