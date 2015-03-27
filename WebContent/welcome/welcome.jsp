@@ -16,6 +16,9 @@
 <body class="harveyprince">
 	<div class="page-content">
 		<div class="content-inner">
+			<div class="cover-img">
+				CinemaOnline
+			</div>
 			<div class="form-panel">
 				<div class="form-box">
 					<div class="login-group input-group active">
