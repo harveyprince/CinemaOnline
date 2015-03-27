@@ -11,3 +11,11 @@
 	width: 100%;
 	margin: 0;
 }
+.cover-img{
+	color: #B2B2B2;
+	position: absolute;
+	font-size: 45px;
+	top: 40%;
+	left: 25%;
+	
+}

@@ -10,6 +10,7 @@ input{
 }
 .harveyprince{
 	background: #322F2F;
+	background: #444 url("../../image/debut_dark.png") repeat;
 }
 .block-input-box{
 	display: block;
