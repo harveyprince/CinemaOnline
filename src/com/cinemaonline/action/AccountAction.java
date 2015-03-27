@@ -48,6 +48,7 @@ public class AccountAction extends BaseAction {
 		if(result.getResult()){
 //			identity differs
 			session.put("userid", result.getAccount().getAccountName());
+			session.put("identity", result.getAccount().getIdentityId());
 			ajaxinfo = request.getContextPath();
 			switch(result.getStatus()){
 			case 0:
@@ -88,6 +89,12 @@ public class AccountAction extends BaseAction {
 			ajaxinfo = result.getComment();
 		}
 		return AJAXINFO;
+	}
+	
+	public String logout(){
+		session.remove("userid");
+		session.remove("identity");
+		return WELCOME;
 	}
 //	/////////////////////////////////////////////////////////////////////////////////////////////////////
 	public String getAjaxinfo() {

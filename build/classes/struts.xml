@@ -8,6 +8,7 @@
           extends="struts-default">
           <global-results>
           	<result name="ajaxinfo">/Ajax/ajax.jsp</result>
+          	<result name="welcome">/welcome/welcome.jsp</result>
           </global-results>
           <!-- TestAction --><!-- TestAction --><!-- TestAction -->
           <action name="init" class="TestAction" method="DataInit">
@@ -56,6 +57,8 @@
           </action>
           <action name="login" class="AccountAction" method="welcome">
           	<result name="success">/welcome/welcome.jsp</result>
+          </action>
+          <action name="logout" class="AccountAction" method="logout">
           </action>
            <action name="loginAjax" class="AccountAction" method="loginJudge">
           </action>

@@ -31,6 +31,7 @@
 					</ul>
 				</div>
 			</div>
+			<div class="user-button"><a href="logout">logout</a></div>
 		</div>
 		<!-- left side bar//////////////////////////////////////////////////////////////////////////////// -->
 
