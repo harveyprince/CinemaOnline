@@ -135,7 +135,7 @@ public class FilmServiceImpl implements FilmService {
 			return result;
 		}
 //		检测时空冲突
-		OperaResult check_result = filmDao.checkFilmPlan(info.getBeginTime(),info.getEndTime(),filmDao.getHallById(info.getHallNo()));
+		OperaResult check_result = filmDao.checkFilmPlanForUpdate(info.getPlanid(),info.getBeginTime(),info.getEndTime(),filmDao.getHallById(info.getHallNo()));
 		if(check_result.getResult()){
 			FilmPlan info_old = filmDao.getFilmPlanById(info.getPlanid());
 	//		先获取film/hall/plan

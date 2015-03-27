@@ -68,6 +68,9 @@ public interface FilmDao {
 
 	public List<Film> getAllOldFilmsByPage(int page);
 
+	public OperaResult checkFilmPlanForUpdate(long planid, long beginTime,
+			long endTime, Hall hallById);
+
 
 
 

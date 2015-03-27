@@ -51,9 +51,12 @@ public class RequestFilter implements Filter {
 		boolean vipmatch = match(vipurl,url);
 		boolean servermatch = match(serverurl,url);
 		boolean managermatch = match(managerurl,url);
+		String userid = "";
+		int identity = 0;
 		if(vipmatch||servermatch||managermatch){
-			String userid = (String) session.getAttribute("userid");
-			int identity = (int) session.getAttribute("identity");
+			try{
+			userid = (String) session.getAttribute("userid");
+			identity = (int) session.getAttribute("identity");
 			if(userid==null||userid==""){
 				httpresponse.sendRedirect("login");
 			}else{
@@ -77,6 +80,9 @@ public class RequestFilter implements Filter {
 					httpresponse.sendRedirect("login");
 					break;
 				}
+			}
+			}catch(Exception e){
+				httpresponse.sendRedirect("login");
 			}
 		}
 		

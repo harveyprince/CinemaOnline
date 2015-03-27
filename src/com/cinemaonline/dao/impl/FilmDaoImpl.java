@@ -507,6 +507,41 @@ public class FilmDaoImpl implements FilmDao {
 		return result;
 	}
 	@Override
+	public OperaResult checkFilmPlanForUpdate(long planid,long beginTime, long endTime, Hall hall) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String hql = "from com.cinemaonline.model.FilmPlan as a where a.hall=? and ((a.beginTime>=? and a.beginTime<=?) or (a.endTime>=? and a.endTime<=?) or (a.beginTime<=? and a.endTime>=?)) and a.planId!=?";
+		List list = null;
+		try{
+			Query query = session.createQuery(hql);
+			query.setParameter(0, hall);
+			query.setParameter(1, beginTime);
+			query.setParameter(2, endTime);
+			query.setParameter(3, beginTime);
+			query.setParameter(4, endTime);
+			query.setParameter(5, beginTime);
+			query.setParameter(6, endTime);
+			query.setParameter(7, planid);
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		OperaResult result = new OperaResult();
+		if(list!=null){
+			if(list.size()>0){
+				result.setResult(false);
+				result.setComment("time conflict");
+			}else{
+				result.setResult(true);
+			}
+		}else{
+			result.setResult(true);
+		}
+		return result;
+	}
+	@Override
 	public List<FilmPlan> getAllNotEndedPlansByFilm(Film info) {
 		// TODO Auto-generated method stub
 		Session session = baseDao.getNewSession();
