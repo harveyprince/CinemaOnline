@@ -9,4 +9,6 @@ public interface TicketService {
 
 	OperaResult payTheBill(TicketOrder order);
 
+	OperaResult judgeTicketForVip(TicketOrder ticketOrder);
+
 }

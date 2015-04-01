@@ -28,6 +28,7 @@
 						<li><a href="vipcard"><i class="fa fa-credit-card"></i>vip card</a></li>
 						<li><a href="viprecord"><i class="fa fa-tasks"></i> vip record</a></li>
 						<li class="active"><a href="#"><i class="fa fa-trophy"></i>vip activity</a></li>
+						<li><a href="vipticket"><i class="fa fa-trophy"></i>buy ticket</a></li>
 					</ul>
 				</div>
 			</div>

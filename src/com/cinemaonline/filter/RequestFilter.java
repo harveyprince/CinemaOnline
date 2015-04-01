@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 @WebFilter(urlPatterns="/*")
 public class RequestFilter implements Filter {
 
-	public static final String[] vipurl = {"vipinfo","infoUpate","vipcard","activatecard","cardrecharge","scoreTranslate","disactivateCard","vip_record","viprecord","vip_activity","vip_old_activity","vipactivity","joinActivity"};
+	public static final String[] vipurl = {"vipinfo","infoUpate","vipcard","activatecard","cardrecharge","scoreTranslate","disactivateCard","vip_record","viprecord","vip_activity","vip_old_activity","vipactivity","joinActivity","vipserver_ticket","vipticket","vipticketCheck","vipticketPay"};
 	public static final String[] serverurl = {"server_film_plan","serverfilmplan","planedit","planadd","plansubmit","server_film","server_old_film","serverfilm",
 			"filmadd","filmedit","releasefilm","unreleasefilm","server_activity","server_ended_activity","serveractivity","activityadd","activityedit","actpublish",
 			"server_ticket","server_old_ticket","ticketsale","ticketCheck","ticketPay","server_vip_record","viewVipDetail"};

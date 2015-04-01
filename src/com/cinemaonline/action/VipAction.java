@@ -7,10 +7,16 @@ import org.springframework.stereotype.Repository;
 
 import com.cinemaonline.model.Activity;
 import com.cinemaonline.model.ActivityRecord;
+import com.cinemaonline.model.Hall;
 import com.cinemaonline.model.Location;
+import com.cinemaonline.model.Ticket;
 import com.cinemaonline.model.VipLevel;
+import com.cinemaonline.model.client.AccountLogin;
 import com.cinemaonline.model.client.BankOperaInfo;
+import com.cinemaonline.model.client.FilmInfo;
+import com.cinemaonline.model.client.FilmPlanInfo;
 import com.cinemaonline.model.client.OperaResult;
+import com.cinemaonline.model.client.TicketOrder;
 import com.cinemaonline.model.client.VipCardInfo;
 import com.cinemaonline.model.client.VipClientInfo;
 import com.cinemaonline.model.client.VipOperaInfo;
@@ -18,7 +24,9 @@ import com.cinemaonline.model.client.VipRecordInfo;
 import com.cinemaonline.model.client.VipUpdate;
 import com.cinemaonline.service.ActivityService;
 import com.cinemaonline.service.BankService;
+import com.cinemaonline.service.FilmService;
 import com.cinemaonline.service.InfoService;
+import com.cinemaonline.service.TicketService;
 import com.cinemaonline.service.VipService;
 
 @Repository
@@ -36,6 +44,10 @@ public class VipAction extends BaseAction {
 	private ActivityService activityService;
 	@Autowired
 	private InfoService infoService;
+	@Autowired
+	private FilmService filmService;
+	@Autowired
+	private TicketService ticketService;
 	
 	private String ajaxinfo;
 	private VipClientInfo vipinfo;
@@ -47,6 +59,76 @@ public class VipAction extends BaseAction {
 	private List<Location> locationlist;
 	private List<ActivityRecord> activityrecordlist;
 	private int page;
+	private List<FilmPlanInfo> filmplanlist;
+	
+
+	private List<FilmInfo> filmlist;
+	private List<Hall> halllist;
+	
+	private TicketOrder ticketOrder;
+	
+	
+
+	/*
+	 * ticket
+	 * */
+	public String ajax_ticket(){
+		filmplanlist = filmService.getAllPassedPlansNotOldByPage(page);
+		if(filmplanlist==null||page<0){
+			ajaxinfo="empty";
+			return AJAXINFO;
+		}
+		return SUCCESS;
+	}
+	
+	public String viewTicketSale(){
+		setFilmlist(filmService.getAllReleasingFilms());
+		setHalllist(filmService.getAllHalls());
+		return SUCCESS;
+	}
+	
+	public String ticketJudge(){
+		String userid = (String)session.get("userid");
+		AccountLogin vip_account = new AccountLogin();
+		vip_account.setAccountName(userid);
+		ticketOrder.setVip_account(vip_account);
+		ticketOrder.setIdentity(1);
+		OperaResult result = ticketService.judgeTicketForVip(ticketOrder);
+		if(result.getResult()){
+			session.put("ticketorder", result.getTicketOrder());
+			ajaxinfo = "success"+"#"+result.getTicketOrder().getCost();
+		}else{
+			ajaxinfo = result.getComment();
+		}
+		return AJAXINFO;
+	}
+	
+	public String ticketPay(){
+		try{
+			TicketOrder order = (TicketOrder) session.get("ticketorder");
+			if(order==null){
+				ajaxinfo="failed";
+				return AJAXINFO;
+			}
+			order.setPayway(ticketOrder.getPayway());
+			order.setBank_account(ticketOrder.getBank_account());
+			OperaResult result = ticketService.payTheBill(order);
+			if(result.getResult()){
+				session.remove("ticketorder");
+				ajaxinfo = "success"+"#";
+				for(Ticket tick:result.getTicketRecord().getTickets()){
+					ajaxinfo += tick.getSeatNumber();
+					ajaxinfo += "&";
+				}
+			}else{
+				ajaxinfo = result.getComment();
+			}
+		}catch(Exception e){
+			ajaxinfo="failed";
+			e.printStackTrace();
+		}
+		return AJAXINFO;
+	}
 	
 	/*
 	 * activity
@@ -312,6 +394,38 @@ public class VipAction extends BaseAction {
 	}
 	public void setPage(int page) {
 		this.page = page;
+	}
+
+	public List<FilmInfo> getFilmlist() {
+		return filmlist;
+	}
+
+	public void setFilmlist(List<FilmInfo> filmlist) {
+		this.filmlist = filmlist;
+	}
+
+	public List<Hall> getHalllist() {
+		return halllist;
+	}
+
+	public void setHalllist(List<Hall> halllist) {
+		this.halllist = halllist;
+	}
+	
+	public TicketOrder getTicketOrder() {
+		return ticketOrder;
+	}
+
+	public void setTicketOrder(TicketOrder ticketOrder) {
+		this.ticketOrder = ticketOrder;
+	}
+	
+	public List<FilmPlanInfo> getFilmplanlist() {
+		return filmplanlist;
+	}
+
+	public void setFilmplanlist(List<FilmPlanInfo> filmplanlist) {
+		this.filmplanlist = filmplanlist;
 	}
 
 

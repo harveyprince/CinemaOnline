@@ -77,6 +77,40 @@ public class TicketServiceImpl implements TicketService {
 	}
 
 	@Override
+	public OperaResult judgeTicketForVip(TicketOrder info) {
+		// TODO Auto-generated method stub
+		TicketOrder info_local = info;
+		OperaResult result = new OperaResult();
+//		identity judge
+//			vip
+			OperaResult vipcheck = new OperaResult();
+			vipcheck.setResult(true);
+			if(vipcheck.getResult()){
+				VipInfo vipinfo = vipDao.getVipInfoById(info.getVip_account().getAccountName());
+				if(vipinfo.getVipStatus()==1){
+					info_local.setDiscount(vipinfo.getVipCard().getVipLevel().getDiscount());
+				}else{
+					result.setResult(false);
+					result.setComment("card is not available");
+					return result;
+				}
+			}else{
+				result = vipcheck;
+				return result;
+			}
+		FilmPlan filmplan = filmDao.getFilmPlanById(info.getPlanid());
+		if(filmplan.getSeatSum()<info.getSeatNum()){
+			result.setResult(false);
+			result.setComment("the seats left are not enough");
+			return result;
+		}
+		info_local.setCost(info_local.getDiscount()*filmplan.getPrice()*info_local.getSeatNum());
+		result.setResult(true);
+		result.setTicketOrder(info_local);
+		return result;
+	}
+
+	@Override
 	public OperaResult payTheBill(TicketOrder order) {
 		// TODO Auto-generated method stub
 		OperaResult result = new OperaResult();

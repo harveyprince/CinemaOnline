@@ -68,6 +68,18 @@
            <action name="signupAjax" class="AccountAction" method="signupJudge">
            </action>
            <!--  VipAction--><!--  VipAction--><!--  VipAction-->
+           <!--ticket  -->
+           <action name="vipticket" class="VipAction" method="viewTicketSale">
+           <result name="success">/vip/vipticket.jsp</result>
+           </action>
+           <action name="vipserver_ticket" class="VipAction" method="ajax_ticket">
+           <result name="success">/server/ticket/ticket.jsp</result>
+           </action>
+           <action name="vipticketCheck" class="VipAction" method="ticketJudge">
+           <result name="ajaxinfo">/Ajax/ajax.jsp</result>
+           </action>
+           <action name="vipticketPay" class="VipAction" method="ticketPay">
+           </action>
            <!--info  -->
            <action name="vipinfo" class="VipAction" method="viewInfo">
            	<result name="success">/vip/vipinfo.jsp</result>
