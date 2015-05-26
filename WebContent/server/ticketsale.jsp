@@ -23,14 +23,14 @@ pageEncoding="UTF-8"%>
 			<div class="row">
 				<div class="">
 					<ul class="nav nav-list">
-						<li><a href="serverfilmplan"><i class="fa fa-pencil-square-o"></i>Film Plan</a></li>
-						<li ><a href="serverfilm"><i class="fa fa-film"></i>Film</a></li>
-						<li class="active"><a href="#"><i class="fa fa-usd"></i> Ticket Sale</a></li>
+						<li><a href="serverfilmplan"><i class="fa fa-pencil-square-o"></i>放映计划</a></li>
+						<li ><a href="serverfilm"><i class="fa fa-film"></i>电影</a></li>
+						<li class="active"><a href="#"><i class="fa fa-usd"></i>售票</a></li>
 						<li><a href="viewVipDetail"><i class="fa fa-user"></i> VIP</a></li>
 					</ul>
 				</div>
 			</div>
-			<div class="user-button"><a href="logout"><i class="fa fa-sign-out"></i>logout</a></div>
+			<div class="user-button"><a href="logout"><i class="fa fa-sign-out"></i>退出</a></div>
 		</div>
 		<!-- left side bar//////////////////////////////////////////////////////////////////////////////// -->
 
@@ -40,26 +40,26 @@ pageEncoding="UTF-8"%>
 		<div class="bar-match-content">
 			<div class="table-box">
 				<ul class="nav nav-tabs" data-trigger="tab">
-					<li><a href="#tab1">on sale</a></li>
-					<li><a href="#tab2">old sale</a></li>
+					<li><a href="#tab1">正在出售</a></li>
+					<li><a href="#tab2">过时票务</a></li>
 				</ul>
 				<div class="pane-wrapper slide clearfix">
 					<div class="tab-page">
 						<div class="pagination pagination-success page-button">
-							<a href="#" class="btn btn-success previous">Previous</a>
-							<a href="#" class="btn btn-success next">Next</a>
+							<a href="#" class="btn btn-success previous">上一页</a>
+							<a href="#" class="btn btn-success next">下一页</a>
 						</div>
 						<table class="table">
 							<thead>
 								<tr>
-									<th>id</th>
-									<th>filmname</th>
-									<th>No</th>
-									<th>seatSum</th>
-									<th>begintime</th>
-									<th>endtime</th>
-									<th>price</th>
-									<th>sell</th>
+									<th>计划ID</th>
+									<th>影片名称</th>
+									<th>厅号</th>
+									<th>座位数</th>
+									<th>开始时间</th>
+									<th>结束时间</th>
+									<th>价格</th>
+									<th>出售</th>
 								</tr>
 							</thead>
 							<tbody class="ticket-tbody">
@@ -74,16 +74,16 @@ pageEncoding="UTF-8"%>
 					<!-- /////////////////////////////////////////////////////// -->
 					<div class="tab-page">
 						<div class="pagination pagination-success page-button">
-							<a href="#" class="btn btn-success old-previous">Previous</a>
-							<a href="#" class="btn btn-success old-next">Next</a>
+							<a href="#" class="btn btn-success old-previous">上一页</a>
+							<a href="#" class="btn btn-success old-next">下一页</a>
 						</div>
 						<table class="table">
 							<thead>
 								<tr>
-									<th>id</th>
-									<th>filmname</th>
-									<th>No</th>
-									<th>seatSum</th>
+									<th>计划ID</th>
+									<th>影片名称</th>
+									<th>厅号</th>
+									<th>座位数</th>
 									<th>begintime</th>
 									<th>endtime</th>
 									<th>price</th>

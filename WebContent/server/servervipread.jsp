@@ -23,14 +23,14 @@
 			<div class="row">
 				<div class="">
 					<ul class="nav nav-list">
-						<li><a href="serverfilmplan"><i class="fa fa-pencil-square-o"></i>Film Plan</a></li>
-						<li><a href="serverfilm"><i class="fa fa-film"></i>Film</a></li>
-						<li><a href="ticketsale"><i class="fa fa-usd"></i> Ticket Sale</a></li>
+						<li><a href="serverfilmplan"><i class="fa fa-pencil-square-o"></i>放映计划</a></li>
+						<li><a href="serverfilm"><i class="fa fa-film"></i>电影</a></li>
+						<li><a href="ticketsale"><i class="fa fa-usd"></i>售票</a></li>
 						<li class="active"><a href="#"><i class="fa fa-user"></i> VIP</a></li>
 					</ul>
 				</div>
 			</div>
-			<div class="user-button"><a href="logout"><i class="fa fa-sign-out"></i>logout</a></div>
+			<div class="user-button"><a href="logout"><i class="fa fa-sign-out"></i>退出</a></div>
 		</div>
 		<!-- left side bar//////////////////////////////////////////////////////////////////////////////// -->
 
@@ -51,44 +51,44 @@
 			<div class="info-box">
 				<a href="#" data-trigger="collapse" data-parent=".collapse-box" class="active">
 					<div class="info-line">
-					info
+					个人信息
 				</div>
 				</a>
 				<div class="collapsible">
-					<div class="info-line">name:<s:property value="vipclientinfo.name"/></div>
-					<div class="info-line">id:<s:property value="vipclientinfo.vipid"/></div>
-					<div class="info-line">sex:<s:if test="%{vipclientinfo.sex==0}">girl</s:if><s:else>boy</s:else></div>
-					<div class="info-line">birthday:<s:property value="vipclientinfo.strbirthday"/></div>
-				<div class="info-line">location:<s:property value="vipclientinfo.location"/></div>
+					<div class="info-line">姓名:<s:property value="vipclientinfo.name"/></div>
+					<div class="info-line">用户ID:<s:property value="vipclientinfo.vipid"/></div>
+					<div class="info-line">性别:<s:if test="%{vipclientinfo.sex==0}">girl</s:if><s:else>boy</s:else></div>
+					<div class="info-line">生日:<s:property value="vipclientinfo.strbirthday"/></div>
+				<div class="info-line">地区:<s:property value="vipclientinfo.location"/></div>
 				<s:if test="%{vipcardinfo!=null}">
-					<div class="info-line">viplevel:<s:property value="vipcardinfo.vipLevel.lvName"/></div>
-					<div class="info-line">score:<s:property value="vipcardinfo.score"/></div>
-					<div class="info-line">balance:<s:property value="vipcardinfo.balance"/></div>
+					<div class="info-line">VIP等级:<s:property value="vipcardinfo.vipLevel.lvName"/></div>
+					<div class="info-line">积分:<s:property value="vipcardinfo.score"/></div>
+					<div class="info-line">余额:<s:property value="vipcardinfo.balance"/></div>
 				</s:if>
 					<div class="info-line">vipstatus:<s:property value="vipclientinfo.strstatus"/></div>
 			</div>
 			</div>
 			<div class="vipid" style="display:none;"><s:property value="ajaxinfo"/></div>
 			<a href="#" data-trigger="collapse" data-parent=".collapse-box">
-				<div class="info-line">detail</div>
+				<div class="info-line">收支详情</div>
 			</a>
 			<div class="collapsible" style="display: none">
 			<div class="table-box">
 				<div class="clearfix">
 					<div class="pagination pagination-success page-button">
-							<a href="#" class="btn btn-success previous">Previous</a>
-							<a href="#" class="btn btn-success next">Next</a>
+							<a href="#" class="btn btn-success previous">上一页</a>
+							<a href="#" class="btn btn-success next">下一页</a>
 						</div>
 					<div class="tab-page">
 						<table class="table">
 							<thead>
 								<tr>
 									<th>id</th>
-									<th>time</th>
-									<th>num</th>
-									<th>purpose</th>
-									<th>result</th>
-									<th>comment</th>
+									<th>时间</th>
+									<th>收支数</th>
+									<th>用途</th>
+									<th>结果</th>
+									<th>备注</th>
 								</tr>
 							</tr>
 						</thead>

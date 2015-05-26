@@ -21,14 +21,14 @@
 			<div class="row">
 				<div class="">
 					<ul class="nav nav-list">
-						<li><a href="serverfilmplan"><i class="fa fa-pencil-square-o"></i>Film Plan</a></li>
-						<li class="active"><a href="#"><i class="fa fa-film"></i>Film</a></li>
-						<li><a href="ticketsale"><i class="fa fa-usd"></i> Ticket Sale</a></li>
+						<li><a href="serverfilmplan"><i class="fa fa-pencil-square-o"></i>放映计划</a></li>
+						<li class="active"><a href="#"><i class="fa fa-film"></i>电影</a></li>
+						<li><a href="ticketsale"><i class="fa fa-usd"></i> 售票</a></li>
 						<li><a href="viewVipDetail"><i class="fa fa-user"></i> VIP</a></li>
 					</ul>
 				</div>
 			</div>
-			<div class="user-button"><a href="logout"><i class="fa fa-sign-out"></i>logout</a></div>
+			<div class="user-button"><a href="logout"><i class="fa fa-sign-out"></i>退出</a></div>
 		</div>
 		<!-- left side bar//////////////////////////////////////////////////////////////////////////////// -->
 
@@ -38,29 +38,29 @@
 		<div class="bar-match-content">
 			<div class="table-box">
 				<ul class="nav nav-tabs" data-trigger="tab">
-					<li><a href="#tab1">future film</a></li>
-					<li><a href="#tab2">old film</a></li>
+					<li><a href="#tab1">新影片</a></li>
+					<li><a href="#tab2">旧影片</a></li>
 				</ul>
 				<div class="pane-wrapper slide clearfix">
 					<div class="tab-page">
 						<button class="btn btn-primary add-film" data-toggle="modal" data-target="#modalAdd">
-							Add Film
+							增加影片
 						</button>
 						<div class="pagination pagination-success page-button">
-							<a href="#" class="btn btn-success previous">Previous</a>
-							<a href="#" class="btn btn-success next">Next</a>
+							<a href="#" class="btn btn-success previous">上一页</a>
+							<a href="#" class="btn btn-success next">下一页</a>
 						</div>
 						<table class="table">
 							<thead>
 								<tr>
-									<th>id</th>
-									<th>filmname</th>
-									<th>duration</th>
-									<th>kind</th>
-									<th>releasetime</th>
-									<th>shelvestime</th>
-									<th>edit</th>
-									<th>release</th>
+									<th>影片ID</th>
+									<th>影片名称</th>
+									<th>时长</th>
+									<th>种类</th>
+									<th>上映时间</th>
+									<th>下架时间</th>
+									<th>编辑</th>
+									<th>发布</th>
 									<th><div class="btn-group">
 										<button class="btn btn-inverse dropdown-toggle table-button" type="button" data-toggle="dropdown">
 											status <span class="caret"></span>
@@ -87,18 +87,18 @@
 				<!-- /////////////////////////////////////////////////////// -->
 				<div class="tab-page">
 					<div class="pagination pagination-success page-button">
-							<a href="#" class="btn btn-success old-previous">Previous</a>
-							<a href="#" class="btn btn-success old-next">Next</a>
+							<a href="#" class="btn btn-success old-previous">上一页</a>
+							<a href="#" class="btn btn-success old-next">下一页</a>
 						</div>
 					<table class="table">
 							<thead>
 								<tr>
-									<th>id</th>
-									<th>filmname</th>
-									<th>duration</th>
-									<th>kind</th>
-									<th>releasetime</th>
-									<th>shelvestime</th>
+									<th>影片ID</th>
+									<th>影片名称</th>
+									<th>时长</th>
+									<th>种类</th>
+									<th>上映时间</th>
+									<th>下架时间</th>
 							</tr>
 						</thead>
 						<tbody class="old-film-tbody">
@@ -116,30 +116,30 @@
 		<div class="modal-dialog">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				<h5 id="myModalLabel">Film Edit</h5>
+				<h5 id="myModalLabel">影片编辑</h5>
 			</div>
 			<div class="modal-body">
 				<form action="filmedit" id="filmedit-form" onSubmit="return false;">
 				<div class="row-line" style="display:none;">
-					<div class="row-label">filmid:</div>
+					<div class="row-label">影片ID:</div>
 					<div class="form-group has-success row-content">
 						<input class="form-control filmid-input" type="text" placeholder="id" name="filmid"/>
 					</div>
 				</div>
 				<div class="row-line">
-					<div class="row-label">filmname:</div>
+					<div class="row-label">影片名称:</div>
 					<div class="form-group has-success row-content">
 						<input class="form-control filmname-input" type="text" placeholder="name" name="name"/>
 					</div>
 				</div>
 				<div class="row-line">
-					<div class="row-label">duration:</div>
+					<div class="row-label">时长:</div>
 					<div class="form-group has-success row-content">
 						<input class="form-control duration-input" type="number" placeholder="duration" name="duration"/>
 					</div>
 				</div>
 				<div class="row-line">
-					<div class="row-label">kind:</div>
+					<div class="row-label">种类:</div>
 					<div class="span3 row-content">
 						<select class="form-control select select-primary select-block mbl kind-input" name="kind">
 							<option value="happy">happy</option>
@@ -154,7 +154,7 @@
 			</div>
 			<div class="modal-footer">
 				<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
-				<button class="btn btn-primary save-button">Save changes</button>
+				<button class="btn btn-primary save-button">保存修改</button>
 			</div>
 		</div>
 	</div>
@@ -164,24 +164,24 @@
 		<div class="modal-dialog">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				<h5 id="myModalLabel">Film Add</h5>
+				<h5 id="myModalLabel">影片增加</h5>
 			</div>
 			<div class="modal-body">
 				<form action="filmadd" id="filmadd-form" onSubmit="return false;">
 				<div class="row-line">
-					<div class="row-label">filmname:</div>
+					<div class="row-label">影片名称:</div>
 					<div class="form-group has-success row-content">
 						<input class="form-control filmname-input" type="text" placeholder="name" name="name"/>
 					</div>
 				</div>
 				<div class="row-line">
-					<div class="row-label">duration:</div>
+					<div class="row-label">时长:</div>
 					<div class="form-group has-success row-content">
 						<input class="form-control duration-input" type="number" placeholder="duration" name="duration"/>
 					</div>
 				</div>
 				<div class="row-line">
-					<div class="row-label">kind:</div>
+					<div class="row-label">种类:</div>
 					<div class="span3 row-content">
 						<select class="form-control select select-primary select-block mbl kind-input" name="kind">
 							<option value="happy">happy</option>
@@ -196,7 +196,7 @@
 			</div>
 			<div class="modal-footer">
 				<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
-				<button class="btn btn-primary save-button">Save changes</button>
+				<button class="btn btn-primary save-button">保存修改</button>
 			</div>
 		</div>
 	</div>
