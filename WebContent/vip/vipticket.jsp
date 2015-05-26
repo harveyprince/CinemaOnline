@@ -138,7 +138,7 @@ pageEncoding="UTF-8"%>
 						</div>
 						<div class="modal-tab-page">
 							<div class="row-line">
-								<div class="row-label">座位:</div>
+								<div class="row-label">购票数:</div>
 								<div class="form-group has-success row-content">
 									<input class="form-control seatnum-input" type="number" placeholder="seats" min="1" value='1'/>
 								</div>
