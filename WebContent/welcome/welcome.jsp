@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>welcome</title>
+	<title>CinemaOnline</title>
 	<link rel="stylesheet" type="text/css" href="./Public/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="./Public/font-awesome-4.2.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="./Public/css/common/page.css">
@@ -23,9 +23,9 @@
 				<div class="form-box">
 					<div class="login-group input-group active">
 						<div class="group-switch-nav">
-							<span class="nav-tip">login</span>
+							<span class="nav-tip">登录</span>
 							<span class="switch-button">
-								<span class="nav-tip">sign up</span>
+								<span class="nav-tip">注册</span>
 								<i class="fa fa-arrow-circle-right"></i>
 							</span>
 						</div>
@@ -42,7 +42,7 @@
 						<div class="alarm-box"></div>
 						</div>
 						<div class="input-box-pack block-input-box">
-						<button class="box-button" type="submit">login</button>
+						<button class="box-button" type="submit">登录</button>
 						</div>
 						</form>
 					</div>

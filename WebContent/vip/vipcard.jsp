@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>server page</title>
+	<title>CinemaOnline</title>
 	<link rel="stylesheet" type="text/css" href="./Public/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="./Public/font-awesome-4.2.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="./Public/Flat-UI-master/dist/css/flat-ui.min.css">
@@ -23,14 +23,14 @@
 			<div class="row">
 				<div class="">
 					<ul class="nav nav-list">
-						<li><a href="vipinfo"><i class="fa fa-user"></i>vip info</a></li>
-						<li class="active"><a href="#"><i class="fa fa-credit-card"></i>vip card</a></li>
-						<li><a href="viprecord"><i class="fa fa-tasks"></i>vip record</a></li>
-						<li><a href="vipticket"><i class="fa fa-trophy"></i>buy ticket</a></li>
+						<li><a href="vipinfo"><i class="fa fa-user"></i>个人信息</a></li>
+						<li class="active"><a href="#"><i class="fa fa-credit-card"></i>会员卡</a></li>
+						<li><a href="viprecord"><i class="fa fa-tasks"></i>收支记录</a></li>
+						<li><a href="vipticket"><i class="fa fa-trophy"></i>购票</a></li>
 					</ul>
 				</div>
 			</div>
-			<div class="user-button"><a href="logout"><i class="fa fa-sign-out"></i>logout</a></div>
+			<div class="user-button"><a href="logout"><i class="fa fa-sign-out"></i>退出</a></div>
 		</div>
 		<!-- left side bar//////////////////////////////////////////////////////////////////////////////// -->
 
@@ -41,25 +41,25 @@
 			<div class="table-box">
 				
 				<div class="clearfix info-box">
-					<div class="info-line">cardID:
+					<div class="info-line">会员卡ID:
 						<span><s:property value="cardinfo.vipid"/></span>
 					</div>
-					<div class="info-line">level:
+					<div class="info-line">级别:
 						<span><s:property value="cardinfo.vipLevel.lvName"/></span>
 					</div>
-					<div class="info-line">status:
+					<div class="info-line">状态:
 						<span><s:property value="vipinfo.strstatus"/></span>
 					</div>
 					<s:if test="%{vipinfo.status<4}">
-					<div class="info-line">score:
+					<div class="info-line">积分:
 						<span><s:property value="cardinfo.score"/></span>
 					</div>
-					<div class="info-line">balance:
+					<div class="info-line">余额:
 						<span><s:property value="cardinfo.balance"/></span>
 					</div>
-				<button class="btn btn-primary btn-moneyin" data-toggle="modal" data-target="#modalMoney">money in</button>
-				<button class="btn btn-primary btn-scoretrans" data-toggle="modal" data-target="#modalScoreTrans" style="margin-right:5px;">score trans</button>
-				<button class="btn btn-danger btn-disactiveVip" data-toggle="modal" data-target="#modalDisactivate" style="margin-right:5px;">Disactive</button>
+				<button class="btn btn-primary btn-moneyin" data-toggle="modal" data-target="#modalMoney">充值</button>
+				<button class="btn btn-primary btn-scoretrans" data-toggle="modal" data-target="#modalScoreTrans" style="margin-right:5px;">积分兑换</button>
+				<button class="btn btn-danger btn-disactiveVip" data-toggle="modal" data-target="#modalDisactivate" style="margin-right:5px;">取消激活</button>
 			</s:if>
 				</div>
 
@@ -78,7 +78,7 @@
 		<div class="modal-dialog">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				<h5 id="myModalLabel">Money In</h5>
+				<h5 id="myModalLabel">充值</h5>
 			</div>
 			<div class="modal-body">
 				<form action="cardrecharge" id="pay-form" onSubmit="return false;">
@@ -102,7 +102,7 @@
 				</div> 
 				<div class="row-line line-fix">
 					<div class="span3 row-content">
-						<button class="btn btn-primary pay-button">pay</button>
+						<button class="btn btn-primary pay-button">支付</button>
 					</div>
 				</div> 
 				</form>
@@ -111,7 +111,7 @@
 			</div>
 			<div class="modal-footer">
 				<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
-				<button class="btn btn-primary save-button">Save changes</button>
+				<button class="btn btn-primary save-button">保存修改</button>
 			</div>
 		</div>
 	</div>
@@ -120,18 +120,18 @@
 		<div class="modal-dialog">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				<h5 id="myModalLabel">Score Translate[balance=score/100]</h5>
+				<h5 id="myModalLabel">积分兑换[充值额=分数/100]</h5>
 			</div>
 			<div class="modal-body">
 				<div class="row-line">
-					<div class="row-label">score:</div>
+					<div class="row-label">积分:</div>
 					<div class="form-group has-success row-content">
 						<input class="form-control score-input" type="number" placeholder="sum" min="100" value="100" name="score"/>
 					</div>
 				</div>
 				<div class="row-line line-fix">
 					<div class="span3 row-content">
-						<button class="btn btn-primary scoretrans-button" target="scoreTranslate">translate</button>
+						<button class="btn btn-primary scoretrans-button" target="scoreTranslate">兑换</button>
 					</div>
 				</div> 
 			</div>
@@ -145,18 +145,18 @@
 		<div class="modal-dialog">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				<h5 id="myModalLabel">Dangerous Operation</h5>
+				<h5 id="myModalLabel">危险操作</h5>
 			</div>
 			<div class="modal-body">
 				<div class="row-line line-fix">
 					<div class="span3 row-content" style="float:none;">
-						<div class="row-label" style="font-size:20px;">Do you really want to disactivate your card?</div>
+						<div class="row-label" style="font-size:20px;">您确实要取消您的会员资格吗？</div>
 					</div>
 				</div> 
 			</div>
 			<div class="modal-footer">
 				<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
-				<button class="btn btn-danger save-button" target="disactivateCard">Sure</button>
+				<button class="btn btn-danger save-button" target="disactivateCard">确定</button>
 			</div>
 		</div>
 	</div>

@@ -5,7 +5,7 @@ pageEncoding="UTF-8"%>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>server page</title>
+	<title>CinemaOnline</title>
 	<link rel="stylesheet" type="text/css" href="./Public/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="./Public/font-awesome-4.2.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="./Public/Flat-UI-master/dist/css/flat-ui.min.css">
@@ -23,12 +23,12 @@ pageEncoding="UTF-8"%>
 		<div class="row">
 			<div class="">
 				<ul class="nav nav-list">
-					<li><a href="manager"><i class="fa fa-newspaper-o"></i>check Plan</a></li>
-					<li class="active"><a href="#"><i class="fa fa-pie-chart"></i>statics</a></li>
+					<li><a href="manager"><i class="fa fa-newspaper-o"></i>放映计划审阅</a></li>
+					<li class="active"><a href="#"><i class="fa fa-pie-chart"></i>统计</a></li>
 				</ul>
 			</div>
 		</div>
-		<div class="user-button"><a href="logout"><i class="fa fa-sign-out"></i>logout</a></div>
+		<div class="user-button"><a href="logout"><i class="fa fa-sign-out"></i>退出</a></div>
 	</div>
 		<!-- left side bar//////////////////////////////////////////////////////////////////////////////// -->
 
@@ -39,28 +39,28 @@ pageEncoding="UTF-8"%>
 		<div class="tab-pag-bar">
 			<div class="time-choose-bar">
 				<div class="row-line">
-					<div class="row-label">duration:</div>
+					<div class="row-label">时间:</div>
 					<div class="form-group has-success row-content">
 						<input class="form-control time-input" type="month" placeholder="duration" name="time"/>
 					</div>
 				</div>
 				<div class="row-line" style="text-align:center;">
 					<button class="btn btn-primary time-confirm">
-						confirm
+						确认
 					</button>
 				</div>
 			</div>
 		</div>
 		<div class="info-show-panel">
 			<ul class="nav nav-tabs" data-trigger="tab">
-				<li><a href="#tab1">vip statistic</a></li>
-				<li><a href="#tab2">cinema statistic</a></li>
+				<li><a href="#tab1">VIP统计</a></li>
+				<li><a href="#tab2">影院统计</a></li>
 			</ul>
 			<div class="pane-wrapper slide clearfix">
 				<div class="tab-page">
 					<div id="container" style="min-width: 310px; height: 100px; max-width: 600px; margin: 0 auto">
-						<div class="statistic-label">total-consume:<span class="consume-show"></span></div>
-						<div class="statistic-label">total-activity-participate:<span class="participate-show"></span></div>
+						<div class="statistic-label">总消费:<span class="consume-show"></span></div>
+						<div class="statistic-label" style="display: none;">总活动参与度:<span class="participate-show"></span></div>
 					</div>
 					<div id="card-container" style="height: 400px; width: 601px; margin: 0 auto"></div>
 					<div id="age-container" style="height: 400px; width: 601px; margin: 0 auto"></div>
@@ -69,7 +69,7 @@ pageEncoding="UTF-8"%>
 				</div>
 				<div class="tab-page">
 					<div id="container" style="min-width: 310px; height: 70px; max-width: 600px; margin: 0 auto">
-						<div class="statistic-label">persons-sum-by-month:<span class="person-month-show"></span></div>
+						<div class="statistic-label">月总人数:<span class="person-month-show"></span></div>
 					</div>
 					<div id="person-day-container" style="height: 400px; width: 601px; margin: 0 auto"></div>
 					<div id="film-attendence-container" style="height: 400px; width: 601px; margin: 0 auto"></div>

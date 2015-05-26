@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>server page</title>
+	<title>CinemaOnline</title>
 	<link rel="stylesheet" type="text/css" href="./Public/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="./Public/font-awesome-4.2.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="./Public/Flat-UI-master/dist/css/flat-ui.min.css">
@@ -23,14 +23,14 @@
 			<div class="row">
 				<div class="">
 					<ul class="nav nav-list">
-						<li><a href="vipinfo"><i class="fa fa-user"></i>vip info</a></li>
-						<li class="active"><a href="#"><i class="fa fa-credit-card"></i>vip card</a></li>
-						<li><a href="viprecord"><i class="fa fa-tasks"></i>vip record</a></li>
-						<li><a href="vipticket"><i class="fa fa-trophy"></i>buy ticket</a></li>
+						<li><a href="vipinfo"><i class="fa fa-user"></i>个人信息</a></li>
+						<li class="active"><a href="#"><i class="fa fa-credit-card"></i>会员卡</a></li>
+						<li><a href="viprecord"><i class="fa fa-tasks"></i>收支记录</a></li>
+						<li><a href="vipticket"><i class="fa fa-trophy"></i>购票</a></li>
 					</ul>
 				</div>
 			</div>
-			<div class="user-button"><a href="logout"><i class="fa fa-sign-out"></i>logout</a></div>
+			<div class="user-button"><a href="logout"><i class="fa fa-sign-out"></i>退出</a></div>
 		</div>
 		<!-- left side bar//////////////////////////////////////////////////////////////////////////////// -->
 
@@ -41,9 +41,9 @@
 			<div class="table-box">
 				
 				<div class="clearfix info-box">
-					<div class="info-line" style="text-align: center;float:none;">your card is not activated
+					<div class="info-line" style="text-align: center;float:none;">您的会员卡未激活
 					</div>
-				<button class="btn btn-primary btn-moneyin" data-toggle="modal" data-target="#modalMoney">activate</button>
+				<button class="btn btn-primary btn-moneyin" data-toggle="modal" data-target="#modalMoney">激活</button>
 				</div>
 
 				
@@ -61,7 +61,7 @@
 		<div class="modal-dialog">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				<h5 id="myModalLabel">Money In</h5>
+				<h5 id="myModalLabel">充值</h5>
 			</div>
 			<div class="modal-body">
 				<form action="activatecard" id="pay-form" onSubmit="return false;">
@@ -72,7 +72,7 @@
 					</div>
 				</div>
 				<div class="row-line">
-					<div class="row-label">viplevel:</div>
+					<div class="row-label">VIP级别:</div>
 					<div class="span3 row-content">
 						<select class="form-control select select-primary select-block mbl viplv-input" name="viplevel">
 						</select>
@@ -92,7 +92,7 @@
 				</div> 
 				<div class="row-line line-fix">
 					<div class="span3 row-content">
-						<button class="btn btn-primary pay-button">pay</button>
+						<button class="btn btn-primary pay-button">支付</button>
 					</div>
 				</div> 
 				</form>
@@ -101,7 +101,7 @@
 			</div>
 			<div class="modal-footer">
 				<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
-				<button class="btn btn-primary save-button">Save changes</button>
+				<button class="btn btn-primary save-button">保存修改</button>
 			</div>
 		</div>
 	</div>

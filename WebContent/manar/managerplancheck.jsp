@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>server page</title>
+<title>CinemaOnline</title>
 	<link rel="stylesheet" type="text/css" href="./Public/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="./Public/font-awesome-4.2.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="./Public/Flat-UI-master/dist/css/flat-ui.min.css">
@@ -22,12 +22,12 @@
 			<div class="row">
 				<div class="">
 					<ul class="nav nav-list">
-						<li class="active"><a href="#"><i class="fa fa-newspaper-o"></i>check Plan</a></li>
-						<li><a href="viewStatics"><i class="fa fa-pie-chart"></i>statics</a></li>
+						<li class="active"><a href="#"><i class="fa fa-newspaper-o"></i>放映计划审阅</a></li>
+						<li><a href="viewStatics"><i class="fa fa-pie-chart"></i>统计</a></li>
 					</ul>
 				</div>
 			</div>
-			<div class="user-button"><a href="logout"><i class="fa fa-sign-out"></i>logout</a></div>
+			<div class="user-button"><a href="logout"><i class="fa fa-sign-out"></i>退出</a></div>
 		</div>
 		<!-- left side bar//////////////////////////////////////////////////////////////////////////////// -->
 
@@ -37,27 +37,27 @@
 		<div class="bar-match-content">
 			<div class="table-box">
 				<ul class="nav nav-tabs" data-trigger="tab">
-					<li><a href="#tab1">checking plan</a></li>
-					<li><a href="#tab2">checked plan</a></li>
+					<li><a href="#tab1">待审阅计划</a></li>
+					<li><a href="#tab2">已审阅计划</a></li>
 				</ul>
 				<div class="pane-wrapper slide clearfix">
 					<div class="tab-page">
 						<div class="pagination pagination-success page-button">
-							<a href="#" class="btn btn-success previous">Previous</a>
-							<a href="#" class="btn btn-success next">Next</a>
+							<a href="#" class="btn btn-success previous">上一页</a>
+							<a href="#" class="btn btn-success next">下一页</a>
 						</div>
 						<table class="table">
 							<thead>
 								<tr>
-									<th>id</th>
-									<th>filmname</th>
-									<th>No</th>
-									<th>seatSum</th>
-									<th>begintime</th>
-									<th>endtime</th>
-									<th>price</th>
-									<th>pass</th>
-									<th>unpass</th>
+									<th>计划ID</th>
+									<th>影片名称</th>
+									<th>厅号</th>
+									<th>座位数</th>
+									<th>开始时间</th>
+									<th>结束时间</th>
+									<th>价格</th>
+									<th>通过</th>
+									<th>驳回</th>
 							</tr>
 						</thead>
 						<tbody class="filmplan-tbody">
@@ -71,20 +71,20 @@
 				<!-- /////////////////////////////////////////////////////// -->
 				<div class="tab-page">
 					<div class="pagination pagination-success page-button">
-							<a href="#" class="btn btn-success old-previous">Previous</a>
-							<a href="#" class="btn btn-success old-next">Next</a>
+							<a href="#" class="btn btn-success old-previous">上一页</a>
+							<a href="#" class="btn btn-success old-next">下一页</a>
 						</div>
 					<table class="table">
 							<thead>
 								<tr>
-									<th>id</th>
-									<th>filmname</th>
-									<th>No</th>
-									<th>seatSum</th>
-									<th>begintime</th>
-									<th>endtime</th>
-									<th>price</th>
-									<th>status</th>
+									<th>计划ID</th>
+									<th>影片名称</th>
+									<th>厅号</th>
+									<th>座位数</th>
+									<th>开始时间</th>
+									<th>结束时间</th>
+									<th>价格</th>
+									<th>状态</th>
 							</tr>
 						</thead>
 						<tbody class="old-filmplan-tbody">

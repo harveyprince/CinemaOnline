@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>regist page</title>
+	<title>CinemaOnline</title>
 	<link rel="stylesheet" type="text/css" href="./Public/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="./Public/font-awesome-4.2.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="./Public/css/welcome/regist.css">
@@ -16,21 +16,21 @@
 <body>
 	<div class="regist-pane">
 		<ul class="nav nav-tabs" data-trigger="tab">
-			<li><a href="#info-tab" class="info-tab">info page</a></li>
-			<li><a href="#password-tab" class="password-tab">second step</a></li>
-			<li><a href="#result-tab" class="result-tab">third step</a></li>
+			<li><a href="#info-tab" class="info-tab">信息页</a></li>
+			<li><a href="#password-tab" class="password-tab">第二步</a></li>
+			<li><a href="#result-tab" class="result-tab">第三步</a></li>
 		</ul>
 		<div class="pane-wrapper slide">
 			<div class="tab-page">
 			<form action="" id="info-form" onSubmit="return false;">
 				<div class="page-row">
-					<div class="row-label">name:</div>
+					<div class="row-label">姓名:</div>
 					<div class="form-group row-content">
 						<input class="form-control name-input" type="text" placeholder="name" name="name" required="required"/>
 					</div>
 				</div>
 				<div class="page-row">
-					<div class="row-label">sex:</div>
+					<div class="row-label">性别:</div>
 					<div class="span3 row-content">
 									<select class="form-control select select-primary select-block mbl sex-input" name="sex">
 										<option value="0">girl</option>
@@ -39,13 +39,13 @@
 								</div>
 				</div>
 				<div class="page-row">
-					<div class="row-label">birthday:</div>
+					<div class="row-label">出生日期:</div>
 					<div class="form-group row-content">
 						<input class="form-control birthday-input" type="date" placeholder="birthday" name="birthday" required="required"/>
 					</div>
 				</div>
 				<div class="page-row">
-					<div class="row-label">location:</div>
+					<div class="row-label">地区:</div>
 					<div class="span3 row-content">
 									<select class="form-control select select-primary select-block mbl location-input" name="location">
 										<s:iterator id="location" value="locationlist" status="st">
@@ -64,37 +64,37 @@
 			<div class="tab-page">
 			<form action="signupAjax" id="pass-form" onSubmit="return false;">
 				<div class="page-row">
-					<div class="row-label">email:</div>
+					<div class="row-label">邮箱:</div>
 					<div class="form-group row-content">
 						<input class="form-control email-input" type="email" placeholder="email" name="email" required="required"/>
 					</div>
 				</div>
 				<div class="page-row">
-					<div class="row-label">password:</div>
+					<div class="row-label">密码:</div>
 					<div class="form-group row-content">
 						<input class="form-control password-input" type="password" placeholder="password" name="password" required="required"/>
 					</div>
 				</div>
 				<div class="page-row">
-					<div class="row-label">repeat:</div>
+					<div class="row-label">重复密码:</div>
 					<div class="form-group row-content">
 						<input class="form-control password-confirm-input" type="password" placeholder="repeat" name="password-repeat" required="required"/>
 					</div>
 				</div>
 				<div class="page-row">
 					<div class="form-group row-content">
-						<button class="btn btn-primary password-regist-button">next step</button>
+						<button class="btn btn-primary password-regist-button">下一步</button>
 					</div>
 				</div>
 				</form>
 			</div>
 			<div class="tab-page">
 				<div class="page-row">
-					<div class="regist-result-label">success</div>
+					<div class="regist-result-label">成功</div>
 				</div>
 				<div class="page-row">
 					<div class="form-group row-content">
-						<button class="btn btn-primary result-regist-button">go ahead</button>
+						<button class="btn btn-primary result-regist-button">用以上号码去登录</button>
 					</div>
 				</div>
 			</div>

@@ -5,7 +5,7 @@ pageEncoding="UTF-8"%>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>server page</title>
+	<title>CinemaOnline</title>
 	<link rel="stylesheet" type="text/css" href="./Public/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="./Public/font-awesome-4.2.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="./Public/Flat-UI-master/dist/css/flat-ui.min.css">
@@ -22,14 +22,14 @@ pageEncoding="UTF-8"%>
 			<div class="row">
 				<div class="">
 					<ul class="nav nav-list">
-						<li><a href="vipinfo"><i class="fa fa-user"></i>vip info</a></li>
-						<li><a href="vipcard"><i class="fa fa-credit-card"></i>vip card</a></li>
-						<li class="active"><a href="#"><i class="fa fa-tasks"></i>vip record</a></li>
-						<li><a href="vipticket"><i class="fa fa-trophy"></i>buy ticket</a></li>
+						<li><a href="vipinfo"><i class="fa fa-user"></i>个人信息</a></li>
+						<li><a href="vipcard"><i class="fa fa-credit-card"></i>会员卡</a></li>
+						<li class="active"><a href="#"><i class="fa fa-tasks"></i>收支记录</a></li>
+						<li><a href="vipticket"><i class="fa fa-trophy"></i>购票</a></li>
 					</ul>
 				</div>
 			</div>
-			<div class="user-button"><a href="logout"><i class="fa fa-sign-out"></i>logout</a></div>
+			<div class="user-button"><a href="logout"><i class="fa fa-sign-out"></i>退出</a></div>
 		</div>
 		<!-- left side bar//////////////////////////////////////////////////////////////////////////////// -->
 
@@ -42,18 +42,18 @@ pageEncoding="UTF-8"%>
 				<div class="clearfix">
 					<div class="tab-page">
 						<div class="pagination pagination-success page-button">
-							<a href="#" class="btn btn-success previous">Previous</a>
-							<a href="#" class="btn btn-success next">Next</a>
+							<a href="#" class="btn btn-success previous">上一页</a>
+							<a href="#" class="btn btn-success next">下一页</a>
 						</div>
 						<table class="table">
 							<thead>
 								<tr>
 									<th>id</th>
-									<th>time</th>
-									<th>num</th>
-									<th>purpose</th>
-									<th>result</th>
-									<th>comment</th>
+									<th>时间</th>
+									<th>收支数</th>
+									<th>用途</th>
+									<th>结果</th>
+									<th>备注</th>
 								</tr>
 							</thead>
 							<tbody class="record-tbody">

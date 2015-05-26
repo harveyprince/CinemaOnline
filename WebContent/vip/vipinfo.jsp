@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>vip page</title>
+	<title>CinemaOnline</title>
 	<link rel="stylesheet" type="text/css" href="./Public/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="./Public/font-awesome-4.2.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="./Public/Flat-UI-master/dist/css/flat-ui.min.css">
@@ -23,14 +23,14 @@
 			<div class="row">
 				<div class="">
 					<ul class="nav nav-list">
-						<li class="active"><a href="#"><i class="fa fa-user"></i>vip info</a></li>
-						<li><a href="vipcard"><i class="fa fa-credit-card"></i>vip card</a></li>
-						<li><a href="viprecord"><i class="fa fa-tasks"></i>vip record</a></li>
-						<li><a href="vipticket"><i class="fa fa-trophy"></i>buy ticket</a></li>
+						<li class="active"><a href="#"><i class="fa fa-user"></i>个人信息</a></li>
+						<li><a href="vipcard"><i class="fa fa-credit-card"></i>会员卡</a></li>
+						<li><a href="viprecord"><i class="fa fa-tasks"></i>收支记录</a></li>
+						<li><a href="vipticket"><i class="fa fa-trophy"></i>购票</a></li>
 					</ul>
 				</div>
 			</div>
-			<div class="user-button"><a href="logout"><i class="fa fa-sign-out"></i>logout</a></div>
+			<div class="user-button"><a href="logout"><i class="fa fa-sign-out"></i>退出</a></div>
 		</div>
 		<!-- left side bar//////////////////////////////////////////////////////////////////////////////// -->
 
@@ -45,14 +45,14 @@
 					<div class="info-line">id:
 						<span><s:property value="vipinfo.vipid"/></span>
 					</div>
-					<div class="info-line">name:
+					<div class="info-line">姓名:
 						<span><s:property value="vipinfo.name"/></span>
 						<div class="form-group row-content">
 							<input class="form-control name-input" type="text" placeholder="name" name="name" required="required"/>
 						</div>
 					</div>
 					
-					<div class="info-line">sex:
+					<div class="info-line">性别:
 						<span value='<s:property value="vipinfo.sex"/>'><s:if test="%{vipinfo.sex}">boy</s:if><s:else>girl</s:else></span>
 						<div class="span3 row-content">
 									<select class="form-control select select-primary select-block mbl sex-input" name="sex">
@@ -61,13 +61,13 @@
 									</select>
 								</div>
 					</div>
-					<div class="info-line">birthday:
+					<div class="info-line">出生日期:
 						<span><s:property value="vipinfo.strbirthday"/></span>
 						<div class="form-group row-content">
 							<input class="form-control birthday-input" type="date" placeholder="birthday" required="required" name="birthday"/>
 						</div>
 					</div>
-					<div class="info-line">location:
+					<div class="info-line">地区:
 						<span  value='<s:property value="vipinfo.locationid"/>'><s:property value="vipinfo.location"/></span>
 						<div class="span3 row-content">
 									<select class="form-control select select-primary select-block mbl location-input" name="location">
@@ -77,9 +77,9 @@
 									</select>
 								</div>
 					</div>
-					<button class="btn btn-primary btn-save">Save Modify</button>
+					<button class="btn btn-primary btn-save">保存修改</button>
 				</form>
-				<button class="btn btn-primary btn-modify">Info Modify</button>
+				<button class="btn btn-primary btn-modify">修改信息</button>
 				</div>
 
 				

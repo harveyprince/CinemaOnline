@@ -5,7 +5,7 @@ pageEncoding="UTF-8"%>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>server page</title>
+	<title>CinemaOnline</title>
 	<link rel="stylesheet" type="text/css" href="./Public/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="./Public/font-awesome-4.2.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="./Public/Flat-UI-master/dist/css/flat-ui.min.css">
@@ -84,9 +84,9 @@ pageEncoding="UTF-8"%>
 									<th>影片名称</th>
 									<th>厅号</th>
 									<th>座位数</th>
-									<th>begintime</th>
-									<th>endtime</th>
-									<th>price</th>
+									<th>开始时间</th>
+									<th>结束时间</th>
+									<th>价格</th>
 								</tr>
 							</thead>
 							<tbody class="old-ticket-tbody">
@@ -105,49 +105,49 @@ pageEncoding="UTF-8"%>
 			<div class="modal-dialog">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-					<h5 id="myModalLabel">Ticket Sale</h5>
+					<h5 id="myModalLabel">售票</h5>
 				</div>
 				<div class="modal-body">
 					<ul class="nav nav-tabs" data-trigger="tab">
-						<li><a href="#infoconfirm" class="info-tab">info confirm</a></li>
-						<li><a href="#ticket" class="ticket-tab">ticket</a></li>
-						<li><a href="#pay" class="pay-tab">pay</a></li>
-						<li><a href="#seats" class="seats-tab">seats</a></li>
+						<li><a href="#infoconfirm" class="info-tab">信息确认</a></li>
+						<li><a href="#ticket" class="ticket-tab">票券</a></li>
+						<li><a href="#pay" class="pay-tab">支付</a></li>
+						<li><a href="#seats" class="seats-tab">座位</a></li>
 					</ul>
 					<div class="pane-wrapper slide clearfix">
 						<div class="modal-tab-page">
 							<div class="row-line" style="display:none;">
-								<div class="row-label">planid:</div>
+								<div class="row-label">计划ID:</div>
 								<div class="span3 row-content">
 									<div class="text-shown planid-shown"></div>
 								</div>
 							</div>
 							<div class="row-line">
-								<div class="row-label">film:</div>
+								<div class="row-label">影片:</div>
 								<div class="span3 row-content">
 									<div class="text-shown film-shown"></div>
 								</div>
 							</div>
 							<div class="row-line">
-								<div class="row-label">hallNo:</div>
+								<div class="row-label">厅号:</div>
 								<div class="span3 row-content">
 									<div class="text-shown hall-shown"></div>
 								</div>
 							</div> 
 							<div class="row-line">
-								<div class="row-label">seatLeft:</div>
+								<div class="row-label">剩余座位数:</div>
 								<div class="form-group has-success row-content">
 									<div class="text-shown seat-shown"></div>
 								</div>
 							</div>
 							<div class="row-line">
-								<div class="row-label">price:</div>
+								<div class="row-label">价格:</div>
 								<div class="form-group has-success row-content">
 									<div class="text-shown price-shown"></div>
 								</div>
 							</div> 
 							<div class="row-line">
-								<div class="row-label">time:</div>
+								<div class="row-label">时间:</div>
 								<div class="form-group has-success row-content">
 									<div class="text-shown time-shown"></div>
 								</div>
@@ -155,19 +155,19 @@ pageEncoding="UTF-8"%>
 							<div class="row-line">
 
 								<div class="form-group has-success row-content">
-									<button class="btn btn-primary film-plan-confirm">next step</button>
+									<button class="btn btn-primary film-plan-confirm">下一步</button>
 								</div>
 							</div>
 						</div>
 						<div class="modal-tab-page">
 							<div class="row-line">
-								<div class="row-label">seats:</div>
+								<div class="row-label">座位:</div>
 								<div class="form-group has-success row-content">
 									<input class="form-control seatnum-input" type="number" placeholder="seats" min="1" value='1'/>
 								</div>
 							</div>
 							<div class="row-line">
-								<div class="row-label">identity:</div>
+								<div class="row-label">身份:</div>
 								<div class="span3 row-content">
 									<select class="form-control select select-primary select-block mbl identity-input">
 										<option value="0">visitor</option>
@@ -198,13 +198,13 @@ pageEncoding="UTF-8"%>
 						</div>
 						<div class="modal-tab-page">
 							<div class="row-line">
-								<div class="row-label">Bill:</div>
+								<div class="row-label">账单:</div>
 								<div class="form-group has-success row-content">
 									<div class="text-shown bill-shown"></div>
 								</div>
 							</div>
 							<div class="row-line">
-								<div class="row-label">payway:</div>
+								<div class="row-label">支付方式:</div>
 								<div class="span3 row-content">
 									<select class="form-control select select-primary select-block mbl payway-input">
 										<option value="0">cash</option>
@@ -236,7 +236,7 @@ pageEncoding="UTF-8"%>
 						</div>
 						<div class="modal-tab-page">
 							<div class="row-line">
-								<div class="row-label">seats:</div>
+								<div class="row-label">座位:</div>
 								<div class="span3 row-content">
 									<div class="text-shown seats-shown"></div>
 								</div>
@@ -244,7 +244,7 @@ pageEncoding="UTF-8"%>
 							<div class="row-line">
 
 								<div class="form-group has-success row-content">
-									<button class="btn btn-primary sale-close-button">sure</button>
+									<button class="btn btn-primary sale-close-button">确定</button>
 								</div>
 							</div>
 						</div>
