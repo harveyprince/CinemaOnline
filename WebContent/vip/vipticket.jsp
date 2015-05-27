@@ -161,7 +161,7 @@ pageEncoding="UTF-8"%>
 								<div class="row-label">支付方式:</div>
 								<div class="span3 row-content">
 									<select class="form-control select select-primary select-block mbl payway-input">
-										<option value="2">vipcard</option>
+										<option value="2" selected="selected">vipcard</option>
 										<option value="1">bankcard</option>
 									</select>
 								</div>

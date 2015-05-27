@@ -72,8 +72,13 @@ $(".identity-input").on("select2-selected", function (e) {
 	var i = e.val;
 	if(i==1){
 		$(".vip-box").slideDown();
+		$("select.payway-input option[value='2']").removeAttr("disabled");
+		$(".payway-input").trigger("change");
 	}else{
 		$(".vip-box").slideUp();
+		//visitor
+		$("select.payway-input option[value='2']").attr("disabled","disabled");
+		$(".payway-input").trigger("change");
 	}
 });
 $(".payway-input").on("select2-selected", function (e) { 

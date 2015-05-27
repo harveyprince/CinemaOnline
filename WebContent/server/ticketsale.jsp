@@ -170,7 +170,7 @@ pageEncoding="UTF-8"%>
 								<div class="row-label">身份:</div>
 								<div class="span3 row-content">
 									<select class="form-control select select-primary select-block mbl identity-input">
-										<option value="0">visitor</option>
+										<option value="0" selected="selected">visitor</option>
 										<option value="1">vip</option>
 									</select>
 								</div>
@@ -207,9 +207,9 @@ pageEncoding="UTF-8"%>
 								<div class="row-label">支付方式:</div>
 								<div class="span3 row-content">
 									<select class="form-control select select-primary select-block mbl payway-input">
-										<option value="0">cash</option>
+										<option value="0" selected="selected">cash</option>
 										<option value="1">bankcard</option>
-										<option value="2">vipcard</option>
+										<option value="2" disabled="disabled">vipcard</option>
 									</select>
 								</div>
 							</div>
