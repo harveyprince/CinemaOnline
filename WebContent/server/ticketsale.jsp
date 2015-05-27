@@ -114,8 +114,8 @@ pageEncoding="UTF-8"%>
 						<li><a href="#pay" class="pay-tab">支付</a></li>
 						<li><a href="#seats" class="seats-tab">座位</a></li>
 					</ul>
-					<div class="pane-wrapper slide clearfix">
-						<div class="modal-tab-page">
+					<div class="pane-wrapper slide clearfix tab-content">
+						<div class="modal-tab-page tab-pane" id="infoconfirm">
 							<div class="row-line" style="display:none;">
 								<div class="row-label">计划ID:</div>
 								<div class="span3 row-content">
@@ -159,7 +159,7 @@ pageEncoding="UTF-8"%>
 								</div>
 							</div>
 						</div>
-						<div class="modal-tab-page">
+						<div class="modal-tab-page tab-pane" id="ticket">
 							<div class="row-line">
 								<div class="row-label">购票数:</div>
 								<div class="form-group has-success row-content">
@@ -196,7 +196,7 @@ pageEncoding="UTF-8"%>
 								</div>
 							</div>
 						</div>
-						<div class="modal-tab-page">
+						<div class="modal-tab-page tab-pane" id="pay">
 							<div class="row-line">
 								<div class="row-label">账单:</div>
 								<div class="form-group has-success row-content">
@@ -234,7 +234,7 @@ pageEncoding="UTF-8"%>
 								</div>
 							</div>
 						</div>
-						<div class="modal-tab-page">
+						<div class="modal-tab-page tab-pane" id="seats">
 							<div class="row-line">
 								<div class="row-label">座位:</div>
 								<div class="span3 row-content">

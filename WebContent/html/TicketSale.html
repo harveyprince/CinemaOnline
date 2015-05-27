@@ -129,13 +129,13 @@
 					<h5 id="myModalLabel">Ticket Sale</h5>
 				</div>
 				<div class="modal-body">
-					<ul class="nav nav-tabs" data-trigger="tab">
-						<li><a href="#infoconfirm" class="info-tab">info confirm</a></li>
-						<li><a href="#ticket" class="ticket-tab">ticket</a></li>
-						<li><a href="#pay" class="pay-tab">pay</a></li>
+					<ul class="nav nav-tabs">
+						<li class="active"><a href="#infoconfirm" class="info-tab" data-toggle="tab">info confirm</a></li>
+						<li><a href="#ticket" class="ticket-tab" data-toggle="tab">ticket</a></li>
+						<li><a href="#pay" class="pay-tab" data-toggle="tab">pay</a></li>
 					</ul>
-					<div class="pane-wrapper slide clearfix">
-						<div class="modal-tab-page">
+					<div class="pane-wrapper slide clearfix tab-content" id="mytabcontent">
+						<div class="tab-pane modal-tab-page active fade in" id="infoconfirm">
 							<div class="row-line">
 								<div class="row-label">film:</div>
 								<div class="span3 row-content">
@@ -173,7 +173,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="modal-tab-page">
+						<div class="tab-pane modal-tab-page fade" id="ticket">
 							<div class="row-line">
 								<div class="row-label">seats:</div>
 								<div class="form-group has-success row-content">
@@ -211,7 +211,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="modal-tab-page">
+						<div class="tab-pane modal-tab-page fade" id="pay">
 							<div class="row-line">
 								<div class="row-label">Bill:</div>
 								<div class="form-group has-success row-content">

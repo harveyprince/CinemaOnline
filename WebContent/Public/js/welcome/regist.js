@@ -1,9 +1,18 @@
 $("select.sex-input").select2();
 $("select.location-input").select2();
+$(".password-tab").click(function(){
+	return false;
+});
+$(".info-tab").click(function(){
+	return false;
+});
+$(".result-tab").click(function(){
+	return false;
+});
 $(".info-regist-button").click(function(){
 //	$("#info-form").submit();
 	if(isFormValid($("#info-form"))){
-		$(".password-tab").click();
+		$(".password-tab").tab("show");
 	}
 	
 });
@@ -34,7 +43,7 @@ $(".password-regist-button").click(function(){
 				if(data.indexOf("success")>=0){
 					var list = data.split("#");
 					$(".regist-result-label").html(list[1]);
-					$(".result-tab").click();
+					$(".result-tab").tab("show");
 				}else{
 					$.scojs_message(data, $.scojs_message.TYPE_ERROR);
 				}

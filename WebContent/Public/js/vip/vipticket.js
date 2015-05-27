@@ -1,7 +1,19 @@
 $(".identity-input").select2();
 $(".payway-input").select2();
+$(".info-tab").click(function(){
+	return false;
+});
+$(".ticket-tab").click(function(){
+	return false;
+});
+$(".pay-tab").click(function(){
+	return false;
+});
+$(".seats-tab").click(function(){
+	return false;
+});
 $(".film-plan-confirm").click(function(){
-	$(".ticket-tab").click();
+	$(".ticket-tab").tab("show");
 });
 $(".ticket-confirm").click(function(){
 	var action = $(this).attr("target");
@@ -19,7 +31,7 @@ $(".ticket-confirm").click(function(){
 				if(data.indexOf("success")!=-1){
 					var cost = data.split("#")[1];
 					$(".bill-shown").html(cost);
-					$(".pay-tab").click();
+					$(".pay-tab").tab("show");
 				}else{
 					$.scojs_message(data, $.scojs_message.TYPE_ERROR);
 				}
@@ -53,7 +65,7 @@ $(".ticket-finish-button").click(function(){
 				if(data.indexOf("success")!=-1){
 					$(".seats-shown").html(data.replace("success#","").replace(/&/g,","));
 					$.scojs_message("success", $.scojs_message.TYPE_OK);
-					$(".seats-tab").click();
+					$(".seats-tab").tab("show");
 				}else{
 					$.scojs_message(data, $.scojs_message.TYPE_ERROR);
 				}
@@ -87,7 +99,7 @@ function eventInit(){
 	$modal.find(".time-shown").html($row.children(".beginTime").html()+"~"+$row.children(".endTime").html());
 	$modal.find(".price-shown").html($row.children(".price").html());
 	modalSaleInit();
-	$modal.find(".info-tab").click();
+	$modal.find(".info-tab").tab("show");
 });
 }
 

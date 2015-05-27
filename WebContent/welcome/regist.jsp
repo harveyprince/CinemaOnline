@@ -20,8 +20,8 @@
 			<li><a href="#password-tab" class="password-tab">第二步</a></li>
 			<li><a href="#result-tab" class="result-tab">第三步</a></li>
 		</ul>
-		<div class="pane-wrapper slide">
-			<div class="tab-page">
+		<div class="pane-wrapper slide tab-content">
+			<div class="tab-page tab-pane active" id="info-tab">
 			<form action="" id="info-form" onSubmit="return false;">
 				<div class="page-row">
 					<div class="row-label">姓名:</div>
@@ -56,12 +56,12 @@
 				</div>
 				<div class="page-row">
 					<div class="form-group row-content">
-						<button class="btn btn-primary info-regist-button">next step</button>
+						<button class="btn btn-primary info-regist-button">下一步</button>
 					</div>
 				</div>
 				</form>
 			</div>
-			<div class="tab-page">
+			<div class="tab-page tab-pane" id="password-tab">
 			<form action="signupAjax" id="pass-form" onSubmit="return false;">
 				<div class="page-row">
 					<div class="row-label">邮箱:</div>
@@ -88,7 +88,7 @@
 				</div>
 				</form>
 			</div>
-			<div class="tab-page">
+			<div class="tab-page tab-pane" id="result-tab">
 				<div class="page-row">
 					<div class="regist-result-label">成功</div>
 				</div>
