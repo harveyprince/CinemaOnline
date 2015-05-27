@@ -33,8 +33,12 @@ $(".ticket-confirm").click(function(){
 $(".ticket-finish-button").click(function(){
 	var action = $(this).attr("target");
 	var data = new FormData();
-	data.append("ticketOrder.payway",$("select.payway-input").val());
-	if($("select.payway-input").val()=="1"){
+	var payway_number = $(".payway-input").select2("val");
+	if(payway_number==null){
+		payway_number=2;
+	}
+	data.append("ticketOrder.payway",payway_number);
+	if(payway_number=="1"){
 		data.append("ticketOrder.bank_account.userId",$(".bank-no-input").val());
 		data.append("ticketOrder.bank_account.password",$(".bank-password-input").val());
 	}

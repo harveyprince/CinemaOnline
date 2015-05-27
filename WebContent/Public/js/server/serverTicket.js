@@ -8,8 +8,8 @@ $(".ticket-confirm").click(function(){
 	var data = new FormData();
 	data.append("ticketOrder.planid",$(".planid-shown").html());
 	data.append("ticketOrder.seatNum",$(".seatnum-input").val());
-	data.append("ticketOrder.identity",$("select.identity-input").val());
-	if($("select.identity-input").val()=="1"){
+	data.append("ticketOrder.identity",$(".identity-input").select2("val"));
+	if($(".identity-input").select2("val")=="1"){
 		data.append("ticketOrder.vip_account.accountName",$(".vip-no-input").val());
 		data.append("ticketOrder.vip_account.password",$.md5($(".vip-password-input").val()));
 	}
@@ -38,8 +38,8 @@ $(".ticket-confirm").click(function(){
 $(".ticket-finish-button").click(function(){
 	var action = $(this).attr("target");
 	var data = new FormData();
-	data.append("ticketOrder.payway",$("select.payway-input").val());
-	if($("select.payway-input").val()=="1"){
+	data.append("ticketOrder.payway",$(".payway-input").select2("val"));
+	if($(".payway-input").select2("val")=="1"){
 		data.append("ticketOrder.bank_account.userId",$(".bank-no-input").val());
 		data.append("ticketOrder.bank_account.password",$(".bank-password-input").val());
 	}
