@@ -9,7 +9,6 @@ import com.cinemaonline.model.Hall;
 import com.cinemaonline.model.Identity;
 import com.cinemaonline.model.Location;
 import com.cinemaonline.model.VipLevel;
-import com.cinemaonline.service.CronService;
 import com.cinemaonline.service.InfoService;
 import com.cinemaonline.service.StatisticService;
 import com.cinemaonline.service.VipService;
@@ -76,6 +75,13 @@ public class TestAction extends BaseAction {
 		bank1.setName("jj");
 		infoService.addBank(bank1);
 		
+		Bank bank2 = new Bank();
+		bank2.setBalance(999999);
+		bank2.setCardId(12345);
+		bank2.setPassword("12345");
+		bank2.setName("ban2");
+		infoService.addBank(bank2);
+		
 //		hall
 		Hall hall0 = new Hall();
 		hall0.setSeats(56);
@@ -94,7 +100,7 @@ public class TestAction extends BaseAction {
 //		identity
 		Identity iden0 = new Identity();
 		iden0.setIdentityId(0);
-		iden0.setStrdescribe("youke");
+		iden0.setStrdescribe("visitor");
 		infoService.addIdentity(iden0);
 		
 		Identity iden1 = new Identity();
@@ -111,6 +117,11 @@ public class TestAction extends BaseAction {
 		iden3.setIdentityId(3);
 		iden3.setStrdescribe("manager");
 		infoService.addIdentity(iden3);
+		
+		Identity iden4 = new Identity();
+		iden4.setIdentityId(4);
+		iden4.setStrdescribe("mainmanager");
+		infoService.addIdentity(iden4);
 //		viplevel
 		VipLevel lv0 = new VipLevel();
 		lv0.setLevelId(0);
