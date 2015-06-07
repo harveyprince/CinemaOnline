@@ -48,11 +48,7 @@
 					<div id="profit-container" style="height: 400px; width: 601px; margin: 0 auto"></div>
 				</div>
 				<div class="tab-page">
-					<div id="container" style="min-width: 310px; height: 70px; max-width: 600px; margin: 0 auto">
-						<div class="statistic-label">月总人数:<span class="person-month-show"></span></div>
-					</div>
-					
-					<div id="payway-container" style="height: 400px; width: 601px; margin: 0 auto"></div>
+					<div></div>
 				</div>
 			</div>
 		</div>
