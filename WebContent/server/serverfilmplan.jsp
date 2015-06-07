@@ -23,7 +23,6 @@
 				<div class="">
 					<ul class="nav nav-list">
 						<li class="active"><a href="#"><i class="fa fa-pencil-square-o"></i>放映计划</a></li>
-						<li ><a href="serverfilm"><i class="fa fa-film"></i>电影</a></li>
 						<li><a href="ticketsale"><i class="fa fa-usd"></i>售票</a></li>
 						<li><a href="viewVipDetail"><i class="fa fa-user"></i> VIP</a></li>
 					</ul>

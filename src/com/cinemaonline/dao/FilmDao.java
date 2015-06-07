@@ -17,7 +17,7 @@ public interface FilmDao {
 	
 	public List<Film> getAllFilms();
 
-	public List<Film> getAllFilmsByPage(int page);
+	public List<Film> getAllUnreleasedFilmsByPage(int page);
 	
 	public Film getFilmById(long id);
 
@@ -68,6 +68,8 @@ public interface FilmDao {
 
 	public OperaResult checkFilmPlanForUpdate(long planid, long beginTime,
 			long endTime, Hall hallById);
+
+	public List<Film> getAllReleaseFilmsByPage(int page);
 
 
 

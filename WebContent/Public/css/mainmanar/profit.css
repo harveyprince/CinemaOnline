@@ -1,0 +1,12 @@
+ .panel {
+      display: none;
+      width: 660px;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 15px rgba(0,0,0,.6);
+      overflow: hidden;
+      overflow-y: scroll;
+    }
+    div#close-panel-bt{
+    	cursor: pointer;
+    }

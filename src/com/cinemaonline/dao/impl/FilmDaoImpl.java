@@ -272,10 +272,10 @@ public class FilmDaoImpl implements FilmDao {
 	}
 	
 	@Override
-	public List<Film> getAllFilmsByPage(int page) {
+	public List<Film> getAllUnreleasedFilmsByPage(int page) {
 		// TODO Auto-generated method stub
 		Session session = baseDao.getNewSession();
-		String hql = "from com.cinemaonline.model.Film as f where f.shelvesTime is null";
+		String hql = "from com.cinemaonline.model.Film as f where f.status = 0";
 		List list = null;
 		try{
 			Query query = session.createQuery(hql);
@@ -301,7 +301,7 @@ public class FilmDaoImpl implements FilmDao {
 	public List<Film> getAllOldFilmsByPage(int page) {
 		// TODO Auto-generated method stub
 		Session session = baseDao.getNewSession();
-		String hql = "from com.cinemaonline.model.Film as f where f.shelvesTime is not null order by f.shelvesTime desc";
+		String hql = "from com.cinemaonline.model.Film as f where f.status=2";
 		List list = null;
 		try{
 			Query query = session.createQuery(hql);
@@ -324,6 +324,32 @@ public class FilmDaoImpl implements FilmDao {
 		}
 	}
 	
+	@Override
+	public List<Film> getAllReleaseFilmsByPage(int page) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String hql = "from com.cinemaonline.model.Film as f where f.status = 1";
+		List list = null;
+		try{
+			Query query = session.createQuery(hql);
+			query.setFirstResult(page*baseDao.getPageCount());
+			query.setMaxResults(baseDao.getPageCount());
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return list;
+			}else{
+				return null;
+			}
+		}else{
+			return null;
+		}
+	}
 	@Override
 	public Film updateFilm(Film info) {
 		// TODO Auto-generated method stub

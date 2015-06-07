@@ -18,6 +18,7 @@ public class FilmInfo {
 	private String rtTime;
 	private String stTime;
 	private int status = 0;
+	private int cost = 0;
 	public Film getFilm(){
 		Film film = new Film();
 		film.setDuration(duration);
@@ -26,6 +27,7 @@ public class FilmInfo {
 		film.setStatus(status);
 		film.setReleaseTime(releaseTime);
 		film.setShelvesTime(shelvesTime);
+		film.setCost(cost);
 		return film;
 	}
 	public void setFilm(Film info){
@@ -39,6 +41,7 @@ public class FilmInfo {
 		setReleaseTime(info.getReleaseTime());
 		setShelvesTime(info.getShelvesTime());
 		setStatus(info.getStatus());
+		setCost(info.getCost());
 	}
 	public static List<FilmInfo> parseFI(List<Film> list){
 		if(list==null){
@@ -115,5 +118,11 @@ public class FilmInfo {
 	}
 	public void setRtTime(String rtTime) {
 		this.rtTime = rtTime;
+	}
+	public int getCost() {
+		return cost;
+	}
+	public void setCost(int cost) {
+		this.cost = cost;
 	}
 }

@@ -20,7 +20,7 @@ public class Film {
 	private String kind;//分类
 	private Date releaseTime;//上映时间
 	private Date shelvesTime;//下架时间
-	private int status;//电影状态[0下架,1上映]
+	private int status;//电影状态[0不可见,1可见,2结束]
 	private Set<FilmPlan> filmPlans;//计划
 	private int cost;//film cost成本
 	

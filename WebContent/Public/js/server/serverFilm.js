@@ -45,23 +45,17 @@ $(".film-edit-button").click(function(){
 	$durationsource = $row.children(".duration");
 	var durationvalue = $durationsource.html();
 	$durationInput.val(durationvalue);
-	// 
+	// cost
+	$costInput = $modal.find("cost-input");
+	$costsource = $row.children(".cost");
+	var costvalue = $costsource.html();
+	$costInput.val(costvalue);
 
 	// kind
 	$kindInput = $modal.find(".kind-input");
 	$kindsource = $row.children(".kind");
 	var kind = $kindsource.html();
 	$kindInput.val(kind).trigger("change");
-	// releaseTime
-	$releaseTimeInput = $modal.find(".releaseTime-input");
-	$releasesource = $row.children(".releaseTime");
-	var releasetime = $releasesource.html();
-	$releaseTimeInput.val(releasetime);
-	// shelvesTime
-	$shelvesTimeInput = $modal.find(".shelvesTime-input");
-	$shelvessource = $row.children(".shelvesTime");
-	var shelvestime = $shelvessource.html();
-	$shelvesTimeInput.val(shelvestime);
 });
 }
 
@@ -86,17 +80,13 @@ $("#modalEdit").find(".save-button").click(function(){
 					// duration-input
 					$durationInput = $modal.find(".duration-input");
 					$durationsource.html($durationInput.val());
-					// 
+					// cost
+					$costInput = $modal.find(".cost-input");
+					$costsource.html($costInput.val());
 
 					// kind
 					$kindInput = $modal.find("select.kind-input");
 					$kindsource.html($kindInput.val());
-					// releaseTime
-					$releaseTimeInput = $modal.find(".releaseTime-input");
-					$releasesource.html($releaseTimeInput.val());
-					// shelvesTime
-					$shelvesTimeInput = $modal.find(".shelvesTime-input");
-					$shelvessource.html($shelvesTimeInput.val());
 					
 					$.scojs_message('success', $.scojs_message.TYPE_OK);
 					$("#modalEdit").modal("hide");
@@ -143,7 +133,7 @@ function queryPage(page){
 	$.ajax({
 		data: data,
 		type: "POST",
-		url: "server_film",
+		url: "mainmanar_film",
 		cache: false,
 		contentType: false,
 		processData: false,
@@ -180,7 +170,7 @@ function oldqueryPage(page){
 	$.ajax({
 		data: data,
 		type: "POST",
-		url: "server_old_film",
+		url: "mainmanar_old_film",
 		cache: false,
 		contentType: false,
 		processData: false,
@@ -208,4 +198,40 @@ $(".btn.old-previous").click(function(){
 });
 $(document).ready(function(){
 	oldqueryPage(0);
+});
+
+function releasequeryPage(page){
+	var data = new FormData();
+	data.append("page",page);
+	$.ajax({
+		data: data,
+		type: "POST",
+		url: "mainmanar_release_film",
+		cache: false,
+		contentType: false,
+		processData: false,
+		success: function(data) {
+			if(data!="empty"){
+				$(".release-film-tbody").html(data);
+			}
+		},
+		error:function(){
+			$.scojs_message('error occured!', $.scojs_message.TYPE_ERROR);
+		}
+	});
+}
+$(".btn.release-next").click(function(){
+	var page = Number($(".release-film-tbody .page-symbol").html());
+	if(isNaN(page)){return false;}
+	releasequeryPage(page+1);
+});
+$(".btn.release-previous").click(function(){
+	var page = Number($(".release-film-tbody .page-symbol").html());
+	if(isNaN(page)){return false;}
+	if(page>0){
+		releasequeryPage(page-1);
+	}
+});
+$(document).ready(function(){
+	releasequeryPage(0);
 });

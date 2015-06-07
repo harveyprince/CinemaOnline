@@ -60,8 +60,11 @@ public class AccountAction extends BaseAction {
 			case 2:
 				ajaxinfo+="/serverfilmplan";
 				break;
-			default:
+			case 3:
 				ajaxinfo+="/manager";
+				break;
+			default:
+				ajaxinfo+="/mainmanarfilm";
 				break;
 			}
 		}else{

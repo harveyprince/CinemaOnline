@@ -143,79 +143,7 @@ public class ServerAction extends BaseAction {
 		}
 		return AJAXINFO;
 	}
-	/*
-	 * film
-	 * */
-	public String ajax_film(){
-		filmlist = filmService.getAllFilmsByPage(page);
-		if(filmlist==null||page<0){
-			ajaxinfo = "empty";
-			return AJAXINFO;
-		}
-		return SUCCESS;
-	}
 	
-	public String ajax_old_film(){
-		oldfilmlist = filmService.getAllOldFilmsByPage(page);
-		if(oldfilmlist==null||page<0){
-			ajaxinfo = "empty";
-			return AJAXINFO;
-		}
-		return SUCCESS;
-	}
-	
-	public String viewFilm(){
-		return SUCCESS;
-	}
-	
-	public String insertFilm(){
-		FilmInfo info = new FilmInfo();
-		info.setDuration(request.getParameter("duration"));
-		info.setKind(request.getParameter("kind"));
-		info.setName(request.getParameter("name"));
-		OperaResult result = filmService.addFilm(info);
-		if(result.getResult()){
-			ajaxinfo = "success";
-		}else{
-			ajaxinfo = result.getComment();
-		}
-		return AJAXINFO;
-	}
-	
-	public String updateFilm(){
-		FilmInfo info = new FilmInfo();
-		info.setFilmId(request.getParameter("filmid"));
-		info.setDuration(request.getParameter("duration"));
-		info.setKind(request.getParameter("kind"));
-		info.setName(request.getParameter("name"));
-		OperaResult result  = filmService.updateFilm(info);
-		if(result.getResult()){
-			ajaxinfo = "success";
-		}else{
-			ajaxinfo = result.getComment();
-		}
-		return AJAXINFO;
-	}
-	
-	public String releaseFilm(){
-		OperaResult result = filmService.releaseFilm(request.getParameter("filmid"));
-		if(result.getResult()){
-			ajaxinfo = "success";
-		}else{
-			ajaxinfo = result.getComment();
-		}
-		return AJAXINFO;
-	}
-	
-	public String unreleaseFilm(){
-		OperaResult result = filmService.unreleaseFilm(request.getParameter("filmid"));
-		if(result.getResult()){
-			ajaxinfo = "success";
-		}else{
-			ajaxinfo = result.getComment();
-		}
-		return AJAXINFO;
-	}
 	/*
 	 * plan
 	 * */

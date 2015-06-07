@@ -17,6 +17,35 @@
           </action>
           <action name="lvcost" class="TestAction" method="Viplvcost">
           </action>
+          <!--  MainManagerAction--><!--  MainManagerAction--><!--  MainManagerAction-->
+          <!-- film -->
+           <action name="mainmanar_film" class="MainManagerAction" method="ajax_film">
+           <result name="success">/mainmanar/film/film.jsp</result>
+           </action>
+            <action name="mainmanar_old_film" class="MainManagerAction" method="ajax_old_film">
+           <result name="success">/mainmanar/film/info_film.jsp</result>
+           </action>
+            <action name="mainmanar_release_film" class="MainManagerAction" method="ajax_release_film">
+           <result name="success">/mainmanar/film/release_film.jsp</result>
+           </action>
+           <action name="mainmanarfilm" class="MainManagerAction" method="viewFilm">
+           	<result name="success">/mainmanar/mainmanarfilm.jsp</result>
+           </action>
+           <action name="filmadd" class="MainManagerAction" method="insertFilm">
+           </action>
+           <action name="filmedit" class="MainManagerAction" method="updateFilm">
+           </action>
+           <action name="releasefilm" class="MainManagerAction" method="releaseFilm">
+           </action>
+           <action name="unreleasefilm" class="MainManagerAction" method="unreleaseFilm">
+           </action>
+           <!--  profit-->
+           <action name="mainmanagerprofit" class="MainManagerAction" method="viewProfit">
+           <result name="success">/mainmanar/mainmanarprofit.jsp</result>
+           </action>
+           <action name="statisticjsonprofit" class="MainManagerAction" method="ajax_profit_year">
+           <result name="success">/Ajax/statisticprofityear.jsp</result>
+           </action>
           <!--  ManagerAction--><!--  ManagerAction--><!--  ManagerAction-->
           <!--statics  -->
           <action name="viewStatics" class="ManagerAction" method="showStatics">
@@ -120,24 +149,7 @@
            </action>
            <action name="plansubmit" class="ServerAction" method="submitPlan">
            </action>
-           <!-- film -->
-           <action name="server_film" class="ServerAction" method="ajax_film">
-           <result name="success">/server/film/film.jsp</result>
-           </action>
-            <action name="server_old_film" class="ServerAction" method="ajax_old_film">
-           <result name="success">/server/film/ended_film.jsp</result>
-           </action>
-           <action name="serverfilm" class="ServerAction" method="viewFilm">
-           	<result name="success">/server/serverfilm.jsp</result>
-           </action>
-           <action name="filmadd" class="ServerAction" method="insertFilm">
-           </action>
-           <action name="filmedit" class="ServerAction" method="updateFilm">
-           </action>
-           <action name="releasefilm" class="ServerAction" method="releaseFilm">
-           </action>
-           <action name="unreleasefilm" class="ServerAction" method="unreleaseFilm">
-           </action>
+           
            <!--ticket  -->
            <action name="server_ticket" class="ServerAction" method="ajax_ticket">
            <result name="success">/server/ticket/ticket.jsp</result>

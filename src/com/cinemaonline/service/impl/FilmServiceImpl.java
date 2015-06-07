@@ -161,13 +161,19 @@ public class FilmServiceImpl implements FilmService {
 	@Override
 	public List<FilmInfo> getAllFilmsByPage(int page) {
 		// TODO Auto-generated method stub
-		return FilmInfo.parseFI(filmDao.getAllFilmsByPage(page));
+		return FilmInfo.parseFI(filmDao.getAllUnreleasedFilmsByPage(page));
 	}
 	
 	@Override
 	public List<FilmInfo> getAllOldFilmsByPage(int page) {
 		// TODO Auto-generated method stub
 		return FilmInfo.parseFI(filmDao.getAllOldFilmsByPage(page));
+	}
+	
+	@Override
+	public List<FilmInfo> getAllReleaseFilmsByPage(int page) {
+		// TODO Auto-generated method stub
+		return FilmInfo.parseFI(filmDao.getAllReleaseFilmsByPage(page));
 	}
 
 	@Override
@@ -190,6 +196,7 @@ public class FilmServiceImpl implements FilmService {
 		f.setStatus(info.getStatus());
 		f.setReleaseTime(info.getReleaseTime());
 		f.setShelvesTime(info.getReleaseTime());
+		f.setCost(info.getCost());
 		filmDao.updateFilm(f);
 		result.setResult(true);
 		return result;
@@ -201,7 +208,6 @@ public class FilmServiceImpl implements FilmService {
 		OperaResult result = new OperaResult();
 		Film f = filmDao.getFilmById(Long.parseLong(filmid));
 		f.setStatus(1);
-		f.setReleaseTime(new java.sql.Date((new java.util.Date()).getTime()));
 		filmDao.updateFilm(f);
 		result.setResult(true);
 		return result;
@@ -284,6 +290,8 @@ public class FilmServiceImpl implements FilmService {
 		// TODO Auto-generated method stub
 		return FilmPlanInfo.parseFPI(filmDao.getAllCheckedUnoldPlansByPage(page));
 	}
+
+	
 
 	
 

@@ -55,4 +55,6 @@ public interface FilmService {
 
 	public List<FilmPlanInfo> getAllCheckedUnoldPlansByPage(int page);
 
+	public List<FilmInfo> getAllReleaseFilmsByPage(int page);
+
 }
