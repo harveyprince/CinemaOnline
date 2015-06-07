@@ -5,8 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.cinemaonline.model.Activity;
-import com.cinemaonline.model.ActivityRecord;
 import com.cinemaonline.model.Hall;
 import com.cinemaonline.model.Location;
 import com.cinemaonline.model.Ticket;
@@ -22,7 +20,6 @@ import com.cinemaonline.model.client.VipClientInfo;
 import com.cinemaonline.model.client.VipOperaInfo;
 import com.cinemaonline.model.client.VipRecordInfo;
 import com.cinemaonline.model.client.VipUpdate;
-import com.cinemaonline.service.ActivityService;
 import com.cinemaonline.service.BankService;
 import com.cinemaonline.service.FilmService;
 import com.cinemaonline.service.InfoService;
@@ -41,8 +38,6 @@ public class VipAction extends BaseAction {
 	@Autowired
 	private BankService bankService;
 	@Autowired
-	private ActivityService activityService;
-	@Autowired
 	private InfoService infoService;
 	@Autowired
 	private FilmService filmService;
@@ -54,10 +49,7 @@ public class VipAction extends BaseAction {
 	private VipCardInfo cardinfo;
 	private List<VipLevel> lvslist;
 	private List<VipRecordInfo> recordlist;
-	private List<Activity> activitylist;
-	private List<Activity> activitylist_unparticipated;
 	private List<Location> locationlist;
-	private List<ActivityRecord> activityrecordlist;
 	private int page;
 	private List<FilmPlanInfo> filmplanlist;
 	
@@ -126,45 +118,6 @@ public class VipAction extends BaseAction {
 		}catch(Exception e){
 			ajaxinfo="failed";
 			e.printStackTrace();
-		}
-		return AJAXINFO;
-	}
-	
-	/*
-	 * activity
-	 * */
-	public String ajax_activity(){
-		String userid = (String) session.get("userid");
-		activitylist_unparticipated = activityService.getUnparticipatedActivitiesForVipByPage(userid,page);
-		if(activitylist_unparticipated==null||page<0){
-			ajaxinfo="empty";
-			return AJAXINFO;
-		}
-		return SUCCESS;
-	}
-	public String ajax_old_activity(){
-		String userid = (String) session.get("userid");
-		activitylist = activityService.getParticipatedActivitiesForVipByPage(userid,page);
-		activityrecordlist = activityService.getRecordsByActivities(activitylist,Long.parseLong(userid));
-		if(activitylist==null||page<0){
-			ajaxinfo="empty";
-			return AJAXINFO;
-		}
-		return SUCCESS;
-	}
-	public String viewActivity(){
-		return SUCCESS;
-	}
-	
-	public String joinActivity(){
-		String activityid = request.getParameter("activityid");
-		String answerid = request.getParameter("answerid");
-		String userid = (String) session.get("userid");
-		OperaResult result = activityService.joinActivity(activityid,answerid,userid);
-		if(result.getResult()){
-			ajaxinfo = "success";
-		}else{
-			ajaxinfo = result.getComment();
 		}
 		return AJAXINFO;
 	}
@@ -357,23 +310,6 @@ public class VipAction extends BaseAction {
 		this.recordlist = recordlist;
 	}
 
-	public List<Activity> getActivitylist() {
-		return activitylist;
-	}
-
-	public void setActivitylist(List<Activity> activitylist) {
-		this.activitylist = activitylist;
-	}
-
-	public List<Activity> getActivitylist_unparticipated() {
-		return activitylist_unparticipated;
-	}
-
-	public void setActivitylist_unparticipated(
-			List<Activity> activitylist_unparticipated) {
-		this.activitylist_unparticipated = activitylist_unparticipated;
-	}
-
 	public List<Location> getLocationlist() {
 		return locationlist;
 	}
@@ -382,13 +318,6 @@ public class VipAction extends BaseAction {
 		this.locationlist = locationlist;
 	}
 
-	public List<ActivityRecord> getActivityrecordlist() {
-		return activityrecordlist;
-	}
-
-	public void setActivityrecordlist(List<ActivityRecord> activityrecordlist) {
-		this.activityrecordlist = activityrecordlist;
-	}
 	public int getPage() {
 		return page;
 	}

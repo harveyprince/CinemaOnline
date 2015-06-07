@@ -6,10 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.cinemaonline.model.Activity;
 import com.cinemaonline.model.Hall;
 import com.cinemaonline.model.Ticket;
-import com.cinemaonline.model.client.ActivityInfo;
 import com.cinemaonline.model.client.FilmInfo;
 import com.cinemaonline.model.client.FilmPlanInfo;
 import com.cinemaonline.model.client.OperaResult;
@@ -17,7 +15,6 @@ import com.cinemaonline.model.client.TicketOrder;
 import com.cinemaonline.model.client.VipCardInfo;
 import com.cinemaonline.model.client.VipClientInfo;
 import com.cinemaonline.model.client.VipRecordInfo;
-import com.cinemaonline.service.ActivityService;
 import com.cinemaonline.service.FilmService;
 import com.cinemaonline.service.TicketService;
 import com.cinemaonline.service.VipService;
@@ -31,8 +28,6 @@ public class ServerAction extends BaseAction {
 	@Autowired
 	private FilmService filmService;
 	@Autowired
-	private ActivityService activityService;
-	@Autowired
 	private TicketService ticketService;
 	@Autowired
 	private VipService vipService;
@@ -43,8 +38,6 @@ public class ServerAction extends BaseAction {
 	private List<FilmInfo> filmlist;
 	private List<FilmInfo> oldfilmlist;
 	private List<Hall> halllist;
-	private List<Activity> activitylist;
-	private List<Activity> ended_activitylist;
 	private List<VipRecordInfo> recordlist;
 	private VipClientInfo vipclientinfo;
 	private VipCardInfo vipcardinfo;
@@ -52,7 +45,6 @@ public class ServerAction extends BaseAction {
 
 //	///////////////////////////////////////////////////////////
 	/*get from client*/
-	private ActivityInfo hv_activity;
 	private TicketOrder ticketOrder;
 	//	///////////////////////////////////////////////////////////
 	
@@ -148,59 +140,6 @@ public class ServerAction extends BaseAction {
 		}catch(Exception e){
 			ajaxinfo="failed";
 			e.printStackTrace();
-		}
-		return AJAXINFO;
-	}
-	/*
-	 * activity
-	 * */
-	public String ajax_activity(){
-		activitylist = activityService.getAllUnpassedActivitiesByPage(page);
-		if(activitylist==null||page<0){
-			ajaxinfo = "empty";
-			return AJAXINFO;
-		}
-		return SUCCESS;
-	}
-	public String ajax_ended_activity(){
-		ended_activitylist = activityService.getAllendedActivitiesByPage(page);
-		if(ended_activitylist==null||page<0){
-			ajaxinfo = "empty";
-			return AJAXINFO;
-		}
-		return SUCCESS;
-	}
-	public String viewActivity(){
-		filmplanlist = filmService.getAllPassedPlansNotOld();
-		return SUCCESS;
-	}
-	
-	public String insertActivity(){
-		OperaResult result = activityService.insertActivity(hv_activity);
-		if(result.getResult()){
-			ajaxinfo = "success";
-		}else{
-			ajaxinfo = result.getComment();
-		}
-		return AJAXINFO;
-	}
-	
-	public String updateActivity(){
-		OperaResult result = activityService.updateActivity(hv_activity);
-		if(result.getResult()){
-			ajaxinfo = "success";
-		}else{
-			ajaxinfo = result.getComment();
-		}
-		return AJAXINFO;
-	}
-	
-	public String publishActivity(){
-		OperaResult result = activityService.pulishActivity(Long.parseLong(request.getParameter("activityid")));
-		if(result.getResult()){
-			ajaxinfo = "success";
-		}else{
-			ajaxinfo = result.getComment();
 		}
 		return AJAXINFO;
 	}
@@ -378,22 +317,6 @@ public class ServerAction extends BaseAction {
 		this.ajaxinfo = ajaxinfo;
 	}
 
-	public List<Activity> getActivitylist() {
-		return activitylist;
-	}
-
-	public void setActivitylist(List<Activity> activitylist) {
-		this.activitylist = activitylist;
-	}
-
-	public ActivityInfo getHv_activity() {
-		return hv_activity;
-	}
-
-	public void setHv_activity(ActivityInfo hv_activity) {
-		this.hv_activity = hv_activity;
-	}
-
 	public TicketOrder getTicketOrder() {
 		return ticketOrder;
 	}
@@ -424,14 +347,6 @@ public class ServerAction extends BaseAction {
 
 	public void setVipcardinfo(VipCardInfo vipcardinfo) {
 		this.vipcardinfo = vipcardinfo;
-	}
-
-	public List<Activity> getEnded_activitylist() {
-		return ended_activitylist;
-	}
-
-	public void setEnded_activitylist(List<Activity> ended_activitylist) {
-		this.ended_activitylist = ended_activitylist;
 	}
 
 	public int getPage() {

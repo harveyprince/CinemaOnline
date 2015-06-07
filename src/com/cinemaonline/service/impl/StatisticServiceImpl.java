@@ -10,7 +10,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cinemaonline.dao.ActivityDao;
 import com.cinemaonline.dao.FilmDao;
 import com.cinemaonline.dao.InfoDao;
 import com.cinemaonline.dao.StatisticDao;
@@ -39,8 +38,6 @@ public class StatisticServiceImpl implements StatisticService {
 	private VipDao vipDao;
 	@Autowired
 	private InfoDao infoDao;
-	@Autowired
-	private ActivityDao activityDao;
 	@Autowired
 	private FilmDao filmDao;
 	@Autowired
@@ -214,7 +211,6 @@ public class StatisticServiceImpl implements StatisticService {
 		StatisticVipOperaClient vos = new StatisticVipOperaClient();
 		vos.setYear(year);
 		vos.setMonth(month);
-		vos.setActivity_participate_sum(activityDao.getParticipateSumByTime(firstday,lastday));
 		vos.setConsume_sum(vipDao.getConsumeSumByTime(firstday,lastday));
 		vos.setStatus_1_sum(vipDao.getVipSumByStatus(1));
 		vos.setStatus_2_sum(vipDao.getVipSumByStatus(2));

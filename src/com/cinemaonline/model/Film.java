@@ -22,6 +22,7 @@ public class Film {
 	private Date shelvesTime;//下架时间
 	private int status;//电影状态[0下架,1上映]
 	private Set<FilmPlan> filmPlans;//计划
+	private int cost;//film cost成本
 	
 	
 	@Id
@@ -74,6 +75,12 @@ public class Film {
 	}
 	public void setFilmPlans(Set<FilmPlan> filmPlans) {
 		this.filmPlans = filmPlans;
+	}
+	public int getCost() {
+		return cost;
+	}
+	public void setCost(int cost) {
+		this.cost = cost;
 	}
 
 }

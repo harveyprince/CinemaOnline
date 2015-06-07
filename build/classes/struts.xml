@@ -106,18 +106,6 @@
            <action name="viprecord" class="VipAction" method="viewRecord">
            	<result name="success">/vip/viprecord.jsp</result>
            </action>
-           <!--activity  -->
-           <action name="vip_activity" class="VipAction" method="ajax_activity">
-           <result name="success">/vip/activity/activity.jsp</result>
-           </action>
-           <action name="vip_old_activity" class="VipAction" method="ajax_old_activity">
-           <result name="success">/vip/activity/oldactivity.jsp</result>
-           </action>
-           <action name="vipactivity" class="VipAction" method="viewActivity">
-           	<result name="success">/vip/vipactivity.jsp</result>
-           </action>
-           <action name="joinActivity" class="VipAction" method="joinActivity">
-           </action>
            <!-- ServerAction --><!-- ServerAction --><!-- ServerAction -->
            <!--plan  -->
            <action name="server_film_plan" class="ServerAction" method="ajax_film_plan">
@@ -149,22 +137,6 @@
            <action name="releasefilm" class="ServerAction" method="releaseFilm">
            </action>
            <action name="unreleasefilm" class="ServerAction" method="unreleaseFilm">
-           </action>
-           <!--activity  -->
-           <action name="server_activity" class="ServerAction" method="ajax_activity">
-           <result name="success">/server/activity/activity.jsp</result>
-           </action>
-           <action name="server_ended_activity" class="ServerAction" method="ajax_ended_activity">
-           <result name="success">/server/activity/ended_activity.jsp</result>
-           </action>
-           <action name="serveractivity" class="ServerAction" method="viewActivity">
-           	<result name="success">/server/serveractivity.jsp</result>
-           </action>
-           <action name="activityadd" class="ServerAction" method="insertActivity">
-           </action>
-           <action name="activityedit" class="ServerAction" method="updateActivity">
-           </action>
-           <action name="actpublish" class="ServerAction" method="publishActivity">
            </action>
            <!--ticket  -->
            <action name="server_ticket" class="ServerAction" method="ajax_ticket">

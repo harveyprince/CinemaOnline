@@ -8,7 +8,6 @@ import com.cinemaonline.model.StatisticVipOpera;
 public class StatisticVipOperaClient {
 	
 	private double consume_sum;
-	private int activity_participate_sum;
 	private int status_1_sum;
 	private int status_2_sum;
 	private int status_4_sum;
@@ -36,13 +35,11 @@ public class StatisticVipOperaClient {
 				break;
 			}
 		}
-		info_return.setActivity_participate_sum(vo.getActivityparticipatesum());
 		info_return.setConsume_sum(vo.getConsumesum());
 		return info_return;
 	}
 	public StatisticVipOpera getVipOpera_model(){
 		StatisticVipOpera info = new StatisticVipOpera();
-		info.setActivityparticipatesum(activity_participate_sum);
 		info.setMonth(month);
 		info.setYear(year);
 		info.setConsumesum(consume_sum);
@@ -85,12 +82,6 @@ public class StatisticVipOperaClient {
 	}
 	public void setConsume_sum(double consume_sum) {
 		this.consume_sum = consume_sum;
-	}
-	public int getActivity_participate_sum() {
-		return activity_participate_sum;
-	}
-	public void setActivity_participate_sum(int activity_participate_sum) {
-		this.activity_participate_sum = activity_participate_sum;
 	}
 	public int getStatus_1_sum() {
 		return status_1_sum;

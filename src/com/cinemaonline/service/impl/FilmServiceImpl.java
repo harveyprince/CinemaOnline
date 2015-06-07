@@ -13,7 +13,6 @@ import com.cinemaonline.model.Hall;
 import com.cinemaonline.model.client.FilmInfo;
 import com.cinemaonline.model.client.FilmPlanInfo;
 import com.cinemaonline.model.client.OperaResult;
-import com.cinemaonline.service.ActivityService;
 import com.cinemaonline.service.FilmService;
 
 @Service
@@ -21,8 +20,6 @@ public class FilmServiceImpl implements FilmService {
 
 	@Autowired
 	private FilmDao filmDao;
-	@Autowired
-	private ActivityService activityService;
 	
 	@Override
 	public List<FilmPlanInfo> getAllUnoldPlans() {
@@ -222,8 +219,6 @@ public class FilmServiceImpl implements FilmService {
 			result.setComment("the plan is still working");
 			return result;
 		}
-//		活动评测------------------------------------------------------------------------------------------
-		OperaResult activity_result = activityService.endActivityByFilm(f);
 		f.setStatus(0);
 		f.setShelvesTime(new java.sql.Date((new java.util.Date()).getTime()));
 		filmDao.updateFilm(f);

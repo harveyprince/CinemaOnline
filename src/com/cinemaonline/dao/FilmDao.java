@@ -5,7 +5,6 @@ import java.util.List;
 import com.cinemaonline.model.Film;
 import com.cinemaonline.model.FilmPlan;
 import com.cinemaonline.model.Hall;
-import com.cinemaonline.model.client.FilmPlanInfo;
 import com.cinemaonline.model.client.OperaResult;
 
 public interface FilmDao {
@@ -22,7 +21,6 @@ public interface FilmDao {
 	
 	public Film getFilmById(long id);
 
-	public List<Film> getReleasingFilmsByActivityId(long activityId);
 //	film plan
 	public FilmPlan insertFilmPlan(FilmPlan info);
 	

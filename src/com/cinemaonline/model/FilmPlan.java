@@ -1,6 +1,5 @@
 package com.cinemaonline.model;
 
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -26,7 +24,6 @@ public class FilmPlan {
 	private long endTime;//结束时间
 	private double price;//价格
 	private int status;//状态[0未审核、1待批准、2通过、3驳回]
-	private Set<Activity> activities;//活动
 	private Film film;//电影
 	
 	@Id
@@ -74,13 +71,6 @@ public class FilmPlan {
 	}
 	public void setStatus(int status) {
 		this.status = status;
-	}
-	@ManyToMany(mappedBy="plans",fetch = FetchType.EAGER)
-	public Set<Activity> getActivities() {
-		return activities;
-	}
-	public void setActivities(Set<Activity> activities) {
-		this.activities = activities;
 	}
 	@JoinColumn(name="filmId")
 	@ManyToOne(targetEntity=Film.class,fetch = FetchType.EAGER)

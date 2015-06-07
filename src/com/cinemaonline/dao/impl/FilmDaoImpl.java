@@ -569,31 +569,7 @@ public class FilmDaoImpl implements FilmDao {
 			return null;
 		}
 	}
-	@Override
-	public List<Film> getReleasingFilmsByActivityId(long activityId) {
-		// TODO Auto-generated method stub
-		Session session = baseDao.getNewSession();
-		String sql = "select distinct f.* from Film f inner join FilmPlan p on f.filmId = p.filmId inner join ActivityMatchPlan a on a.planId = p.planId where a.activityId=? and f.status=1";
-		List list = null;
-		try{
-			Query query = session.createSQLQuery(sql).addEntity(Film.class);
-			query.setParameter(0, activityId);
-			list = query.list();
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			session.close();
-		}
-		if(list!=null){
-			if(list.size()>0){
-				return list;
-			}else{
-				return null;
-			}
-		}else{
-			return null;
-		}
-	}
+	
 	@Override
 	public int getPersonSumByTime(long begin, long end) {
 		// TODO Auto-generated method stub

@@ -12,6 +12,7 @@ public class Hall {
 	private int hallNo;
 	private int seats;
 	private String name;
+	private int cost;//cost per hour
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -32,6 +33,12 @@ public class Hall {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public int getCost() {
+		return cost;
+	}
+	public void setCost(int cost) {
+		this.cost = cost;
 	}
 
 }
