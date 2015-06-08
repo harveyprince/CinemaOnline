@@ -37,17 +37,23 @@
 		<div class="info-show-panel">
 			<ul class="nav nav-tabs" data-trigger="tab">
 				<li><a href="#tab1">盈利统计</a></li>
-				<li><a href="#tab2">发展规划</a></li>
+				<li><a href="#tab2">利润规划</a></li>
+				<li><a href="#tab3">完结规划</a></li>
 			</ul>
 			<div class="pane-wrapper slide clearfix">
 				<div class="tab-page">
 					<div id="container" style="min-width: 310px; height: 100px; max-width: 600px; margin: 0 auto">
 						<div class="statistic-label">总利润:<span class="profit-show"></span></div>
 					</div>
-					
 					<div id="profit-container" style="height: 400px; width: 601px; margin: 0 auto"></div>
+					<!-- 罗列利润规划的平均影片利润走势（规划和实际） -->
 				</div>
 				<div class="tab-page">
+					<!-- 罗列未完结利润规划，包括，规划所对应的影片 -->
+					<div></div>
+				</div>
+				<div class="tab-page">
+					<!-- 罗列各个利润规划，点击显示单个规划的利润分配和实际利润以及平均利润的规划与实际，显示要素：影片名称、种类 -->
 					<div></div>
 				</div>
 			</div>
