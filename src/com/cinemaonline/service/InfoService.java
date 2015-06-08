@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.cinemaonline.model.Account;
 import com.cinemaonline.model.Bank;
+import com.cinemaonline.model.FilmType;
 import com.cinemaonline.model.Hall;
 import com.cinemaonline.model.Identity;
 import com.cinemaonline.model.Location;
@@ -25,4 +26,6 @@ public interface InfoService {
 	public List<Location> getAllLocation();
 
 	public void addLocation(Location info);
+
+	public void addFilmType(FilmType ft);
 }

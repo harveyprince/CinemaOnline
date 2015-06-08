@@ -11,6 +11,7 @@ import com.cinemaonline.dao.BankDao;
 import com.cinemaonline.dao.InfoDao;
 import com.cinemaonline.model.Account;
 import com.cinemaonline.model.Bank;
+import com.cinemaonline.model.FilmType;
 import com.cinemaonline.model.Hall;
 import com.cinemaonline.model.Identity;
 import com.cinemaonline.model.Location;
@@ -80,6 +81,11 @@ public class InfoServiceImpl implements InfoService {
 	public void addLocation(Location info) {
 		// TODO Auto-generated method stub
 		infoDao.insertLocation(info);
+	}
+	@Override
+	public void addFilmType(FilmType ft) {
+		// TODO Auto-generated method stub
+		infoDao.insertFilmType(ft);
 	}
 
 	

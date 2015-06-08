@@ -5,12 +5,12 @@ import org.springframework.stereotype.Repository;
 
 import com.cinemaonline.model.Account;
 import com.cinemaonline.model.Bank;
+import com.cinemaonline.model.FilmType;
 import com.cinemaonline.model.Hall;
 import com.cinemaonline.model.Identity;
 import com.cinemaonline.model.Location;
 import com.cinemaonline.model.VipLevel;
 import com.cinemaonline.service.InfoService;
-import com.cinemaonline.service.StatisticService;
 import com.cinemaonline.service.VipService;
 
 @Repository
@@ -24,17 +24,10 @@ public class TestAction extends BaseAction {
 	@Autowired
 	private InfoService infoService;
 	@Autowired
-	private StatisticService statisticService;
-	@Autowired
 	private VipService vipService;
 	
 	public String Viplvcost(){
 		vipService.vipLevelCostJudge();
-		return AJAXINFO;
-	}
-	
-	public String MonthCron(){
-		statisticService.doStatic();
 		return AJAXINFO;
 	}
 	
@@ -45,6 +38,13 @@ public class TestAction extends BaseAction {
 			Location lc0 = new Location();
 			lc0.setStrdescribe(temp);
 			infoService.addLocation(lc0);
+		}
+//		filmtype
+		String[] types = {"热血","青春","爱情","动漫","惊悚","搞笑","悬疑","科幻","魔幻"};
+		for(String temp:types){
+			FilmType ft = new FilmType();
+			ft.setTypename(temp);
+			infoService.addFilmType(ft);
 		}
 //		user
 		//server

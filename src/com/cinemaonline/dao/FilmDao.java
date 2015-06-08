@@ -4,8 +4,10 @@ import java.util.List;
 
 import com.cinemaonline.model.Film;
 import com.cinemaonline.model.FilmPlan;
+import com.cinemaonline.model.FilmType;
 import com.cinemaonline.model.Hall;
 import com.cinemaonline.model.client.OperaResult;
+
 
 public interface FilmDao {
 //	film
@@ -70,6 +72,8 @@ public interface FilmDao {
 			long endTime, Hall hallById);
 
 	public List<Film> getAllReleaseFilmsByPage(int page);
+
+	public FilmType getFilmTypeById(int id);
 
 
 

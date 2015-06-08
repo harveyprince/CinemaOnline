@@ -51,21 +51,6 @@
           <action name="viewStatics" class="ManagerAction" method="showStatics">
           <result name="success">/manar/managerstatistics.jsp</result>
           </action>
-          <action name="statisticjsonage" class="ManagerAction" method="getAgeStatisticJson">
-          <result name="statisticage">/Ajax/statisticage.jsp</result>
-          </action>
-          <action name="statisticjsonsex" class="ManagerAction" method="getSexStatisticJson">
-          <result name="statisticsex">/Ajax/statisticsex.jsp</result>
-          </action>
-          <action name="statisticjsonlocation" class="ManagerAction" method="getLocationStatisticJson">
-          <result name="statisticlocation">/Ajax/statisticlocation.jsp</result>
-          </action>
-          <action name="statisticjsoncard" class="ManagerAction" method="getCardStatisticJson">
-          <result name="statisticcard">/Ajax/statisticcard.jsp</result>
-          </action>
-          <action name="statisticjsoncinema" class="ManagerAction" method="getCinemaStatisticJson">
-          <result name="statisticcinema">/Ajax/statisticcinema.jsp</result>
-          </action>
           <!-- plan check -->
           <action name="manar_filmplan" class="ManagerAction" method="ajax_filmplan">
           	<result name="success">/manar/filmplan/filmplan.jsp</result>

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.cinemaonline.dao.BaseDao;
 import com.cinemaonline.dao.InfoDao;
+import com.cinemaonline.model.FilmType;
 import com.cinemaonline.model.Hall;
 import com.cinemaonline.model.Identity;
 import com.cinemaonline.model.Location;
@@ -114,7 +115,22 @@ public class InfoDaoImpl implements InfoDao {
 		}
 		return info_local;
 	}
-
+	@Override
+	public FilmType insertFilmType(FilmType info) {
+		// TODO Auto-generated method stub
+		FilmType info_local = info;
+		Session session = baseDao.getNewSession();
+		Transaction ts = session.beginTransaction();
+		try{
+			session.save(info_local);
+			ts.commit();
+		}catch(Exception e){
+			ts.rollback();
+		}finally{
+			session.close();
+		}
+		return info_local;
+	}
 	@Override
 	public List<Location> getAllLocation() {
 		// TODO Auto-generated method stub

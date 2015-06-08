@@ -13,6 +13,7 @@ import com.cinemaonline.dao.BaseDao;
 import com.cinemaonline.dao.FilmDao;
 import com.cinemaonline.model.Film;
 import com.cinemaonline.model.FilmPlan;
+import com.cinemaonline.model.FilmType;
 import com.cinemaonline.model.Hall;
 import com.cinemaonline.model.client.OperaResult;
 
@@ -782,6 +783,31 @@ public class FilmDaoImpl implements FilmDao {
 		if(list!=null){
 			if(list.size()>0){
 				return list;
+			}else{
+				return null;
+			}
+		}else{
+			return null;
+		}
+	}
+	@Override
+	public FilmType getFilmTypeById(int id) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String hql = "from com.cinemaonline.model.FilmType where typeId=?";
+		List list = null;
+		try{
+			Query query = session.createQuery(hql);
+			query.setParameter(0, id);
+			list = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		if(list!=null){
+			if(list.size()>0){
+				return (FilmType) list.get(0);
 			}else{
 				return null;
 			}

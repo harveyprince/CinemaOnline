@@ -97,6 +97,4 @@ pageEncoding="UTF-8"%>
 </script>
 <script src="./Public/js/common/form.js"></script>
 <script src="./Public/js/server/server.js"></script>
-<script src="./Public/js/manager/statistic.js"></script>
-<script src="./Public/js/manager/statisticworker.js"></script>
 </html>

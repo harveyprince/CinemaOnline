@@ -5,9 +5,12 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -17,13 +20,14 @@ public class Film {
 	private long filmId;//电影流水号
 	private String name;//电影名称
 	private int duration;//时长
-	private String kind;//分类
 	private Date releaseTime;//上映时间
 	private Date shelvesTime;//下架时间
 	private int status;//电影状态[0不可见,1可见,2结束]
 	private Set<FilmPlan> filmPlans;//计划
 	private int cost;//film cost成本
-	
+	private long profitPlan;//盈利计划ID
+	private double profitPercent;//盈利计划对应百分比
+	private FilmType filmType;//电影种类
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -44,12 +48,6 @@ public class Film {
 	}
 	public void setDuration(int duration) {
 		this.duration = duration;
-	}
-	public String getKind() {
-		return kind;
-	}
-	public void setKind(String kind) {
-		this.kind = kind;
 	}
 	public Date getReleaseTime() {
 		return releaseTime;
@@ -81,6 +79,28 @@ public class Film {
 	}
 	public void setCost(int cost) {
 		this.cost = cost;
+	}
+	@JoinColumn(name="profitPlanId")
+	@ManyToOne(targetEntity=ProfitPlan.class,fetch = FetchType.EAGER)
+	public long getProfitPlan() {
+		return profitPlan;
+	}
+	public void setProfitPlan(long profitPlan) {
+		this.profitPlan = profitPlan;
+	}
+	public double getProfitPercent() {
+		return profitPercent;
+	}
+	public void setProfitPercent(double profitPercent) {
+		this.profitPercent = profitPercent;
+	}
+	@JoinColumn(name="typeId")
+	@ManyToOne(targetEntity=FilmType.class,fetch = FetchType.EAGER)
+	public FilmType getFilmType() {
+		return filmType;
+	}
+	public void setFilmType(FilmType filmType) {
+		this.filmType = filmType;
 	}
 
 }

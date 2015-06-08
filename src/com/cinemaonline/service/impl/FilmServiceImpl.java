@@ -180,6 +180,7 @@ public class FilmServiceImpl implements FilmService {
 	public OperaResult addFilm(FilmInfo info) {
 		// TODO Auto-generated method stub
 		OperaResult result = new OperaResult();
+		info.setKind(filmDao.getFilmTypeById(info.getTypeId()));
 		filmDao.insertFilm(info.getFilm());
 		result.setResult(true);
 		return result;
@@ -191,7 +192,7 @@ public class FilmServiceImpl implements FilmService {
 		OperaResult result = new OperaResult();
 		Film f = filmDao.getFilmById(info.getFilmId());
 		f.setDuration(info.getDuration());
-		f.setKind(info.getKind());
+		f.setFilmType(filmDao.getFilmTypeById(info.getTypeId()));
 		f.setName(info.getName());
 		f.setStatus(info.getStatus());
 		f.setReleaseTime(info.getReleaseTime());

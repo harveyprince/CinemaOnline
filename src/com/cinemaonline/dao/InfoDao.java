@@ -2,6 +2,7 @@ package com.cinemaonline.dao;
 
 import java.util.List;
 
+import com.cinemaonline.model.FilmType;
 import com.cinemaonline.model.Hall;
 import com.cinemaonline.model.Identity;
 import com.cinemaonline.model.Location;
@@ -26,4 +27,6 @@ public interface InfoDao {
 	public List<Location> getAllLocation();
 	
 	public List<Location> getLocationWithVips();
+
+	public FilmType insertFilmType(FilmType ft);
 }

@@ -6,13 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.cinemaonline.model.Film;
+import com.cinemaonline.model.FilmType;
 
 public class FilmInfo {
 	SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
 	private long filmId;
 	private String name;
 	private int duration;
-	private String kind;
+	private int typeId;
+	private FilmType kind = null;
 	private Date releaseTime = null;
 	private Date shelvesTime = null;
 	private String rtTime;
@@ -22,7 +24,11 @@ public class FilmInfo {
 	public Film getFilm(){
 		Film film = new Film();
 		film.setDuration(duration);
-		film.setKind(kind);
+		if(kind == null){
+			kind = new FilmType();
+			kind.setTypeId(typeId);
+		}
+		film.setFilmType(kind);
 		film.setName(name);
 		film.setStatus(status);
 		film.setReleaseTime(releaseTime);
@@ -36,7 +42,7 @@ public class FilmInfo {
 		}
 		setDuration(info.getDuration());
 		setFilmId(info.getFilmId());
-		setKind(info.getKind());
+		setKind(info.getFilmType());
 		setName(info.getName());
 		setReleaseTime(info.getReleaseTime());
 		setShelvesTime(info.getShelvesTime());
@@ -79,12 +85,13 @@ public class FilmInfo {
 	public void setDuration(String duration) {
 		setDuration(Integer.parseInt(duration));
 	}
-	public String getKind() {
-		return kind;
+	public int getTypeId() {
+		return typeId;
 	}
-	public void setKind(String kind) {
-		this.kind = kind;
+	public void setTypeId(int typeId) {
+		this.typeId = typeId;
 	}
+	
 	public Date getReleaseTime() {
 		return releaseTime;
 	}
@@ -124,5 +131,11 @@ public class FilmInfo {
 	}
 	public void setCost(int cost) {
 		this.cost = cost;
+	}
+	public FilmType getKind() {
+		return kind;
+	}
+	public void setKind(FilmType kind) {
+		this.kind = kind;
 	}
 }

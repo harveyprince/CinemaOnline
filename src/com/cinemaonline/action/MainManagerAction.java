@@ -78,7 +78,7 @@ public class MainManagerAction extends BaseAction {
 	public String insertFilm(){
 		FilmInfo info = new FilmInfo();
 		info.setDuration(request.getParameter("duration"));
-		info.setKind(request.getParameter("kind"));
+		info.setTypeId(Integer.parseInt(request.getParameter("kindId")));
 		info.setName(request.getParameter("name"));
 		info.setCost(Integer.parseInt(request.getParameter("cost")));
 		OperaResult result = filmService.addFilm(info);
@@ -94,7 +94,7 @@ public class MainManagerAction extends BaseAction {
 		FilmInfo info = new FilmInfo();
 		info.setFilmId(request.getParameter("filmid"));
 		info.setDuration(request.getParameter("duration"));
-		info.setKind(request.getParameter("kind"));
+		info.setTypeId(Integer.parseInt(request.getParameter("kindId")));
 		info.setName(request.getParameter("name"));
 		info.setCost(Integer.parseInt(request.getParameter("cost")));
 		OperaResult result  = filmService.updateFilm(info);
