@@ -32,7 +32,7 @@ public class FilmType {
 	public void setTypename(String typename) {
 		this.typename = typename;
 	}
-	@OneToMany(cascade=CascadeType.ALL,mappedBy="flimType")
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="filmType")
 	public Set<Film> getFilms() {
 		return films;
 	}

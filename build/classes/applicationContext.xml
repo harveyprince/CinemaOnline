@@ -66,27 +66,10 @@
 			<value>0 1 0 * * ?</value>
 		</property>
 	</bean>
-	<bean id="jobtask2" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-		<property name="targetObject">
-			<ref bean="quartzJob"/>
-		</property>
-		<property name="targetMethod">
-			<value>statisticJudge</value>
-		</property>
-	</bean>
-	<bean id="statistictrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-		<property name="jobDetail">
-			<ref bean="jobtask2"/>
-		</property>
-		<property name="cronExpression">
-			<value>0 1 0 1 * ?</value>
-		</property>
-	</bean>
 	<bean id="startQuertz" lazy-init="false" autowire="no" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 		<property name="triggers">
 			<list>
 				<ref bean="lvcosttrigger"/>
-				<ref bean="statistictrigger"/>
 			</list>
 		</property>
 	</bean>
