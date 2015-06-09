@@ -16,7 +16,7 @@ public class ProfitPlan {
 
 	private long profitPlanId;//计划流水号
 	private long profitSum;//计划盈利总额
-	private Set<Film> films;//盈利计划对应影片
+	private Set<FilmProfitPlan> filmProfitPlans;//盈利计划对应影片
 	private long publishTime;//计划发布时间
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -34,11 +34,11 @@ public class ProfitPlan {
 		this.profitSum = profitSum;
 	}
 	@OneToMany(cascade=CascadeType.ALL,mappedBy="profitPlan")
-	public Set<Film> getFilms() {
-		return films;
+	public Set<FilmProfitPlan> getFilmProfitPlans() {
+		return filmProfitPlans;
 	}
-	public void setFilms(Set<Film> films) {
-		this.films = films;
+	public void setFilmProfitPlans(Set<FilmProfitPlan> filmProfitPlans) {
+		this.filmProfitPlans = filmProfitPlans;
 	}
 	public long getPublishTime() {
 		return publishTime;

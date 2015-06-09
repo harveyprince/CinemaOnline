@@ -25,8 +25,6 @@ public class Film {
 	private int status;//电影状态[0不可见,1可见,2结束]
 	private Set<FilmPlan> filmPlans;//计划
 	private int cost;//film cost成本
-	private long profitPlan;//盈利计划ID
-	private double profitPercent;//盈利计划对应百分比
 	private FilmType filmType;//电影种类
 	
 	@Id
@@ -80,20 +78,7 @@ public class Film {
 	public void setCost(int cost) {
 		this.cost = cost;
 	}
-	@JoinColumn(name="profitPlanId")
-	@ManyToOne(targetEntity=ProfitPlan.class,fetch = FetchType.EAGER)
-	public long getProfitPlan() {
-		return profitPlan;
-	}
-	public void setProfitPlan(long profitPlan) {
-		this.profitPlan = profitPlan;
-	}
-	public double getProfitPercent() {
-		return profitPercent;
-	}
-	public void setProfitPercent(double profitPercent) {
-		this.profitPercent = profitPercent;
-	}
+	
 	@JoinColumn(name="typeId")
 	@ManyToOne(targetEntity=FilmType.class,fetch = FetchType.EAGER)
 	public FilmType getFilmType() {

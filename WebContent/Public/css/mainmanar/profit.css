@@ -7,6 +7,9 @@
       overflow: hidden;
       overflow-y: scroll;
     }
-    div#close-panel-bt{
+    div.close-panel-bt{
     	cursor: pointer;
+    }
+    .add-profitplan {
+      margin-top: 15px;
     }

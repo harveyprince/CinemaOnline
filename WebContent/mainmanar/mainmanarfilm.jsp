@@ -49,7 +49,7 @@
 					<!--  -->
 					<div class="tab-page">
 						<button class="btn btn-primary add-film" data-toggle="modal" data-target="#modalAdd">
-							Add Film
+							增加影片
 						</button>
 						<div class="pagination pagination-success page-button">
 							<a href="#" class="btn btn-success previous">上一页</a>
@@ -155,11 +155,6 @@
 					<div class="row-label">种类:</div>
 					<div class="span3 row-content">
 						<select class="form-control select select-primary select-block mbl kind-input" name="kind">
-							<option value="happy">happy</option>
-							<option value="fear">fear</option>
-							<option value="scary">scary</option>
-							<option value="joke">joke</option>
-							<option value="cartoon">cartoon</option>
 						</select>
 					</div>
 				</div> 
@@ -202,11 +197,6 @@
 					<div class="row-label">种类:</div>
 					<div class="span3 row-content">
 						<select class="form-control select select-primary select-block mbl kind-input" name="kind">
-							<option value="happy">happy</option>
-							<option value="fear">fear</option>
-							<option value="scary">scary</option>
-							<option value="joke">joke</option>
-							<option value="cartoon">cartoon</option>
 						</select>
 					</div>
 				</div> 
@@ -233,7 +223,18 @@
 <script src="./Public/sco/js/sco.message.js"></script>
 <script src="./Public/Flat-UI-master/dist/js/flat-ui.js"></script>
 <script type="text/javascript">
-
+var typelist = [
+<s:iterator id="type" value="typelist" status="st">
+{ id: <s:property value="#type.typeId"/>, text: '<s:property value="#type.typename"/>' }
+<s:if test="%{!#st.last}">,</s:if>
+</s:iterator>
+];
+var typelistjson = {
+<s:iterator id="type" value="typelist" status="st">
+ <s:property value="#type.typeId"/>: '<s:property value="#type.typename"/>'
+<s:if test="%{!#st.last}">,</s:if>
+</s:iterator>
+};
 </script>
 <script src="./Public/js/common/form.js"></script>
 <script src="./Public/js/server/server.js"></script>

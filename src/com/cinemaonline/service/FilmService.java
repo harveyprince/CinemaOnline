@@ -2,6 +2,7 @@ package com.cinemaonline.service;
 
 import java.util.List;
 
+import com.cinemaonline.model.FilmType;
 import com.cinemaonline.model.Hall;
 import com.cinemaonline.model.client.FilmInfo;
 import com.cinemaonline.model.client.FilmPlanInfo;
@@ -56,5 +57,7 @@ public interface FilmService {
 	public List<FilmPlanInfo> getAllCheckedUnoldPlansByPage(int page);
 
 	public List<FilmInfo> getAllReleaseFilmsByPage(int page);
+
+	public List<FilmType> getAllFilmTypes();
 
 }

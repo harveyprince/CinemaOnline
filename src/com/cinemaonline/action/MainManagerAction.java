@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.cinemaonline.model.FilmType;
 import com.cinemaonline.model.client.FilmInfo;
 import com.cinemaonline.model.client.OperaResult;
 import com.cinemaonline.model.client.ProfitYear;
@@ -26,6 +27,7 @@ public class MainManagerAction extends BaseAction {
 	private List<FilmInfo> filmlist;
 	private List<FilmInfo> oldfilmlist;
 	private List<FilmInfo> releasefilmlist;
+	private List<FilmType> typelist;
 	private int page;
 	
 	private List<ProfitYear> yearprofitlist;
@@ -33,6 +35,7 @@ public class MainManagerAction extends BaseAction {
 	 * profit
 	 * */
 	public String viewProfit(){
+		filmlist = filmService.getAllReleasingFilms();
 		return SUCCESS;
 	}
 	public String ajax_profit_year(){
@@ -40,6 +43,13 @@ public class MainManagerAction extends BaseAction {
 	}
 	public String ajax_profit_month(){
 		return SUCCESS;
+	}
+	public String addProfitPlan(){
+		long profitSum = Long.parseLong(request.getParameter("profitsum"));
+		String filmstr = request.getParameter("film");
+		String[] films = filmstr.split(","); 
+		ajaxinfo = "success";
+		return AJAXINFO;
 	}
 	/*
 	 * film
@@ -72,13 +82,14 @@ public class MainManagerAction extends BaseAction {
 	}
 	
 	public String viewFilm(){
+		typelist = filmService.getAllFilmTypes();
 		return SUCCESS;
 	}
 	
 	public String insertFilm(){
 		FilmInfo info = new FilmInfo();
 		info.setDuration(request.getParameter("duration"));
-		info.setTypeId(Integer.parseInt(request.getParameter("kindId")));
+		info.setTypeId(Integer.parseInt(request.getParameter("kind")));
 		info.setName(request.getParameter("name"));
 		info.setCost(Integer.parseInt(request.getParameter("cost")));
 		OperaResult result = filmService.addFilm(info);
@@ -94,7 +105,7 @@ public class MainManagerAction extends BaseAction {
 		FilmInfo info = new FilmInfo();
 		info.setFilmId(request.getParameter("filmid"));
 		info.setDuration(request.getParameter("duration"));
-		info.setTypeId(Integer.parseInt(request.getParameter("kindId")));
+		info.setTypeId(Integer.parseInt(request.getParameter("kind")));
 		info.setName(request.getParameter("name"));
 		info.setCost(Integer.parseInt(request.getParameter("cost")));
 		OperaResult result  = filmService.updateFilm(info);
@@ -167,6 +178,12 @@ public class MainManagerAction extends BaseAction {
 	}
 	public void setYearprofitlist(List<ProfitYear> yearprofitlist) {
 		this.yearprofitlist = yearprofitlist;
+	}
+	public List<FilmType> getTypelist() {
+		return typelist;
+	}
+	public void setTypelist(List<FilmType> typelist) {
+		this.typelist = typelist;
 	}
 }
 

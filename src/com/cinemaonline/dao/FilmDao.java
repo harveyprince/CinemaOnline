@@ -75,6 +75,8 @@ public interface FilmDao {
 
 	public FilmType getFilmTypeById(int id);
 
+	public List<FilmType> getAllFilmTypes();
+
 
 
 

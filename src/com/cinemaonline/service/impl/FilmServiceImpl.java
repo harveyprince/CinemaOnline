@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.cinemaonline.dao.FilmDao;
 import com.cinemaonline.model.Film;
 import com.cinemaonline.model.FilmPlan;
+import com.cinemaonline.model.FilmType;
 import com.cinemaonline.model.Hall;
 import com.cinemaonline.model.client.FilmInfo;
 import com.cinemaonline.model.client.FilmPlanInfo;
@@ -66,6 +67,12 @@ public class FilmServiceImpl implements FilmService {
 	public List<Hall> getAllHalls() {
 		// TODO Auto-generated method stub
 		return filmDao.getAllHalls();
+	}
+	
+	@Override
+	public List<FilmType> getAllFilmTypes() {
+		// TODO Auto-generated method stub
+		return filmDao.getAllFilmTypes();
 	}
 
 	@Override

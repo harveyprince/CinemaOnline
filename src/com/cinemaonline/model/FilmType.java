@@ -14,16 +14,16 @@ import javax.persistence.Table;
 @Entity
 @Table(name="FilmType")
 public class FilmType {
-	private long typeId;
+	private int typeId;
 	private String typename;
 	private Set<Film> films;//该种类电影
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public long getTypeId() {
+	public int getTypeId() {
 		return typeId;
 	}
-	public void setTypeId(long typeId) {
+	public void setTypeId(int typeId) {
 		this.typeId = typeId;
 	}
 	public String getTypename() {

@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.cinemaonline.model.Film;
 import com.cinemaonline.model.FilmType;
+import com.cinemaonline.model.ProfitPlan;
 
 public class FilmInfo {
 	SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
@@ -24,10 +25,6 @@ public class FilmInfo {
 	public Film getFilm(){
 		Film film = new Film();
 		film.setDuration(duration);
-		if(kind == null){
-			kind = new FilmType();
-			kind.setTypeId(typeId);
-		}
 		film.setFilmType(kind);
 		film.setName(name);
 		film.setStatus(status);

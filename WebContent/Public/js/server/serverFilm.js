@@ -1,3 +1,4 @@
+selectInitial($("select.kind-input"),typelist);
 $("select").select2();
 function eventInit(){
 	$(".film-eye-button").click(function(){
@@ -16,7 +17,15 @@ function eventInit(){
 		success: function(data) {
 			if(data=="success"){
 				$.scojs_message('success', $.scojs_message.TYPE_OK);
-				setTimeout(function(){window.location.reload()},500);
+				setTimeout(function(){
+					var page = Number($(".film-tbody .page-symbol").html());
+					if(isNaN(page)){return false;}
+					queryPage(page);
+					var page = Number($(".release-film-tbody .page-symbol").html());
+					if(isNaN(page)){return false;}
+					releasequeryPage(page);
+				},500);
+				
 			}else{
 				$.scojs_message(data, $.scojs_message.TYPE_ERROR);
 			}
@@ -46,7 +55,7 @@ $(".film-edit-button").click(function(){
 	var durationvalue = $durationsource.html();
 	$durationInput.val(durationvalue);
 	// cost
-	$costInput = $modal.find("cost-input");
+	$costInput = $modal.find(".cost-input");
 	$costsource = $row.children(".cost");
 	var costvalue = $costsource.html();
 	$costInput.val(costvalue);
@@ -54,7 +63,7 @@ $(".film-edit-button").click(function(){
 	// kind
 	$kindInput = $modal.find(".kind-input");
 	$kindsource = $row.children(".kind");
-	var kind = $kindsource.html();
+	var kind = $kindsource.attr('value');
 	$kindInput.val(kind).trigger("change");
 });
 }
@@ -86,7 +95,7 @@ $("#modalEdit").find(".save-button").click(function(){
 
 					// kind
 					$kindInput = $modal.find("select.kind-input");
-					$kindsource.html($kindInput.val());
+					$kindsource.html(typelistjson[$kindInput.val()]);
 					
 					$.scojs_message('success', $.scojs_message.TYPE_OK);
 					$("#modalEdit").modal("hide");
@@ -118,7 +127,11 @@ $("#modalAdd").find(".save-button").click(function(){
 				if(data=="success"){
 					$.scojs_message('success', $.scojs_message.TYPE_OK);
 					$("#modalAdd").modal("hide");
-					setTimeout(function(){window.location.reload()},500);
+					setTimeout(function(){
+						var page = Number($(".film-tbody .page-symbol").html());
+						if(isNaN(page)){return false;}
+						queryPage(page);
+					},500);
 				}
 			},
 			error:function(){
@@ -141,6 +154,8 @@ function queryPage(page){
 			if(data!="empty"){
 				$(".film-tbody").html(data);
 				eventInit();
+			}else{
+				$(".film-tbody").html("");
 			}
 		},
 		error:function(){
@@ -177,6 +192,8 @@ function oldqueryPage(page){
 		success: function(data) {
 			if(data!="empty"){
 				$(".old-film-tbody").html(data);
+			}else{
+				$(".old-film-tbody").html("");
 			}
 		},
 		error:function(){
@@ -213,6 +230,8 @@ function releasequeryPage(page){
 		success: function(data) {
 			if(data!="empty"){
 				$(".release-film-tbody").html(data);
+			}else{
+				$(".release-film-tbody").html("");
 			}
 		},
 		error:function(){
