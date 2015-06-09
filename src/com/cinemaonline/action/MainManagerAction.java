@@ -8,8 +8,10 @@ import org.springframework.stereotype.Repository;
 import com.cinemaonline.model.FilmType;
 import com.cinemaonline.model.client.FilmInfo;
 import com.cinemaonline.model.client.OperaResult;
+import com.cinemaonline.model.client.ProfitPlanInfo;
 import com.cinemaonline.model.client.ProfitYear;
 import com.cinemaonline.service.FilmService;
+import com.cinemaonline.service.ProfitService;
 
 
 @Repository
@@ -21,6 +23,8 @@ public class MainManagerAction extends BaseAction {
 	private static final long serialVersionUID = 1L;
 	@Autowired
 	private FilmService filmService;
+	@Autowired
+	private ProfitService profitService;
 	
 	private String ajaxinfo;
 	
@@ -35,7 +39,7 @@ public class MainManagerAction extends BaseAction {
 	 * profit
 	 * */
 	public String viewProfit(){
-		filmlist = filmService.getAllReleasingFilms();
+		filmlist = profitService.getAllUnplanedFilms();
 		return SUCCESS;
 	}
 	public String ajax_profit_year(){
@@ -48,7 +52,15 @@ public class MainManagerAction extends BaseAction {
 		long profitSum = Long.parseLong(request.getParameter("profitsum"));
 		String filmstr = request.getParameter("film");
 		String[] films = filmstr.split(","); 
-		ajaxinfo = "success";
+		ProfitPlanInfo info = new ProfitPlanInfo();
+		info.setFilms(films);
+		info.setProfitsum(profitSum);
+		OperaResult result = profitService.addProfitPlan(info);
+		if(result.getResult()){
+			ajaxinfo = "success";
+		}else{
+			ajaxinfo = "failed";
+		}
 		return AJAXINFO;
 	}
 	/*
