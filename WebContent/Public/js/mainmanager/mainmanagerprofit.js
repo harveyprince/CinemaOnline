@@ -30,3 +30,24 @@ $(".add-profitplan").click(function(){
 		});
 	}
 });
+$(document).ready(function(){
+	var action = $(".profit-plan-list").attr("action");
+	var data = new FormData();
+	data.append("page",0);
+	$.ajax({
+		data: data,
+		type: "POST",
+		url: action,
+		cache: false,
+		contentType: false,
+		processData: false,
+		success: function(data) {
+			if(data!=null){
+				$(".profit-plan-list").html(data);
+			}
+		},
+		error:function(){
+			$.scojs_message('error occured!', $.scojs_message.TYPE_ERROR);
+		}
+	});
+});

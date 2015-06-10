@@ -16,4 +16,6 @@ public interface ProfitDao {
 
 	List<Film> getAllUnplanedFilms();
 
+	List<ProfitPlan> getAllWorkingPlans();
+
 }

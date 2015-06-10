@@ -32,6 +32,7 @@ public class ProfitServiceImpl implements ProfitService {
 		Date now = new Date();
 		profitPlan.setPublishTime(now.getTime());
 		profitPlan = profitDao.insertProfitPlan(profitPlan);
+		profitPlan.setStatus(1);
 		String[] films = info.getFilms();
 		for(String temp:films){
 			if(!profitDao.isFilmExist(Long.parseLong(temp))){
@@ -55,5 +56,13 @@ public class ProfitServiceImpl implements ProfitService {
 		// TODO Auto-generated method stub
 		return FilmInfo.parseFI(profitDao.getAllUnplanedFilms());
 	}
+
+	@Override
+	public List<ProfitPlan> getAllWorkingPlans() {
+		// TODO Auto-generated method stub
+		return profitDao.getAllWorkingPlans();
+	}
+
+	
 
 }

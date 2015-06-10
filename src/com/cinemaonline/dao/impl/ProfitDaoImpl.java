@@ -88,4 +88,20 @@ public class ProfitDaoImpl implements ProfitDao {
 		}
 		return null;
 	}
+
+	@Override
+	public List<ProfitPlan> getAllWorkingPlans() {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String hql = "from com.cinemaonline.model.ProfitPlan where status != 0";
+		try{
+			Query query = session.createQuery(hql);
+			return query.list();
+		}catch(Exception e){
+//			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return null;
+	}
 }

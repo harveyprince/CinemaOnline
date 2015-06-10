@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.cinemaonline.model.FilmType;
+import com.cinemaonline.model.ProfitPlan;
 import com.cinemaonline.model.client.FilmInfo;
 import com.cinemaonline.model.client.OperaResult;
 import com.cinemaonline.model.client.ProfitPlanInfo;
@@ -35,11 +36,17 @@ public class MainManagerAction extends BaseAction {
 	private int page;
 	
 	private List<ProfitYear> yearprofitlist;
+	
+	private List<ProfitPlan> profitPlanlist;
 	/*
 	 * profit
 	 * */
 	public String viewProfit(){
 		filmlist = profitService.getAllUnplanedFilms();
+		return SUCCESS;
+	}
+	public String ajax_profit_pan_list(){
+		profitPlanlist = profitService.getAllWorkingPlans();
 		return SUCCESS;
 	}
 	public String ajax_profit_year(){
@@ -196,6 +203,12 @@ public class MainManagerAction extends BaseAction {
 	}
 	public void setTypelist(List<FilmType> typelist) {
 		this.typelist = typelist;
+	}
+	public List<ProfitPlan> getProfitPlanlist() {
+		return profitPlanlist;
+	}
+	public void setProfitPlanlist(List<ProfitPlan> profitPlanlist) {
+		this.profitPlanlist = profitPlanlist;
 	}
 }
 

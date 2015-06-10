@@ -4,6 +4,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,6 +19,7 @@ public class ProfitPlan {
 	private long profitSum;//计划盈利总额
 	private Set<FilmProfitPlan> filmProfitPlans;//盈利计划对应影片
 	private long publishTime;//计划发布时间
+	private int status;//1working 0end
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public long getProfitPlanId() {
@@ -33,7 +35,7 @@ public class ProfitPlan {
 	public void setProfitSum(long profitSum) {
 		this.profitSum = profitSum;
 	}
-	@OneToMany(cascade=CascadeType.ALL,mappedBy="profitPlan")
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="profitPlan",fetch = FetchType.EAGER)
 	public Set<FilmProfitPlan> getFilmProfitPlans() {
 		return filmProfitPlans;
 	}
@@ -45,5 +47,11 @@ public class ProfitPlan {
 	}
 	public void setPublishTime(long publishTime) {
 		this.publishTime = publishTime;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
 	}
 }

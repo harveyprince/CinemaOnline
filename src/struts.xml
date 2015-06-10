@@ -48,7 +48,14 @@
            </action>
            <action name="addProfitPlan" class="MainManagerAction" method="addProfitPlan">
            </action>
+           <action name="getworkingprofitplan" class="MainManagerAction" method="ajax_profit_pan_list">
+           <result name="success">/mainmanar/profit/profitPlan.jsp</result>
+           </action>
           <!--  ManagerAction--><!--  ManagerAction--><!--  ManagerAction-->
+          <!-- profitplan -->
+          <action name="viewManagerProfitPlan" class="ManagerAction" method="showProfitPlan">
+          <result name="success">/manar/managerprofitplan.jsp</result>
+          </action>
           <!--statics  -->
           <action name="viewStatics" class="ManagerAction" method="showStatics">
           <result name="success">/manar/managerstatistics.jsp</result>

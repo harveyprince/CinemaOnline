@@ -13,3 +13,21 @@
     .add-profitplan {
       margin-top: 15px;
     }
+    .profit-block {
+      display: inline-block;
+      width: 100%;
+    }
+    .profit-sum-block {
+      width: 40%;
+      float: left;
+      text-align: center;
+    }
+    .profit-film-block {
+      width: 60%;
+      float: right;
+      box-shadow: -10px 0 10px -10px rgba(0,0,0,.6);
+      padding-left: 30px;
+    }
+    .block-film-item {
+      display: list-item;
+    }

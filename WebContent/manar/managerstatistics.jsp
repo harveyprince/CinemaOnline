@@ -25,6 +25,7 @@ pageEncoding="UTF-8"%>
 				<ul class="nav nav-list">
 					<li><a href="manager"><i class="fa fa-newspaper-o"></i>放映计划审阅</a></li>
 					<li class="active"><a href="#"><i class="fa fa-pie-chart"></i>统计</a></li>
+					<li><a href="viewManagerProfitPlan"><i class="fa fa-pie-chart"></i>利润决策</a></li>
 				</ul>
 			</div>
 		</div>
