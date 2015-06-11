@@ -15,4 +15,6 @@ public interface ProfitService {
 
 	List<ProfitPlan> getAllWorkingPlans();
 
+	List<ProfitPlan> getAllWorkingUndispatchPlans();
+
 }

@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.cinemaonline.model.Hall;
+import com.cinemaonline.model.ProfitPlan;
 import com.cinemaonline.model.client.FilmInfo;
 import com.cinemaonline.model.client.FilmPlanInfo;
 import com.cinemaonline.model.client.OperaResult;
 import com.cinemaonline.model.client.StatisticCinemaClient;
 import com.cinemaonline.service.FilmService;
+import com.cinemaonline.service.ProfitService;
 
 @Repository
 public class ManagerAction extends BaseAction {
@@ -21,6 +23,8 @@ public class ManagerAction extends BaseAction {
 	private static final long serialVersionUID = 1L;
 	@Autowired
 	private FilmService filmService;
+	@Autowired
+	private ProfitService profitService;
 
 	private String ajaxinfo;
 	private List<FilmPlanInfo> filmplanlist;
@@ -30,9 +34,20 @@ public class ManagerAction extends BaseAction {
 	
 	private int page;
 	
+	private List<ProfitPlan> profitPlanlist;
 
 	//	//////////////////////////////statistic param///////////////////////////////////////////////
 	private StatisticCinemaClient cinemaClient;
+	/*
+	 * profit
+	 * */
+	public String showProfitPlan(){
+		return SUCCESS;
+	}
+	public String getWorkingProfitPlan(){
+		profitPlanlist = profitService.getAllWorkingUndispatchPlans();
+		return SUCCESS;
+	}
 	/*
 	 * statics
 	 * */
@@ -149,6 +164,12 @@ public class ManagerAction extends BaseAction {
 
 	public void setPage(int page) {
 		this.page = page;
+	}
+	public List<ProfitPlan> getProfitPlanlist() {
+		return profitPlanlist;
+	}
+	public void setProfitPlanlist(List<ProfitPlan> profitPlanlist) {
+		this.profitPlanlist = profitPlanlist;
 	}
 }
 

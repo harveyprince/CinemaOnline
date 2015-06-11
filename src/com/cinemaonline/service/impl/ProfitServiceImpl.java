@@ -62,6 +62,12 @@ public class ProfitServiceImpl implements ProfitService {
 		// TODO Auto-generated method stub
 		return profitDao.getAllWorkingPlans();
 	}
+	
+	@Override
+	public List<ProfitPlan> getAllWorkingUndispatchPlans() {
+		// TODO Auto-generated method stub
+		return profitDao.getAllWorkingUndispatchPlans();
+	}
 
 	
 

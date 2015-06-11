@@ -13,6 +13,7 @@
 	<link rel="stylesheet" type="text/css" href="./Public/css/server/ServerPage.css">
 	<link rel="stylesheet" type="text/css" href="./Public/sco/css/scojs.css">
 	<link rel="stylesheet" type="text/css" href="./Public/sco/css/sco.message.css">
+	<link rel="stylesheet" type="text/css" href="./Public/css/mainmanar/profit.css">
 </head>
 <body>
 	<div class="contain clearfix">
@@ -55,10 +56,14 @@
 
 	</div>
 	<!-- changable place -->
-
+<div id="right-panel" class="panel">
+		<div class="close-panel-bt">X</div>
+	</div>
 
 </body>
 <script src="./Public/jquery/jquery.min.js"></script>
+<script src="./Public/jquery/jquery.easing.min.js"></script>
+<script src="./Public/jquery/jquery.panelslider.js"></script>
 <script src="./Public/dist/js/bootstrap.min.js"></script>
 <script src="./Public/sco/js/sco.panes.js"></script>
 <script src="./Public/sco/js/sco.tab.js"></script>
@@ -69,5 +74,5 @@
 </script>
 <script src="./Public/js/common/form.js"></script>
 <script src="./Public/js/server/server.js"></script>
-<script src="./Public/js/manager/plancheck.js"></script>
+<script src="./Public/js/manager/profitplan.js"></script>
 </html>

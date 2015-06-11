@@ -18,4 +18,6 @@ public interface ProfitDao {
 
 	List<ProfitPlan> getAllWorkingPlans();
 
+	List<ProfitPlan> getAllWorkingUndispatchPlans();
+
 }

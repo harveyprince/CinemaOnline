@@ -56,6 +56,9 @@
           <action name="viewManagerProfitPlan" class="ManagerAction" method="showProfitPlan">
           <result name="success">/manar/managerprofitplan.jsp</result>
           </action>
+          <action name="getworkingprofitplan" class="ManagerAction" method="getWorkingProfitPlan">
+          <result name="success">/manar/profit/profitPlan.jsp</result>
+          </action>
           <!--statics  -->
           <action name="viewStatics" class="ManagerAction" method="showStatics">
           <result name="success">/manar/managerstatistics.jsp</result>
