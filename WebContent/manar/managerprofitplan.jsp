@@ -58,6 +58,7 @@
 	<!-- changable place -->
 <div id="right-panel" class="panel">
 		<div class="close-panel-bt">X</div>
+		<div id="profitplan-container" style="height: 400px; width: 600px; margin: 0 auto"></div>
 	</div>
 
 </body>

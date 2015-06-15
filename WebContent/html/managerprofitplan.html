@@ -72,6 +72,7 @@
 	<!-- changable place -->
 <div id="right-panel" class="panel">
 		<div class="close-panel-bt">X</div>
+		<div class="notice-tip"></div>
 		<div id="profitplan-container" style="height: 400px; width: 600px; margin: 0 auto"></div>
 	</div>
 
@@ -92,7 +93,7 @@ $('.close-panel-bt').click(function() {
 	$.panelslider.close();
 });
 var chart;
-function ageCharts(data){
+function ageCharts(profitDispatchData){
     chart = new Highcharts.Chart({
         chart: {
         		renderTo:'profitplan-container',
@@ -119,12 +120,11 @@ function ageCharts(data){
                 },
                 events:{
                 		click:function(event){
+                			$(".notice-tip").html("编辑模式：< 减少 > 增加 ctrl 退出编辑");
                 			var point = event.point;
-                			targetPoint.x = point.x;
-                			targetPoint.y = point.y;
-                			targetPoint.name = point.name;
+                			targetPoint = point;
                 			//此时增加键盘监听
-                			
+                			$(document).keyup(dispatchMouseClick);
                 		}
                 }
             }
@@ -132,27 +132,52 @@ function ageCharts(data){
         series: [{
             type: 'pie',
             name: '利润',
-            data: data
+            data: profitDispatchData
         }]
     });
 };
-var targetPoint = {
-	x:0,
-	y:0,
-	name:""
-};
-var data = [
+var targetPoint = {};
+var profitDispatchData = [
 	["text",51],
 	["text",52],
 	["text",53],
 	["text",54],
 	["text",55],
 ];
-ageCharts(data);
+ageCharts(profitDispatchData);
 function dispatchMouseClick(event){
 	//判断keycode,up增加,down减少
-	data[point.x] = [point.name,++y];
-   chart.series[0].setData(data);
+ 	var keyCode = event.keyCode;
+ 	switch(keyCode){
+ 		case 37:
+ 			if(targetPoint.y>0){
+ 				profitDispatchData[targetPoint.x] = [targetPoint.name,--targetPoint.y];
+ 				var nextX = (targetPoint.x+1)%profitDispatchData.length;
+ 				var nextName = profitDispatchData[nextX].name;
+ 				var nextY = profitDispatchData[nextX].y;
+ 				profitDispatchData[nextX] = [nextName,++nextY];
+ 				chart.series[0].setData(profitDispatchData);
+ 			}
+ 			break;
+ 		case 39:
+ 			
+ 			var nextX = (targetPoint.x+1)%profitDispatchData.length;
+ 			var nextName = profitDispatchData[nextX].name;
+ 			var nextY = profitDispatchData[nextX].y;
+ 			if(nextY>0){
+ 				profitDispatchData[nextX] = [nextName,--nextY];
+	 			profitDispatchData[targetPoint.x] = [targetPoint.name,++targetPoint.y];
+	 			chart.series[0].setData(profitDispatchData);
+ 			}
+ 			break;
+ 		case 17:
+ 			$(document).unbind("keyup",dispatchMouseClick);
+ 			$(".notice-tip").html("");
+ 			break;
+ 		default:
+ 			break;
+
+ 	}
 }
 </script>
 <script src="../Public/js/common/form.js"></script>

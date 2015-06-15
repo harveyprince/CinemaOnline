@@ -23,6 +23,10 @@ $(document).ready(function(){
 				$('.close-panel-bt').click(function() {
 					$.panelslider.close();
 				});
+				$(".profit-dispatch-button").click(function(){
+					var planId = $(this).attr("planId");
+					
+				});
 			}
 		},
 		error:function(){
