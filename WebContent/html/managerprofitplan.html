@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CinemaOnline</title>
+	<link rel="stylesheet" type="text/css" href="../Public/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../Public/font-awesome-4.2.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../Public/Flat-UI-master/dist/css/flat-ui.min.css">
+	<link rel="stylesheet" type="text/css" href="../Public/css/common/user-sidebar.css">
+	<link rel="stylesheet" type="text/css" href="../Public/css/server/ServerPage.css">
+	<link rel="stylesheet" type="text/css" href="../Public/sco/css/scojs.css">
+	<link rel="stylesheet" type="text/css" href="../Public/sco/css/sco.message.css">
+	<link rel="stylesheet" type="text/css" href="../Public/css/mainmanar/profit.css">
+</head>
+<body>
+	<div class="contain clearfix">
+
+		<!-- left side bar//////////////////////////////////////////////////////////////////////////////// -->
+		<div class="left-sidebar">
+			<div class="row">
+				<div class="">
+					<ul class="nav nav-list">
+						<li><a href="#"><i class="fa fa-newspaper-o"></i>放映计划审阅</a></li>
+						<li><a href="viewStatics"><i class="fa fa-pie-chart"></i>统计</a></li>
+						<li class="active"><a href="viewManagerProfitPlan"><i class="fa fa-pie-chart"></i>利润决策</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="user-button"><a href="logout"><i class="fa fa-sign-out"></i>退出</a></div>
+		</div>
+		<!-- left side bar//////////////////////////////////////////////////////////////////////////////// -->
+
+
+		<!-- changable place -->
+
+		<div class="bar-match-content">
+			<div class="table-box">
+				<ul class="nav nav-tabs" data-trigger="tab">
+					<li><a href="#tab1">待分配计划</a></li>
+					<li><a href="#tab2">已分配计划</a></li>
+				</ul>
+				<div class="pane-wrapper slide clearfix">
+					<div class="tab-page">
+						<div class="profit-plan-list" action="getworkingprofitplan">
+							<div class="page-symbol" style="display:none;"><s:property value="page"/></div>
+<div class="page-symbol" style="display:none;"><s:property value="page"/></div>
+<div class="well center-block">
+	<div class="profit-block">
+		<div class="profit-sum-block">
+			<span>盈利计划总额：</span>
+			<span>总额</span>
+		</div>
+		<div class="profit-film-block">
+			<div>匹配影片：</div>
+			<div class="block-film-item">匹配影片</div>
+			<div class="block-film-item">匹配影片</div>
+			<a id="right-panel-link" href="#right-panel" class="profit-dispatch-button" planId='<s:property value="#profitPlan.profitPlanId"/>'>利润分配</a>
+		</div>
+	</div>
+</div>
+						</div>
+					</div>
+
+				<!-- /////////////////////////////////////////////////////// -->
+				<div class="tab-page">
+					
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<!-- changable place -->
+<div id="right-panel" class="panel">
+		<div class="close-panel-bt">X</div>
+		<div id="profitplan-container" style="height: 400px; width: 600px; margin: 0 auto"></div>
+	</div>
+
+</body>
+<script src="../Public/jquery/jquery.min.js"></script>
+<script src="../Public/jquery/jquery.easing.min.js"></script>
+<script src="../Public/jquery/jquery.panelslider.js"></script>
+<script src="../Public/highcharts/js/highcharts.js"></script>
+<script src="../Public/highcharts/js/modules/exporting.js"></script>
+<script src="../Public/dist/js/bootstrap.min.js"></script>
+<script src="../Public/sco/js/sco.panes.js"></script>
+<script src="../Public/sco/js/sco.tab.js"></script>
+<script src="../Public/sco/js/sco.message.js"></script>
+<script src="../Public/Flat-UI-master/dist/js/flat-ui.js"></script>
+<script type="text/javascript">
+$('#right-panel-link').panelslider({side: 'right', clickClose: true, duration: 200, easingOpen: 'easeInBack', easingClose: 'easeOutBack'});
+$('.close-panel-bt').click(function() {
+	$.panelslider.close();
+});
+var chart;
+function ageCharts(data){
+    chart = new Highcharts.Chart({
+        chart: {
+        		renderTo:'profitplan-container',
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+        },
+        title: {
+            text: '利润分配图表'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.y}</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                },
+                events:{
+                		click:function(event){
+                			var point = event.point;
+                			targetPoint.x = point.x;
+                			targetPoint.y = point.y;
+                			targetPoint.name = point.name;
+                			//此时增加键盘监听
+                			
+                		}
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: '利润',
+            data: data
+        }]
+    });
+};
+var targetPoint = {
+	x:0,
+	y:0,
+	name:""
+};
+var data = [
+	["text",51],
+	["text",52],
+	["text",53],
+	["text",54],
+	["text",55],
+];
+ageCharts(data);
+function dispatchMouseClick(event){
+	//判断keycode,up增加,down减少
+	data[point.x] = [point.name,++y];
+   chart.series[0].setData(data);
+}
+</script>
+<script src="../Public/js/common/form.js"></script>
+<script src="../Public/js/server/server.js"></script>
+<!-- <script src="../Public/js/manager/profitplan.js"></script> -->
+</html>
