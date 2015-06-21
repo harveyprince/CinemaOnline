@@ -1,5 +1,8 @@
 var chart;
-function profitDispatchCharts(profitDispatchData){
+function profitDispatchCharts(profitDispatchData,clickable){
+    if(arguments.length==1){
+        clickable = true;
+    }
     chart = new Highcharts.Chart({
         chart: {
                 renderTo:'profitplan-container',
@@ -26,11 +29,18 @@ function profitDispatchCharts(profitDispatchData){
                 },
                 events:{
                         click:function(event){
-                            $(".notice-tip").html("编辑模式：< 减少 > 增加 ctrl 退出编辑");
-                            var point = event.point;
-                            targetPoint = point;
-                            //此时增加键盘监听
-                            $(document).keyup(dispatchMouseClick);
+                            if(clickable){
+                                $(".notice-tip").html("编辑模式：< 减少 > 增加 ctrl 退出编辑");
+                                var point = event.point;
+                                targetPoint = point;
+                                //此时增加键盘监听
+                                if(!clickbinded){
+                                    try{
+                                        $(document).unbind("keyup",dispatchMouseClick);
+                                    }catch(e){}
+                                    $(document).keyup(dispatchMouseClick);    
+                                }
+                            }
                         }
                 }
             }
@@ -44,15 +54,16 @@ function profitDispatchCharts(profitDispatchData){
 };
 var targetPoint = {};
 var profitDispatchData;
+var clickbinded = false;
 /*
     获取数据后进行展示
 */
-profitDispatchCharts(profitDispatchData);
 /*
     获取数据后进行展示
 */
 function dispatchMouseClick(event){
     //判断keycode,up增加,down减少
+    clickbinded = true;
     var keyCode = event.keyCode;
     switch(keyCode){
         case 37:
@@ -79,6 +90,7 @@ function dispatchMouseClick(event){
         case 17:
             $(document).unbind("keyup",dispatchMouseClick);
             $(".notice-tip").html("");
+            clickbinded = false;
             break;
         default:
             break;

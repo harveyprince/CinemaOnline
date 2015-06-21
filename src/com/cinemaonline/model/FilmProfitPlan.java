@@ -16,7 +16,7 @@ public class FilmProfitPlan {
 	private long id;//流水
 	private Film film;//影片
 	private ProfitPlan profitPlan;//盈利计划
-	private double profitPercent;//盈利计划对应百分比
+	private double profitPercent;//盈利计划对应百分比[乘以100
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public long getId() {

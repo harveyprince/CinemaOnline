@@ -5,10 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.cinemaonline.model.FilmProfitPlan;
 import com.cinemaonline.model.Hall;
 import com.cinemaonline.model.ProfitPlan;
 import com.cinemaonline.model.client.FilmInfo;
 import com.cinemaonline.model.client.FilmPlanInfo;
+import com.cinemaonline.model.client.FilmProfitFromClient;
 import com.cinemaonline.model.client.OperaResult;
 import com.cinemaonline.model.client.StatisticCinemaClient;
 import com.cinemaonline.service.FilmService;
@@ -35,7 +37,11 @@ public class ManagerAction extends BaseAction {
 	private int page;
 	
 	private List<ProfitPlan> profitPlanlist;
-
+	private List<ProfitPlan> dispatchedProfitPlanlist;
+	private List<FilmProfitPlan> profitDispatchlist;
+	private List<FilmProfitFromClient> filmProfitPercentlist;
+	
+	
 	//	//////////////////////////////statistic param///////////////////////////////////////////////
 	private StatisticCinemaClient cinemaClient;
 	/*
@@ -47,6 +53,25 @@ public class ManagerAction extends BaseAction {
 	public String getWorkingProfitPlan(){
 		profitPlanlist = profitService.getAllWorkingUndispatchPlans();
 		return SUCCESS;
+	}
+	public String getWorkingDispatchedProfitPlan(){
+		dispatchedProfitPlanlist = profitService.getWorkingDispatchedProfitPlan();
+		return SUCCESS;
+	}
+	public String getPlanDispatch(){
+		String id = request.getParameter("planId");
+		profitDispatchlist = profitService.getProfitDispatchByPlanId(id);
+		return SUCCESS;
+	}
+	public String submitPlanDispatch(){
+		OperaResult result = profitService.submitProfitDispatch(filmProfitPercentlist);
+		if(result.getResult()){
+			ajaxinfo = "success";
+			
+		}else{
+			ajaxinfo = "failed";
+		}
+		return AJAXINFO;
 	}
 	/*
 	 * statics
@@ -170,6 +195,24 @@ public class ManagerAction extends BaseAction {
 	}
 	public void setProfitPlanlist(List<ProfitPlan> profitPlanlist) {
 		this.profitPlanlist = profitPlanlist;
+	}
+	public List<FilmProfitPlan> getProfitDispatchlist() {
+		return profitDispatchlist;
+	}
+	public void setProfitDispatchlist(List<FilmProfitPlan> profitDispatchlist) {
+		this.profitDispatchlist = profitDispatchlist;
+	}
+	public List<FilmProfitFromClient> getFilmProfitPercentlist() {
+		return filmProfitPercentlist;
+	}
+	public void setFilmProfitPercentlist(List<FilmProfitFromClient> filmProfitPercentlist) {
+		this.filmProfitPercentlist = filmProfitPercentlist;
+	}
+	public List<ProfitPlan> getDispatchedProfitPlanlist() {
+		return dispatchedProfitPlanlist;
+	}
+	public void setDispatchedProfitPlanlist(List<ProfitPlan> dispatchedProfitPlanlist) {
+		this.dispatchedProfitPlanlist = dispatchedProfitPlanlist;
 	}
 }
 

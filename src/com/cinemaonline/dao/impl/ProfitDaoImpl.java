@@ -120,4 +120,52 @@ public class ProfitDaoImpl implements ProfitDao {
 		}
 		return null;
 	}
+	
+	@Override
+	public List<ProfitPlan> getAllWorkingDispatchPlans() {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String hql = "from com.cinemaonline.model.ProfitPlan where status = 2";
+		try{
+			Query query = session.createQuery(hql);
+			return query.list();
+		}catch(Exception e){
+//			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return null;
+	}
+
+	@Override
+	public List<FilmProfitPlan> getProfitDispatchByPlanId(String id) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String sql = "select * from FilmProfitPlan where profitPlanId = "+id;
+		try{
+			Query query = session.createSQLQuery(sql).addEntity(FilmProfitPlan.class);
+			return query.list();
+		}catch(Exception e){
+//			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return null;
+	}
+
+	@Override
+	public FilmProfitPlan getFilmProfitPlanByFilmId(Long filmId) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String sql = "select * from FilmProfitPlan where filmId = "+filmId;
+		try{
+			Query query = session.createSQLQuery(sql).addEntity(FilmProfitPlan.class);
+			return (FilmProfitPlan) query.list().get(0);
+		}catch(Exception e){
+//			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return null;
+	}
 }

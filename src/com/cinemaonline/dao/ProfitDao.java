@@ -20,4 +20,10 @@ public interface ProfitDao {
 
 	List<ProfitPlan> getAllWorkingUndispatchPlans();
 
+	List<FilmProfitPlan> getProfitDispatchByPlanId(String id);
+
+	FilmProfitPlan getFilmProfitPlanByFilmId(Long filmId);
+	
+	public List<ProfitPlan> getAllWorkingDispatchPlans();
+
 }

@@ -19,7 +19,7 @@ public class ProfitPlan {
 	private long profitSum;//计划盈利总额
 	private Set<FilmProfitPlan> filmProfitPlans;//盈利计划对应影片
 	private long publishTime;//计划发布时间
-	private int status;//1working 0end
+	private int status;//1working 0end 2已分配
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public long getProfitPlanId() {

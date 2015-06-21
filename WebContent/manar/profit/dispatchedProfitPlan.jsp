@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <div class="page-symbol" style="display:none;"><s:property value="page"/></div>
-<s:iterator id="profitPlan" value="profitPlanlist" status="st">
+<s:iterator id="profitPlan" value="dispatchedProfitPlanlist" status="st">
 <div class="well center-block">
 	<div class="profit-block">
 		<div class="profit-sum-block">
@@ -14,7 +14,7 @@
 			<s:iterator id="filmProfitPlan" value="#profitPlan.filmProfitPlans" status="ft">
 			<div class="block-film-item"><s:property value="#filmProfitPlan.film.name"/></div>
 			</s:iterator>
-			<a href="#right-panel" class="profit-dispatch-button right-panel-link" planId='<s:property value="#profitPlan.profitPlanId"/>'>利润分配</a>
+			<a href="#right-panel" class="profit-dispatch-button right-panel-link-dispatch" planId='<s:property value="#profitPlan.profitPlanId"/>'>查看详细</a>
 		</div>
 	</div>
 </div>

@@ -44,12 +44,12 @@
 				</ul>
 				<div class="pane-wrapper slide clearfix">
 					<div class="tab-page">
-						<div class="profit-plan-list" action="getworkingprofitplan"></div>
+						<div class="profit-plan-list" action="getManarworkingprofitplan"></div>
 					</div>
 
 				<!-- /////////////////////////////////////////////////////// -->
 				<div class="tab-page">
-					
+					<div class="dispatched-profit-plan-list" action="getManarworkingDispatchedprofitplan"></div>
 				</div>
 			</div>
 		</div>
@@ -58,13 +58,19 @@
 	<!-- changable place -->
 <div id="right-panel" class="panel">
 		<div class="close-panel-bt">X</div>
+		<div class="notice-tip"></div>
 		<div id="profitplan-container" style="height: 400px; width: 600px; margin: 0 auto"></div>
+		<div class="profit-dispatch-submit">
+			<button type="button" class="btn btn-large btn-block btn-success">提交盈利分配</button>
+		</div>
 	</div>
 
 </body>
 <script src="./Public/jquery/jquery.min.js"></script>
 <script src="./Public/jquery/jquery.easing.min.js"></script>
 <script src="./Public/jquery/jquery.panelslider.js"></script>
+<script src="./Public/highcharts/js/highcharts.js"></script>
+<script src="./Public/highcharts/js/modules/exporting.js"></script>
 <script src="./Public/dist/js/bootstrap.min.js"></script>
 <script src="./Public/sco/js/sco.panes.js"></script>
 <script src="./Public/sco/js/sco.tab.js"></script>
@@ -75,5 +81,6 @@
 </script>
 <script src="./Public/js/common/form.js"></script>
 <script src="./Public/js/server/server.js"></script>
+<script src="./Public/js/manager/profitstatistic.js"></script>
 <script src="./Public/js/manager/profitplan.js"></script>
 </html>
