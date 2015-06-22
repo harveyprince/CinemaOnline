@@ -19,6 +19,10 @@
           </action>
           <!--  MainManagerAction--><!--  MainManagerAction--><!--  MainManagerAction-->
           <!-- film -->
+          <action name="mainmanar_limit" class="MainManagerAction" method="cinema_limit">
+          <result name="success">/mainmanar/mainmanarlimit.jsp</result>
+          </action>
+          <action name="submit_cinema_limit" class="MainManagerAction" method="submit_cinema_limit"></action>
            <action name="mainmanar_film" class="MainManagerAction" method="ajax_film">
            <result name="success">/mainmanar/film/film.jsp</result>
            </action>

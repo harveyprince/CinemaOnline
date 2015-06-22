@@ -13,6 +13,7 @@ public class Hall {
 	private int seats;
 	private String name;
 	private int cost;//cost per hour
+	private int times;//单日使用次数限制
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -39,6 +40,12 @@ public class Hall {
 	}
 	public void setCost(int cost) {
 		this.cost = cost;
+	}
+	public int getTimes() {
+		return times;
+	}
+	public void setTimes(int times) {
+		this.times = times;
 	}
 
 }

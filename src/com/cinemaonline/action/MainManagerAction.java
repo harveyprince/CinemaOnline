@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.cinemaonline.model.FilmType;
+import com.cinemaonline.model.Hall;
 import com.cinemaonline.model.ProfitPlan;
 import com.cinemaonline.model.client.FilmInfo;
+import com.cinemaonline.model.client.HallLimit;
 import com.cinemaonline.model.client.OperaResult;
 import com.cinemaonline.model.client.ProfitPlanInfo;
 import com.cinemaonline.model.client.ProfitYear;
@@ -30,6 +32,7 @@ public class MainManagerAction extends BaseAction {
 	private String ajaxinfo;
 	
 	private List<FilmInfo> filmlist;
+	private List<Hall> halllist;
 	private List<FilmInfo> oldfilmlist;
 	private List<FilmInfo> releasefilmlist;
 	private List<FilmType> typelist;
@@ -38,6 +41,8 @@ public class MainManagerAction extends BaseAction {
 	private List<ProfitYear> yearprofitlist;
 	
 	private List<ProfitPlan> profitPlanlist;
+	
+	private List<HallLimit> halllimitlist;
 	/*
 	 * profit
 	 * */
@@ -73,6 +78,15 @@ public class MainManagerAction extends BaseAction {
 	/*
 	 * film
 	 * */
+	public String submit_cinema_limit(){
+		filmService.updateHallLimit(halllimitlist);
+		ajaxinfo = "success";
+		return AJAXINFO;
+	}
+	public String cinema_limit(){
+		halllist = filmService.getAllHalls();
+		return SUCCESS;
+	}
 	public String ajax_film(){
 		filmlist = filmService.getAllFilmsByPage(page);
 		if(filmlist==null||page<0){
@@ -210,5 +224,18 @@ public class MainManagerAction extends BaseAction {
 	public void setProfitPlanlist(List<ProfitPlan> profitPlanlist) {
 		this.profitPlanlist = profitPlanlist;
 	}
+	public List<Hall> getHalllist() {
+		return halllist;
+	}
+	public void setHalllist(List<Hall> halllist) {
+		this.halllist = halllist;
+	}
+	public List<HallLimit> getHalllimitlist() {
+		return halllimitlist;
+	}
+	public void setHalllimitlist(List<HallLimit> halllimitlist) {
+		this.halllimitlist = halllimitlist;
+	}
+	
 }
 

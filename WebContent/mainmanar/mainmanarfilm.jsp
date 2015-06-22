@@ -23,7 +23,7 @@
 					<ul class="nav nav-list">
 						<li><a href="mainmanagerprofit"><i class="fa fa-pencil-square-o"></i>盈利详情</a></li>
 						<li class="active"><a href="#"><i class="fa fa-film"></i>影片管理</a></li>
-						<li><a href="#"><i class="fa fa-film"></i>影院限制</a></li>
+						<li><a href="mainmanar_limit"><i class="fa fa-film"></i>影院限制</a></li>
 					</ul>
 				</div>
 			</div>

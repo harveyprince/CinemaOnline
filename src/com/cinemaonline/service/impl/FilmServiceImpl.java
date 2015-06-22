@@ -19,6 +19,7 @@ import com.cinemaonline.model.client.CalenderEventFromClient;
 import com.cinemaonline.model.client.FilmInfo;
 import com.cinemaonline.model.client.FilmPlanInfo;
 import com.cinemaonline.model.client.FilmReleasePlanFromClient;
+import com.cinemaonline.model.client.HallLimit;
 import com.cinemaonline.model.client.OperaResult;
 import com.cinemaonline.service.FilmService;
 
@@ -356,7 +357,8 @@ public class FilmServiceImpl implements FilmService {
 	private boolean JudgeFilmReleasePlanInsertable(Long beginTime,Long endTime,int playtimes,int hallNo){
 		for(Long now = beginTime;now<endTime;now+=24*60*60*1000){
 			int dayPlayTimes = filmDao.getDayPlayTimes(hallNo,now);
-			if(dayPlayTimes+playtimes>12){
+			Hall hall = filmDao.getHallById(hallNo);
+			if(dayPlayTimes+playtimes>hall.getTimes()){
 				return false;
 			}
 		}
@@ -412,6 +414,16 @@ public class FilmServiceImpl implements FilmService {
 			result = re;
 		}
 		return result;
+	}
+
+	@Override
+	public void updateHallLimit(List<HallLimit> halllimitlist) {
+		// TODO Auto-generated method stub
+		for(HallLimit temp:halllimitlist){
+			Hall hall = filmDao.getHallById(temp.getHallNo());
+			hall.setTimes(temp.getTimes());
+			baseDao.update(hall);
+		}
 	}
 
 }

@@ -35,58 +35,26 @@ pageEncoding="UTF-8"%>
 	<div class="bar-match-content">
 		<div class="info-show-panel">
 			<ul class="nav nav-tabs" data-trigger="tab">
-				<li><a href="#tab1">盈利统计</a></li>
-				<li><a href="#tab2">利润规划</a></li>
-				<li><a href="#tab3">完结规划</a></li>
+				<li><a href="#tab1">使用限制</a></li>
 			</ul>
 			<div class="pane-wrapper slide clearfix">
 				<div class="tab-page">
-					<div id="container" style="min-width: 310px; height: 100px; max-width: 600px; margin: 0 auto">
-						<div class="statistic-label">总利润:<span class="profit-show"></span></div>
+					<s:iterator id="hall" value="halllist" status="st">
+					<div>
+						<span><s:property value="#hall.name"/></span>
+						<input class="form-control times-input number-input" type="number" placeholder="times" style="width:220px;" hallNo='<s:property value="#hall.hallNo"/>'/>
 					</div>
-					<div id="profit-container" style="height: 400px; width: 601px; margin: 0 auto"></div>
-					<!-- 罗列利润规划的平均影片利润走势（规划和实际） -->
-				</div>
-				<div class="tab-page">
-					<!-- 罗列未完结利润规划，包括，规划所对应的影片 -->
-					<a id="profitplan-panel-link" href="#profitplan-panel">新增规划</a>
-					<div class="profit-plan-list" action="getworkingprofitplan"></div>
-
-				</div>
-				<div class="tab-page">
-					<!-- 罗列各个利润规划，点击显示单个规划的利润分配和实际利润以及平均利润的规划与实际，显示要素：影片名称、种类 -->
-					<div></div>
+					</s:iterator>
+					<div>
+						<button class="btn btn-primary hall-limit">
+							提交限制
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- Right panel -->
-	<div id="right-panel" class="panel">
-		<div class="close-panel-bt">X</div>
-	</div>
-	<div id="profitplan-panel" class="panel">
-		<div class="close-panel-bt">X</div>
-		<form action="addProfitPlan" id="profitplan-form" onSubmit="return false;">
-			<div class="row-line">
-				<div class="row-label">计划盈利总额:</div>
-				<div class="form-group has-success row-content">
-					<input class="form-control duration-input" type="number" placeholder="profitsum" name="profitsum"/>
-				</div>
-			</div>
-			<div class="row-line">
-				<div class="row-label">匹配影片:</div>
-				<div class="span3 row-content form-control" style="padding: 6px 12px;height: auto;">
-					<select class="form-control select select-primary select-block mbl film-input" multiple="multiple" name="film">
-					</select>
-				</div>
-			</div> 
-		</form>
-		<div class="row-line">
-		 	<button class="btn btn-primary add-profitplan">
-						确定增加
-			</button>
-		</div>
-	</div>
 
 </body>
 <script src="./Public/jquery/jquery.min.js"></script>
@@ -100,13 +68,32 @@ pageEncoding="UTF-8"%>
 <script src="./Public/sco/js/sco.message.js"></script>
 <script src="./Public/Flat-UI-master/dist/js/flat-ui.js"></script>
 <script type="text/javascript">
-var filmslist = [
-<s:iterator id="film" value="filmlist" status="st">
-{ id: <s:property value="#film.filmId"/>, text: '<s:property value="#film.name"/>' }
-<s:if test="%{!#st.last}">,</s:if>
-</s:iterator>
-];
-
+$(".hall-limit").click(function(){
+	var data = new FormData();
+	$(".times-input").each(function(idx){
+		data.append("halllimitlist["+idx+"].hallNo",$(this).attr("hallNo"));
+		data.append("halllimitlist["+idx+"].times",$(this).val());
+	});
+	var action = "submit_cinema_limit";
+	$.ajax({
+		data: data,
+		type: "POST",
+		url: action,
+		cache: false,
+		contentType: false,
+		processData: false,
+		success: function(data) {
+			if(data=="success"){
+				$.scojs_message(data, $.scojs_message.TYPE_OK);
+			}else{
+				$.scojs_message(data, $.scojs_message.TYPE_ERROR);
+			}
+		},
+		error:function(){
+			$.scojs_message('error occured!', $.scojs_message.TYPE_ERROR);
+		}
+	});
+});
 </script>
 <script src="./Public/js/common/form.js"></script>
 <script src="./Public/js/server/server.js"></script>

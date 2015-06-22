@@ -9,6 +9,7 @@ import com.cinemaonline.model.client.CalenderEventFromClient;
 import com.cinemaonline.model.client.FilmInfo;
 import com.cinemaonline.model.client.FilmPlanInfo;
 import com.cinemaonline.model.client.FilmReleasePlanFromClient;
+import com.cinemaonline.model.client.HallLimit;
 import com.cinemaonline.model.client.OperaResult;
 
 public interface FilmService {
@@ -76,5 +77,7 @@ public interface FilmService {
 
 	public OperaResult addFilmPlanByCalender(
 			List<CalenderEventFromClient> calenderClientlist);
+
+	public void updateHallLimit(List<HallLimit> halllimitlist);
 
 }
