@@ -1,18 +1,24 @@
 package com.cinemaonline.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cinemaonline.dao.BaseDao;
 import com.cinemaonline.dao.FilmDao;
 import com.cinemaonline.model.Film;
 import com.cinemaonline.model.FilmPlan;
+import com.cinemaonline.model.FilmReleasePlan;
 import com.cinemaonline.model.FilmType;
 import com.cinemaonline.model.Hall;
+import com.cinemaonline.model.client.CalenderEvent;
+import com.cinemaonline.model.client.CalenderEventFromClient;
 import com.cinemaonline.model.client.FilmInfo;
 import com.cinemaonline.model.client.FilmPlanInfo;
+import com.cinemaonline.model.client.FilmReleasePlanFromClient;
 import com.cinemaonline.model.client.OperaResult;
 import com.cinemaonline.service.FilmService;
 
@@ -21,6 +27,8 @@ public class FilmServiceImpl implements FilmService {
 
 	@Autowired
 	private FilmDao filmDao;
+	@Autowired
+	private BaseDao baseDao;
 	
 	@Override
 	public List<FilmPlanInfo> getAllUnoldPlans() {
@@ -303,6 +311,107 @@ public class FilmServiceImpl implements FilmService {
 	public List<FilmInfo> getAllUnplanedFilms() {
 		// TODO Auto-generated method stub
 		return FilmInfo.parseFI(filmDao.getAllUnplanedFilms());
+	}
+	
+	@Override
+	public List<FilmInfo> getAllPlanedFilms() {
+		// TODO Auto-generated method stub
+		return FilmInfo.parseFI(filmDao.getAllPlanedFilms());
+	}
+
+	@Override
+	public OperaResult addFilmReleasePlan(
+			FilmReleasePlanFromClient info) {
+		// TODO Auto-generated method stub
+		OperaResult result = new OperaResult();
+		Film film = filmDao.getFilmById(info.getFilmId());
+		Long beginTime = info.getBeginTime();
+		Long endTime = info.getBeginTime()+info.getDayslength()*24*60*60*1000;
+		int idx = 0;
+		for(int hallNo:info.getHallNolist()){
+			if(!JudgeFilmReleasePlanInsertable(beginTime,endTime,info.getPlayTimeslist().get(idx),hallNo)){
+				result.setResult(false);
+				result.setComment("超过了当日最大限制");
+				return result;
+			}
+			idx++;
+		}
+		idx = 0;
+		for(int hallNo:info.getHallNolist()){
+			Hall hall = filmDao.getHallById(hallNo);
+			FilmReleasePlan frp = new FilmReleasePlan();
+			frp.setFilm(film);
+			frp.setHall(hall);
+			frp.setPlayTimes(info.getPlayTimeslist().get(idx));
+			frp.setBeginTime(info.getBeginTime());
+			frp.setEndTime(info.getBeginTime()+info.getDayslength()*24*60*60*1000);
+			frp.setPrice(info.getPrice());
+			baseDao.save(frp);
+			idx++;
+		}
+		result.setResult(true);
+		return result;
+	}
+	
+	private boolean JudgeFilmReleasePlanInsertable(Long beginTime,Long endTime,int playtimes,int hallNo){
+		for(Long now = beginTime;now<endTime;now+=24*60*60*1000){
+			int dayPlayTimes = filmDao.getDayPlayTimes(hallNo,now);
+			if(dayPlayTimes+playtimes>12){
+				return false;
+			}
+		}
+		return true;
+	}
+
+	@Override
+	public List<CalenderEvent> getCalenderListByDate(Long date) {
+		// TODO Auto-generated method stub
+		/*
+		 * 本方法处于废弃状态
+		 * 未进行实现
+		 * */
+		List<FilmReleasePlan> frplist = filmDao.getFilmReleasePlanListByDate(date);
+		return null;
+	}
+
+	@Override
+	public List<CalenderEvent> getCalenderListByDateAndHall(Long date,
+			int hallNo) {
+		// TODO Auto-generated method stub
+		List<CalenderEvent> eventlist = new ArrayList<CalenderEvent>();
+		List<FilmReleasePlan> frplist = filmDao.getFilmReleasePlanListByDateAndHall(date,hallNo);
+		for(FilmReleasePlan temp:frplist){
+			int times = temp.getPlayTimes();
+			Film film = temp.getFilm();
+			for(int i = 0;i<times;i++){
+				CalenderEvent event = new CalenderEvent();
+				event.setFilm(film);
+				eventlist.add(event);
+			}
+		}
+		return eventlist;
+	}
+
+	@Override
+	public OperaResult addFilmPlanByCalender(
+			List<CalenderEventFromClient> info) {
+		// TODO Auto-generated method stub
+		OperaResult result = new OperaResult();
+		for(CalenderEventFromClient temp:info){
+			FilmPlanInfo fpinfo = new FilmPlanInfo();
+			fpinfo.setBeginTime(temp.getStart());
+			fpinfo.setEndTime(temp.getStart()+2*60*60*1000);
+			Film film = filmDao.getFilmById(temp.getFilmId());
+			fpinfo.setFilm(film);
+			Hall hall = filmDao.getHallById(temp.getHallNo());
+			fpinfo.setHall(hall);
+			fpinfo.setSeatSum(hall.getSeats());
+			fpinfo.setPrice(film.getFilmReleasePlanlist().get(0).getPrice());
+			fpinfo.setStatus(0);
+			OperaResult re = addPlan(fpinfo);
+			result = re;
+		}
+		return result;
 	}
 
 }

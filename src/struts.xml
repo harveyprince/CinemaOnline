@@ -70,6 +70,8 @@
           <action name="viewFilmPlan" class="ManagerAction" method="viewFilmPlan">
           <result name="success">/manar/managerfilmplan.jsp</result>
           </action>
+          <action name="submitManagerFilmPlan" class="ManagerAction" method="submitFilmPlan">
+          </action>
           <!--statics  -->
           <action name="viewStatics" class="ManagerAction" method="showStatics">
           <result name="success">/manar/managerstatistics.jsp</result>
@@ -151,6 +153,13 @@
            <action name="serverfilmplan" class="ServerAction" method="viewPlan">
            	<result name="success">/server/serverfilmplan.jsp</result>
            </action>
+           <action name="serverfilmplannew" class="ServerAction" method="viewPlanNew">
+           	<result name="success">/server/serverfilmplannew.jsp</result>
+           </action>
+           <action name="calenderPlanPage" class="ServerAction" method="calenderPlanPage">
+           <result name="success">/server/calenderPlanPage.jsp</result>
+           </action>
+           <action name="calenderEventSubmit" class="ServerAction" method="submitCalenderEvent"></action>
            <action name="planedit" class="ServerAction" method="updatePlan">
            </action>
             <action name="planadd" class="ServerAction" method="insertPlan">

@@ -46,6 +46,7 @@
 							<thead>
 								<tr>
 									<th>影片名称</th>
+									<th>票价</th>
 									<!-- iterator -->
 									<s:iterator id="hall" value="halllist" status="st">
 									<th hallId='<s:property value="#hall.hallNo"/>'><s:property value="#hall.name"/></th>
@@ -61,21 +62,26 @@
 						<tbody class="film-plan-tbody">
 							<s:iterator id="film" value="filmlist" status="ft">
 								<tr>
-									<th filmId='<s:property value="#film.filmId"/>'><s:property value="#film.name"/></th>
+									<th filmId='<s:property value="#film.filmId"/>' filmcost='<s:property value="#film.cost"/>'><s:property value="#film.name"/></th>
+									<th><input class="form-control price-input number-input" type="number" min="0" value="0"/></th>
 									<!-- iterator -->
 									<s:iterator id="hall" value="halllist" status="st">
-									<th hallId='<s:property value="#hall.hallNo"/>'>
+									<th hallId='<s:property value="#hall.hallNo"/>' cost='<s:property value="#hall.cost"/>' seats='<s:property value="#hall.seats"/>'>
 										<input class="form-control times-input number-input" type="number" min="0" value="0"/>
 									</th>
 									</s:iterator>
 									<!-- iterator -->
 									<th>
-										<input class="form-control beginTime-input date-input" type="date" placeholder="beginTime" />
+										<input class="form-control beginTime-input date-input" type="date" placeholder="beginTime" value="1994-10-20"/>
 									</th>
 									<th><input class="form-control timeLength-input number-input" type="number" min="0" value="0"/></th>
-									<th>实际盈利</th>
-									<th><s:text name="#film.filmProfitPlan.profitPercent * #film.filmProfitPlan.profitPlan.profitSum / 100 "></s:text></th>
-									<th>发布</th>
+									<th class="actual-profit">0</th>
+									<th>
+										<s:property value="%{formatDouble(#film.filmProfitPlan.profitPercent * #film.filmProfitPlan.profitPlan.profitSum / 100 )}" />
+								</th>
+									<th>
+										<button class="btn btn-success publish">发布</button>
+									</th>
 							</tr>
 							</s:iterator>
 						</tbody>
@@ -84,7 +90,46 @@
 
 					<!-- /////////////////////////////////////////////////////// -->
 					<div class="tab-page">
-						
+						<table class="table">
+							<thead>
+								<tr>
+									<th>影片名称</th>
+									<!-- iterator -->
+									<s:iterator id="hall" value="halllist" status="st">
+									<th></th>
+									</s:iterator>
+									<!-- iterator -->
+									<th>票价</th>
+									<th>开始时间</th>
+									<th>结束时间</th>
+							</tr>
+						</thead>
+						<tbody class="film-plan-tbody">
+							<s:iterator id="film" value="planedfilmlist" status="ft">
+								<tr>
+									<th><s:property value="#film.name"/></th>
+									
+									<!-- iterator -->
+									<s:iterator id="hall" value="#film.filmReleasePlanlist" status="st">
+									<th>
+										<s:property value="#hall.hall.name"/>:<s:property value="#hall.playTimes"/>
+									</th>
+									<s:if test="%{#st.last}">
+									<th><s:property value="#hall.price"/></th>
+										<th>
+										<s:property value="%{formatDate(#hall.beginTime)}"/>
+									</th>
+									<th>
+										<s:property value="%{formatDate(#hall.endTime)}"/>
+									</th>
+									</s:if>
+									</s:iterator>
+									<!-- iterator -->
+									
+							</tr>
+							</s:iterator>
+						</tbody>
+					</table>
 					</div>
 				</div>
 			</div>
@@ -100,8 +145,11 @@
 <script src="./Public/sco/js/sco.tab.js"></script>
 <script src="./Public/sco/js/sco.message.js"></script>
 <script src="./Public/Flat-UI-master/dist/js/flat-ui.js"></script>
+<script src="./Public/js/common/date.js"></script>
 <script type="text/javascript">
-
+var date = new Date();
+date.setDate(date.getDate()+1);
+$(".beginTime-input").val(date.format("yyyy-MM-dd"));
 var filmslist = [
 <s:iterator id="film" value="filmlist" status="st">
 { id: <s:property value="#film.filmId"/>, text: '<s:property value="#film.name"/>' }
@@ -116,6 +164,7 @@ var hallslist = [
 </s:iterator>
 ];
 </script>
+
 <script src="./Public/js/common/form.js"></script>
 <script src="./Public/js/server/server.js"></script>
 <script src="./Public/js/manager/filmplan.js"></script>

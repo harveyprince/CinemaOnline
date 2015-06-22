@@ -1,6 +1,7 @@
 package com.cinemaonline.model;
 
 import java.sql.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -28,6 +29,7 @@ public class Film {
 	private int cost;//film cost成本
 	private FilmType filmType;//电影种类
 	private FilmProfitPlan filmProfitPlan;
+	private List<FilmReleasePlan> filmReleasePlanlist;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -96,5 +98,14 @@ public class Film {
 	public void setFilmProfitPlan(FilmProfitPlan filmProfitPlan) {
 		this.filmProfitPlan = filmProfitPlan;
 	}
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="film",fetch=FetchType.EAGER)
+	public List<FilmReleasePlan> getFilmReleasePlanlist() {
+		return filmReleasePlanlist;
+	}
+	public void setFilmReleasePlanlist(List<FilmReleasePlan> filmReleasePlanlist) {
+		this.filmReleasePlanlist = filmReleasePlanlist;
+	}
+	
+
 
 }

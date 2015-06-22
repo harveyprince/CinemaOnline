@@ -4,9 +4,11 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import com.cinemaonline.model.Film;
 import com.cinemaonline.model.FilmProfitPlan;
+import com.cinemaonline.model.FilmReleasePlan;
 import com.cinemaonline.model.FilmType;
 import com.cinemaonline.model.ProfitPlan;
 
@@ -24,6 +26,7 @@ public class FilmInfo {
 	private int status = 0;
 	private int cost = 0;
 	private FilmProfitPlan filmProfitPlan;
+	private List<FilmReleasePlan> filmReleasePlanlist;
 	public Film getFilm(){
 		Film film = new Film();
 		film.setDuration(duration);
@@ -48,6 +51,7 @@ public class FilmInfo {
 		setStatus(info.getStatus());
 		setCost(info.getCost());
 		setFilmProfitPlan(info.getFilmProfitPlan());
+		setFilmReleasePlanlist(info.getFilmReleasePlanlist());
 	}
 	public static List<FilmInfo> parseFI(List<Film> list){
 		if(list==null){
@@ -143,5 +147,11 @@ public class FilmInfo {
 	}
 	public void setFilmProfitPlan(FilmProfitPlan filmProfitPlan) {
 		this.filmProfitPlan = filmProfitPlan;
+	}
+	public List<FilmReleasePlan> getFilmReleasePlanlist() {
+		return filmReleasePlanlist;
+	}
+	public void setFilmReleasePlanlist(List<FilmReleasePlan> filmReleasePlanlist) {
+		this.filmReleasePlanlist = filmReleasePlanlist;
 	}
 }

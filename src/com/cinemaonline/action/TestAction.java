@@ -91,16 +91,19 @@ public class TestAction extends BaseAction {
 		Hall hall0 = new Hall();
 		hall0.setSeats(56);
 		hall0.setName("no.1");
+		hall0.setCost(100);
 		infoService.addHall(hall0);
 		
 		Hall hall1 = new Hall();
 		hall1.setSeats(50);
 		hall1.setName("no.2");
+		hall1.setCost(100);
 		infoService.addHall(hall1);
 		
 		Hall hall2 = new Hall();
 		hall2.setSeats(40);
 		hall2.setName("no.3");
+		hall2.setCost(100);
 		infoService.addHall(hall2);
 //		identity
 		Identity iden0 = new Identity();

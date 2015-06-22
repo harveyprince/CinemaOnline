@@ -1,5 +1,8 @@
 package com.cinemaonline.action;
 
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +14,7 @@ import com.cinemaonline.model.ProfitPlan;
 import com.cinemaonline.model.client.FilmInfo;
 import com.cinemaonline.model.client.FilmPlanInfo;
 import com.cinemaonline.model.client.FilmProfitFromClient;
+import com.cinemaonline.model.client.FilmReleasePlanFromClient;
 import com.cinemaonline.model.client.OperaResult;
 import com.cinemaonline.model.client.StatisticCinemaClient;
 import com.cinemaonline.service.FilmService;
@@ -32,6 +36,7 @@ public class ManagerAction extends BaseAction {
 	private List<FilmPlanInfo> filmplanlist;
 	private List<FilmPlanInfo> checkedfilmplanlist;
 	private List<FilmInfo> filmlist;
+	private List<FilmInfo> planedfilmlist;
 	private List<Hall> halllist;
 	
 	private int page;
@@ -40,6 +45,8 @@ public class ManagerAction extends BaseAction {
 	private List<ProfitPlan> dispatchedProfitPlanlist;
 	private List<FilmProfitPlan> profitDispatchlist;
 	private List<FilmProfitFromClient> filmProfitPercentlist;
+	
+	private FilmReleasePlanFromClient filmReleasePlan;
 	
 	
 	//	//////////////////////////////statistic param///////////////////////////////////////////////
@@ -75,9 +82,23 @@ public class ManagerAction extends BaseAction {
 	}
 	public String viewFilmPlan(){
 		filmlist = filmService.getAllUnplanedFilms();
-		System.out.println("worked");
+		planedfilmlist = filmService.getAllPlanedFilms();
 		halllist = filmService.getAllHalls();
 		return SUCCESS;
+	}
+	public String submitFilmPlan(){
+		if(filmReleasePlan.getBeginTime()!=-1L&&filmReleasePlan.getBeginTime()>=(new Date().getTime())){
+			OperaResult result = filmService.addFilmReleasePlan(filmReleasePlan);
+			if(result.getResult()){
+				ajaxinfo = "success";
+			}else{
+				ajaxinfo = result.getComment();
+			}
+			
+		}else{
+			ajaxinfo = "failed";
+		}
+		return AJAXINFO;
 	}
 	/*
 	 * statics
@@ -219,6 +240,29 @@ public class ManagerAction extends BaseAction {
 	}
 	public void setDispatchedProfitPlanlist(List<ProfitPlan> dispatchedProfitPlanlist) {
 		this.dispatchedProfitPlanlist = dispatchedProfitPlanlist;
+	}
+	public FilmReleasePlanFromClient getFilmReleasePlan() {
+		return filmReleasePlan;
+	}
+	public void setFilmReleasePlan(FilmReleasePlanFromClient filmReleasePlan) {
+		this.filmReleasePlan = filmReleasePlan;
+	}
+	
+	public String formatDouble(double s){
+		DecimalFormat fmt = new DecimalFormat("#.##");
+		return fmt.format(s);
+	}
+	public String formatDate(Long stamp){
+		Date date=new Date();
+		date.setTime(stamp);
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		return sdf.format(date);
+	}
+	public List<FilmInfo> getPlanedfilmlist() {
+		return planedfilmlist;
+	}
+	public void setPlanedfilmlist(List<FilmInfo> planedfilmlist) {
+		this.planedfilmlist = planedfilmlist;
 	}
 }
 

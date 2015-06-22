@@ -1,6 +1,9 @@
 package com.cinemaonline.action;
 
+import java.text.DecimalFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +11,8 @@ import org.springframework.stereotype.Repository;
 
 import com.cinemaonline.model.Hall;
 import com.cinemaonline.model.Ticket;
+import com.cinemaonline.model.client.CalenderEvent;
+import com.cinemaonline.model.client.CalenderEventFromClient;
 import com.cinemaonline.model.client.FilmInfo;
 import com.cinemaonline.model.client.FilmPlanInfo;
 import com.cinemaonline.model.client.OperaResult;
@@ -43,6 +48,11 @@ public class ServerAction extends BaseAction {
 	private VipCardInfo vipcardinfo;
 	private int page;
 
+	private Long date;
+	private int hid;
+	
+	private List<CalenderEvent> calenderlist;
+	private List<CalenderEventFromClient> calenderClientlist;
 //	///////////////////////////////////////////////////////////
 	/*get from client*/
 	private TicketOrder ticketOrder;
@@ -160,6 +170,25 @@ public class ServerAction extends BaseAction {
 		filmlist = filmService.getAllReleasingFilms();
 		halllist = filmService.getAllHalls();
 		return SUCCESS;
+	}
+	
+	public String viewPlanNew(){
+		halllist = filmService.getAllHalls();
+		return SUCCESS;
+	}
+	
+	public String calenderPlanPage(){
+		calenderlist = filmService.getCalenderListByDateAndHall(date,hid);
+		return SUCCESS;
+	}
+	public String submitCalenderEvent(){
+		OperaResult result = filmService.addFilmPlanByCalender(calenderClientlist);
+		if(result.getResult()){
+			ajaxinfo = "success";
+		}else{
+			ajaxinfo = result.getComment();
+		}
+		return AJAXINFO;
 	}
 	
 	public String updatePlan(){
@@ -297,6 +326,40 @@ public class ServerAction extends BaseAction {
 	}
 	public void setOldfilmplanlist(List<FilmPlanInfo> oldfilmplanlist) {
 		this.oldfilmplanlist = oldfilmplanlist;
+	}
+	public Long getDate() {
+		return date;
+	}
+	public void setDate(Long date) {
+		this.date = date;
+	}
+	public int getHid() {
+		return hid;
+	}
+	public void setHid(int hid) {
+		this.hid = hid;
+	}
+	public String formatDouble(double s){
+		DecimalFormat fmt = new DecimalFormat("#.##");
+		return fmt.format(s);
+	}
+	public String formatDate(Long stamp){
+		Date date=new Date();
+		date.setTime(stamp);
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		return sdf.format(date);
+	}
+	public List<CalenderEvent> getCalenderlist() {
+		return calenderlist;
+	}
+	public void setCalenderlist(List<CalenderEvent> calenderlist) {
+		this.calenderlist = calenderlist;
+	}
+	public List<CalenderEventFromClient> getCalenderClientlist() {
+		return calenderClientlist;
+	}
+	public void setCalenderClientlist(List<CalenderEventFromClient> calenderClientlist) {
+		this.calenderClientlist = calenderClientlist;
 	}
 
 }

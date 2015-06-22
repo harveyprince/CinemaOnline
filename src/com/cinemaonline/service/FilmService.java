@@ -4,8 +4,11 @@ import java.util.List;
 
 import com.cinemaonline.model.FilmType;
 import com.cinemaonline.model.Hall;
+import com.cinemaonline.model.client.CalenderEvent;
+import com.cinemaonline.model.client.CalenderEventFromClient;
 import com.cinemaonline.model.client.FilmInfo;
 import com.cinemaonline.model.client.FilmPlanInfo;
+import com.cinemaonline.model.client.FilmReleasePlanFromClient;
 import com.cinemaonline.model.client.OperaResult;
 
 public interface FilmService {
@@ -61,5 +64,17 @@ public interface FilmService {
 	public List<FilmType> getAllFilmTypes();
 
 	public List<FilmInfo> getAllUnplanedFilms();
+
+	public OperaResult addFilmReleasePlan(
+			FilmReleasePlanFromClient filmReleasePlan);
+
+	public List<FilmInfo> getAllPlanedFilms();
+
+	public List<CalenderEvent> getCalenderListByDate(Long date);
+	
+	public List<CalenderEvent> getCalenderListByDateAndHall(Long date,int hallNo);
+
+	public OperaResult addFilmPlanByCalender(
+			List<CalenderEventFromClient> calenderClientlist);
 
 }

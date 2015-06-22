@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.cinemaonline.model.Film;
 import com.cinemaonline.model.FilmPlan;
+import com.cinemaonline.model.FilmReleasePlan;
 import com.cinemaonline.model.FilmType;
 import com.cinemaonline.model.Hall;
 import com.cinemaonline.model.client.OperaResult;
@@ -79,5 +80,13 @@ public interface FilmDao {
 
 	public List<Film> getAllUnplanedFilms();
 
+	public int getDayPlayTimes(int hallNo,Long daystamp);
+
+	public List<Film> getAllPlanedFilms();
+
+	public List<FilmReleasePlan> getFilmReleasePlanListByDate(Long date);
+
+	public List<FilmReleasePlan> getFilmReleasePlanListByDateAndHall(Long date,
+			int hallNo);
 
 }

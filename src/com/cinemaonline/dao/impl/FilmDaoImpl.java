@@ -13,6 +13,7 @@ import com.cinemaonline.dao.BaseDao;
 import com.cinemaonline.dao.FilmDao;
 import com.cinemaonline.model.Film;
 import com.cinemaonline.model.FilmPlan;
+import com.cinemaonline.model.FilmReleasePlan;
 import com.cinemaonline.model.FilmType;
 import com.cinemaonline.model.Hall;
 import com.cinemaonline.model.client.OperaResult;
@@ -843,7 +844,7 @@ public class FilmDaoImpl implements FilmDao {
 	public List<Film> getAllUnplanedFilms() {
 		// TODO Auto-generated method stub
 		Session session = baseDao.getNewSession();
-		String sql = "select distinct * from Film f,(select p.filmId from FilmProfitPlan p,ProfitPlan t where p.profitPlanId=t.profitPlanId and t.status=2) m where f.filmId = m.filmId";
+		String sql = "select distinct * from Film f,(select p.filmId from FilmProfitPlan p,ProfitPlan t where p.profitPlanId=t.profitPlanId and t.status=2) m where f.filmId = m.filmId and f.filmId not in (select filmId from FilmReleasePlan)";
 		List list = null;
 		try{
 			Query query = session.createSQLQuery(sql).addEntity(Film.class);
@@ -856,4 +857,74 @@ public class FilmDaoImpl implements FilmDao {
 		}
 		return null;
 	}
+	@Override
+	public List<Film> getAllPlanedFilms() {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String sql = "select distinct f.* from Film f,FilmReleasePlan p where f.filmId = p.filmId order by hallNo";
+		List list = null;
+		try{
+			Query query = session.createSQLQuery(sql).addEntity(Film.class);
+			list = query.list();
+			return list;
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return null;
+	}
+	
+	@Override
+	public int getDayPlayTimes(int hallNo, Long daystamp) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		try{
+			String sql = "select sum(playTimes) from FilmReleasePlan where hallNo="+hallNo+" and beginTime<="+daystamp+" and endTime>="+daystamp;
+			Query query = session.createSQLQuery(sql);
+			int count = 0;
+			if(query.list()==null){
+				count = 0;
+			}
+			count =  ((Number)query.uniqueResult()).intValue();
+			return count;
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return 0;
+	}
+	@Override
+	public List<FilmReleasePlan> getFilmReleasePlanListByDate(Long date) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		try{
+			String sql = "select * from FilmReleasePlan where beginTime<="+date+" and endTime>="+date;
+			Query query = session.createSQLQuery(sql).addEntity(FilmReleasePlan.class);
+			return query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return null;
+	}
+	@Override
+	public List<FilmReleasePlan> getFilmReleasePlanListByDateAndHall(Long date,
+			int hallNo) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		try{
+			String sql = "select * from FilmReleasePlan where hallNo="+hallNo+" and beginTime<="+date+" and endTime>="+date;
+			Query query = session.createSQLQuery(sql).addEntity(FilmReleasePlan.class);
+			return query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return null;
+	}
+
 }
