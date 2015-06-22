@@ -26,6 +26,7 @@ pageEncoding="UTF-8"%>
 					<li class="active"><a href="#"><i class="fa fa-pencil-square-o"></i>盈利详情</a></li>
 					<li><a href="mainmanarfilm"><i class="fa fa-film"></i>影片管理</a></li>
 					<li><a href="mainmanar_limit"><i class="fa fa-film"></i>影院限制</a></li>
+					<li><a href="mainmanarstatistic"><i class="fa fa-pie-chart"></i>统计</a></li>
 				</ul>
 			</div>
 		</div>

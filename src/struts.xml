@@ -10,6 +10,9 @@
           	<result name="ajaxinfo">/Ajax/ajax.jsp</result>
           	<result name="welcome">/welcome/welcome.jsp</result>
           </global-results>
+          <action name="statisticjsoncinema" class="ManagerAction" method="getCinemaStatisticJson">
+          <result name="statisticcinema">/Ajax/statisticcinema.jsp</result>
+          </action>
           <!-- TestAction --><!-- TestAction --><!-- TestAction -->
           <action name="init" class="TestAction" method="DataInit">
           </action>
@@ -19,6 +22,9 @@
           </action>
           <!--  MainManagerAction--><!--  MainManagerAction--><!--  MainManagerAction-->
           <!-- film -->
+          <action name="mainmanarstatistic" class="ManagerAction" method="showProfitPlan">
+          <result name="success">/mainmanar/mainmanarstatistic.jsp</result>
+          </action>
           <action name="mainmanar_limit" class="MainManagerAction" method="cinema_limit">
           <result name="success">/mainmanar/mainmanarlimit.jsp</result>
           </action>

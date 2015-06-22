@@ -13,8 +13,10 @@ import com.cinemaonline.model.client.HallLimit;
 import com.cinemaonline.model.client.OperaResult;
 import com.cinemaonline.model.client.ProfitPlanInfo;
 import com.cinemaonline.model.client.ProfitYear;
+import com.cinemaonline.model.client.StatisticCinemaClient;
 import com.cinemaonline.service.FilmService;
 import com.cinemaonline.service.ProfitService;
+import com.cinemaonline.service.StatisticService;
 
 
 @Repository
@@ -28,6 +30,8 @@ public class MainManagerAction extends BaseAction {
 	private FilmService filmService;
 	@Autowired
 	private ProfitService profitService;
+	@Autowired
+	private StatisticService statisticService;
 	
 	private String ajaxinfo;
 	
@@ -43,6 +47,8 @@ public class MainManagerAction extends BaseAction {
 	private List<ProfitPlan> profitPlanlist;
 	
 	private List<HallLimit> halllimitlist;
+	
+
 	/*
 	 * profit
 	 * */

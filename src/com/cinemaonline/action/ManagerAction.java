@@ -19,6 +19,7 @@ import com.cinemaonline.model.client.OperaResult;
 import com.cinemaonline.model.client.StatisticCinemaClient;
 import com.cinemaonline.service.FilmService;
 import com.cinemaonline.service.ProfitService;
+import com.cinemaonline.service.StatisticService;
 
 @Repository
 public class ManagerAction extends BaseAction {
@@ -31,6 +32,8 @@ public class ManagerAction extends BaseAction {
 	private FilmService filmService;
 	@Autowired
 	private ProfitService profitService;
+	@Autowired
+	private StatisticService statisticService;
 
 	private String ajaxinfo;
 	private List<FilmPlanInfo> filmplanlist;
@@ -51,6 +54,19 @@ public class ManagerAction extends BaseAction {
 	
 	//	//////////////////////////////statistic param///////////////////////////////////////////////
 	private StatisticCinemaClient cinemaClient;
+	
+	public String getCinemaStatisticJson(){
+		String stryear = request.getParameter("year");
+		String strmonth = request.getParameter("month");
+		int year = Integer.parseInt(stryear);
+		int month = Integer.parseInt(strmonth);
+		setCinemaClient(statisticService.getCinemaStatic(year, month));
+		if(cinemaClient==null){
+			ajaxinfo = "empty";
+			return AJAXINFO;
+		}
+		return STATISTICCINEMA;
+	}
 	/*
 	 * profit
 	 * */

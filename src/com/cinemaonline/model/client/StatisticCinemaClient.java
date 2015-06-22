@@ -1,28 +1,19 @@
 package com.cinemaonline.model.client;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import com.cinemaonline.model.FilmType;
 
 
 public class StatisticCinemaClient {
 
-	private List<StatisticPersonSumDay> cinemapersonsum_daylist;
-	private int cinemapersonsum_month;
 	private List<StatisticHallAttendence> hallAttendencelist;
 	private List<StatisticFilmAttendence> filmAttendencelist;
-	private List<StatisticPayway> paywaylist;
-	public List<StatisticPersonSumDay> getCinemapersonsum_daylist() {
-		return cinemapersonsum_daylist;
-	}
-	public void setCinemapersonsum_daylist(
-			List<StatisticPersonSumDay> cinemapersonsum_daylist) {
-		this.cinemapersonsum_daylist = cinemapersonsum_daylist;
-	}
-	public int getCinemapersonsum_month() {
-		return cinemapersonsum_month;
-	}
-	public void setCinemapersonsum_month(int cinemapersonsum_month) {
-		this.cinemapersonsum_month = cinemapersonsum_month;
-	}
+	private List<StatisticTypeAttendence> typeAttendencelist;
+
 	public List<StatisticHallAttendence> getHallAttendencelist() {
 		return hallAttendencelist;
 	}
@@ -37,11 +28,32 @@ public class StatisticCinemaClient {
 			List<StatisticFilmAttendence> filmAttendencelist) {
 		this.filmAttendencelist = filmAttendencelist;
 	}
-	public List<StatisticPayway> getPaywaylist() {
-		return paywaylist;
+	public List<StatisticTypeAttendence> getTypeAttendencelist() {
+		return typeAttendencelist;
 	}
-	public void setPaywaylist(List<StatisticPayway> paywaylist) {
-		this.paywaylist = paywaylist;
+	public void setTypeAttendencelist(List<StatisticTypeAttendence> typeAttendencelist) {
+		this.typeAttendencelist = typeAttendencelist;
 	}
 	
+	public void combineTypeAttendence(){
+		Map<Integer,Double> map = new HashMap<Integer,Double>();
+		List<FilmType> list = new ArrayList<FilmType>();
+		List<StatisticTypeAttendence> alist = new ArrayList<StatisticTypeAttendence>();
+		for(StatisticTypeAttendence temp:typeAttendencelist){
+			if(map.containsKey(temp.getFilmType().getTypeId())){
+				double oldvalue = map.get(temp.getFilmType().getTypeId());
+				map.put(temp.getFilmType().getTypeId(), (double)(oldvalue+temp.getAttendence())/2);
+			}else{
+				list.add(temp.getFilmType());
+				map.put(temp.getFilmType().getTypeId(), temp.getAttendence());
+			}
+		}
+		for(FilmType temp:list){
+			StatisticTypeAttendence sta = new StatisticTypeAttendence();
+			sta.setFilmType(temp);
+			sta.setAttendence(map.get(temp.getTypeId()));
+			alist.add(sta);
+		}
+		typeAttendencelist = alist;
+	}
 }

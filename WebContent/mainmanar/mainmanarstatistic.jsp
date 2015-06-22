@@ -23,10 +23,10 @@ pageEncoding="UTF-8"%>
 		<div class="row">
 			<div class="">
 				<ul class="nav nav-list">
-					<li><a href="manager"><i class="fa fa-newspaper-o"></i>放映计划审阅</a></li>
-					<li class="active"><a href="#"><i class="fa fa-pie-chart"></i>统计</a></li>
-					<li><a href="viewManagerProfitPlan"><i class="fa fa-pie-chart"></i>利润决策</a></li>
-					<li><a href="viewFilmPlan"><i class="fa fa-pie-chart"></i>影片规划</a></li>
+					<li><a href="mainmanagerprofit"><i class="fa fa-pencil-square-o"></i>盈利详情</a></li>
+						<li><a href="#"><i class="fa fa-film"></i>影片管理</a></li>
+						<li><a href="mainmanar_limit"><i class="fa fa-film"></i>影院限制</a></li>
+					<li class="active"><a href="mainmanarstatistic"><i class="fa fa-pie-chart"></i>统计</a></li>
 				</ul>
 			</div>
 		</div>
@@ -59,7 +59,8 @@ pageEncoding="UTF-8"%>
 			</ul>
 			<div class="pane-wrapper slide clearfix">
 				<div class="tab-page">
-					<div id="hall-attendence-container" style="height: 400px; width: 601px; margin: 0 auto"></div>
+					<div id="film-attendence-container" style="height: 400px; width: 601px; margin: 0 auto"></div>
+					<div id="type-attendence-container" style="height: 400px; width: 601px; margin: 0 auto"></div>
 				</div>
 			</div>
 		</div>
