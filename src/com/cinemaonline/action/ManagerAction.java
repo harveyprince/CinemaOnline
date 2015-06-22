@@ -73,6 +73,12 @@ public class ManagerAction extends BaseAction {
 		}
 		return AJAXINFO;
 	}
+	public String viewFilmPlan(){
+		filmlist = filmService.getAllUnplanedFilms();
+		System.out.println("worked");
+		halllist = filmService.getAllHalls();
+		return SUCCESS;
+	}
 	/*
 	 * statics
 	 * */

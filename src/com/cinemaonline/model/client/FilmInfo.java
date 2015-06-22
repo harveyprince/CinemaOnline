@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.cinemaonline.model.Film;
+import com.cinemaonline.model.FilmProfitPlan;
 import com.cinemaonline.model.FilmType;
 import com.cinemaonline.model.ProfitPlan;
 
@@ -22,6 +23,7 @@ public class FilmInfo {
 	private String stTime;
 	private int status = 0;
 	private int cost = 0;
+	private FilmProfitPlan filmProfitPlan;
 	public Film getFilm(){
 		Film film = new Film();
 		film.setDuration(duration);
@@ -45,6 +47,7 @@ public class FilmInfo {
 		setShelvesTime(info.getShelvesTime());
 		setStatus(info.getStatus());
 		setCost(info.getCost());
+		setFilmProfitPlan(info.getFilmProfitPlan());
 	}
 	public static List<FilmInfo> parseFI(List<Film> list){
 		if(list==null){
@@ -134,5 +137,11 @@ public class FilmInfo {
 	}
 	public void setKind(FilmType kind) {
 		this.kind = kind;
+	}
+	public FilmProfitPlan getFilmProfitPlan() {
+		return filmProfitPlan;
+	}
+	public void setFilmProfitPlan(FilmProfitPlan filmProfitPlan) {
+		this.filmProfitPlan = filmProfitPlan;
 	}
 }

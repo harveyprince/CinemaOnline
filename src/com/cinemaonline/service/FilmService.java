@@ -60,4 +60,6 @@ public interface FilmService {
 
 	public List<FilmType> getAllFilmTypes();
 
+	public List<FilmInfo> getAllUnplanedFilms();
+
 }

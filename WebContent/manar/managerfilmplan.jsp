@@ -22,9 +22,10 @@
 			<div class="row">
 				<div class="">
 					<ul class="nav nav-list">
-						<li class="active"><a href="#"><i class="fa fa-newspaper-o"></i>放映计划审阅</a></li>
+						<li><a href="#"><i class="fa fa-newspaper-o"></i>放映计划审阅</a></li>
 						<li><a href="viewStatics"><i class="fa fa-pie-chart"></i>统计</a></li>
 						<li><a href="viewManagerProfitPlan"><i class="fa fa-pie-chart"></i>利润决策</a></li>
+						<li class="active"><a href="viewFilmPlan"><i class="fa fa-pie-chart"></i>影片规划</a></li>
 					</ul>
 				</div>
 			</div>
@@ -41,17 +42,55 @@
 				</ul>
 				<div class="pane-wrapper slide clearfix">
 					<div class="tab-page">
-				</div>
+						<table class="table">
+							<thead>
+								<tr>
+									<th>影片名称</th>
+									<!-- iterator -->
+									<s:iterator id="hall" value="halllist" status="st">
+									<th hallId='<s:property value="#hall.hallNo"/>'><s:property value="#hall.name"/></th>
+									</s:iterator>
+									<!-- iterator -->
+									<th>开始时间</th>
+									<th>上映天数</th>
+									<th>实际盈利</th>
+									<th>目标盈利</th>
+									<th>发布</th>
+							</tr>
+						</thead>
+						<tbody class="film-plan-tbody">
+							<s:iterator id="film" value="filmlist" status="ft">
+								<tr>
+									<th filmId='<s:property value="#film.filmId"/>'><s:property value="#film.name"/></th>
+									<!-- iterator -->
+									<s:iterator id="hall" value="halllist" status="st">
+									<th hallId='<s:property value="#hall.hallNo"/>'>
+										<input class="form-control times-input number-input" type="number" min="0" value="0"/>
+									</th>
+									</s:iterator>
+									<!-- iterator -->
+									<th>
+										<input class="form-control beginTime-input date-input" type="date" placeholder="beginTime" />
+									</th>
+									<th><input class="form-control timeLength-input number-input" type="number" min="0" value="0"/></th>
+									<th>实际盈利</th>
+									<th><s:text name="#film.filmProfitPlan.profitPercent * #film.filmProfitPlan.profitPlan.profitSum / 100 "></s:text></th>
+									<th>发布</th>
+							</tr>
+							</s:iterator>
+						</tbody>
+					</table>
+					</div>
 
-				<!-- /////////////////////////////////////////////////////// -->
-				<div class="tab-page">
-					
+					<!-- /////////////////////////////////////////////////////// -->
+					<div class="tab-page">
+						
+					</div>
 				</div>
 			</div>
-		</div>
 
-	</div>
-	<!-- changable place -->
+		</div>
+		<!-- changable place -->
 
 
 </body>
@@ -79,5 +118,5 @@ var hallslist = [
 </script>
 <script src="./Public/js/common/form.js"></script>
 <script src="./Public/js/server/server.js"></script>
-<script src="./Public/js/manager/plancheck.js"></script>
+<script src="./Public/js/manager/filmplan.js"></script>
 </html>

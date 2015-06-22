@@ -299,9 +299,10 @@ public class FilmServiceImpl implements FilmService {
 		return FilmPlanInfo.parseFPI(filmDao.getAllCheckedUnoldPlansByPage(page));
 	}
 
-	
-
-	
-
+	@Override
+	public List<FilmInfo> getAllUnplanedFilms() {
+		// TODO Auto-generated method stub
+		return FilmInfo.parseFI(filmDao.getAllUnplanedFilms());
+	}
 
 }

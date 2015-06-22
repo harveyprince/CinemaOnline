@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -26,6 +27,7 @@ public class Film {
 	private Set<FilmPlan> filmPlans;//计划
 	private int cost;//film cost成本
 	private FilmType filmType;//电影种类
+	private FilmProfitPlan filmProfitPlan;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -86,6 +88,13 @@ public class Film {
 	}
 	public void setFilmType(FilmType filmType) {
 		this.filmType = filmType;
+	}
+	@OneToOne(mappedBy = "film")
+	public FilmProfitPlan getFilmProfitPlan() {
+		return filmProfitPlan;
+	}
+	public void setFilmProfitPlan(FilmProfitPlan filmProfitPlan) {
+		this.filmProfitPlan = filmProfitPlan;
 	}
 
 }

@@ -839,7 +839,21 @@ public class FilmDaoImpl implements FilmDao {
 			return null;
 		}
 	}
-
-	
-
+	@Override
+	public List<Film> getAllUnplanedFilms() {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		String sql = "select distinct * from Film f,(select p.filmId from FilmProfitPlan p,ProfitPlan t where p.profitPlanId=t.profitPlanId and t.status=2) m where f.filmId = m.filmId";
+		List list = null;
+		try{
+			Query query = session.createSQLQuery(sql).addEntity(Film.class);
+			list = query.list();
+			return list;
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return null;
+	}
 }

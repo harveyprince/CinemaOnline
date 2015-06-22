@@ -77,12 +77,7 @@ public interface FilmDao {
 
 	public List<FilmType> getAllFilmTypes();
 
+	public List<Film> getAllUnplanedFilms();
 
 
-
-
-	
-
-
-	
 }
