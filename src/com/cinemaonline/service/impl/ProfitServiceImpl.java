@@ -58,7 +58,7 @@ public class ProfitServiceImpl implements ProfitService {
 	@Override
 	public List<FilmInfo> getAllUnplanedFilms() {
 		// TODO Auto-generated method stub
-		return FilmInfo.parseFI(profitDao.getAllUnplanedFilms());
+		return FilmInfo.parseFI(profitDao.getAllUnplanedFilms(),filmDao);
 	}
 
 	@Override

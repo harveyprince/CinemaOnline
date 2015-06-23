@@ -104,6 +104,8 @@ public class ManagerAction extends BaseAction {
 	}
 	public String submitFilmPlan(){
 		if(filmReleasePlan.getBeginTime()!=-1L&&filmReleasePlan.getBeginTime()>=(new Date().getTime())){
+			System.out.println(filmReleasePlan.getDayslength());
+			System.out.println(filmReleasePlan.getBeginTime());
 			OperaResult result = filmService.addFilmReleasePlan(filmReleasePlan);
 			if(result.getResult()){
 				ajaxinfo = "success";

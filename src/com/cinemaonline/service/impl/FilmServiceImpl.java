@@ -69,7 +69,7 @@ public class FilmServiceImpl implements FilmService {
 	@Override
 	public List<FilmInfo> getAllReleasingFilms() {
 		// TODO Auto-generated method stub
-		return FilmInfo.parseFI(filmDao.getAllReleasingFilms());
+		return FilmInfo.parseFI(filmDao.getAllReleasingFilms(),filmDao);
 	}
 
 	@Override
@@ -171,25 +171,25 @@ public class FilmServiceImpl implements FilmService {
 	@Override
 	public List<FilmInfo> getAllFilms() {
 		// TODO Auto-generated method stub
-		return FilmInfo.parseFI(filmDao.getAllFilms());
+		return FilmInfo.parseFI(filmDao.getAllFilms(),filmDao);
 	}
 	
 	@Override
 	public List<FilmInfo> getAllFilmsByPage(int page) {
 		// TODO Auto-generated method stub
-		return FilmInfo.parseFI(filmDao.getAllUnreleasedFilmsByPage(page));
+		return FilmInfo.parseFI(filmDao.getAllUnreleasedFilmsByPage(page),filmDao);
 	}
 	
 	@Override
 	public List<FilmInfo> getAllOldFilmsByPage(int page) {
 		// TODO Auto-generated method stub
-		return FilmInfo.parseFI(filmDao.getAllOldFilmsByPage(page));
+		return FilmInfo.parseFI(filmDao.getAllOldFilmsByPage(page),filmDao);
 	}
 	
 	@Override
 	public List<FilmInfo> getAllReleaseFilmsByPage(int page) {
 		// TODO Auto-generated method stub
-		return FilmInfo.parseFI(filmDao.getAllReleaseFilmsByPage(page));
+		return FilmInfo.parseFI(filmDao.getAllReleaseFilmsByPage(page),filmDao);
 	}
 
 	@Override
@@ -311,13 +311,13 @@ public class FilmServiceImpl implements FilmService {
 	@Override
 	public List<FilmInfo> getAllUnplanedFilms() {
 		// TODO Auto-generated method stub
-		return FilmInfo.parseFI(filmDao.getAllUnplanedFilms());
+		return FilmInfo.parseFI(filmDao.getAllUnplanedFilms(),filmDao);
 	}
 	
 	@Override
 	public List<FilmInfo> getAllPlanedFilms() {
 		// TODO Auto-generated method stub
-		return FilmInfo.parseFI(filmDao.getAllPlanedFilms());
+		return FilmInfo.parseFI(filmDao.getAllPlanedFilms(),filmDao);
 	}
 
 	@Override
@@ -327,7 +327,7 @@ public class FilmServiceImpl implements FilmService {
 		OperaResult result = new OperaResult();
 		Film film = filmDao.getFilmById(info.getFilmId());
 		Long beginTime = info.getBeginTime();
-		Long endTime = info.getBeginTime()+info.getDayslength()*24*60*60*1000;
+		Long endTime = info.getBeginTime()+(Long.parseLong(info.getDayslength()+""))*24*60*60*1000;
 		int idx = 0;
 		for(int hallNo:info.getHallNolist()){
 			if(!JudgeFilmReleasePlanInsertable(beginTime,endTime,info.getPlayTimeslist().get(idx),hallNo)){
@@ -345,7 +345,8 @@ public class FilmServiceImpl implements FilmService {
 			frp.setHall(hall);
 			frp.setPlayTimes(info.getPlayTimeslist().get(idx));
 			frp.setBeginTime(info.getBeginTime());
-			frp.setEndTime(info.getBeginTime()+info.getDayslength()*24*60*60*1000);
+			System.out.println(frp.getBeginTime());
+			frp.setEndTime(info.getBeginTime()+(Long.parseLong(info.getDayslength()+""))*24*60*60*1000);
 			frp.setPrice(info.getPrice());
 			baseDao.save(frp);
 			idx++;
@@ -358,6 +359,9 @@ public class FilmServiceImpl implements FilmService {
 		for(Long now = beginTime;now<endTime;now+=24*60*60*1000){
 			int dayPlayTimes = filmDao.getDayPlayTimes(hallNo,now);
 			Hall hall = filmDao.getHallById(hallNo);
+			System.out.println(dayPlayTimes);
+			System.out.println(playtimes);
+			System.out.println(hall.getTimes());
 			if(dayPlayTimes+playtimes>hall.getTimes()){
 				return false;
 			}
@@ -408,7 +412,7 @@ public class FilmServiceImpl implements FilmService {
 			Hall hall = filmDao.getHallById(temp.getHallNo());
 			fpinfo.setHall(hall);
 			fpinfo.setSeatSum(hall.getSeats());
-			fpinfo.setPrice(film.getFilmReleasePlanlist().get(0).getPrice());
+			fpinfo.setPrice(filmDao.getFilmReleasePlanListByFilmId(film.getFilmId()).get(0).getPrice());
 			fpinfo.setStatus(0);
 			OperaResult re = addPlan(fpinfo);
 			result = re;

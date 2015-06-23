@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import com.cinemaonline.dao.FilmDao;
 import com.cinemaonline.model.Film;
 import com.cinemaonline.model.FilmProfitPlan;
 import com.cinemaonline.model.FilmReleasePlan;
@@ -38,7 +39,7 @@ public class FilmInfo {
 		film.setCost(cost);
 		return film;
 	}
-	public void setFilm(Film info){
+	public void setFilm(Film info,List<FilmReleasePlan> list){
 		if(info==null){
 			return;
 		}
@@ -51,16 +52,16 @@ public class FilmInfo {
 		setStatus(info.getStatus());
 		setCost(info.getCost());
 		setFilmProfitPlan(info.getFilmProfitPlan());
-		setFilmReleasePlanlist(info.getFilmReleasePlanlist());
+		setFilmReleasePlanlist(list);
 	}
-	public static List<FilmInfo> parseFI(List<Film> list){
+	public static List<FilmInfo> parseFI(List<Film> list,FilmDao filmDao){
 		if(list==null){
 			return null;
 		}
 		List<FilmInfo> info = new ArrayList<FilmInfo>();
 		for(Film film:list){
 			FilmInfo temp = new FilmInfo();
-			temp.setFilm(film);
+			temp.setFilm(film,filmDao.getFilmReleasePlanListByFilmId(film.getFilmId()));
 			info.add(temp);
 		}
 		return info;
