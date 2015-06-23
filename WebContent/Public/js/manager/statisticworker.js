@@ -20,12 +20,16 @@ $(".time-confirm").click(function(){
 				filmAttendenceChartsEmp();
 				typeAttendenceChartsEmp();
 				hallAttendenceChartsEmp();
+				timeAttendenceChartsEmp();
+				profitAttendenceChartsEmp();
 				$.scojs_message('no record!', $.scojs_message.TYPE_ERROR);
 			}else{
 				var info = eval('('+data+')');
 				filmAttendenceCharts(info.film_x,info.film_y);
 				typeAttendenceCharts(info.type_x,info.type_y);
 				hallAttendenceCharts(info.hall_x,info.hall_y);
+				timeAttendenceCharts(info.time_x,info.time_y);
+				profitAttendenceCharts(info.profit_x,info.profit_y);
 			}
 		},
 		error:function(){

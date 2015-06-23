@@ -38,15 +38,11 @@
 		<div class="bar-match-content">
 			<div class="table-box">
 				<ul class="nav nav-tabs" data-trigger="tab">
-					<li><a href="#tab1">类型分析</a></li>
 					<li><a href="#tab2">计划影片</a></li>
 					<li><a href="#tab3">已推送</a></li>
 					<li><a href="#tab4">已结束</a></li>
 				</ul>
 				<div class="pane-wrapper slide clearfix">
-					<div class="tab-page">
-					</div>
-
 					<!--  -->
 					<div class="tab-page">
 						<button class="btn btn-primary add-film" data-toggle="modal" data-target="#modalAdd">

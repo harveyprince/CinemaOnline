@@ -42,10 +42,7 @@ pageEncoding="UTF-8"%>
 			</ul>
 			<div class="pane-wrapper slide clearfix">
 				<div class="tab-page">
-					<div id="container" style="min-width: 310px; height: 100px; max-width: 600px; margin: 0 auto">
-						<div class="statistic-label">总利润:<span class="profit-show"></span></div>
-					</div>
-					<div id="profit-container" style="height: 400px; width: 601px; margin: 0 auto"></div>
+					<div id="profit-attendence-container" style="height: 400px; width: 601px; margin: 0 auto"></div>
 					<!-- 罗列利润规划的平均影片利润走势（规划和实际） -->
 				</div>
 				<div class="tab-page">
@@ -112,6 +109,9 @@ var filmslist = [
 <script src="./Public/js/common/form.js"></script>
 <script src="./Public/js/server/server.js"></script>
 <script src="./Public/js/mainmanager/mainmanagerprofit.js"></script>
+<script src="./Public/js/manager/statistic.js"></script>
+<script src="./Public/js/manager/statisticworker.js"></script>
 <script src="./Public/js/mainmanager/statistic.js"></script>
 <script src="./Public/js/mainmanager/statisticworker.js"></script>
+
 </html>

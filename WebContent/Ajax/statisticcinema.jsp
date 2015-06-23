@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
  {
  	film_x:[
@@ -21,6 +23,30 @@
  	type_y:[
  	<s:iterator id="film" value="cinemaClient.typeAttendencelist" status="fst">
  	<s:property value="#film.attendence"/>
+ 	<s:if test="%{!#fst.last}">,</s:if>
+	</s:iterator>
+ 	],
+	time_x:[
+ 	<s:iterator id="film" value="cinemaClient.timeAttendencelist" status="fst">
+ 	'<s:property value="#film.time"/>'
+ 	<s:if test="%{!#fst.last}">,</s:if>
+	</s:iterator>
+ 	],
+ 	time_y:[
+ 	<s:iterator id="film" value="cinemaClient.timeAttendencelist" status="fst">
+ 	<s:property value="#film.attendence"/>
+ 	<s:if test="%{!#fst.last}">,</s:if>
+	</s:iterator>
+ 	],
+ 	profit_x:[
+ 	<s:iterator id="film" value="cinemaClient.profitStatuslist" status="fst">
+ 	'<s:property value="#film.profitPlan.profitPlanId"/>盈亏为<s:property value="#film.profit"/>'
+ 	<s:if test="%{!#fst.last}">,</s:if>
+	</s:iterator>
+ 	],
+ 	profit_y:[
+ 	<s:iterator id="film" value="cinemaClient.profitStatuslist" status="fst">
+ 	<s:property value="#film.profit"/>
  	<s:if test="%{!#fst.last}">,</s:if>
 	</s:iterator>
  	],

@@ -58,6 +58,9 @@ public class ServerAction extends BaseAction {
 	private TicketOrder ticketOrder;
 	//	///////////////////////////////////////////////////////////
 	
+	public String view_statistic(){
+		return SUCCESS;
+	}
 	/*
 	 * vip reader
 	 * */

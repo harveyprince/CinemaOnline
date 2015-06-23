@@ -26,6 +26,7 @@
 						<li class="active"><a href="serverfilmplannew"><i class="fa fa-pencil-square-o"></i>放映计划new</a></li>
 						<li><a href="ticketsale"><i class="fa fa-usd"></i>售票</a></li>
 						<li><a href="viewVipDetail"><i class="fa fa-user"></i> VIP</a></li>
+						<li><a href="serverstatistic"><i class="fa fa-user"></i>统计</a></li>
 					</ul>
 				</div>
 			</div>

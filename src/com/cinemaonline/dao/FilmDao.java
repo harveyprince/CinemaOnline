@@ -1,5 +1,6 @@
 package com.cinemaonline.dao;
 
+import java.util.Calendar;
 import java.util.List;
 
 import com.cinemaonline.model.Film;
@@ -89,4 +90,11 @@ public interface FilmDao {
 	public List<FilmReleasePlan> getFilmReleasePlanListByDateAndHall(Long date,
 			int hallNo);
 
+	public double getTimeAttendenceByTime(long timeb, long timee,
+			long month_begin, long month_end);
+
+	public List<FilmPlan> getFilmPlanByTimeBlock(long timeb, long timee,
+			long month_begin, long month_end);
+
+	public List<FilmReleasePlan> getFilmReleasePlanListByFilmId(long filmId);
 }

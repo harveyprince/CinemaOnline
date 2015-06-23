@@ -157,6 +157,9 @@
            </action>
            <!-- ServerAction --><!-- ServerAction --><!-- ServerAction -->
            <!--plan  -->
+           <action name="serverstatistic" class="ServerAction" method="view_statistic">
+           <result name="success">/server/serverstatistic.jsp</result>
+           </action>
            <action name="server_film_plan" class="ServerAction" method="ajax_film_plan">
            <result name="success">/server/filmplan/filmplan.jsp</result>
            </action>

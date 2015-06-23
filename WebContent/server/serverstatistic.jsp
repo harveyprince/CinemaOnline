@@ -23,10 +23,11 @@ pageEncoding="UTF-8"%>
 		<div class="row">
 			<div class="">
 				<ul class="nav nav-list">
-					<li><a href="manager"><i class="fa fa-newspaper-o"></i>放映计划审阅</a></li>
-					<li class="active"><a href="#"><i class="fa fa-pie-chart"></i>统计</a></li>
-					<li><a href="viewManagerProfitPlan"><i class="fa fa-pie-chart"></i>利润决策</a></li>
-					<li><a href="viewFilmPlan"><i class="fa fa-pie-chart"></i>影片规划</a></li>
+					<li><a href="serverfilmplan"><i class="fa fa-pencil-square-o"></i>放映计划</a></li>
+						<li><a href="serverfilmplannew"><i class="fa fa-pencil-square-o"></i>放映计划new</a></li>
+						<li><a href="ticketsale"><i class="fa fa-usd"></i>售票</a></li>
+						<li><a href="#"><i class="fa fa-user"></i> VIP</a></li>
+						<li class="active"><a href="serverstatistic"><i class="fa fa-user"></i>统计</a></li>
 				</ul>
 			</div>
 		</div>
@@ -59,7 +60,7 @@ pageEncoding="UTF-8"%>
 			</ul>
 			<div class="pane-wrapper slide clearfix">
 				<div class="tab-page">
-					<div id="hall-attendence-container" style="height: 400px; width: 601px; margin: 0 auto"></div>
+					<div id="time-attendence-container" style="height: 400px; width: 601px; margin: 0 auto"></div>
 					<div id="type-attendence-container" style="height: 400px; width: 601px; margin: 0 auto"></div>
 				</div>
 			</div>

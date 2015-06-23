@@ -25,7 +25,7 @@ public class Film {
 	private Date releaseTime;//上映时间
 	private Date shelvesTime;//下架时间
 	private int status;//电影状态[0不可见,1可见,2结束]
-	private Set<FilmPlan> filmPlans;//计划
+	private List<FilmPlan> filmPlans;//计划
 	private int cost;//film cost成本
 	private FilmType filmType;//电影种类
 	private FilmProfitPlan filmProfitPlan;
@@ -69,11 +69,11 @@ public class Film {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	@OneToMany(cascade=CascadeType.ALL,mappedBy="film")
-	public Set<FilmPlan> getFilmPlans() {
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="film",fetch = FetchType.EAGER)
+	public List<FilmPlan> getFilmPlans() {
 		return filmPlans;
 	}
-	public void setFilmPlans(Set<FilmPlan> filmPlans) {
+	public void setFilmPlans(List<FilmPlan> filmPlans) {
 		this.filmPlans = filmPlans;
 	}
 	public int getCost() {
@@ -98,7 +98,7 @@ public class Film {
 	public void setFilmProfitPlan(FilmProfitPlan filmProfitPlan) {
 		this.filmProfitPlan = filmProfitPlan;
 	}
-	@OneToMany(cascade=CascadeType.ALL,mappedBy="film",fetch=FetchType.EAGER)
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="film")
 	public List<FilmReleasePlan> getFilmReleasePlanlist() {
 		return filmReleasePlanlist;
 	}

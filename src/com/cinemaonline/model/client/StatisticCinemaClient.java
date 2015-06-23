@@ -13,6 +13,8 @@ public class StatisticCinemaClient {
 	private List<StatisticHallAttendence> hallAttendencelist;
 	private List<StatisticFilmAttendence> filmAttendencelist;
 	private List<StatisticTypeAttendence> typeAttendencelist;
+	private List<StatisticTimeAttendence> timeAttendencelist;
+	private List<StatisticProfitStatus> profitStatuslist;
 
 	public List<StatisticHallAttendence> getHallAttendencelist() {
 		return hallAttendencelist;
@@ -55,5 +57,17 @@ public class StatisticCinemaClient {
 			alist.add(sta);
 		}
 		typeAttendencelist = alist;
+	}
+	public List<StatisticTimeAttendence> getTimeAttendencelist() {
+		return timeAttendencelist;
+	}
+	public void setTimeAttendencelist(List<StatisticTimeAttendence> timeAttendencelist) {
+		this.timeAttendencelist = timeAttendencelist;
+	}
+	public List<StatisticProfitStatus> getProfitStatuslist() {
+		return profitStatuslist;
+	}
+	public void setProfitStatuslist(List<StatisticProfitStatus> profitStatuslist) {
+		this.profitStatuslist = profitStatuslist;
 	}
 }

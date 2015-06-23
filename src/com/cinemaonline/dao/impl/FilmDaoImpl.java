@@ -762,6 +762,41 @@ public class FilmDaoImpl implements FilmDao {
 		}
 	}
 	@Override
+	public double getTimeAttendenceByTime(long timeb, long timee,
+			long month_begin, long month_end) {
+		// TODO Auto-generated method stub
+		List<FilmPlan> list = getFilmPlanByTimeBlock(timeb,timee,month_begin,month_end);
+		int son = 0;
+		int mother = 0;
+		for(FilmPlan temp:list){
+			son += temp.getHall().getSeats()-temp.getSeatSum();
+			mother += temp.getHall().getSeats();
+		}
+		if(mother!=0){
+			return (double)son/mother;
+		}
+		return 0;
+	}
+	@Override
+	public List<FilmPlan> getFilmPlanByTimeBlock(long timeb, long timee,
+			long month_begin, long month_end){
+		Session session = baseDao.getNewSession();
+		try{
+			String sql = "select * from FilmPlan where beginTime>=? and beginTime<=? and MOD(beginTime,100000000)>=? and MOD(beginTime,100000000)<=?";
+			Query query = session.createSQLQuery(sql).addEntity(FilmPlan.class);
+			query.setParameter(0, month_begin);
+			query.setParameter(1, month_end);
+			query.setParameter(2, timeb);
+			query.setParameter(3, timee);
+			return query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return null;
+	}
+	@Override
 	public List<FilmPlan> getAllCheckedUnoldPlans() {
 		// TODO Auto-generated method stub
 		Session session = baseDao.getNewSession();
@@ -926,5 +961,21 @@ public class FilmDaoImpl implements FilmDao {
 		}
 		return null;
 	}
+	@Override
+	public List<FilmReleasePlan> getFilmReleasePlanListByFilmId(long filmId) {
+		// TODO Auto-generated method stub
+		Session session = baseDao.getNewSession();
+		try{
+			String sql = "select * from FilmReleasePlan where filmId="+filmId;
+			Query query = session.createSQLQuery(sql).addEntity(FilmReleasePlan.class);
+			return query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return null;
+	}
+
 
 }
